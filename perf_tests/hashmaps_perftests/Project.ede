@@ -1,0 +1,32 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "hashmaps-perftests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("hashmaps_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "insert_perftest"
+      :path ""
+      :source '("insert_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h")
+      :compiler ede-g++-compiler
+      :linker ede-g++-linker
+      :configuration-variables '(("CPPFLAGS=-O3")))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "contains_perftest"
+      :path ""
+      :source '("contains_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "remove_perftest"
+      :path ""
+      :source '("remove_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h")))
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))

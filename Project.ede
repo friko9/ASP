@@ -1,0 +1,10 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "asp-test"
+  :targets nil
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :variables '(("MAKEFLAGS" . "-j4"))
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g")) ("release" ("CXXFLAGS" . "-g -O2"))))

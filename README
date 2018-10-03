@@ -1,0 +1,5 @@
+IDE - EDE (Emacs Development Environment) + Automake
+
+Algorithms and structures represent those found in the book Algorithms+Structures=Programs.
+Its made just to understend the nuances of presented algorithms. Efficiency is comparable as those in standard C++ library.
+Also experimented with indipendent-module self-registering used in some unit-testing environments, and configure-run-check testing philosophy variations for repeateable test cases.

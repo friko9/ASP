@@ -1,0 +1,24 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "sorting-perftests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("sorting_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "small_dataset_perftest"
+      :path ""
+      :source '("small_dataset.cpp" "sorting_common.cpp")
+      :auxsource '("sorting_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "large_dataset_olog2_perftest"
+      :path ""
+      :source '("large_dataset_olog2.cpp" "sorting_common.cpp")
+      :auxsource '("sorting_common.h")))
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))

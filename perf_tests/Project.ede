@@ -1,0 +1,14 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "perf-tests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("common.h")))
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g")) ("release" ("CXXFLAGS" . "-O3 -NDEBUG"))))

@@ -1,0 +1,26 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "treeset-perftests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("treeset_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "insert_perftest"
+      :path ""
+      :source '("insert_perftest.cpp" "treeset_common.cpp"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "contains_perftest"
+      :path ""
+      :source '("contains_perftest.cpp" "treeset_common.cpp"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "remove_perftest"
+      :path ""
+      :source '("remove_perftest.cpp" "treeset_common.cpp")))
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))

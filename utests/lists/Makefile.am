@@ -1,0 +1,20 @@
+# Automatically Generated Makefile by EDE.
+# For use with: automake
+# Relative File Name: utests/lists/Makefile.am
+#
+# DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
+# EDE is the Emacs Development Environment.
+# http://cedet.sourceforge.net/ede.shtml
+#
+
+top=../../
+ede_FILES=Project.ede Makefile.am
+
+SUBDIRS=
+EXTRA_DIST=Project.ede
+bin_PROGRAMS=list_test
+list_test_SOURCES=lists.cpp list_stl_test_find.cpp list_stl_test_contains.cpp list_stl_test_insert.cpp list_stl_test_remove.cpp list_stlforward_test_contains.cpp list_stlforward_test_find.cpp list_stlforward_test_insert.cpp list_stlforward_test_remove.cpp list_dynamic_test_contains.cpp list_dynamic_test_insert.cpp list_dynamic_test_remove.cpp list_array_test_contains.cpp list_array_test_find.cpp list_array_test_insert.cpp list_array_test_remove.cpp list_array_test_exclude_elem.cpp list_array_test_move_elem.cpp list_array_enchanced_test_contains.cpp list_array_enchanced_test_exclude_elem.cpp list_array_enchanced_test_find.cpp list_array_enchanced_test_move_elem.cpp list_array_enchanced_test_remove.cpp list_array_enchanced_test_insert.cpp list_array_selforganizing_test_contains.cpp list_array_selforganizing_test_exclude_elem.cpp list_array_selforganizing_test_find.cpp list_array_selforganizing_test_insert.cpp list_array_selforganizing_test_move_elem.cpp list_array_selforganizing_test_remove.cpp list_array_sorted_test_contains.cpp list_array_sorted_test_exclude_elem.cpp list_array_sorted_test_find.cpp list_array_sorted_test_insert.cpp list_array_sorted_test_move_elem.cpp list_array_sorted_warden_test_contains.cpp list_array_sorted_warden_test_exclude_elem.cpp list_array_sorted_warden_test_find.cpp list_array_sorted_warden_test_insert.cpp list_array_sorted_warden_test_move_elem.cpp list_array_sorted_warden_test_remove.cpp list_array_sorted_test_remove.cpp
+include_MISC=list_stl_test.h list_stlforward_test.h list_dynamic_test.h list_array_test.h list_array_enchanced_test.h list_array_selforganizing_test.h list_array_sorted_test.h list_array_sorted_warden_test.h
+list_test_LDADD=
+
+# End of Makefile.am

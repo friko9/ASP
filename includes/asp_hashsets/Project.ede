@@ -1,0 +1,13 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "asp-hashmaps"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("hashset_array.h" "hashset_bucket.h" "hashset_stl.h")))
+  :makefile-type Makefile\.am
+  :configuration-variables nil)

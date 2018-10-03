@@ -1,0 +1,19 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "list-utest"
+  :targets
+  (list
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "list_test"
+      :path ""
+      :source '("lists.cpp" "list_stl_test_find.cpp" "list_stl_test_contains.cpp" "list_stl_test_insert.cpp" "list_stl_test_remove.cpp" "list_stlforward_test_contains.cpp" "list_stlforward_test_find.cpp" "list_stlforward_test_insert.cpp" "list_stlforward_test_remove.cpp" "list_dynamic_test_contains.cpp" "list_dynamic_test_insert.cpp" "list_dynamic_test_remove.cpp" "list_array_test_contains.cpp" "list_array_test_find.cpp" "list_array_test_insert.cpp" "list_array_test_remove.cpp" "list_array_test_exclude_elem.cpp" "list_array_test_move_elem.cpp" "list_array_enchanced_test_contains.cpp" "list_array_enchanced_test_exclude_elem.cpp" "list_array_enchanced_test_find.cpp" "list_array_enchanced_test_move_elem.cpp" "list_array_enchanced_test_remove.cpp" "list_array_enchanced_test_insert.cpp" "list_array_selforganizing_test_contains.cpp" "list_array_selforganizing_test_exclude_elem.cpp" "list_array_selforganizing_test_find.cpp" "list_array_selforganizing_test_insert.cpp" "list_array_selforganizing_test_move_elem.cpp" "list_array_selforganizing_test_remove.cpp" "list_array_sorted_test_contains.cpp" "list_array_sorted_test_exclude_elem.cpp" "list_array_sorted_test_find.cpp" "list_array_sorted_test_insert.cpp" "list_array_sorted_test_move_elem.cpp" "list_array_sorted_warden_test_contains.cpp" "list_array_sorted_warden_test_exclude_elem.cpp" "list_array_sorted_warden_test_find.cpp" "list_array_sorted_warden_test_insert.cpp" "list_array_sorted_warden_test_move_elem.cpp" "list_array_sorted_warden_test_remove.cpp" "list_array_sorted_test_remove.cpp")
+      :auxsource '("list_array_test.h" "list_stl_test.h" "list_dynamic_test.h" "list_stlforward_test.h" "list_array_enchanced_test.h" "list_array_selforganizing_test.h" "list_array_sorted_test.h" "list_array_sorted_warden_test.h")
+      :configuration-variables nil)
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("list_stl_test.h" "list_stlforward_test.h" "list_dynamic_test.h" "list_array_test.h" "list_array_enchanced_test.h" "list_array_selforganizing_test.h" "list_array_sorted_test.h" "list_array_sorted_warden_test.h")))
+  :makefile-type Makefile\.am
+  :configuration-variables nil)

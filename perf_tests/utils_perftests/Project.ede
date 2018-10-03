@@ -1,0 +1,19 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "utils-perftests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("utils_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "utils_perftest"
+      :path ""
+      :source '("utils_perftest.cpp" "utils_common.cpp")
+      :auxsource '("utils_common.h")))
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))
