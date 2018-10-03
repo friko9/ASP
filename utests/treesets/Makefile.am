@@ -1,0 +1,20 @@
+# Automatically Generated Makefile by EDE.
+# For use with: automake
+# Relative File Name: utests/treesets/Makefile.am
+#
+# DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
+# EDE is the Emacs Development Environment.
+# http://cedet.sourceforge.net/ede.shtml
+#
+
+top=../../
+ede_FILES=Project.ede Makefile.am
+
+SUBDIRS=
+EXTRA_DIST=Project.ede
+bin_PROGRAMS=treeset_test
+treeset_test_SOURCES=treesets.cpp treeset_stl_test_contains.cpp treeset_stl_test_insert.cpp treeset_stl_test_remove.cpp treeset_dynamic_test_insert.cpp treeset_dynamic_test_remove.cpp treeset_dynamic_test_contains.cpp treeset_dynamic_test_find.cpp treeset_dynamic_test_exclude_single_node.cpp treeset_dynamic_test_exclude_double_node.cpp treeset_dynamic_balancing_test_exclude_double_node_2.cpp treeset_dynamic_balancing_test_contains.cpp treeset_dynamic_balancing_test_exclude_double_node.cpp treeset_dynamic_balancing_test_exclude_single_node.cpp treeset_dynamic_balancing_test_find.cpp treeset_dynamic_balancing_test_insert.cpp treeset_dynamic_balancing_test_remove.cpp treeset_dynamic_balancing_test_rebalance_case_1.cpp treeset_dynamic_balancing_test_rebalance_case_2.cpp treeset_dynamic_balancing_test_append_node.cpp treeset_dynamic_balancing_test_traverse_last.cpp treeset_dynamic_balancing_test_rebalance.cpp treeset_array_test_contains.cpp treeset_array_test_find.cpp treeset_array_test_traverse_last.cpp treeset_array_test_remove_value.cpp treeset_array_test_move_nodes_up.cpp treeset_array_test_remove_node.cpp treeset_array_test_insert.cpp treeset_array_test_remove.cpp
+include_MISC=treeset_stl_test.h treeset_dynamic_test.h treeset_dynamic_balancing_test.h treeset_array_test.h
+treeset_test_LDADD=
+
+# End of Makefile.am

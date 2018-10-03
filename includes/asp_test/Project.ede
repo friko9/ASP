@@ -1,0 +1,12 @@
+;; Object asp-test_set
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "asp-test_set"
+  :file "Project.ede"
+  :name "asp-test_set"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("test_set.h")))
+  :makefile-type Makefile\.am)

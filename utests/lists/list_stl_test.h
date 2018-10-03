@@ -1,0 +1,46 @@
+#ifndef LIST_STL_TEST_H
+#define LIST_STL_TEST_H
+
+#include "includes/utils/utils.h"
+#include "includes/asp_test/test_set.h"
+#include "includes/asp_lists/list_stl.h"
+
+#include <functional>
+#include <vector>
+#include <list>
+
+template<typename T>
+struct TestPlug<list_stl<T>>
+{
+    std::list<T>& getL(list_stl<T>& arg) { return arg.l; }
+    typename std::list<T>::iterator find(list_stl<T>& arg, T x) { return arg.find(x); }
+};
+
+namespace test_list_stl
+{
+    test_set& access_test_set();
+    
+    struct list_stl_test_case : test_case
+    {
+	using elem_t = int8_t;
+	std::vector<elem_t> data;
+	std::list<elem_t> testlist;
+	TestPlug<list_stl<elem_t>> test_plug;
+	list_stl<elem_t> container;
+    public:
+	template<typename It>
+	static void compare_test_range( test_result& result,
+	 				It first,
+	 				It last,
+	 				std::function<bool(It)> test_f )
+	    {
+		bool inc = first < last;
+		do
+		    if ( test_f(first) )
+			++result;
+		while ( first != last && (( inc && (++first,true)) || ( !inc && (--first,true))) );
+	    }
+    };
+    
+}
+#endif /*LIST_STL_TEST_H*/

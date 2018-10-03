@@ -1,0 +1,12 @@
+;; Object asp-lists
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "asp-lists"
+  :file "Project.ede"
+  :name "asp-lists"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("list_array.h" "list_array_enchanced.h" "list_array_selforganizing.h" "list_array_sorted.h" "list_array_sorted_warden.h" "list_common.h" "list_dynamic.h" "list_stl.h" "list_stlforward.h")))
+  :makefile-type Makefile\.am)

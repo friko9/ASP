@@ -1,0 +1,16 @@
+;; Object utils-utest
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "utils-utest"
+  :file "Project.ede"
+  :name "utils-utest"
+  :targets
+  (list
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "amd64"
+      :path ""
+      :source '("utils.cpp")
+      :compiler ede-g++-compiler
+      :linker ede-g++-linker
+      :configuration-variables nil))
+  :makefile-type Makefile\.am
+  :configuration-variables nil)

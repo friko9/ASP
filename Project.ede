@@ -1,0 +1,8 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "asp-test"
+  :targets nil
+  :makefile-type Makefile\.am
+  :configuration-variables nil)
