@@ -1,6 +1,8 @@
 #ifndef TREESET_DYNAMIC_H
 #define TREESET_DYNAMIC_H
 
+#include "includes/utils/utils.h"
+
 #include <utility>
 
 template <typename T>

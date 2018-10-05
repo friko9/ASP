@@ -31,7 +31,7 @@ struct TestPlug<treeset_array_balance<T>>
     void remove_node(treeset_t& arg, size_t index, side_t side){ arg.remove_node(index,side); }
     void move_nodes_up(treeset_t& arg, size_t index){ arg.move_nodes_up(index); }
     void move_nodes_down(treeset_t& arg, size_t index,side_t side){ arg.move_nodes_down(index,side); }
-    void move_nodes_side(treeset_t& arg, size_t src,side_t dst){ arg.move_nodes_side(src,dst); }
+    void move_nodes_side(treeset_t& arg, size_t src,size_t dst){ arg.move_nodes_side(src,dst); }
     void reballance_case_1(treeset_t& arg, size_t origin){ arg.reballance_case_1(origin); }
     void reballance_case_2(treeset_t& arg, size_t origin){ arg.reballance_case_2(origin); }
     void reballance(treeset_t& arg, size_t origin){ arg.reballance(origin); }
@@ -105,7 +105,7 @@ namespace test_treeset_array_balance
 	    {
 		std::vector<node_t> values;
 		std::vector<size_t> indexes(tree_size,null);
-		std::vector<height_t> heights(tree_size,null);
+		std::vector<height_t> heights(tree_size,0);
 		for(int j=0; j<data.size(); ++j)
 		{
 		    indexes[std::get<0>(data[j])] = j;
@@ -118,7 +118,9 @@ namespace test_treeset_array_balance
 	void configure()
 	    {
 		setup_data();
-		std::tie(test_plug.get_values(container),test_plug.get_indexes(container))
+		std::tie(test_plug.get_values(container),
+			 test_plug.get_indexes(container),
+			 test_plug.get_heights(container))
 		    = make_data(tree_size,data);
 	    }
     };

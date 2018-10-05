@@ -1,6 +1,8 @@
 #ifndef TREESET_ARRAY_H
 #define TREESET_ARRAY_H
 
+#include "includes/utils/utils.h"
+
 #include <cassert>
 #include <limits>
 #include <vector>

@@ -1,6 +1,8 @@
 #ifndef LIST_ARRAY_ENCHANCED_H
 #define LIST_ARRAT_ENCHANCED_H
 
+#include "../utils/utils.h"
+
 #include <cassert>
 #include <vector>
 

@@ -78,7 +78,7 @@ namespace test_treeset_dynamic
 	    }
     };
     inline treeset_dynamic_test_case::score_t operator +(treeset_dynamic_test_case::score_t left,
-								   treeset_dynamic_test_case::score_t right)
+							 treeset_dynamic_test_case::score_t right)
     {return {left.score+right.score,left.max_score+right.max_score}; }
 }
 #endif /*TREESET_DYNAMIC_TEST_H*/

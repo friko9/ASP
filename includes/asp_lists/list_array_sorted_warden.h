@@ -1,6 +1,8 @@
 #ifndef LIST_ARRAY_SORTED_WARDEN_H
 #define LIST_ARRAY_SORTED_WARDEN_H
 
+#include "../utils/utils.h"
+
 #include <cassert>
 #include <limits>
 #include <vector>

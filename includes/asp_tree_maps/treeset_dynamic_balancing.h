@@ -1,6 +1,8 @@
 #ifndef TREESET_DYNAMIC_BALANCING_H
 #define TREESET_DYNAMIC_BALANCING_H
 
+#include "includes/utils/utils.h"
+
 #include <cassert>
 #include <cstdint>
 

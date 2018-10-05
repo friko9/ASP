@@ -1,6 +1,8 @@
 #ifndef TREESET_STL_H
 #define TREESET_STL_H
 
+#include "includes/utils/utils.h"
+
 #include <set>
 
 template <typename T>

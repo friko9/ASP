@@ -72,7 +72,7 @@ namespace test_treeset_dynamic_balancing
 	    {
 		bool inc = first < last;
 		do
-		    if ( test_f(first) )
+		    if(test_f(first))
 			++result;
 		while ( first != last && (( inc && (++first,true)) || ( !inc && (--first,true))) );
 	    }

@@ -1,6 +1,10 @@
 #ifndef TREESET_ARRAY_BALANCE_H
 #define TREESET_ARRAY_BALANCE_H
 
+#include "includes/utils/utils.h"
+
+#include <cmath>
+
 namespace std{
     template <typename T> 
     class test_vector : public std::vector<T>
@@ -17,7 +21,7 @@ namespace std{
 template <typename T>
 class treeset_array_balance
 {
-    friend TestPlug_t<treeset_array_balance<T>>;
+    friend TestPlug<treeset_array_balance<T>>;
     enum class side_t { left, right };
     static constexpr size_t null = std::numeric_limits<size_t>::max();
     static constexpr size_t root = 1;
@@ -49,14 +53,14 @@ class treeset_array_balance
 	    indexes[backtrack_i] = indexes[index];
 	    values.pop_back();	    
 	}
-    void move_nodes_up(size_t branch)
+    void move_nodes_up(size_t index)
 	{ // :/ O(N^2)
-	    size_t destination = branch/2;
+	    size_t destination = index/2;
 	    size_t chunk_size = 1;
-	    for(;branch < indexes.size(); chunk_size *=2,destination *=2, branch *=2)
+	    for(;index < indexes.size(); chunk_size *=2,destination *=2, index *=2)
 	    {
-		std::copy(indexes.begin()+branch,indexes.begin()+branch+chunk_size,indexes.begin()+destination);
-		std::copy(heights.begin()+branch,heights.begin()+branch+chunk_size,heights.begin()+destination);
+		std::copy(indexes.begin()+index,indexes.begin()+index+chunk_size,indexes.begin()+destination);
+		std::copy(heights.begin()+index,heights.begin()+index+chunk_size,heights.begin()+destination);
 		for(int i=destination,e=destination+chunk_size; i<e; i++)
 		    if ( indexes[i] != null )
 			values[indexes[i]].second = i;
@@ -64,14 +68,14 @@ class treeset_array_balance
 	    std::fill(indexes.begin()+destination, indexes.begin()+destination+chunk_size, size_t(null));
 	    std::fill(heights.begin()+destination, heights.begin()+destination+chunk_size, 0);
 	}
-    void move_nodes_down(size_t branch,side_t side)
+    void move_nodes_down(size_t index,side_t side)
 	{ // :/ O(N^2)
-	    int h = std::log2(indexes.size()) - std::log2(branch) - 1;
+	    int h = (int)std::log2(indexes.size()) - (int)std::log2(index) - 1;
 	    if( h == 0 ) return;
 	    size_t chunk_size = 1 << (h-1);
-	    size_t destination = (branch << h);
-	    destination += (side == side_t::right)? chunk_size : 0;
+	    size_t destination = (index << h);
 	    size_t source = destination/2;
+	    destination += (side == side_t::right)? chunk_size : 0;
 	    for(;chunk_size > 0; chunk_size /=2,destination /=2, source /=2)
 	    {
 		std::copy(heights.begin()+source,heights.begin()+source+chunk_size,heights.begin()+destination);
@@ -80,12 +84,14 @@ class treeset_array_balance
 		    if ( indexes[i] != null )
 			values[indexes[i]].second = i;
 	    }
-	    indexes[branch] = null;
-	    heights[branch] = 0;
+	    indexes[index] = null;
+	    heights[index] = 0;
 	}
     void move_nodes_side(size_t src,size_t dst)
 	{ // :/ O(N^2)
-	    for(size_t chunk_size =1; dst < indexes.size(); chunk_size *=2, src *=2, dst *=2)
+	    size_t chunk_size =1;
+	    if(dst == src) return;
+	    for(; src<indexes.size() && dst < indexes.size(); chunk_size *=2, src *=2, dst *=2)
 	    {
 		std::copy(heights.begin()+src,heights.begin()+src+chunk_size,heights.begin()+dst);
 		std::fill(heights.begin()+src, heights.begin()+src+chunk_size, 0);
@@ -94,6 +100,11 @@ class treeset_array_balance
 		for(int i=dst,e=dst+chunk_size; i<e; ++i)
 		    if ( indexes[i] != null )
 			values[indexes[i]].second = i;
+	    }
+	    for(;dst < indexes.size(); chunk_size *=2, dst *=2)
+	    {
+		std::fill(indexes.begin()+dst, indexes.begin()+dst+chunk_size, size_t(null));
+		std::fill(heights.begin()+dst, heights.begin()+dst+chunk_size, 0);
 	    }
 	}
     void remove_node(size_t index, side_t side = side_t::left)
@@ -193,7 +204,7 @@ class treeset_array_balance
 	    }
 	}
  public:
-    treeset_array_ballance(): indexes(16,size_t(null)), heights(16, 0)
+    treeset_array_balance(): indexes(16,size_t(null)), heights(16, 0)
 	{}
     void insert(T x)
 	{

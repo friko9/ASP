@@ -1,6 +1,7 @@
 #ifndef LIST_DYNAMIC_H
 #define LIST_DYNAMIC_H
 
+#include "includes/utils/utils.h"
 #include "list_common.h"
 
 template <typename T>

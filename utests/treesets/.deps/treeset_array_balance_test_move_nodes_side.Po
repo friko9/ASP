@@ -1,4 +1,6 @@
-treesets.o: treesets.cpp /usr/include/stdc-predef.h treeset_array_test.h \
+treeset_array_balance_test_move_nodes_side.o: \
+ treeset_array_balance_test_move_nodes_side.cpp \
+ /usr/include/stdc-predef.h treeset_array_balance_test.h \
  ../../includes/utils/utils.h /usr/include/c++/8/vector \
  /usr/include/c++/8/bits/stl_algobase.h \
  /usr/include/x86_64-linux-gnu/c++/8/bits/c++config.h \
@@ -190,11 +192,6 @@ treesets.o: treesets.cpp /usr/include/stdc-predef.h treeset_array_test.h \
  /usr/include/c++/8/bits/stl_tree.h /usr/include/c++/8/bits/stl_map.h \
  /usr/include/c++/8/bits/stl_multimap.h /usr/include/c++/8/deque \
  /usr/include/c++/8/bits/stl_deque.h /usr/include/c++/8/bits/deque.tcc \
- ../../includes/asp_tree_maps/treeset_array.h /usr/include/c++/8/cassert \
- /usr/include/assert.h /usr/include/c++/8/functional \
- /usr/include/c++/8/bits/std_function.h /usr/include/c++/8/set \
- /usr/include/c++/8/bits/stl_set.h /usr/include/c++/8/bits/stl_multiset.h \
- treeset_array_balance_test.h \
  ../../includes/asp_tree_maps/treeset_array_balance.h \
  /usr/include/c++/8/cmath /usr/include/math.h \
  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
@@ -205,15 +202,14 @@ treesets.o: treesets.cpp /usr/include/stdc-predef.h treeset_array_test.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
- /usr/include/x86_64-linux-gnu/bits/mathinline.h treeset_dynamic_test.h \
- ../../includes/asp_tree_maps/treeset_dynamic.h \
- treeset_dynamic_balancing_test.h \
- ../../includes/asp_tree_maps/treeset_dynamic_balancing.h \
- treeset_stl_test.h ../../includes/asp_tree_maps/treeset_stl.h
+ /usr/include/x86_64-linux-gnu/bits/mathinline.h \
+ /usr/include/c++/8/functional /usr/include/c++/8/bits/std_function.h \
+ /usr/include/c++/8/set /usr/include/c++/8/bits/stl_set.h \
+ /usr/include/c++/8/bits/stl_multiset.h
 
 /usr/include/stdc-predef.h:
 
-treeset_array_test.h:
+treeset_array_balance_test.h:
 
 ../../includes/utils/utils.h:
 
@@ -709,24 +705,6 @@ treeset_array_test.h:
 
 /usr/include/c++/8/bits/deque.tcc:
 
-../../includes/asp_tree_maps/treeset_array.h:
-
-/usr/include/c++/8/cassert:
-
-/usr/include/assert.h:
-
-/usr/include/c++/8/functional:
-
-/usr/include/c++/8/bits/std_function.h:
-
-/usr/include/c++/8/set:
-
-/usr/include/c++/8/bits/stl_set.h:
-
-/usr/include/c++/8/bits/stl_multiset.h:
-
-treeset_array_balance_test.h:
-
 ../../includes/asp_tree_maps/treeset_array_balance.h:
 
 /usr/include/c++/8/cmath:
@@ -751,14 +729,12 @@ treeset_array_balance_test.h:
 
 /usr/include/x86_64-linux-gnu/bits/mathinline.h:
 
-treeset_dynamic_test.h:
+/usr/include/c++/8/functional:
 
-../../includes/asp_tree_maps/treeset_dynamic.h:
+/usr/include/c++/8/bits/std_function.h:
 
-treeset_dynamic_balancing_test.h:
+/usr/include/c++/8/set:
 
-../../includes/asp_tree_maps/treeset_dynamic_balancing.h:
+/usr/include/c++/8/bits/stl_set.h:
 
-treeset_stl_test.h:
-
-../../includes/asp_tree_maps/treeset_stl.h:
+/usr/include/c++/8/bits/stl_multiset.h:

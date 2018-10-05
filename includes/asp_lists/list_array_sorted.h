@@ -1,6 +1,8 @@
 #ifndef LIST_ARRAY_SORTED_H
 #define LIST_ARRAY_SORTED_H
 
+#include "../utils/utils.h"
+
 #include <vector>
 
 template <typename T>

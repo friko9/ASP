@@ -1,6 +1,8 @@
 #ifndef LIST_STLFORWARD_H
 #define LIST_STLFORWARD_H
 
+#include "includes/utils/utils.h"
+
 #include <forward_list>
 
 template <typename T>
