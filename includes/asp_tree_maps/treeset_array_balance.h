@@ -4,6 +4,7 @@
 #include "includes/utils/utils.h"
 
 #include <cmath>
+#include <cassert>
 
 namespace std{
     template <typename T> 
@@ -46,12 +47,14 @@ class treeset_array_balance
 		i = i*2 + (side == side_t::right);
 	    return i/2;
 	}
-    void remove_value(size_t index)
+    void remove_value(size_t val_i)
 	{
+	    assert(val_i < values.size());
 	    size_t backtrack_i = values.back().second;
-	    std::swap( values[indexes[index]], values.back() );
-	    indexes[backtrack_i] = indexes[index];
-	    values.pop_back();	    
+	    std::swap( values[val_i], values.back() );
+	    if( backtrack_i != null )
+		indexes[backtrack_i] = val_i;
+	    values.pop_back();
 	}
     void move_nodes_up(size_t index)
 	{ // :/ O(N^2)
@@ -230,10 +233,10 @@ class treeset_array_balance
     void remove(T x)
 	{
 	    size_t index = find(x);
-	    bool x_found = index < indexes.size() && indexes[index] != null;
-	    if( x_found )
+	    bool found = index < indexes.size() && indexes[index] != null;
+	    if( found )
 	    {
-		remove_value(index);
+		remove_value( indexes[index] );
 		remove_node(index, ((index%3)%2)? side_t::right : side_t::left );
 		reballance(index);
 	    }

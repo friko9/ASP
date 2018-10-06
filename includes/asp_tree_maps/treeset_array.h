@@ -34,8 +34,9 @@ class treeset_array
 	{
 	    assert(val_i < values.size());
 	    size_t backtrack_i = values.back().second;
-	    values[val_i] = values.back();
-	    indexes[backtrack_i] = val_i;
+	    std::swap(values[val_i], values.back());
+	    if( backtrack_i != null )
+		indexes[backtrack_i] = val_i;
 	    values.pop_back();
 	}
     void move_nodes_up(size_t index)
@@ -101,9 +102,12 @@ class treeset_array
     void remove(T x)
 	{
 	    size_t index = find(x);
-	    if( index >= indexes.size() || indexes[index] == null ) return;
-	    remove_value( indexes[index] );
-	    remove_node(index, ((index%3)%2)? side_t::right : side_t::left );
+	    bool found = index < indexes.size() && indexes[index] != null;
+	    if( found )
+	    {
+		remove_value( indexes[index] );
+		remove_node(index, ((index%3)%2)? side_t::right : side_t::left );
+	    }
 	}
 };
 
