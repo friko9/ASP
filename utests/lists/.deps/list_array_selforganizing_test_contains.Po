@@ -192,9 +192,9 @@ list_array_selforganizing_test_contains.o: \
  /usr/include/c++/8/bits/stl_multimap.h /usr/include/c++/8/deque \
  /usr/include/c++/8/bits/stl_deque.h /usr/include/c++/8/bits/deque.tcc \
  ../../includes/asp_lists/list_array_selforganizing.h \
- /usr/include/c++/8/functional /usr/include/c++/8/bits/std_function.h \
- /usr/include/c++/8/list /usr/include/c++/8/bits/stl_list.h \
- /usr/include/c++/8/bits/list.tcc
+ ../../includes/asp_lists/../utils/utils.h /usr/include/c++/8/functional \
+ /usr/include/c++/8/bits/std_function.h /usr/include/c++/8/list \
+ /usr/include/c++/8/bits/stl_list.h /usr/include/c++/8/bits/list.tcc
 
 /usr/include/stdc-predef.h:
 
@@ -695,6 +695,8 @@ list_array_selforganizing_test.h:
 /usr/include/c++/8/bits/deque.tcc:
 
 ../../includes/asp_lists/list_array_selforganizing.h:
+
+../../includes/asp_lists/../utils/utils.h:
 
 /usr/include/c++/8/functional:
 

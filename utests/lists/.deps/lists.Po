@@ -195,8 +195,8 @@ lists.o: lists.cpp /usr/include/stdc-predef.h list_array_test.h \
  /usr/include/c++/8/bits/stl_list.h /usr/include/c++/8/bits/list.tcc \
  list_array_enchanced_test.h \
  ../../includes/asp_lists/list_array_enchanced.h \
- /usr/include/c++/8/cassert /usr/include/assert.h \
- list_array_selforganizing_test.h \
+ ../../includes/asp_lists/../utils/utils.h /usr/include/c++/8/cassert \
+ /usr/include/assert.h list_array_selforganizing_test.h \
  ../../includes/asp_lists/list_array_selforganizing.h \
  list_array_sorted_test.h ../../includes/asp_lists/list_array_sorted.h \
  list_array_sorted_warden_test.h \
@@ -719,6 +719,8 @@ list_array_test.h:
 list_array_enchanced_test.h:
 
 ../../includes/asp_lists/list_array_enchanced.h:
+
+../../includes/asp_lists/../utils/utils.h:
 
 /usr/include/c++/8/cassert:
 

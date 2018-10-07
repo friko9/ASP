@@ -148,7 +148,10 @@ am_treeset_test_OBJECTS = treesets.$(OBJEXT) \
 	treeset_array_balance_test_remove_value.$(OBJEXT) \
 	treeset_array_balance_test_remove_node.$(OBJEXT) \
 	treeset_array_balance_test_update_node_height.$(OBJEXT) \
-	treeset_array_balance_test_rebalance_case_1.$(OBJEXT)
+	treeset_array_balance_test_rebalance_case_1.$(OBJEXT) \
+	treeset_array_balance_test_rebalance_case_2.$(OBJEXT) \
+	treeset_array_balance_test_rebalance.$(OBJEXT) \
+	treeset_array_balance_test_remove.$(OBJEXT)
 treeset_test_OBJECTS = $(am_treeset_test_OBJECTS)
 treeset_test_DEPENDENCIES =
 AM_V_P = $(am__v_P_$(V))
@@ -173,7 +176,10 @@ am__depfiles_remade =  \
 	./$(DEPDIR)/treeset_array_balance_test_move_nodes_down.Po \
 	./$(DEPDIR)/treeset_array_balance_test_move_nodes_side.Po \
 	./$(DEPDIR)/treeset_array_balance_test_move_nodes_up.Po \
+	./$(DEPDIR)/treeset_array_balance_test_rebalance.Po \
 	./$(DEPDIR)/treeset_array_balance_test_rebalance_case_1.Po \
+	./$(DEPDIR)/treeset_array_balance_test_rebalance_case_2.Po \
+	./$(DEPDIR)/treeset_array_balance_test_remove.Po \
 	./$(DEPDIR)/treeset_array_balance_test_remove_node.Po \
 	./$(DEPDIR)/treeset_array_balance_test_remove_value.Po \
 	./$(DEPDIR)/treeset_array_balance_test_traverse_last.Po \
@@ -416,7 +422,10 @@ treeset_test_SOURCES = treesets.cpp treeset_stl_test_contains.cpp \
 	treeset_array_balance_test_remove_value.cpp \
 	treeset_array_balance_test_remove_node.cpp \
 	treeset_array_balance_test_update_node_height.cpp \
-	treeset_array_balance_test_rebalance_case_1.cpp
+	treeset_array_balance_test_rebalance_case_1.cpp \
+	treeset_array_balance_test_rebalance_case_2.cpp \
+	treeset_array_balance_test_rebalance.cpp \
+	treeset_array_balance_test_remove.cpp
 include_MISC = treeset_stl_test.h treeset_dynamic_test.h treeset_dynamic_balancing_test.h treeset_array_test.h treeset_array_balance_test.h
 treeset_test_LDADD = 
 all: all-recursive
@@ -511,7 +520,10 @@ include ./$(DEPDIR)/treeset_array_balance_test_insert.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_move_nodes_down.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_move_nodes_side.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_move_nodes_up.Po # am--include-marker
+include ./$(DEPDIR)/treeset_array_balance_test_rebalance.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_1.Po # am--include-marker
+include ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_2.Po # am--include-marker
+include ./$(DEPDIR)/treeset_array_balance_test_remove.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_remove_node.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_remove_value.Po # am--include-marker
 include ./$(DEPDIR)/treeset_array_balance_test_traverse_last.Po # am--include-marker
@@ -773,7 +785,10 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_down.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_side.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_up.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_1.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_2.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove_node.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove_value.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_traverse_last.Po
@@ -859,7 +874,10 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_down.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_side.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_move_nodes_up.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_1.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_rebalance_case_2.Po
+	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove_node.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_remove_value.Po
 	-rm -f ./$(DEPDIR)/treeset_array_balance_test_traverse_last.Po

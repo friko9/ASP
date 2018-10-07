@@ -191,8 +191,7 @@ hashset_array_test_resize.o: hashset_array_test_resize.cpp \
  /usr/include/c++/8/bits/stl_tree.h /usr/include/c++/8/bits/stl_map.h \
  /usr/include/c++/8/bits/stl_multimap.h /usr/include/c++/8/deque \
  /usr/include/c++/8/bits/stl_deque.h /usr/include/c++/8/bits/deque.tcc \
- ../../includes/asp_hashmaps/hashset_array.h \
- ../../includes/asp_hashmaps/../utils/utils.h /usr/include/c++/8/cassert \
+ ../../includes/asp_hashmaps/hashset_array.h /usr/include/c++/8/cassert \
  /usr/include/assert.h /usr/include/c++/8/functional \
  /usr/include/c++/8/bits/std_function.h /usr/include/c++/8/unordered_set \
  /usr/include/c++/8/bits/hashtable.h \
@@ -707,8 +706,6 @@ hashset_array_test.h:
 /usr/include/c++/8/bits/deque.tcc:
 
 ../../includes/asp_hashmaps/hashset_array.h:
-
-../../includes/asp_hashmaps/../utils/utils.h:
 
 /usr/include/c++/8/cassert:
 

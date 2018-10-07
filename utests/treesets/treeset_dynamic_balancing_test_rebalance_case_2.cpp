@@ -37,7 +37,7 @@ namespace test_treeset_dynamic_balancing
     };
     ENABLE_TEST(access_test_set(),populated_c_l_lr_rebalance_case_2_c_on_left_return_lr_state_cxlr_lxll_rxc);
 
-    struct populated_c_r_rl_rebalance_case_2_c_on_left_return_rl_state_cxrl_lxc_rxr
+    struct populated_c_r_rl_rebalance_case_2_c_on_right_return_rl_state_cxrl_lxc_rxr
 	: public treeset_dynamic_balancing_test_case
     {
 	TEST_INSERTER;
@@ -67,7 +67,7 @@ namespace test_treeset_dynamic_balancing
 		return score.to_test_result();
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_c_r_rl_rebalance_case_2_c_on_left_return_rl_state_cxrl_lxc_rxr);
+    ENABLE_TEST(access_test_set(),populated_c_r_rl_rebalance_case_2_c_on_right_return_rl_state_cxrl_lxc_rxr);
 
     struct populated_c_l_r_ll_lr_lrl_rebalance_case_2_c_on_left_return_lr_state_cxlr_lxl_rxc_llxll_lrxlrl_rrxr
 	: public treeset_dynamic_balancing_test_case
@@ -313,7 +313,7 @@ namespace test_treeset_dynamic_balancing
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_rl_rr_rll_rlr_rebalance_case_2_c_on_right_return_rl_state_cxrl_lxc_rxr_llxl_lrxrll_rlxrlr_rrxrr);
     
-    struct populated_c_l_ll_llr_rebalance_case_2_l_on_left_return_llr_state_cxc_lxlr_llxll_lrxl
+    struct populated_c_l_ll_llr_rebalance_case_2_l_on_left_return_llr_state_cxc_lxllr_llxll_lrxl
 	: public treeset_dynamic_balancing_test_case
     {
 	TEST_INSERTER;
@@ -346,7 +346,7 @@ namespace test_treeset_dynamic_balancing
 		return score.to_test_result();
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_c_l_ll_llr_rebalance_case_2_l_on_left_return_llr_state_cxc_lxlr_llxll_lrxl);
+    ENABLE_TEST(access_test_set(),populated_c_l_ll_llr_rebalance_case_2_l_on_left_return_llr_state_cxc_lxllr_llxll_lrxl);
 
     struct populated_c_l_lr_lrl_rebalance_case_2_l_on_right_return_lrl_state_cxc_lxlrl_llxl_lrxlr
 	: public treeset_dynamic_balancing_test_case

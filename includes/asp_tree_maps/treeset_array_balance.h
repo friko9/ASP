@@ -24,11 +24,12 @@ class treeset_array_balance
 {
     friend TestPlug<treeset_array_balance<T>>;
     enum class side_t { left, right };
+    using height_t = uint8_t;
     static constexpr size_t null = std::numeric_limits<size_t>::max();
     static constexpr size_t root = 1;
     std::test_vector<std::pair<T,size_t>> values;
     std::test_vector<size_t> indexes;
-    std::test_vector<uint8_t> heights;
+    std::test_vector<height_t> heights;
     size_t find(T x)
 	{
 	    size_t i = root;
@@ -110,7 +111,7 @@ class treeset_array_balance
 		std::fill(heights.begin()+dst, heights.begin()+dst+chunk_size, 0);
 	    }
 	}
-    void remove_node(size_t index, side_t side = side_t::left)
+    size_t remove_node(size_t index, side_t side = side_t::left)
 	{
 	    size_t index_left = index*2;
 	    size_t index_right = index*2 + 1;
@@ -140,72 +141,84 @@ class treeset_array_balance
 		indexes[index] = indexes[swp];
 		heights[index] = heights[swp];
 		values[indexes[swp]].second = index;
-		remove_node(swp);
+		return remove_node(swp);
 	    }
+	    return index;
 	}
-    size_t reballance_case_1(size_t origin)
+    void move_node(size_t src,size_t dst)
 	{
-	    size_t node = origin/2;
-	    bool origin_on_right = origin%2;
-	    move_nodes_down(node*2+ !origin_on_right, (origin_on_right)? side_t::left : side_t::right);
-	    indexes[node*2+!origin_on_right] = indexes[node];
-	    values[indexes[node*2+!origin_on_right]].second = node*2+!origin_on_right;
-	    size_t src_origin_branch = origin*2+ !origin_on_right;
-	    size_t dst_node_branch = src_origin_branch + ((origin_on_right)? -1 : 1);
-	    move_nodes_side(src_origin_branch, dst_node_branch );
-	    update_node_height(dst_node_branch/2);
-	    indexes[node] = indexes[origin];
-	    values[indexes[node]].second = node;
-	    move_nodes_up(origin*2 + origin_on_right);
-	    update_node_height(node);
-	    return node;
+	    indexes[dst] = indexes[src];
+	    heights[dst] = heights[src];
+	    indexes[src] = null;
+	    heights[src] = 0;
+	    if( indexes[dst] != null )
+		values[indexes[dst]].second = dst;
 	}
-    size_t reballance_case_2(size_t origin)
+    void rebalance_case_1(size_t index, side_t side)
 	{
-	    size_t node = origin/2;
-	    bool origin_on_right = origin%2;
-	    move_nodes_down( node*2 + !origin_on_right, (origin_on_right)? side_t::left : side_t::right );
-	    indexes[node*2+!origin_on_right] = indexes[node];
-	    values[indexes[node*2+!origin_on_right]].second = node*2+!origin_on_right;
-	    size_t new_top = origin*2 + !origin_on_right;
-	    indexes[node] = indexes[new_top];
-	    values[indexes[node]].second = node;	    
-	    size_t src_origin_branch = new_top*2+ !origin_on_right;
-	    size_t dst_node_branch = src_origin_branch + ((origin_on_right)? -1 : 1);
-	    if( src_origin_branch <= indexes.size() )
-	    {
-		move_nodes_side(src_origin_branch, dst_node_branch );
-		move_nodes_up(dst_node_branch );
-		move_nodes_up( new_top*2 + origin_on_right );
-	    }
-	    update_node_height(node*2);
-	    update_node_height(node*2+1);
-	    update_node_height(node);
-	    return node;
+	    bool is_side_left = side == side_t::left;
+	    side_t ndown_side = (is_side_left)? side_t::right : side_t::left;
+	    size_t ndown_index = 2*index + is_side_left;
+	    move_nodes_down(ndown_index, ndown_side);
+	    move_node(index,ndown_index);
+	    size_t newtop_index = 2*index + !is_side_left;
+	    move_node(newtop_index,index);
+	    size_t nside_src_index = 2*newtop_index + is_side_left;
+	    size_t nside_dst_index = (is_side_left)? nside_src_index+1 : nside_src_index-1;
+	    move_nodes_side(nside_src_index, nside_dst_index );
+	    update_node_height(ndown_index);
+	    size_t nup_index = newtop_index*2 + !is_side_left;
+	    move_nodes_up(nup_index);
+	    update_node_height(index);
 	}
-    void reballance(size_t origin)
+    void rebalance_case_2(size_t index, side_t side)
 	{
-	    for( size_t node = origin/2; node != 0; origin = node, node /=2 )
-	    {
-		size_t node_left = node*2;
-		size_t node_right = node*2+1;
-		update_node_height(node);
-		if( node_right*2+1 >= indexes.size() ) continue;
-		if( heights[node_right] - heights[node_left] > 1 )
+	    bool is_side_left = side == side_t::left;
+	    side_t ndown_side = (is_side_left)? side_t::right : side_t::left;
+	    size_t ndown_index = 2*index + is_side_left;
+	    move_nodes_down(ndown_index, ndown_side);
+	    move_node(index,ndown_index);
+	    size_t newtop_index = (2*index + !is_side_left)*2 + is_side_left;
+	    move_node(newtop_index,index);
+	    size_t nside_src_index = 2*newtop_index + is_side_left;
+	    size_t nside_dst_index = (is_side_left)? nside_src_index+1 : nside_src_index-1;
+	    move_nodes_side(nside_src_index, nside_dst_index );
+	    move_nodes_up(nside_dst_index);
+	    update_node_height(ndown_index);
+	    size_t nup_index = newtop_index*2 + !is_side_left;
+	    move_nodes_up(nup_index);
+	    update_node_height(newtop_index/2);
+	    update_node_height(index);
+	}
+    void rebalance(size_t index)
+    	{
+    	    for(; index != 0; index /=2 )
+    	    {
+		if(indexes[index] != null)
+		    update_node_height(index);
+		height_t hl = (index*2 < heights.size())? heights[index*2] : 0;
+		height_t hr = (index*2+1 < heights.size())? heights[index*2+1] : 0;
+    		if( hl > hr+1 )
 		{
-		    if( heights[node_right*2] < heights[node_right*2+1] )
-			reballance_case_1(node_right);
-		    else if( heights[node_right*2+1] < heights[node_right*2] )
-			reballance_case_2(node_right);
-		} else if( heights[node_left] - heights[node_right]  > 1 )
-		{
-		    if( heights[node_left*2+1] < heights[node_left*2] )
-			reballance_case_1(node_left);
-		    else if( heights[node_left*2] < heights[node_left*2+1] )
-			reballance_case_2(node_left);
-		}
-	    }
-	}
+		    size_t index_left = 2*index;
+		    height_t hll = (index_left*2 < heights.size())? heights[index*2] : 0;
+		    height_t hlr = (index_left*2+1 < heights.size())? heights[index*2+1] : 0;
+    		    if( hll > hlr+1 )
+    			rebalance_case_1(index, side_t::left);
+    		    else if( hll+1 < hlr )
+			rebalance_case_2(index, side_t::left);
+    		} else if( hl+1 < hr )
+    		{
+		    size_t index_right = 2*index+1;
+		    height_t hrl = (index_right*2 < heights.size())? heights[index*2] : 0;
+		    height_t hrr = (index_right*2+1 < heights.size())? heights[index*2+1] : 0;
+    		    if( hrl+1 < hrr )
+			rebalance_case_1(index, side_t::right);
+    		    else if( hrl > hrr+1 )
+			rebalance_case_2(index, side_t::right);
+    		}
+    	    }
+    	}
  public:
     treeset_array_balance(): indexes(16,size_t(null)), heights(16, 0)
 	{}
@@ -223,7 +236,7 @@ class treeset_array_balance
 		heights[index] = 1;
 		values.push_back(std::make_pair(x,index));
 	    }
-	    reballance(index);
+	    rebalance(index/2);
 	}
     bool contains(T x)
 	{
@@ -236,9 +249,11 @@ class treeset_array_balance
 	    bool found = index < indexes.size() && indexes[index] != null;
 	    if( found )
 	    {
+		height_t hl = (index*2 < heights.size())? heights[index*2] : 0;
+		height_t hr = (index*2+1 < heights.size())? heights[index*2+1] : 0;
 		remove_value( indexes[index] );
-		remove_node(index, ((index%3)%2)? side_t::right : side_t::left );
-		reballance(index);
+		index = remove_node(index,(hl<hr)? side_t::right : side_t::left );
+		rebalance(index);
 	    }
 	}
 };

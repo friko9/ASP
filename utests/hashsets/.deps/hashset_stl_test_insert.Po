@@ -192,7 +192,6 @@ hashset_stl_test_insert.o: hashset_stl_test_insert.cpp \
  /usr/include/c++/8/bits/stl_multimap.h /usr/include/c++/8/deque \
  /usr/include/c++/8/bits/stl_deque.h /usr/include/c++/8/bits/deque.tcc \
  ../../includes/asp_hashmaps/hashset_stl.h \
- ../../includes/asp_hashmaps/../utils/utils.h \
  /usr/include/c++/8/unordered_set /usr/include/c++/8/bits/hashtable.h \
  /usr/include/c++/8/bits/hashtable_policy.h \
  /usr/include/c++/8/bits/unordered_set.h /usr/include/c++/8/functional \
@@ -697,8 +696,6 @@ hashset_stl_test.h:
 /usr/include/c++/8/bits/deque.tcc:
 
 ../../includes/asp_hashmaps/hashset_stl.h:
-
-../../includes/asp_hashmaps/../utils/utils.h:
 
 /usr/include/c++/8/unordered_set:
 

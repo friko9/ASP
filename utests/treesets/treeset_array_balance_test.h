@@ -32,9 +32,9 @@ struct TestPlug<treeset_array_balance<T>>
     void move_nodes_up(treeset_t& arg, size_t index){ arg.move_nodes_up(index); }
     void move_nodes_down(treeset_t& arg, size_t index,side_t side){ arg.move_nodes_down(index,side); }
     void move_nodes_side(treeset_t& arg, size_t src,size_t dst){ arg.move_nodes_side(src,dst); }
-    void reballance_case_1(treeset_t& arg, size_t origin){ arg.reballance_case_1(origin); }
-    void reballance_case_2(treeset_t& arg, size_t origin){ arg.reballance_case_2(origin); }
-    void reballance(treeset_t& arg, size_t origin){ arg.reballance(origin); }
+    void rebalance_case_1(treeset_t& arg, size_t index, side_t side){ arg.rebalance_case_1(index,side); }
+    void rebalance_case_2(treeset_t& arg, size_t index, side_t side){ arg.rebalance_case_2(index,side); }
+    void rebalance(treeset_t& arg, size_t origin){ arg.rebalance(origin); }
 };
 
 namespace test_treeset_array_balance
