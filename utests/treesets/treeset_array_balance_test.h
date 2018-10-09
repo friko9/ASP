@@ -28,7 +28,7 @@ struct TestPlug<treeset_array_balance<T>>
     void update_node_height(treeset_t& arg, size_t index){ arg.update_node_height(index); }
     size_t traverse_last(treeset_t& arg, size_t index, side_t side){ return arg.traverse_last(index,side); }
     void remove_value(treeset_t& arg, size_t index){ arg.remove_value(index); }
-    void remove_node(treeset_t& arg, size_t index, side_t side){ arg.remove_node(index,side); }
+    size_t remove_node(treeset_t& arg, size_t index, side_t side){ return arg.remove_node(index,side); }
     void move_nodes_up(treeset_t& arg, size_t index){ arg.move_nodes_up(index); }
     void move_nodes_down(treeset_t& arg, size_t index,side_t side){ arg.move_nodes_down(index,side); }
     void move_nodes_side(treeset_t& arg, size_t src,size_t dst){ arg.move_nodes_side(src,dst); }

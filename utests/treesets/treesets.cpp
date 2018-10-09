@@ -34,9 +34,6 @@ test_set& test_treeset_array::access_test_set()
 }
 test_set& test_treeset_array_balance::access_test_set()
 {
-    //TODO
-    // expand cases in rebalance
-    // add ret_val in remove_node
     static test_set singleton;
     return singleton;
 }

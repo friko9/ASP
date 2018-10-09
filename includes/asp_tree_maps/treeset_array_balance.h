@@ -198,23 +198,23 @@ class treeset_array_balance
 		    update_node_height(index);
 		height_t hl = (index*2 < heights.size())? heights[index*2] : 0;
 		height_t hr = (index*2+1 < heights.size())? heights[index*2+1] : 0;
-    		if( hl > hr+1 )
+    		if( hr+1 < hl )
 		{
 		    size_t index_left = 2*index;
-		    height_t hll = (index_left*2 < heights.size())? heights[index*2] : 0;
-		    height_t hlr = (index_left*2+1 < heights.size())? heights[index*2+1] : 0;
-    		    if( hll > hlr+1 )
+		    height_t hll = (index_left*2 < heights.size())? heights[index_left*2] : 0;
+		    height_t hlr = (index_left*2+1 < heights.size())? heights[index_left*2+1] : 0;
+    		    if( hlr < hll )
     			rebalance_case_1(index, side_t::left);
-    		    else if( hll+1 < hlr )
+    		    else if( hll < hlr )
 			rebalance_case_2(index, side_t::left);
     		} else if( hl+1 < hr )
     		{
 		    size_t index_right = 2*index+1;
-		    height_t hrl = (index_right*2 < heights.size())? heights[index*2] : 0;
-		    height_t hrr = (index_right*2+1 < heights.size())? heights[index*2+1] : 0;
-    		    if( hrl+1 < hrr )
+		    height_t hrl = (index_right*2 < heights.size())? heights[index_right*2] : 0;
+		    height_t hrr = (index_right*2+1 < heights.size())? heights[index_right*2+1] : 0;
+    		    if( hrl < hrr )
 			rebalance_case_1(index, side_t::right);
-    		    else if( hrl > hrr+1 )
+    		    else if( hrr < hrl )
 			rebalance_case_2(index, side_t::right);
     		}
     	    }
