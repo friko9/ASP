@@ -6,153 +6,153 @@
 #include <cmath>
 #include <cassert>
 
-namespace std{
-    template <typename T> 
-    class test_vector : public std::vector<T>
-    {
-    public:
-	using vector<T>::vector;
-	T& operator [](size_t i)
-	    {
-		return this->at(i);
-	    }
-    };
-}
-
 template <typename T>
 class treeset_array_balance
 {
     friend TestPlug<treeset_array_balance<T>>;
-    enum class side_t { left, right };
     using height_t = uint8_t;
+    using index_t = size_t;
+    enum class side_t { left=0, right=1 };
     static constexpr size_t null = std::numeric_limits<size_t>::max();
     static constexpr size_t root = 1;
-    std::test_vector<std::pair<T,size_t>> values;
-    std::test_vector<size_t> indexes;
-    std::test_vector<height_t> heights;
+    std::vector<std::pair<T,size_t>> values;
+    std::vector<size_t> indexes;
+    std::vector<height_t> heights;
+private:
+    side_t flip( side_t side)
+	{ return (side == side_t::left)? side_t::right : side_t::left; }
+    bool node_exist( index_t node )
+	{ return node < indexes.size() && indexes[node] != null; }
+    T& node_value( index_t node )
+	{ return values[indexes[node]].first; }
+    height_t node_height( index_t node )
+	{ return node_exist(node)? heights[node] : 0; }
+    index_t branch(index_t node, side_t side)
+	{ return 2*node + (side == side_t::right); }
+    index_t left(index_t node)
+	{ return 2*node; }
+    index_t right(index_t node)
+	{ return 2*node + 1; }
+    index_t up(index_t node)
+	{ return node/2; }
     size_t find(T x)
 	{
-	    size_t i = root;
-	    while( i < indexes.size() && indexes[i] != null && x != values[indexes[i]].first )
-		i = i*2 + ( values[indexes[i]].first < x );
-	    return i;
+	    index_t n = root;
+	    while( node_exist(n) && node_value(n) != x )
+		n = 2*n + (node_value(n) < x);
+	    return n;
 	}
-    void update_node_height(size_t node)
+    void update_node_height(index_t node)
 	{
-	    int max_h = (node*2+1 < indexes.size())? std::max(heights[node*2],heights[node*2+1]) : 0;
-	    heights[node] = 1 + max_h;
+	    assert( node_exist(node) );
+	    height_t hl = node_height( left(node) );
+	    height_t hr = node_height( right(node) );
+	    heights[node] = 1 + std::max(hl,hr);
 	}
-    size_t traverse_last(size_t i, side_t side)
+    size_t traverse_last(index_t node, side_t side)
 	{
-	    while( i < indexes.size() && indexes[i] != null )
-		i = i*2 + (side == side_t::right);
-	    return i/2;
+	    while( node_exist(node) )
+		node = branch(node,side);
+	    return up(node);
 	}
-    void remove_value(size_t val_i)
+    void remove_value(index_t val_i)
 	{
 	    assert(val_i < values.size());
-	    size_t backtrack_i = values.back().second;
+	    index_t swp_node = values.back().second;
 	    std::swap( values[val_i], values.back() );
-	    if( backtrack_i != null )
-		indexes[backtrack_i] = val_i;
+	    if( node_exist(swp_node) )
+		indexes[swp_node] = val_i;
 	    values.pop_back();
 	}
-    void move_nodes_up(size_t index)
-	{ // :/ O(N^2)
-	    size_t destination = index/2;
-	    size_t chunk_size = 1;
-	    for(;index < indexes.size(); chunk_size *=2,destination *=2, index *=2)
-	    {
-		std::copy(indexes.begin()+index,indexes.begin()+index+chunk_size,indexes.begin()+destination);
-		std::copy(heights.begin()+index,heights.begin()+index+chunk_size,heights.begin()+destination);
-		for(int i=destination,e=destination+chunk_size; i<e; i++)
-		    if ( indexes[i] != null )
-			values[indexes[i]].second = i;
-	    }
-	    std::fill(indexes.begin()+destination, indexes.begin()+destination+chunk_size, size_t(null));
-	    std::fill(heights.begin()+destination, heights.begin()+destination+chunk_size, 0);
+    void update_value_to_node_link(index_t node)
+	{
+	    if ( node_exist(node) )
+		values[indexes[node]].second = node;
 	}
-    void move_nodes_down(size_t index,side_t side)
-	{ // :/ O(N^2)
-	    int h = (int)std::log2(indexes.size()) - (int)std::log2(index) - 1;
-	    if( h == 0 ) return;
-	    size_t chunk_size = 1 << (h-1);
-	    size_t destination = (index << h);
-	    size_t source = destination/2;
-	    destination += (side == side_t::right)? chunk_size : 0;
-	    for(;chunk_size > 0; chunk_size /=2,destination /=2, source /=2)
-	    {
-		std::copy(heights.begin()+source,heights.begin()+source+chunk_size,heights.begin()+destination);
-		std::copy(indexes.begin()+source,indexes.begin()+source+chunk_size,indexes.begin()+destination);
-		for(int i=destination,e=destination+chunk_size; i<e; i++)
-		    if ( indexes[i] != null )
-			values[indexes[i]].second = i;
-	    }
-	    indexes[index] = null;
-	    heights[index] = 0;
-	}
-    void move_nodes_side(size_t src,size_t dst)
-	{ // :/ O(N^2)
-	    size_t chunk_size =1;
-	    if(dst == src) return;
-	    for(; src<indexes.size() && dst < indexes.size(); chunk_size *=2, src *=2, dst *=2)
-	    {
-		std::copy(heights.begin()+src,heights.begin()+src+chunk_size,heights.begin()+dst);
-		std::fill(heights.begin()+src, heights.begin()+src+chunk_size, 0);
-		std::copy(indexes.begin()+src,indexes.begin()+src+chunk_size,indexes.begin()+dst);
-		std::fill(indexes.begin()+src, indexes.begin()+src+chunk_size, size_t(null));
-		for(int i=dst,e=dst+chunk_size; i<e; ++i)
-		    if ( indexes[i] != null )
-			values[indexes[i]].second = i;
-	    }
-	    for(;dst < indexes.size(); chunk_size *=2, dst *=2)
-	    {
-		std::fill(indexes.begin()+dst, indexes.begin()+dst+chunk_size, size_t(null));
-		std::fill(heights.begin()+dst, heights.begin()+dst+chunk_size, 0);
-	    }
-	}
+    void move_nodes_up(index_t index)
+    	{ // :/ O(N^2)
+    	    using dist_t = decltype( index-index );
+	    index_t dst = up(index);
+    	    dist_t size = 1;
+    	    for(;index < indexes.size(); size *=2,dst *=2, index *=2)
+    	    {
+    		std::copy(indexes.begin() +index, indexes.begin() +index +size, indexes.begin() +dst);
+    		std::copy(heights.begin() +index, heights.begin() +index +size, heights.begin() +dst);
+    		for(index_t node = dst; node < dst + size; ++node )
+    		    update_value_to_node_link(node);
+    	    }
+    	    std::fill(indexes.begin() +dst, indexes.begin() +dst +size, index_t(null));
+    	    std::fill(heights.begin() +dst, heights.begin() +dst +size, height_t(0));
+    	}
+    void move_nodes_down(index_t index,side_t side)
+    	{ // :/ O(N^2)
+	    using dist_t = decltype( index-index );
+    	    auto h = floor_log2(indexes.size()) -floor_log2(index) -1;
+    	    if( h == 0 ) return;
+	    dist_t size = 1 << (h-1);
+    	    index_t dst = (index << h);
+	    index_t src = up(dst);
+    	    dst += (side == side_t::right)? size : 0;
+    	    for(; size > 0; size /=2, dst /=2, src /=2)
+    	    {
+    		std::copy(heights.begin() +src, heights.begin() +src +size, heights.begin() +dst);
+    		std::copy(indexes.begin() +src, indexes.begin() +src +size, indexes.begin() +dst);
+    		for(index_t node = dst; node < dst +size; ++node )
+    		    update_value_to_node_link(node);
+    	    }
+    	    indexes[index] = null;
+    	    heights[index] = 0;
+    	}
+    void move_nodes_side(index_t src,size_t dst)
+    	{ // :/ O(N^2)
+	    using dist_t = decltype( dst - src );
+    	    dist_t size = 1;
+    	    if(dst == src) return;
+    	    for(; src<indexes.size() && dst < indexes.size(); size *=2, src *=2, dst *=2)
+    	    {
+    		std::copy(heights.begin() +src, heights.begin() +src +size, heights.begin() +dst);
+    		std::fill(heights.begin() +src, heights.begin() +src +size, height_t(0));
+    		std::copy(indexes.begin() +src, indexes.begin() +src +size, indexes.begin() +dst);
+    		std::fill(indexes.begin() +src, indexes.begin() +src +size, index_t(null));
+    		for(index_t node = dst; node < dst+size; ++node )
+    		    update_value_to_node_link(node);
+    	    }
+    	    for(;dst < indexes.size(); size *=2, dst *=2)
+    	    {
+    		std::fill(indexes.begin()+dst, indexes.begin()+dst+size, index_t(null));
+    		std::fill(heights.begin()+dst, heights.begin()+dst+size, height_t(0));
+    	    }
+    	}
     size_t remove_node(size_t index, side_t side = side_t::left)
 	{
-	    size_t index_left = index*2;
-	    size_t index_right = index*2 + 1;
-	    
-	    if( index_left >= indexes.size() )
-	    {
-		indexes[index] = null;
-		heights[index] = 0;
-	    }
-	    else if ( index_right >= indexes.size() )
-	    {
-		indexes[index] = indexes[index_left];
-		heights[index] = heights[index_left];
-		if( indexes[index] != null )
-		    values[indexes[index]].second = index;
-	    }
-	    else if( indexes[index_left] == null)
-		move_nodes_up(index_right);
-	    else if( indexes[index_right] == null)
+	    size_t index_left = left(index);
+	    size_t index_right = right(index);
+
+	    if( !node_exist(index_left) && !node_exist(index_right) )
+		erase_node(index);
+	    else if( !node_exist(index_right) )
 		move_nodes_up(index_left);
+	    else if( !node_exist(index_left) )
+		move_nodes_up(index_right);
 	    else
-	    { // complicated both sides removal
-		bool right_node = side == side_t::right;
-		size_t trav_start = index*2 + right_node;
-		size_t swp = traverse_last( trav_start, (right_node)?side_t::left : side_t::right );
-	
-		indexes[index] = indexes[swp];
-		heights[index] = heights[swp];
-		values[indexes[swp]].second = index;
-		return remove_node(swp);
+	    {
+		size_t newtop = traverse_last( branch(index,side), flip(side) );
+		move_node(newtop, index);
+		return remove_node(newtop);
 	    }
 	    return index;
+	}
+    void erase_node(size_t node)
+	{
+	    indexes[node] = null;
+	    heights[node] = 0;
 	}
     void move_node(size_t src,size_t dst)
 	{
 	    indexes[dst] = indexes[src];
 	    heights[dst] = heights[src];
-	    indexes[src] = null;
-	    heights[src] = 0;
-	    if( indexes[dst] != null )
-		values[indexes[dst]].second = dst;
+	    update_value_to_node_link(dst);
+	    erase_node(src);
 	}
     void rebalance_case_1(size_t index, side_t side)
 	{
