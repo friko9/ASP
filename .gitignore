@@ -1,0 +1,7 @@
+*.[ao]
+*~
+#*
+utils_test
+treeset_test
+list_test
+hashset_test
