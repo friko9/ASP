@@ -123,10 +123,10 @@ private:
     		std::fill(heights.begin()+dst, heights.begin()+dst+size, height_t(0));
     	    }
     	}
-    size_t remove_node(size_t index, side_t side = side_t::left)
+    size_t remove_node(index_t index, side_t side = side_t::left)
 	{
-	    size_t index_left = left(index);
-	    size_t index_right = right(index);
+	    index_t index_left = left(index);
+	    index_t index_right = right(index);
 
 	    if( !node_exist(index_left) && !node_exist(index_right) )
 		erase_node(index);
@@ -136,27 +136,27 @@ private:
 		move_nodes_up(index_right);
 	    else
 	    {
-		size_t newtop = traverse_last( branch(index,side), flip(side) );
+		index_t newtop = traverse_last( branch(index,side), flip(side) );
 		move_node(newtop, index);
 		return remove_node(newtop);
 	    }
 	    return index;
 	}
-    void erase_node(size_t node)
+    void erase_node(index_t node)
 	{
 	    indexes[node] = null;
 	    heights[node] = 0;
 	}
-    void move_node(size_t src,size_t dst)
+    void move_node(index_t src,index_t dst)
 	{
 	    indexes[dst] = indexes[src];
 	    heights[dst] = heights[src];
 	    update_value_to_node_link(dst);
 	    erase_node(src);
 	}
-    void rebalance_case_1(size_t index, side_t side)
+    void rebalance_case_1(index_t node, side_t side)
 	{
-	    index_t c = index;
+	    index_t c = node;
 	    index_t l = branch(c, side);
 	    index_t r = branch(c, flip(side));
 	    index_t lr = branch(l, flip(side));
@@ -170,9 +170,9 @@ private:
 	    update_node_height(r);
 	    update_node_height(c);
 	}
-    void rebalance_case_2(size_t index, side_t side)
+    void rebalance_case_2(index_t node, side_t side)
 	{
-	    index_t c = index;
+	    index_t c = node;
 	    index_t l = branch(c, side);
 	    index_t r = branch(c, flip(side));
 	    index_t rl = branch(r, side);
@@ -190,33 +190,25 @@ private:
 	    update_node_height(r);
 	    update_node_height(c);	    
 	}
-    void rebalance(size_t index)
+    void rebalance(size_t node)
     	{
-    	    for(; index != 0; index /=2 )
+    	    for(; node != 0; node = up(node) )
     	    {
-		if(indexes[index] != null)
-		    update_node_height(index);
-		height_t hl = (index*2 < heights.size())? heights[index*2] : 0;
-		height_t hr = (index*2+1 < heights.size())? heights[index*2+1] : 0;
-    		if( hr+1 < hl )
+    		if( !node_exist(node) ) continue;
+		update_node_height(node);
+    		height_t hl = node_height(left(node));
+    		height_t hr = node_height(right(node));
+		if( hr+1 < hl || hl+1 < hr )
 		{
-		    size_t index_left = 2*index;
-		    height_t hll = (index_left*2 < heights.size())? heights[index_left*2] : 0;
-		    height_t hlr = (index_left*2+1 < heights.size())? heights[index_left*2+1] : 0;
-    		    if( hlr < hll )
-    			rebalance_case_1(index, side_t::left);
-    		    else if( hll < hlr )
-			rebalance_case_2(index, side_t::left);
-    		} else if( hl+1 < hr )
-    		{
-		    size_t index_right = 2*index+1;
-		    height_t hrl = (index_right*2 < heights.size())? heights[index_right*2] : 0;
-		    height_t hrr = (index_right*2+1 < heights.size())? heights[index_right*2+1] : 0;
-    		    if( hrl < hrr )
-			rebalance_case_1(index, side_t::right);
-    		    else if( hrr < hrl )
-			rebalance_case_2(index, side_t::right);
-    		}
+		    side_t side = (hl < hr)? side_t::right : side_t::left;
+		    index_t l = branch(node,side);
+		    height_t ll = node_height(branch(l, side));
+		    height_t lr = node_height(branch(l, flip(side)));
+		    if(lr < ll)
+			rebalance_case_1(node, side);
+		    else
+			rebalance_case_2(node, side);
+		}
     	    }
     	}
  public:
