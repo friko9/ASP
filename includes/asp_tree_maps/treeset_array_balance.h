@@ -185,8 +185,7 @@ private:
 	    index_t lrl = branch(lr, side);
 	    index_t lrr = branch(lr, flip(side));
 	    move_nodes_down(r, flip(side));
-	    move_nodes_side(lrr, rll);
-	    move_nodes_up(rll);
+	    move_nodes_side(lrr, rl);
 	    move_node(c, r);
 	    move_node(lr, c);
 	    move_nodes_up(lrl);
