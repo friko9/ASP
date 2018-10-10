@@ -156,39 +156,39 @@ private:
 	}
     void rebalance_case_1(size_t index, side_t side)
 	{
-	    bool is_side_left = side == side_t::left;
-	    side_t ndown_side = (is_side_left)? side_t::right : side_t::left;
-	    size_t ndown_index = 2*index + is_side_left;
-	    move_nodes_down(ndown_index, ndown_side);
-	    move_node(index,ndown_index);
-	    size_t newtop_index = 2*index + !is_side_left;
-	    move_node(newtop_index,index);
-	    size_t nside_src_index = 2*newtop_index + is_side_left;
-	    size_t nside_dst_index = (is_side_left)? nside_src_index+1 : nside_src_index-1;
-	    move_nodes_side(nside_src_index, nside_dst_index );
-	    update_node_height(ndown_index);
-	    size_t nup_index = newtop_index*2 + !is_side_left;
-	    move_nodes_up(nup_index);
-	    update_node_height(index);
+	    index_t c = index;
+	    index_t l = branch(c, side);
+	    index_t r = branch(c, flip(side));
+	    index_t lr = branch(l, flip(side));
+	    index_t rl = branch(r, side);
+	    index_t ll = branch(l, side);
+	    move_nodes_down(r, flip(side));
+	    move_nodes_side(lr, rl );
+	    move_node(c, r);
+	    move_node(l, c);
+	    move_nodes_up(ll);
+	    update_node_height(r);
+	    update_node_height(c);
 	}
     void rebalance_case_2(size_t index, side_t side)
 	{
-	    bool is_side_left = side == side_t::left;
-	    side_t ndown_side = (is_side_left)? side_t::right : side_t::left;
-	    size_t ndown_index = 2*index + is_side_left;
-	    move_nodes_down(ndown_index, ndown_side);
-	    move_node(index,ndown_index);
-	    size_t newtop_index = (2*index + !is_side_left)*2 + is_side_left;
-	    move_node(newtop_index,index);
-	    size_t nside_src_index = 2*newtop_index + is_side_left;
-	    size_t nside_dst_index = (is_side_left)? nside_src_index+1 : nside_src_index-1;
-	    move_nodes_side(nside_src_index, nside_dst_index );
-	    move_nodes_up(nside_dst_index);
-	    update_node_height(ndown_index);
-	    size_t nup_index = newtop_index*2 + !is_side_left;
-	    move_nodes_up(nup_index);
-	    update_node_height(newtop_index/2);
-	    update_node_height(index);
+	    index_t c = index;
+	    index_t l = branch(c, side);
+	    index_t r = branch(c, flip(side));
+	    index_t rl = branch(r, side);
+	    index_t lr = branch(l, flip(side));
+	    index_t rll = branch(rl, side);
+	    index_t lrl = branch(lr, side);
+	    index_t lrr = branch(lr, flip(side));
+	    move_nodes_down(r, flip(side));
+	    move_nodes_side(lrr, rll);
+	    move_nodes_up(rll);
+	    move_node(c, r);
+	    move_node(lr, c);
+	    move_nodes_up(lrl);
+	    update_node_height(l);
+	    update_node_height(r);
+	    update_node_height(c);	    
 	}
     void rebalance(size_t index)
     	{
