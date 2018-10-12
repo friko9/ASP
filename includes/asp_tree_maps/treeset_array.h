@@ -11,102 +11,145 @@ template <typename T>
 class treeset_array
 {
     friend TestPlug<treeset_array<T>>;
+    using index_t = typename std::vector<size_t>::size_type;
+    using vindex_t = typename std::vector<T>::size_type;
     enum class side_t { left, right };
+private:
     static constexpr size_t null = std::numeric_limits<size_t>::max();
     static constexpr size_t root = 1;
     std::vector<std::pair<T,size_t>> values;
     std::vector<size_t> indexes;
-
-    size_t find(T x)
+private:
+    static side_t flip( side_t side)
+	{ return (side == side_t::left)? side_t::right : side_t::left; }
+    static index_t branch(index_t node, side_t side)
+	{ return 2*node + (side == side_t::right); }
+    static index_t left(index_t node)
+	{ return 2*node; }
+    static index_t right(index_t node)
+	{ return 2*node + 1; }
+    static index_t up(index_t node)
+	{ return node/2; }
+private:
+    index_t size()
+	{ return indexes.size(); }
+    T& node_value( index_t node )
+	{ return values[indexes[node]].first; }
+    bool value_inrange(vindex_t val_i)
+	{ return val_i < values.size(); }
+    bool node_inrange(index_t node)
+	{ return 0 < node && node < size(); }
+    bool node_exist( index_t node )
+	{ return node_inrange(node) && indexes[node] != null; }
+    size_t find(T value)
 	{
-	    size_t i = root;
-	    while( i < indexes.size() && indexes[i] != null && x != values[indexes[i]].first )
-		i = i*2 + ( values[indexes[i]].first < x );
-	    return i;
+	    index_t node = root;
+	    assert( node_inrange(node) );
+	    while( node_exist(node) && node_value(node) != value )
+		node = branch(node, (node_value(node) < value)? side_t::right : side_t::left);
+	    return node;
 	}
-    size_t traverse_last(size_t i, side_t side)
+    size_t traverse_last(index_t node, side_t side)
 	{
-	    while( i < indexes.size() && indexes[i] != null )
-		i = i*2 + (side == side_t::right);
-	    return i/2;
+	    assert( node_exist(node) );
+	    while( node_exist(node) )
+		node = branch(node,side);
+	    return up(node);
 	}
-    void remove_value(size_t val_i)
+    void remove_value(vindex_t val_i)
 	{
-	    assert(val_i < values.size());
-	    size_t backtrack_i = values.back().second;
-	    std::swap(values[val_i], values.back());
-	    if( backtrack_i != null )
-		indexes[backtrack_i] = val_i;
+	    assert( value_inrange(val_i) );
+	    index_t swp_node = values.back().second;
+	    std::swap( values[val_i], values.back() );
+	    if( node_exist(swp_node) )
+		indexes[swp_node] = val_i;
 	    values.pop_back();
 	}
-    void move_nodes_up(size_t index)
-	{ // :/ O(N^2)
-	    assert(index > 1);
-	    size_t destination = index/2;
-	    size_t chunk_size = 1;
-	    for(;index < indexes.size(); chunk_size *=2,destination *=2, index *=2)
-	    {
-		std::copy(indexes.begin()+index,indexes.begin()+index+chunk_size,indexes.begin()+destination);
-		for(int i=destination,e=destination+chunk_size; i<e; i++)
-		    if ( indexes[i] != null )
-			values[indexes[i]].second = i;
-	    }
-	    std::fill(indexes.begin()+destination, indexes.begin()+destination+chunk_size, size_t(null));
-	}
-    void remove_node(size_t index, side_t side = side_t::left)
+    void update_value_to_node_link(index_t node)
 	{
-	    size_t index_left = index*2;
-	    size_t index_right = index*2 + 1;
-	    
-	    if( index_left >= indexes.size() )
-		indexes[index] = null;
-	    else if ( index_right >= indexes.size() )
-	    {
-		indexes[index] = indexes[index_left];
-		if( indexes[index] != null )
-		    values[indexes[index]].second = index;
-	    }
-	    else if( indexes[index_left] == null)
-		move_nodes_up(index_right);
-	    else if( indexes[index_right] == null)
-		move_nodes_up(index_left);
+	    if ( node_exist(node) )
+		values[indexes[node]].second = node;
+	}
+    void move_nodes_up(index_t src)
+    	{ // :/ O(N^2)
+	    assert( node_inrange(src) );
+	    assert( src > 1 );
+    	    using dist_t = decltype( src -src );
+	    index_t dst = up(src);
+    	    dist_t lsize = 1;
+    	    for(;src < size(); lsize *=2,dst *=2, src *=2)
+    	    {
+    		std::copy(indexes.begin() +src, indexes.begin() +src +lsize, indexes.begin() +dst);
+    		for(index_t node = dst; node < dst + lsize; ++node )
+    		    update_value_to_node_link(node);
+    	    }
+    	    std::fill(indexes.begin() +dst, indexes.begin() +dst +lsize, index_t(null));
+    	}
+    void erase_node(index_t node)
+	{
+	    assert(node_inrange(node));
+	    indexes[node] = null;
+	}
+    void move_node(index_t src,index_t dst)
+	{
+	    assert( node_inrange(src) );
+	    assert( node_inrange(dst) );
+	    indexes[dst] = indexes[src];
+	    update_value_to_node_link(dst);
+	    erase_node(src);
+	}
+    size_t remove_node(index_t node, side_t side = side_t::left)
+	{
+	    assert( node_inrange(node) );
+	    index_t node_left = left(node);
+	    index_t node_right = right(node);
+
+	    if( !node_exist(node_left) && !node_exist(node_right) )
+		erase_node(node);
+	    else if( !node_exist(node_right) )
+		move_nodes_up(node_left);
+	    else if( !node_exist(node_left) )
+		move_nodes_up(node_right);
 	    else
-	    { // complicated both sides removal
-		bool right_node = side == side_t::right;
-		size_t trav_start = index*2 + right_node;
-		size_t swp = traverse_last( trav_start, (right_node)?side_t::left : side_t::right );
-		indexes[index] = indexes[swp];
-		values[indexes[swp]].second = index;
-		remove_node(swp);
+	    {
+		index_t newtop = traverse_last( branch(node,side), flip(side) );
+		move_node(newtop, node);
+		return remove_node(newtop);
 	    }
+	    return node;
+	}
+    void resize( index_t new_size )
+	{
+	    assert( size() < new_size );
+	    indexes.resize( new_size, index_t(null) );
+	}
+    void insert_value( index_t node, T value)
+	{
+	    assert( node_inrange(node) );
+	    indexes[node] = values.size();
+	    values.push_back(std::make_pair(value,node));
 	}
  public:
     treeset_array(): indexes(16,size_t(null))
 	{}
     void insert(T x)
 	{
-	    size_t index = find(x);
-	    if(index >= indexes.size())
-		indexes.resize( 4*indexes.size(),size_t(null) );
-	    if( indexes[index] == null )
-	    {
-		indexes[index] = values.size();
-		values.push_back(std::make_pair(x,index));
-	    }
+	    size_t node = find(x);
+	    if(node >= size())
+		resize( 4*size() );
+	    if( !node_exist(node) )
+		insert_value( node, x );
 	}
     bool contains(T x)
-	{
-	    size_t i = find(x);
-	    return i < indexes.size() && indexes[i] != null;
-	}
+	{ return node_exist( find(x) ); }
     void remove(T x)
 	{
-	    size_t index = find(x);
-	    bool found = index < indexes.size() && indexes[index] != null;
-	    if( found )
+	    index_t node = find(x);
+	    if( node_exist(node) )
 	    {
-		remove_value( indexes[index] );
-		remove_node(index, ((index%3)%2)? side_t::right : side_t::left );
+		side_t side = (x%2 == 1)? side_t::right : side_t::left;
+		remove_value( indexes[node] );
+		remove_node(node, side);
 	    }
 	}
 };

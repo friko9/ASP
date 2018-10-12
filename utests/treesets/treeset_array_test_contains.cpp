@@ -8,7 +8,6 @@ namespace test_treeset_array
     struct treeset_array_test_contains_compare_with_stdtreeset
 	: public treeset_array_test_case
     {
-	void setup_data(){}
 	test_result run()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
@@ -34,7 +33,8 @@ namespace test_treeset_array
 	: public treeset_array_test_case
     {
 	TEST_INSERTER;
-	void setup_data(){}
+	void configure(){}
+	
 	test_result run()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;

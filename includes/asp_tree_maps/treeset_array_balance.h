@@ -13,7 +13,7 @@ class treeset_array_balance
     using height_t = uint8_t;
     using index_t = typename std::vector<size_t>::size_type;
     using vindex_t = typename std::vector<T>::size_type;
-    enum class side_t { left=0, right=1 };
+    enum class side_t { left, right };
 private:
     static constexpr index_t null = std::numeric_limits<size_t>::max();
     static constexpr index_t root = 1;
@@ -120,6 +120,7 @@ private:
     void move_nodes_side(index_t src,index_t dst)
     	{ // :/ O(N^2)
 	    assert( node_inrange(src) );
+	    assert( node_inrange(dst) );
 	    using dist_t = decltype( dst -src );
     	    dist_t lsize = 1;
     	    if(dst == src) return;
@@ -138,6 +139,21 @@ private:
     		std::fill(heights.begin()+dst, heights.begin()+dst+lsize, height_t(0));
     	    }
     	}
+    void erase_node(index_t node)
+	{
+	    assert(node_inrange(node));
+	    indexes[node] = null;
+	    heights[node] = 0;
+	}
+    void move_node(index_t src,index_t dst)
+	{
+	    assert( node_inrange(src) );
+	    assert( node_inrange(dst) );
+	    indexes[dst] = indexes[src];
+	    heights[dst] = heights[src];
+	    update_value_to_node_link(dst);
+	    erase_node(src);
+	}
     size_t remove_node(index_t node, side_t side = side_t::left)
 	{
 	    assert( node_inrange(node) );
@@ -157,21 +173,6 @@ private:
 		return remove_node(newtop);
 	    }
 	    return node;
-	}
-    void erase_node(index_t node)
-	{
-	    assert(node_inrange(node));
-	    indexes[node] = null;
-	    heights[node] = 0;
-	}
-    void move_node(index_t src,index_t dst)
-	{
-	    assert( node_inrange(src) );
-	    assert( node_inrange(dst) );
-	    indexes[dst] = indexes[src];
-	    heights[dst] = heights[src];
-	    update_value_to_node_link(dst);
-	    erase_node(src);
 	}
     void rebalance_case_1(index_t node, side_t side)
 	{
