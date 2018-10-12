@@ -50,20 +50,20 @@ namespace test_treeset_array_balance
 	    }
     };
 	
-    struct treesize2_c_move_nodes_up_l_state_null
+    struct treesize4_c_move_nodes_up_l_state_null
 	: public treeset_array_balance_test_move_nodes_up
     {
 	TEST_INSERTER;
 	void setup_data()
 	    {
-		tree_size = 2;
+		tree_size = 4;
 		data = {{1,0,1}};
 		index = 2;
 		result_node_permutations = {{1,null}};
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize2_c_move_nodes_up_l_state_null);
+    ENABLE_TEST(access_test_set(),treesize4_c_move_nodes_up_l_state_null);
 
     struct treesize8_c_move_nodes_up_l_state_null
 	: public treeset_array_balance_test_move_nodes_up
@@ -80,20 +80,20 @@ namespace test_treeset_array_balance
     };
     ENABLE_TEST(access_test_set(),treesize8_c_move_nodes_up_l_state_null);
 
-    struct treesize2_c_move_nodes_up_r_state_null
+    struct treesize4_c_move_nodes_up_r_state_null
 	: public treeset_array_balance_test_move_nodes_up
     {
 	TEST_INSERTER;
 	void setup_data()
 	    {
-		tree_size = 2;
+		tree_size = 4;
 		data = {{1,0,1}};
 		index = 3;
 		result_node_permutations = {{1,null}};
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize2_c_move_nodes_up_r_state_null);
+    ENABLE_TEST(access_test_set(),treesize4_c_move_nodes_up_r_state_null);
 
     struct treesize8_c_move_nodes_up_r_state_null
 	: public treeset_array_balance_test_move_nodes_up

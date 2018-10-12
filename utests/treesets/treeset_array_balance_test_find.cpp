@@ -36,6 +36,7 @@ namespace test_treeset_array_balance
     struct empty_find_all_vals_return_end : public treeset_array_balance_test_case
     {
 	TEST_INSERTER;
+	void configure(){}
 	test_result run()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
