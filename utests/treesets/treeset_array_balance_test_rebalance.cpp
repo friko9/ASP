@@ -8,12 +8,12 @@ namespace test_treeset_array_balance
     struct treeset_array_balance_test_rebalance
 	: public treeset_array_balance_test_case
     {
-	size_t index;
+	index_t index;
 	std::vector<node_t> expected_values;
-	std::vector<size_t> expected_indexes;
+	std::vector<index_t> expected_indexes;
 	std::vector<height_t> expected_heights;
-	score_t compare(std::vector<node_t>& vals1,std::vector<size_t> &indexes1,std::vector<height_t> &heights1,
-			std::vector<node_t>& vals2,std::vector<size_t> &indexes2,std::vector<height_t> &heights2)
+	score_t compare(std::vector<node_t>& vals1,std::vector<index_t> &indexes1,std::vector<height_t> &heights1,
+			std::vector<node_t>& vals2,std::vector<index_t> &indexes2,std::vector<height_t> &heights2)
 	    {
 		score_t score = indexes1.size() == indexes2.size();
 		for(int i=0; i<indexes1.size(); ++i)

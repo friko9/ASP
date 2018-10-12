@@ -8,6 +8,8 @@ namespace test_treeset_array_balance
     struct treeset_array_balance_test_contains_compare_with_stdtreeset
 	: public treeset_array_balance_test_case
     {
+	elem_t step = 1;
+	std::vector<elem_t> data;
 	test_result run()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
@@ -59,14 +61,10 @@ namespace test_treeset_array_balance
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::min(); i < 0; i+=3)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
 		    data.push_back(i);
-		for( int i = 1; i < std::numeric_limits<elem_t>::max(); i+=7)
-		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());	    
-
-		for( auto x : testtreeset )
+		data.push_back(std::numeric_limits<elem_t>::max());
+		for( auto x : data )
 		{
 		    container.insert(x);
 		    testtreeset.insert(x);
@@ -75,40 +73,35 @@ namespace test_treeset_array_balance
     };
     ENABLE_TEST(access_test_set(),populated_inorder_contains_compare_with_stdtreeset);
 
-    struct populated_inorder_all_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+    struct populated_revorder_contains_compare_with_stdtreeset
+    	: public treeset_array_balance_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min()+step; i -=step)
 		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());	    
-
-		for( auto x : testtreeset )
+		data.push_back(std::numeric_limits<elem_t>::min());
+		for( auto x : data )
 		{
 		    container.insert(x);
 		    testtreeset.insert(x);
 		}
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_inorder_all_contains_compare_with_stdtreeset);
-
+    ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
+    
     struct populated_noorder_contains_compare_with_stdtreeset
 	: public treeset_array_balance_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::max(); i > 0; i-=7)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
-		for( int i = std::numeric_limits<elem_t>::min(); i < 0; i+=3)
-		    data.push_back(i);
-
-		for( auto x : testtreeset )
+		std::random_shuffle(data.begin(),data.end());
+		for( auto x : data )
 		{
 		    container.insert(x);
 		    testtreeset.insert(x);
@@ -117,68 +110,38 @@ namespace test_treeset_array_balance
     };
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
 
-    struct populated_noorder_all_contains_compare_with_stdtreeset
+    struct populated_inorder_doubled_sticked_contains_compare_with_stdtreeset
+    	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+    {
+	TEST_INSERTER;
+	void configure()
+	    {
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
+		{
+		    data.push_back(i);
+		    data.push_back(i);
+		}
+		data.push_back(std::numeric_limits<elem_t>::max());
+		data.push_back(std::numeric_limits<elem_t>::max());
+	    }
+    };
+    ENABLE_TEST(access_test_set(),populated_inorder_doubled_sticked_contains_compare_with_stdtreeset);
+
+    struct populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset
 	: public treeset_array_balance_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
-		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());	    
-
-		std::random_shuffle(data.begin(), data.end());
-		for( auto x : testtreeset )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
 		{
-		    container.insert(x);
-		    testtreeset.insert(x);
+		    data.push_back(i);
+		    data.push_back(i);
 		}
+		data.push_back(std::numeric_limits<elem_t>::max());
+		data.push_back(std::numeric_limits<elem_t>::max());
+		std::random_shuffle(data.begin(),data.end());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_noorder_all_contains_compare_with_stdtreeset);
-
-    struct populated_revorder_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
-    {
-	TEST_INSERTER;
-	void configure()
-	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::min(); i < 0; i+=3)
-		    data.push_back(i);
-		for( int i = 1; i < std::numeric_limits<elem_t>::max(); i+=7)
-		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());	    
-
-		std::reverse(data.begin(), data.end());
-		for( auto x : testtreeset )
-		{
-		    container.insert(x);
-		    testtreeset.insert(x);
-		}
-	    }
-    };
-    ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
-
-    struct populated_revorder_all_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
-    {
-	TEST_INSERTER;
-	void configure()
-	    {
-		std::vector<elem_t> data;
-		for( int i = std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
-		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());	    
-
-		std::reverse(data.begin(), data.end());
-		for( auto x : testtreeset )
-		{
-		    container.insert(x);
-		    testtreeset.insert(x);
-		}
-	    }
-    };
-    ENABLE_TEST(access_test_set(),populated_revorder_all_contains_compare_with_stdtreeset);
+    ENABLE_TEST(access_test_set(),populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset);
 }

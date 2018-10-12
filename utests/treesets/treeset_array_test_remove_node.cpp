@@ -9,36 +9,46 @@ namespace test_treeset_array
     struct treeset_array_test_remove_node
 	: public treeset_array_test_case
     {
-	size_t del_index;
+	index_t del_index;
 	side_t del_side = side_t::left;
+	index_t expected_retval;
 	std::vector<node_t> expected_values;
-	std::vector<size_t> expected_indexes;
-	score_t compare(std::vector<node_t>& vals1,std::vector<size_t> &indexes1,
-			std::vector<node_t>& vals2,std::vector<size_t> &indexes2)
+	std::vector<index_t> expected_indexes;
+	std::vector<std::pair<index_t,index_t>> result_node_permutations;
+	void set_expected_result(container_t& container, std::vector<std::pair<index_t,index_t>> index_permutations)
 	    {
-		score_t score = indexes1.size() == indexes2.size();
-		for(int i=0; i<indexes1.size(); ++i)
+		auto values = test_plug.get_values(container);
+		auto indexes = test_plug.get_indexes(container);
+		expected_values = values;
+		expected_indexes = indexes;
+		for( auto p : index_permutations )
 		{
-		    bool indexes_null = indexes1[i] == null && indexes2[i] == null;
-		    bool index1_ok = indexes1[i] < vals1.size();
-		    bool index2_ok = indexes2[i] < vals2.size();
-		    bool vals_equal = index1_ok && index2_ok && vals1[indexes1[i]] == vals2[indexes2[i]];
-		    score += indexes_null || vals_equal;
+		    if( p.first >= indexes.size() )
+			throw std::runtime_error("Wrong indexing");
+		    expected_indexes[p.first] = (p.second != null)? indexes[p.second] : null;
+		    if( p.second != null )
+			expected_values[indexes[p.second]].second  = p.first;
 		}
-		return score;
+	    }
+	void configure()
+	    {
+		setup_data();
+		std::tie(test_plug.get_values(container),
+			 test_plug.get_indexes(container))
+		    = make_data(tree_size,data);
+		set_expected_result(container,result_node_permutations);
 	    }
 	test_result test()
 	    {
-		test_plug.remove_node(container, del_index, del_side);
-		if( test_plug.get_indexes(container).size() == expected_indexes.size()  )
-		    return compare(expected_values,expected_indexes,
-				   test_plug.get_values(container),test_plug.get_indexes(container));
-		else
-		    return score_t(false);
+		index_t retval = test_plug.remove_node(container, del_index, del_side);
+		score_t retval_ok = expected_retval == retval;
+		score_t values_ok = compare(expected_values, test_plug.get_values(container));
+		score_t indexes_ok = compare(expected_indexes, test_plug.get_indexes(container));
+		return retval_ok + values_ok + indexes_ok;
 	    }
     };
-	
-    struct treesize2_c_remove_node_c_state_empty
+    
+    struct treesize2_c_remove_node_c_return_c_state_cxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -47,13 +57,14 @@ namespace test_treeset_array
 		tree_size = 2;
 		data = {{1,0}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,decltype(data)());
+		result_node_permutations = {{1,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize2_c_remove_node_c_state_empty);
+    ENABLE_TEST(access_test_set(),treesize2_c_remove_node_c_return_c_state_cxnull);
 
-    struct treesize8_c_remove_node_c_state_null
+    struct treesize8_c_remove_node_c_return_c_state_cxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -62,13 +73,14 @@ namespace test_treeset_array
 		tree_size = 8;
 		data = {{1,0}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,decltype(data)());
+		result_node_permutations = {{1,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_remove_node_c_state_null);
+    ENABLE_TEST(access_test_set(),treesize8_c_remove_node_c_return_c_state_cxnull);
 
-    struct treesize4_c_l_remove_node_l_state_cxc
+    struct treesize4_c_l_remove_node_l_return_l_state_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -77,13 +89,14 @@ namespace test_treeset_array
 		tree_size = 4;
 		data = {{1,0},{2,-1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0}});
+		result_node_permutations = {{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_l_state_cxc);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_l_return_l_state_lxnull);
 
-    struct treesize16_c_l_remove_node_l_state_cxc
+    struct treesize16_c_l_remove_node_l_return_l_state_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -92,13 +105,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0}});
+		result_node_permutations = {{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_l_state_cxc);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_l_return_l_state_lxnull);
 
-    struct treesize4_c_l_remove_node_c_state_cxl
+    struct treesize4_c_l_remove_node_c_return_c_state_cxl_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -107,13 +121,14 @@ namespace test_treeset_array
 		tree_size = 4;
 		data = {{1,0},{2,-1}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1}});
+		result_node_permutations = {{1,2},{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_c_state_cxl);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_c_return_c_state_cxl_lxnull);
 
-    struct treesize16_c_l_remove_node_c_state_cxl
+    struct treesize16_c_l_remove_node_c_return_c_state_cxl_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -122,13 +137,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1}});
+		result_node_permutations = {{1,2},{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_c_state_cxl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_c_return_c_state_cxl_lxnull);
 
-    struct treesize4_c_r_remove_node_c_state_cxr
+    struct treesize4_c_r_remove_node_c_return_c_state_cxr_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -137,13 +153,14 @@ namespace test_treeset_array
 		tree_size = 4;
 		data = {{1,0},{3,1}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1}});
+		result_node_permutations = {{1,3},{3,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_r_remove_node_c_state_cxr);
+    ENABLE_TEST(access_test_set(),treesize4_c_r_remove_node_c_return_c_state_cxr_rxnull);
 
-    struct treesize16_c_r_remove_node_c_state_cxr
+    struct treesize16_c_r_remove_node_c_return_c_state_cxr_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -152,13 +169,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{3,1}};
 		del_index = 1;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1}});
+		result_node_permutations = {{1,3},{3,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_r_remove_node_c_state_cxr);
+    ENABLE_TEST(access_test_set(),treesize16_c_r_remove_node_c_return_c_state_cxr_rxnull);
 
-    struct treesize4_c_l_r_remove_node_l_state_cxc_rxr
+    struct treesize4_c_l_r_remove_node_l_return_l_state_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -167,13 +185,14 @@ namespace test_treeset_array
 		tree_size = 4;
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{3,1}});
+		result_node_permutations = {{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_l_state_cxc_rxr);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_l_return_l_state_lxnull);
 
-    struct treesize16_c_l_r_remove_node_l_state_cxc_rxr
+    struct treesize16_c_l_r_remove_node_l_return_l_state_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -182,13 +201,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{3,1}});
+		result_node_permutations = {{2,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_l_state_cxc_rxr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_l_return_l_state_lxnull);
 
-    struct treesize4_c_l_r_remove_node_l_state_cxc_lxl
+    struct treesize4_c_l_r_remove_node_r_return_r_state_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -197,13 +217,14 @@ namespace test_treeset_array
 		tree_size = 4;
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1}});
+		result_node_permutations = {{3,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_l_state_cxc_lxl);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_r_return_r_state_rxnull);
 
-    struct treesize16_c_l_r_remove_node_r_state_cxc_lxl
+    struct treesize16_c_l_r_remove_node_r_return_r_state_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -212,13 +233,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1}});
+		result_node_permutations = {{3,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_r_state_cxc_lxl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_r_return_r_state_rxnull);
 
-    struct treesize4_c_l_r_remove_node_c_on_left_state_cxl_rxr
+    struct treesize4_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -228,13 +250,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{3,1}});
+		result_node_permutations = {{1,2},{2,null}};
+		expected_retval = 2;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_left_state_cxl_rxr);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull);
 
-    struct treesize16_c_l_r_remove_node_c_on_left_state_cxl_rxr
+    struct treesize16_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -244,13 +267,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{3,1}});
+		result_node_permutations = {{1,2},{2,null}};
+		expected_retval = 2;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_left_state_cxl_rxr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull);
 
-    struct treesize4_c_l_r_remove_node_c_on_right_state_cxr_lxl
+    struct treesize4_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -260,13 +284,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-1}});
+		result_node_permutations = {{1,3},{3,null}};
+		expected_retval = 3;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_right_state_cxr_lxl);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull);
 
-    struct treesize16_c_l_r_remove_node_c_on_right_state_cxr_lxl
+    struct treesize16_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -276,13 +301,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-1}});
+		result_node_permutations = {{1,3},{3,null}};
+		expected_retval = 3;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_right_state_cxr_lxl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull);
 
-    struct treesize8_c_l_r_ll_rr_remove_node_l_state_cxc_lxll_rxr_rrxrr
+    struct treesize8_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -291,13 +317,14 @@ namespace test_treeset_array
 		tree_size = 8;
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{7,2}});
+		result_node_permutations = {{2,4},{4,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_l_state_cxc_lxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull);
 
-    struct treesize16_c_l_r_ll_rr_remove_node_l_state_cxc_lxll_rxr_rrxrr
+    struct treesize16_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -306,13 +333,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{7,2}});
+		result_node_permutations = {{2,4},{4,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_l_state_cxc_lxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull);
 
-    struct treesize8_c_l_r_ll_rr_remove_node_r_state_cxc_lxl_llxll_rxrr
+    struct treesize8_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -321,13 +349,14 @@ namespace test_treeset_array
 		tree_size = 8;
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{4,-2}});
+		result_node_permutations = {{3,7},{7,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_r_state_cxc_lxl_llxll_rxrr);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull);
 
-    struct treesize16_c_l_r_ll_rr_remove_node_r_state_cxc_lxl_llxll_rxrr
+    struct treesize16_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -336,13 +365,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{4,-2}});
+		result_node_permutations = {{3,7},{7,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_r_state_cxc_lxl_llxll_rxrr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull);
 
-    struct treesize8_c_l_r_ll_rr_remove_node_c_on_left_state_cxl_lxll_rxr_rrxrr
+    struct treesize8_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -352,13 +382,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,1},{7,2}});
+		result_node_permutations = {{1,2},{2,4},{4,null}};
+		expected_retval = 2;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_left_state_cxl_lxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull);
 
-    struct treesize16_c_l_r_ll_rr_remove_node_c_on_left_state_cxl_lxll_rxr_rrxrr
+    struct treesize16_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -368,13 +399,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,1},{7,2}});
+		result_node_permutations = {{1,2},{2,4},{4,null}};
+		expected_retval = 2;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_left_state_cxl_lxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull);
 
-    struct treesize8_c_l_r_ll_rr_remove_node_c_on_right_state_cxr_lxl_llxll_rxrr
+    struct treesize8_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -384,13 +416,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-1},{3,2},{4,-2}});
+		result_node_permutations = {{1,3},{3,7},{7,null}};
+		expected_retval = 3;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_right_state_cxr_lxl_llxll_rxrr);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull);
 
-    struct treesize16_c_l_r_ll_rr_remove_node_c_on_right_state_cxr_lxl_llxll_rxrr
+    struct treesize16_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -400,13 +433,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-1},{3,1},{4,-2},{7,2}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-1},{3,2},{4,-2}});
+		result_node_permutations = {{1,3},{3,7},{7,null}};
+		expected_retval = 3;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_right_state_cxr_lxl_llxll_rxrr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull);
 
-    struct treesize8_c_l_r_lr_rl_remove_node_l_state_cxc_lxlr_rxr_rlxlr
+    struct treesize8_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -415,13 +449,14 @@ namespace test_treeset_array
 		tree_size = 8;
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{6,1}});
+		result_node_permutations = {{2,5},{5,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_l_state_cxc_lxlr_rxr_rlxlr);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull);
 
-    struct treesize16_c_l_r_lr_rl_remove_node_l_state_cxc_lxlr_rxr_rlxlr
+    struct treesize16_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -430,13 +465,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 2;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{6,1}});
+		result_node_permutations = {{2,5},{5,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_l_state_cxc_lxlr_rxr_rlxlr);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull);
 
-    struct treesize8_c_l_r_lr_rl_remove_node_r_state_cxc_lxl_lrxlr_rxrl
+    struct treesize8_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -445,13 +481,14 @@ namespace test_treeset_array
 		tree_size = 8;
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{5,-1}});
+		result_node_permutations = {{3,6},{6,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_r_state_cxc_lxl_lrxlr_rxrl);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull);
 
-    struct treesize16_c_l_r_lr_rl_remove_node_r_state_cxc_lxl_lrxlr_rxrl
+    struct treesize16_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -460,13 +497,14 @@ namespace test_treeset_array
 		tree_size = 16;
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 3;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{5,-1}});
+		result_node_permutations = {{3,6},{6,null}};
+		expected_retval = del_index;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_r_state_cxc_lxl_lrxlr_rxrl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull);
 
-    struct treesize8_c_l_r_lr_rl_remove_node_c_on_left_state_cxl_lxlr_rxr_rlxrl
+    struct treesize8_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -476,13 +514,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,2},{6,1}});
+		result_node_permutations = {{1,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_left_state_cxl_lxlr_rxr_rlxrl);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
-    struct treesize16_c_l_r_lr_rl_remove_node_c_on_left_state_cxl_lxlr_rxr_rlxrl
+    struct treesize16_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -492,13 +531,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,2},{6,1}});
+		result_node_permutations = {{1,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_left_state_cxl_lxlr_rxr_rlxrl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
-    struct treesize8_c_l_r_lr_rl_remove_node_c_on_right_state_cxr_lxl_lrxlr_rxrl
+    struct treesize8_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -508,13 +548,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-2},{3,2},{5,-1}});
+		result_node_permutations = {{1,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_right_state_cxr_lxl_lrxlr_rxrl);
+    ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
-    struct treesize16_c_l_r_lr_rl_remove_node_c_on_right_state_cxr_lxl_lrxlr_rxrl
+    struct treesize16_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -524,13 +565,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{5,-1},{6,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-2},{3,2},{5,-1}});
+		result_node_permutations = {{1,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_right_state_cxr_lxl_lrxlr_rxrl);
+    ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
-    struct treesize8_full8_remove_node_l_on_left_state_cxc_lxll_lrxlr_rxr_rlxrl_rrxrr
+    struct treesize8_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -540,13 +582,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 2;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-3},{3,2},{5,-1},{6,1},{7,3}});
+		result_node_permutations = {{2,4},{4,null}};
+		expected_retval = 4;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_left_state_cxc_lxll_lrxlr_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull);
 
-    struct treesize16_full8_remove_node_l_on_left_state_cxc_lxll_lrxlr_rxr_rlxrl_rrxrr
+    struct treesize16_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -556,13 +599,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 2;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-3},{3,2},{5,-1},{6,1},{7,3}});
+		result_node_permutations = {{2,4},{4,null}};
+		expected_retval = 4;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_left_state_cxc_lxll_lrxlr_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull);
 
-    struct treesize8_full8_remove_node_l_on_right_state_cxc_lxlr_llxll_rxr_rlxrl_rrxrr
+    struct treesize8_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -572,13 +616,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 2;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{4,-3},{6,1},{7,3}});
+		result_node_permutations = {{2,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_right_state_cxc_lxlr_llxll_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull);
 
-    struct treesize16_full8_remove_node_l_on_right_state_cxc_lxlr_llxll_rxr_rlxrl_rrxrr
+    struct treesize16_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -588,13 +633,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 2;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-1},{3,2},{4,-3},{6,1},{7,3}});
+		result_node_permutations = {{2,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_right_state_cxc_lxlr_llxll_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull);
 
-    struct treesize8_full8_remove_node_r_on_left_state_cxc_lxl_lrxlr_llxll_rxrl_rrxrr
+    struct treesize8_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -604,13 +650,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 3;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{4,-3},{5,-1},{7,3}});
+		result_node_permutations = {{3,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_left_state_cxc_lxl_lrxlr_llxll_rxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull);
 
-    struct treesize16_full8_remove_node_r_on_left_state_cxc_lxl_lrxlr_llxll_rxrl_rrxrr
+    struct treesize16_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -620,13 +667,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 3;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,1},{4,-3},{5,-1},{7,3}});
+		result_node_permutations = {{3,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_left_state_cxc_lxl_lrxlr_llxll_rxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull);
 
-    struct treesize8_full8_remove_node_r_on_right_state_cxc_lxl_lrxlr_llxll_rxrr_rlxrl
+    struct treesize8_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -636,13 +684,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 3;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,3},{4,-3},{5,-1},{6,1}});
+		result_node_permutations = {{3,7},{7,null}};
+		expected_retval = 7;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_right_state_cxc_lxl_lrxlr_llxll_rxrr_rlxrl);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull);
 
-    struct treesize16_full8_remove_node_r_on_right_state_cxc_lxl_lrxlr_llxll_rxrr_rlxrl
+    struct treesize16_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -652,13 +701,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 3;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,0},{2,-2},{3,3},{4,-3},{5,-1},{6,1}});
+		result_node_permutations = {{3,7},{7,null}};
+		expected_retval = 7;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_right_state_cxc_lxl_lrxlr_llxll_rxrr_rlxrl);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull);
 
-    struct treesize8_full8_remove_node_c_on_left_state_cxlr_lxl_llxll_rxr_rlxrl_rrxrr
+    struct treesize8_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -668,13 +718,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,2},{4,-3},{6,1},{7,3}});
+		result_node_permutations = {{1,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_left_state_cxlr_lxl_llxll_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
-    struct treesize16_full8_remove_node_c_on_left_state_cxlr_lxl_llxll_rxr_rlxrl_rrxrr
+    struct treesize16_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -684,13 +735,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,-1},{2,-2},{3,2},{4,-3},{6,1},{7,3}});
+		result_node_permutations = {{1,5},{5,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_left_state_cxlr_lxl_llxll_rxr_rlxrl_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
-    struct treesize8_full8_remove_node_c_on_right_state_cxrl_lxl_lrxlr_llxll_rxr_rrxrr
+    struct treesize8_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -700,13 +752,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-2},{3,2},{4,-3},{5,-1},{7,3}});
+		result_node_permutations = {{1,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_right_state_cxrl_lxl_lrxlr_llxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
-    struct treesize16_full8_remove_node_c_on_right_state_cxrl_lxl_lrxlr_llxll_rxr_rrxrr
+    struct treesize16_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -716,13 +769,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-2},{3,2},{4,-3},{5,-1},{6,1},{7,3}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes) = make_data(tree_size,{{1,1},{2,-2},{3,2},{4,-3},{5,-1},{7,3}});
+		result_node_permutations = {{1,6},{6,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_right_state_cxrl_lxl_lrxlr_llxll_rxr_rrxrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
-    struct treesize16_full8_lrr_rll_remove_node_c_on_left_state_cxlrr_full8_rll
+    struct treesize16_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -732,14 +786,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1},{12,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,{{1,-1},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{12,1}});
+		result_node_permutations = {{1,11},{11,null}};
+		expected_retval = 11;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_left_state_cxlrr_full8_rll);
+    ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull);
 
-    struct treesize32_full8_lrr_rll_remove_node_c_on_left_state_cxlrr_full8_rll
+    struct treesize32_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -749,14 +803,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1},{12,1}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,{{1,-1},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{12,1}});
+		result_node_permutations = {{1,11},{11,null}};
+		expected_retval = 11;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_left_state_cxlrr_full8_rll);
+    ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull);
 
-    struct treesize16_full8_lrr_rll_remove_node_c_on_right_state_cxrll_full8_lrr
+    struct treesize16_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -766,14 +820,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1},{12,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,{{1,1},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1}});
+		result_node_permutations = {{1,12},{12,null}};
+		expected_retval = 12;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_right_state_cxrll_full8_lrr);
+    ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull);
 
-    struct treesize32_full8_lrr_rll_remove_node_c_on_right_state_cxrll_full8_lrr
+    struct treesize32_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -783,14 +837,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1},{12,1}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,{{1,1},{2,-3},{3,3},{4,-4},{5,-2},{6,2},{7,4},{11,-1}});
+		result_node_permutations = {{1,12},{12,null}};
+		expected_retval = 12;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_right_state_cxrll_full8_lrr);
+    ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull);
 
-    struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr
+    struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -800,15 +854,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-10},{3,10},{4,-20},{5,-5},{6,5},{7,20},{10,-7},{13,7},{20,-8},{21,-6},{26,6},{27,8}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,
-				{{1,-5},{2,-10},{3,10},{4,-20},{5,-7},{6,5},{7,20},{10,-8},{11,-6},{13,7},{26,6},{27,8}});
+		result_node_permutations = {{1,5},{5,10},{10,20},{11,21},{20,null},{21,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr);
+    ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull);
 
-    struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr
+    struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -818,15 +871,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-10},{3,10},{4,-20},{5,-5},{6,5},{7,20},{10,-7},{13,7},{20,-8},{21,-6},{26,6},{27,8}};
 		del_index = 1;
 		del_side = side_t::left;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,
-				{{1,-5},{2,-10},{3,10},{4,-20},{5,-7},{6,5},{7,20},{10,-8},{11,-6},{13,7},{26,6},{27,8}});
+		result_node_permutations = {{1,5},{5,10},{10,20},{11,21},{20,null},{21,null}};
+		expected_retval = 5;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr);
+    ENABLE_TEST(access_test_set(),treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull);
 
-    struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr
+    struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -836,15 +888,14 @@ namespace test_treeset_array
 		data = {{1,0},{2,-10},{3,10},{4,-20},{5,-5},{6,5},{7,20},{10,-7},{13,7},{20,-8},{21,-6},{26,6},{27,8}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,
-				{{1,5},{2,-10},{3,10},{4,-20},{5,-5},{6,7},{7,20},{10,-7},{12,6},{13,8},{20,-8},{21,-6}});
+		result_node_permutations = {{1,6},{6,13},{12,26},{13,27},{26,null},{27,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr);
+    ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull);
 
-    struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr
+    struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull
 	: public treeset_array_test_remove_node
     {
 	TEST_INSERTER;
@@ -854,11 +905,10 @@ namespace test_treeset_array
 		data = {{1,0},{2,-10},{3,10},{4,-20},{5,-5},{6,5},{7,20},{10,-7},{13,7},{20,-8},{21,-6},{26,6},{27,8}};
 		del_index = 1;
 		del_side = side_t::right;
-		std::tie(expected_values,expected_indexes)
-		    = make_data(tree_size,
-				{{1,5},{2,-10},{3,10},{4,-20},{5,-5},{6,7},{7,20},{10,-7},{12,6},{13,8},{20,-8},{21,-6}});
+		result_node_permutations = {{1,6},{6,13},{12,26},{13,27},{26,null},{27,null}};
+		expected_retval = 6;
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr);
+    ENABLE_TEST(access_test_set(),treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull);
 }

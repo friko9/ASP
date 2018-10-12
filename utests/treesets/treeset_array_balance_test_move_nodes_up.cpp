@@ -8,12 +8,12 @@ namespace test_treeset_array_balance
     struct treeset_array_balance_test_move_nodes_up
 	: public treeset_array_balance_test_case
     {
-	size_t index;
+	index_t index;
 	std::vector<node_t> cmp_values;
-	std::vector<size_t> cmp_indexes;
+	std::vector<index_t> cmp_indexes;
 	std::vector<height_t> cmp_heights;
-	std::vector<std::pair<size_t,size_t>> result_node_permutations;
-	void set_expected_result(container_t& container, std::vector<std::pair<size_t,size_t>> index_permutations)
+	std::vector<std::pair<index_t,index_t>> result_node_permutations;
+	void set_expected_result(container_t& container, std::vector<std::pair<index_t,index_t>> index_permutations)
 	    {
 		auto values = test_plug.get_values(container);
 		auto indexes = test_plug.get_indexes(container);

@@ -8,9 +8,9 @@ namespace test_treeset_array
     struct treeset_array_test_remove_value
 	: public treeset_array_test_case
     {
-	size_t del_index;
+	index_t del_index;
 	std::vector<node_t> cmp_values;
-	std::vector<size_t> cmp_indexes;
+	std::vector<index_t> cmp_indexes;
 	test_result run()
 	    {
 		test_plug.remove_value(container, del_index);
@@ -26,10 +26,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {1,null}, {0,1}, {-1,2}};
-		std::vector<size_t> indexes{ null, 1, 2, null, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{1,null}, {0,1}, {-1,2}};
+		test_plug.get_indexes(container) = {null, 1, 2, null, null, null, null, null};
 		del_index = 0;
 		cmp_values = { {-1,2}, {0,1} };
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
@@ -43,10 +41,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {-1,2}, {1,null}, {0,1}};
-		std::vector<size_t> indexes{ null, 2, 0, null, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{-1,2}, {1,null}, {0,1}};
+		test_plug.get_indexes(container) = {null, 2, 0, null, null, null, null, null};
 		del_index = 1;
 		cmp_values = { {-1,2}, {0,1}};
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
@@ -60,10 +56,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {-1,2}, {0,1}, {1,null}};
-		std::vector<size_t> indexes{ null, 1, 0, null, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{-1,2}, {0,1}, {1,null}};
+		test_plug.get_indexes(container) = {null, 1, 0, null, null, null, null, null};
 		del_index = 2;
 		cmp_values = { {-1,2}, {0,1}};
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
@@ -77,10 +71,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values {{1,null}};
-		std::vector<size_t> indexes{ null, null, null, null, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{1,null}};
+		test_plug.get_indexes(container) = {null, null, null, null, null, null, null, null};
 		del_index = 0;
 		cmp_values = {};
 		cmp_indexes = { null, null, null, null, null, null, null, null};
@@ -94,10 +86,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {1,3}, {0,1}, {-1,2}};
-		std::vector<size_t> indexes{ null, 1, 2, 0, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{1,3}, {0,1}, {-1,2}};
+		test_plug.get_indexes(container) = {null, 1, 2, 0, null, null, null, null};
 		del_index = 0;
 		cmp_values = { {-1,2}, {0,1}};
 		cmp_indexes = { null, 1, 0, 0, null, null, null, null};
@@ -111,10 +101,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {-1,2}, {1,3}, {0,1}};
-		std::vector<size_t> indexes{ null, 2, 0, 1, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{-1,2}, {1,3}, {0,1}};
+		test_plug.get_indexes(container) = {null, 2, 0, 1, null, null, null, null};
 		del_index = 1;
 		cmp_values = { {-1,2}, {0,1}};
 		cmp_indexes = { null, 1, 0, 1, null, null, null, null};
@@ -128,10 +116,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values { {-1,2}, {0,1}, {1,3}};
-		std::vector<size_t> indexes{ null, 1, 0, 2, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{-1,2}, {0,1}, {1,3}};
+		test_plug.get_indexes(container) = {null, 1, 0, 2, null, null, null, null};
 		del_index = 2;
 		cmp_values = { {-1,2}, {0,1}};
 		cmp_indexes = { null, 1, 0, 2, null, null, null, null};
@@ -145,10 +131,8 @@ namespace test_treeset_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<node_t> values {{1,1}};
-		std::vector<size_t> indexes{ null, 0, null, null, null, null, null, null};
-		test_plug.get_values(container) = values;
-		test_plug.get_indexes(container) = indexes;
+		test_plug.get_values(container) = {{1,1}};
+		test_plug.get_indexes(container) = {null, 0, null, null, null, null, null, null};
 		del_index = 0;
 		cmp_values = {};
 		cmp_indexes = { null, 0, null, null, null, null, null, null};

@@ -8,9 +8,9 @@ namespace test_treeset_array_balance
     struct treeset_array_balance_test_remove_value
 	: public treeset_array_balance_test_case
     {
-	size_t del_index;
+	index_t del_index;
 	std::vector<node_t> cmp_values;
-	std::vector<size_t> cmp_indexes;
+	std::vector<index_t> cmp_indexes;
 	std::vector<height_t> cmp_heights;
 	test_result run()
 	    {

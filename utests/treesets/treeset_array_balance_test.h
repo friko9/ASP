@@ -16,7 +16,9 @@ struct TestPlug<treeset_array_balance<T>>
     using treeset_t = treeset_array_balance<T>;
     using node_t = typename std::pair<T,size_t>;
     using side_t = typename treeset_t::side_t;
-    using height_t = uint8_t;
+    using height_t = typename treeset_t::height_t;
+    using index_t = typename treeset_t::index_t;
+    using vindex_t = typename treeset_t::vindex_t;
     static constexpr size_t null = treeset_t::null;
     static constexpr size_t root = treeset_t::root;
 
@@ -24,17 +26,17 @@ struct TestPlug<treeset_array_balance<T>>
     std::vector<size_t>& get_indexes(treeset_t& arg) { return arg.indexes; }
     std::vector<height_t>& get_heights(treeset_t& arg) { return arg.heights; }
 
-    size_t find(treeset_t& arg, T x) { return arg.find(x); }
-    void update_node_height(treeset_t& arg, size_t index){ arg.update_node_height(index); }
-    size_t traverse_last(treeset_t& arg, size_t index, side_t side){ return arg.traverse_last(index,side); }
-    void remove_value(treeset_t& arg, size_t index){ arg.remove_value(index); }
-    size_t remove_node(treeset_t& arg, size_t index, side_t side){ return arg.remove_node(index,side); }
-    void move_nodes_up(treeset_t& arg, size_t index){ arg.move_nodes_up(index); }
-    void move_nodes_down(treeset_t& arg, size_t index,side_t side){ arg.move_nodes_down(index,side); }
-    void move_nodes_side(treeset_t& arg, size_t src,size_t dst){ arg.move_nodes_side(src,dst); }
-    void rebalance_case_1(treeset_t& arg, size_t index, side_t side){ arg.rebalance_case_1(index,side); }
-    void rebalance_case_2(treeset_t& arg, size_t index, side_t side){ arg.rebalance_case_2(index,side); }
-    void rebalance(treeset_t& arg, size_t origin){ arg.rebalance(origin); }
+    index_t find(treeset_t& arg, T x) { return arg.find(x); }
+    void update_node_height(treeset_t& arg, index_t node){ arg.update_node_height(node); }
+    index_t traverse_last(treeset_t& arg, index_t node, side_t side){ return arg.traverse_last(node,side); }
+    void remove_value(treeset_t& arg, vindex_t node){ arg.remove_value(node); }
+    index_t remove_node(treeset_t& arg, index_t node, side_t side){ return arg.remove_node(node,side); }
+    void move_nodes_up(treeset_t& arg, index_t src){ arg.move_nodes_up(src); }
+    void move_nodes_down(treeset_t& arg, index_t src,side_t side){ arg.move_nodes_down(src,side); }
+    void move_nodes_side(treeset_t& arg, index_t src,index_t dst){ arg.move_nodes_side(src,dst); }
+    void rebalance_case_1(treeset_t& arg, index_t node, side_t side){ arg.rebalance_case_1(node,side); }
+    void rebalance_case_2(treeset_t& arg, index_t node, side_t side){ arg.rebalance_case_2(node,side); }
+    void rebalance(treeset_t& arg, index_t node){ arg.rebalance(node); }
 };
 
 namespace test_treeset_array_balance
@@ -48,6 +50,8 @@ namespace test_treeset_array_balance
 	using TestPlug_t = TestPlug<container_t>;
 	using node_t = typename TestPlug_t::node_t;
 	using side_t = typename TestPlug_t::side_t;
+	using index_t = typename TestPlug_t::index_t;
+	using vindex_t = typename TestPlug_t::vindex_t;
 	using height_t = typename TestPlug_t::height_t;
 
 	size_t null = TestPlug_t::null;

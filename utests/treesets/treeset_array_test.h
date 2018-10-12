@@ -14,6 +14,8 @@ struct TestPlug<treeset_array<T>>
 {
     using treeset_t = treeset_array<T>;
     using node_t = typename std::pair<T,size_t>;
+    using index_t = typename treeset_t::index_t;
+    using vindex_t = typename treeset_t::vindex_t;
     using side_t = typename treeset_t::side_t;
     static constexpr size_t null = treeset_t::null;
     static constexpr size_t root = treeset_t::root;
@@ -21,11 +23,11 @@ struct TestPlug<treeset_array<T>>
     std::vector<node_t>& get_values(treeset_t& arg) { return arg.values; }
     std::vector<size_t>& get_indexes(treeset_t& arg) { return arg.indexes; }
 
-    size_t find(treeset_t& arg, T x) { return arg.find(x); }
-    size_t traverse_last(treeset_t& arg, size_t index, side_t side){ return arg.traverse_last(index,side); }
-    void remove_value(treeset_t& arg, size_t index){ arg.remove_value(index); }
-    void remove_node(treeset_t& arg, size_t index, side_t side){ arg.remove_node(index,side); }
-    void move_nodes_up(treeset_t& arg, size_t index){ arg.move_nodes_up(index); }
+    index_t find(treeset_t& arg, T x) { return arg.find(x); }
+    index_t traverse_last(treeset_t& arg, index_t node, side_t side){ return arg.traverse_last(node,side); }
+    void remove_value(treeset_t& arg, vindex_t vali){ arg.remove_value(vali); }
+    index_t remove_node(treeset_t& arg, index_t node, side_t side){ return arg.remove_node(node,side); }
+    void move_nodes_up(treeset_t& arg, index_t node){ arg.move_nodes_up(node); }
 };
 
 namespace test_treeset_array
@@ -38,6 +40,8 @@ namespace test_treeset_array
 	using container_t = treeset_array<elem_t>;
 	using TestPlug_t = TestPlug<container_t>;
 	using node_t = typename TestPlug_t::node_t;
+	using index_t = typename TestPlug_t::index_t;
+	using vindex_t = typename TestPlug_t::vindex_t;
 	using side_t = typename TestPlug_t::side_t;
 	size_t null = TestPlug_t::null;
 	size_t root = TestPlug_t::root;

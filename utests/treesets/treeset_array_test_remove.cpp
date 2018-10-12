@@ -49,12 +49,13 @@ namespace test_treeset_array
 	    }
     };
     
-    struct populated_inorder_remove_inorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_inorder_remove_inorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
 		{
 		    testtreeset.insert(i);
 		    container.insert(i);
@@ -67,12 +68,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_inorder_compare_with_stdtreeset);
     
-    struct populated_inorder_remove_revorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_inorder_remove_revorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
 		{
 		    container.insert(i);
 		    testtreeset.insert(i);
@@ -87,12 +89,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_revorder_compare_with_stdtreeset);
 
-    struct populated_inorder_remove_noorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_inorder_remove_noorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		{
 		    container.insert(i);
 		    testtreeset.insert(i);
@@ -107,12 +110,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_noorder_compare_with_stdtreeset);
 
-    struct populated_revorder_remove_inorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_revorder_remove_inorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -125,12 +129,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_inorder_compare_with_stdtreeset);
 
-    struct populated_revorder_remove_revorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_revorder_remove_revorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -145,12 +150,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_revorder_compare_with_stdtreeset);
 
-    struct populated_revorder_remove_noorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_revorder_remove_noorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); i -=step )
 		{
 		    container.insert(i);
 		    testtreeset.insert(i);
@@ -165,12 +171,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_noorder_compare_with_stdtreeset);
 
-    struct populated_noorder_remove_inorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_noorder_remove_inorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -184,12 +191,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_inorder_compare_with_stdtreeset);
 
-    struct populated_noorder_remove_revorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_noorder_remove_revorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -204,12 +212,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_revorder_compare_with_stdtreeset);
 
-    struct populated_noorder_remove_noorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_noorder_remove_noorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 				
@@ -224,12 +233,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_noorder_compare_with_stdtreeset);
 
-    struct populated_doubled_inorder_remove_inorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_doubled_inorder_remove_inorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
@@ -246,12 +256,13 @@ namespace test_treeset_array
     };
     ENABLE_TEST(access_test_set(),populated_doubled_inorder_remove_inorder_compare_with_stdtreeset);
 
-    struct populated_doubled_shuffled_remove_inorder_compare_with_stdtreeset : public treeset_array_test_remove_compare_with_stdtreeset
+    struct populated_doubled_shuffled_remove_inorder_compare_with_stdtreeset
+	: public treeset_array_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		{
 		    data.push_back(i);
 		    data.push_back(i);

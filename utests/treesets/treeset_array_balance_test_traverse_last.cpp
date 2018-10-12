@@ -16,8 +16,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto root = TestPlug_t::root;
-		auto ret = test_plug.traverse_last(container, root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == root);
 	    }
     };
@@ -34,8 +33,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto root = TestPlug_t::root;
-		auto ret = test_plug.traverse_last(container, root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == root);
 	    }
     };
@@ -52,7 +50,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 2);
 	    }
     };
@@ -69,7 +67,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 1);
 	    }
     };
@@ -86,7 +84,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 1);
 	    }
     };
@@ -103,7 +101,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 3);
 	    }
     };
@@ -121,7 +119,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 2);
 	    }
     };
@@ -139,7 +137,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 3);
 	    }
     };
@@ -157,7 +155,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 512);
 	    }
     };
@@ -175,7 +173,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 1023);
 	    }
     };
@@ -193,7 +191,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 512);
 	    }
     };
@@ -211,7 +209,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 1023);
 	    }
     };
@@ -238,7 +236,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::left);
+		auto ret = test_plug.traverse_last(container, root, side_t::left);
 		return score_t(ret == 512);
 	    }
     };
@@ -265,7 +263,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run()
 	    {
-		auto ret = test_plug.traverse_last(container, TestPlug_t::root, TestPlug_t::side_t::right);
+		auto ret = test_plug.traverse_last(container, root, side_t::right);
 		return score_t(ret == 1023);
 	    }
     };

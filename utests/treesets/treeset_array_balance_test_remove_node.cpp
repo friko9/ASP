@@ -9,14 +9,14 @@ namespace test_treeset_array_balance
     struct treeset_array_balance_test_remove_node
 	: public treeset_array_balance_test_case
     {
-	size_t del_index;
+	index_t del_index;
 	side_t del_side = side_t::left;
-	size_t expected_retval;
+	index_t expected_retval;
 	std::vector<node_t> expected_values;
-	std::vector<size_t> expected_indexes;
+	std::vector<index_t> expected_indexes;
 	std::vector<height_t> expected_heights;
-	std::vector<std::pair<size_t,size_t>> result_node_permutations;
-	void set_expected_result(container_t& container, std::vector<std::pair<size_t,size_t>> index_permutations)
+	std::vector<std::pair<index_t,index_t>> result_node_permutations;
+	void set_expected_result(container_t& container, std::vector<std::pair<index_t,index_t>> index_permutations)
 	    {
 		auto values = test_plug.get_values(container);
 		auto indexes = test_plug.get_indexes(container);
@@ -45,7 +45,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result test()
 	    {
-		size_t retval = test_plug.remove_node(container, del_index, del_side);
+		index_t retval = test_plug.remove_node(container, del_index, del_side);
 		score_t retval_ok = expected_retval == retval;
 		score_t values_ok = compare(expected_values, test_plug.get_values(container));
 		score_t indexes_ok = compare(expected_indexes, test_plug.get_indexes(container));
@@ -214,7 +214,7 @@ namespace test_treeset_array_balance
     };
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_l_return_l_state_lxnull);
 
-    struct treesize4_c_l_r_remove_node_l_return_l_state_rxnull
+    struct treesize4_c_l_r_remove_node_r_return_r_state_rxnull
 	: public treeset_array_balance_test_remove_node
     {
 	TEST_INSERTER;
@@ -228,7 +228,7 @@ namespace test_treeset_array_balance
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_l_return_l_state_rxnull);
+    ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_r_return_r_state_rxnull);
 
     struct treesize16_c_l_r_remove_node_r_return_r_state_rxnull
 	: public treeset_array_balance_test_remove_node
