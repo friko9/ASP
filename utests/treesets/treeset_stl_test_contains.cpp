@@ -5,7 +5,8 @@
 
 namespace test_treeset_stl
 {
-    struct treeset_stl_test_contains_compare_with_stdtreeset : public treeset_stl_test_case
+    struct treeset_stl_test_contains_compare_with_stdtreeset
+	: public treeset_stl_test_case
     {
 	test_result run()
 	    {
@@ -28,7 +29,8 @@ namespace test_treeset_stl
 	    }
     };
     
-    struct empty_contains_all_vals_return_empty : public treeset_stl_test_case
+    struct empty_contains_all_vals_return_empty
+	: public treeset_stl_test_case
     {
 	TEST_INSERTER;
 	test_result run()
@@ -50,7 +52,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),empty_contains_all_vals_return_empty);
 
-    struct populated_inorder_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_inorder_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -70,7 +73,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_inorder_contains_compare_with_stdtreeset);
 
-    struct populated_inorder_all_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_inorder_all_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -88,7 +92,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_inorder_all_contains_compare_with_stdtreeset);
 
-    struct populated_noorder_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_noorder_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -108,7 +113,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
 
-    struct populated_noorder_all_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_noorder_all_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -127,7 +133,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_noorder_all_contains_compare_with_stdtreeset);
 
-    struct populated_revorder_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_revorder_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -148,7 +155,8 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
 
-    struct populated_revorder_all_contains_compare_with_stdtreeset : public treeset_stl_test_contains_compare_with_stdtreeset
+    struct populated_revorder_all_contains_compare_with_stdtreeset
+	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()

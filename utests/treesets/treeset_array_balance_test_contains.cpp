@@ -123,6 +123,11 @@ namespace test_treeset_array_balance
 		}
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
+		for( auto x : data )
+		{
+		    container.insert(x);
+		    testtreeset.insert(x);
+		}
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_doubled_sticked_contains_compare_with_stdtreeset);
@@ -141,6 +146,11 @@ namespace test_treeset_array_balance
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
+		for( auto x : data )
+		{
+		    container.insert(x);
+		    testtreeset.insert(x);
+		}
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset);

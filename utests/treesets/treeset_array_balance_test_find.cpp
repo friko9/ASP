@@ -31,6 +31,14 @@ namespace test_treeset_array_balance
 					    });
 		return result;
 	    }
+	void configure()
+	    {
+		setup_data();
+		std::tie(test_plug.get_values(container),
+			 test_plug.get_indexes(container),
+			 test_plug.get_heights(container))
+		    = make_data(tree_size,data);
+	    }
     };
     
     struct empty_find_all_vals_return_end : public treeset_array_balance_test_case

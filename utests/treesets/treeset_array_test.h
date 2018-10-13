@@ -105,12 +105,6 @@ namespace test_treeset_array
 		}
 		return std::make_pair(values,indexes);
 	    }
-	void configure()
-	    {
-		setup_data();
-		std::tie(test_plug.get_values(container),test_plug.get_indexes(container))
-		    = make_data(tree_size,data);
-	    }
     };
     inline treeset_array_test_case::score_t operator +(treeset_array_test_case::score_t left,
 						       treeset_array_test_case::score_t right)

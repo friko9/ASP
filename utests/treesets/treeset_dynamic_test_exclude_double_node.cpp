@@ -5,7 +5,7 @@
 
 namespace test_treeset_dynamic
 {
-    struct populated_3elem_root_lr_exclude_double_root_on_left_return_left_state_root_val_is_left_val_and_right_not_changed
+    struct populated_3elem_root_lr_exclude_double_root_on_left_return_root_state_root_val_is_left_val_and_right_not_changed
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -30,7 +30,7 @@ namespace test_treeset_dynamic
 		bool node_r_val_ok = root_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = root_right_ok && node_r->left == nullptr;
 		bool node_r_right_ok = root_right_ok && node_r->right == nullptr;
-		bool is_ret_ok = res == node_l;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok;
 		if( is_ret_ok && is_state_ok )
@@ -39,9 +39,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_root_lr_exclude_double_root_on_left_return_left_state_root_val_is_left_val_and_right_not_changed);
+    ENABLE_TEST(access_test_set(),populated_3elem_root_lr_exclude_double_root_on_left_return_root_state_root_val_is_left_val_and_right_not_changed);
 
-    struct populated_3elem_root_lr_exclude_double_root_on_right_return_right_state_root_val_is_right_val_and_left_not_changed
+    struct populated_3elem_root_lr_exclude_double_root_on_right_return_root_state_root_val_is_right_val_and_left_not_changed
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -59,14 +59,14 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::right);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_r;
 		bool root_val_ok = root_ok && root->val == data[2];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == nullptr;
 		bool node_l_val_ok = root_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = root_left_ok && node_l->left == nullptr;
 		bool node_l_right_ok = root_left_ok && node_l->right == nullptr;
-		bool is_ret_ok = res == node_r;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok;
 		if( is_ret_ok && is_state_ok )
@@ -75,9 +75,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_root_lr_exclude_double_root_on_right_return_right_state_root_val_is_right_val_and_left_not_changed);
+    ENABLE_TEST(access_test_set(),populated_3elem_root_lr_exclude_double_root_on_right_return_root_state_root_val_is_right_val_and_left_not_changed);
 
-    struct populated_4elem_root_lrll_exclude_double_root_on_left_return_left_state_root_val_is_left_val
+    struct populated_4elem_root_lrll_exclude_double_root_on_left_return_root_state_root_val_is_left_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -96,7 +96,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::left);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_l;
 		bool root_val_ok = root_ok && root->val == data[1];
 		bool root_left_ok = root_ok && root->left == node_ll;
 		bool root_right_ok = root_ok && root->right == node_r;
@@ -106,7 +106,7 @@ namespace test_treeset_dynamic
 		bool node_ll_val_ok = root_left_ok && node_ll->val == data[3];
 		bool node_ll_left_ok = root_left_ok && node_ll->left == nullptr;
 		bool node_ll_right_ok = root_left_ok && node_ll->right == nullptr;
-		bool is_ret_ok = res == node_l;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_ll_val_ok && node_ll_left_ok && node_ll_right_ok;
@@ -116,9 +116,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrll_exclude_double_root_on_left_return_left_state_root_val_is_left_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrll_exclude_double_root_on_left_return_root_state_root_val_is_left_val);
 
-    struct populated_4elem_root_lrrr_exclude_double_root_on_right_return_right_state_root_val_is_right_val
+    struct populated_4elem_root_lrrr_exclude_double_root_on_right_return_root_state_root_val_is_right_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -137,7 +137,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::right);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_r;
 		bool root_val_ok = root_ok && root->val == data[2];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == node_rr;
@@ -147,7 +147,7 @@ namespace test_treeset_dynamic
 		bool node_rr_val_ok = root_right_ok && node_rr->val == data[3];
 		bool node_rr_left_ok = root_right_ok && node_rr->left == nullptr;
 		bool node_rr_right_ok = root_right_ok && node_rr->right == nullptr;
-		bool is_ret_ok = res == node_r;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_rr_val_ok && node_rr_left_ok && node_rr_right_ok;
@@ -157,9 +157,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrr_exclude_double_root_on_right_return_right_state_root_val_is_right_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrr_exclude_double_root_on_right_return_root_state_root_val_is_right_val);
 
-    struct populated_4elem_root_lrlr_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val
+    struct populated_4elem_root_lrlr_exclude_double_root_on_left_return_root_state_root_val_is_lr_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -178,7 +178,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::left);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_lr;
 		bool root_val_ok = root_ok && root->val == data[3];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == node_r;
@@ -188,7 +188,7 @@ namespace test_treeset_dynamic
 		bool node_l_val_ok = root_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = root_left_ok && node_l->left == nullptr;
 		bool node_l_right_ok = root_left_ok && node_l->right == nullptr;
-		bool is_ret_ok = res == node_lr;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok;
@@ -198,9 +198,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrlr_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrlr_exclude_double_root_on_left_return_root_state_root_val_is_lr_val);
 
-    struct populated_4elem_root_lrrl_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val
+    struct populated_4elem_root_lrrl_exclude_double_root_on_right_return_root_state_root_val_is_rl_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -219,7 +219,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::right);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_rl;
 		bool root_val_ok = root_ok && root->val == data[3];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == node_r;
@@ -229,7 +229,7 @@ namespace test_treeset_dynamic
 		bool node_r_val_ok = root_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = root_right_ok && node_r->left == nullptr;
 		bool node_r_right_ok = root_right_ok && node_r->right == nullptr;
-		bool is_ret_ok = res == node_rl;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok;
@@ -239,9 +239,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrl_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrl_exclude_double_root_on_right_return_root_state_root_val_is_rl_val);
 
-    struct populated_4elem_root_lrlrlrl_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val
+    struct populated_4elem_root_lrlrlrl_exclude_double_root_on_left_return_root_state_root_val_is_lr_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -261,7 +261,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::left);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_lr;
 		bool root_val_ok = root_ok && root->val == data[3];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == node_r;
@@ -274,7 +274,7 @@ namespace test_treeset_dynamic
 		bool node_lr_val_ok = node_l_right_ok && node_lrl->val == data[4];
 		bool node_lr_left_ok = node_l_right_ok && node_lrl->left == nullptr;
 		bool node_lr_right_ok = node_l_right_ok && node_lrl->right == nullptr;
-		bool is_ret_ok = res == node_lr;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
@@ -285,9 +285,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrlrlrl_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrlrlrl_exclude_double_root_on_left_return_root_state_root_val_is_lr_val);
 
-    struct populated_4elem_root_lrrlrlr_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val
+    struct populated_4elem_root_lrrlrlr_exclude_double_root_on_right_return_root_state_root_val_is_rl_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -307,7 +307,7 @@ namespace test_treeset_dynamic
 		test_result result = 1;
 		node_t* res = test_plug.exclude_double_node(container, node, nullptr, &node_t::right);
 		auto root = test_plug.get_root(container);
-		bool root_ok = root == node;
+		bool root_ok = root == node_rl;
 		bool root_val_ok = root_ok && root->val == data[3];
 		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == node_r;
@@ -320,7 +320,7 @@ namespace test_treeset_dynamic
 		bool node_rl_val_ok = node_r_left_ok && node_rlr->val == data[4];
 		bool node_rl_left_ok = node_r_left_ok && node_rlr->left == nullptr;
 		bool node_rl_right_ok = node_r_left_ok && node_rlr->right == nullptr;
-		bool is_ret_ok = res == node_rl;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
@@ -331,9 +331,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrlrlr_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_root_lrrlrlr_exclude_double_root_on_right_return_root_state_root_val_is_rl_val);
 
-    struct populated_3elem_node_lr_exclude_double_root_on_left_return_left_state_root_val_is_left_val_and_right_not_changed
+    struct populated_3elem_node_lr_exclude_double_root_on_left_return_node_state_root_val_is_left_val_and_right_not_changed
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -354,17 +354,17 @@ namespace test_treeset_dynamic
 		auto root = test_plug.get_root(container);
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[1];
-		bool node_left_ok = root_left_ok && node->left == nullptr;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_l->val == data[1];
+		bool node_left_ok = root_left_ok && node_l->left == nullptr;
+		bool node_right_ok = root_left_ok && node_l->right == node_r;
 		
 		bool node_r_val_ok = node_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = node_right_ok && node_r->left == nullptr;
 		bool node_r_right_ok = node_right_ok && node_r->right == nullptr;
-		bool is_ret_ok = res == node_l;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok;
 		if( is_ret_ok && is_state_ok )
@@ -373,9 +373,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_node_lr_exclude_double_root_on_left_return_left_state_root_val_is_left_val_and_right_not_changed);
+    ENABLE_TEST(access_test_set(),populated_3elem_node_lr_exclude_double_root_on_left_return_node_state_root_val_is_left_val_and_right_not_changed);
 
-    struct populated_3elem_node_lr_exclude_double_root_on_right_return_right_state_root_val_is_right_val_and_left_not_changed
+    struct populated_3elem_node_lr_exclude_double_root_on_right_return_root_state_root_val_is_right_val_and_left_not_changed
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -397,17 +397,17 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_r;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[2];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == nullptr;
+		bool node_val_ok = root_left_ok && node_r->val == data[2];
+		bool node_left_ok = root_left_ok && node_r->left == node_l;
+		bool node_right_ok = root_left_ok && node_r->right == nullptr;
 		
 		bool node_l_val_ok = node_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = node_left_ok && node_l->left == nullptr;
 		bool node_l_right_ok = node_left_ok && node_l->right == nullptr;
-		bool is_ret_ok = res == node_r;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok;
 		if( is_ret_ok && is_state_ok )
@@ -416,9 +416,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_node_lr_exclude_double_root_on_right_return_right_state_root_val_is_right_val_and_left_not_changed);
+    ENABLE_TEST(access_test_set(),populated_3elem_node_lr_exclude_double_root_on_right_return_root_state_root_val_is_right_val_and_left_not_changed);
 
-    struct populated_4elem_node_lrll_exclude_double_root_on_left_return_left_state_root_val_is_left_val
+    struct populated_4elem_node_lrll_exclude_double_root_on_left_return_root_state_root_val_is_left_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -441,12 +441,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_l;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[1];
-		bool node_left_ok = root_left_ok && node->left == node_ll;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_l->val == data[1];
+		bool node_left_ok = root_left_ok && node_l->left == node_ll;
+		bool node_right_ok = root_left_ok && node_l->right == node_r;
 		
 		bool node_r_val_ok = node_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = node_right_ok && node_r->left == nullptr;
@@ -454,7 +454,7 @@ namespace test_treeset_dynamic
 		bool node_ll_val_ok = node_left_ok && node_ll->val == data[3];
 		bool node_ll_left_ok = node_left_ok && node_ll->left == nullptr;
 		bool node_ll_right_ok = node_left_ok && node_ll->right == nullptr;
-		bool is_ret_ok = res == node_l;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_ll_val_ok && node_ll_left_ok && node_ll_right_ok;
@@ -464,9 +464,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrll_exclude_double_root_on_left_return_left_state_root_val_is_left_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrll_exclude_double_root_on_left_return_root_state_root_val_is_left_val);
 
-    struct populated_4elem_node_lrrr_exclude_double_root_on_right_return_right_state_root_val_is_right_val
+    struct populated_4elem_node_lrrr_exclude_double_root_on_right_return_root_state_root_val_is_right_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -489,12 +489,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_r;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[2];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == node_rr;
+		bool node_val_ok = root_left_ok && node_r->val == data[2];
+		bool node_left_ok = root_left_ok && node_r->left == node_l;
+		bool node_right_ok = root_left_ok && node_r->right == node_rr;
 
 		bool node_l_val_ok = node_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = node_left_ok && node_l->left == nullptr;
@@ -502,7 +502,7 @@ namespace test_treeset_dynamic
 		bool node_rr_val_ok = node_right_ok && node_rr->val == data[3];
 		bool node_rr_left_ok = node_right_ok && node_rr->left == nullptr;
 		bool node_rr_right_ok = node_right_ok && node_rr->right == nullptr;
-		bool is_ret_ok = res == node_r;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_rr_val_ok && node_rr_left_ok && node_rr_right_ok;
@@ -512,9 +512,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrr_exclude_double_root_on_right_return_right_state_root_val_is_right_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrr_exclude_double_root_on_right_return_root_state_root_val_is_right_val);
 
-    struct populated_4elem_node_lrlr_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val
+    struct populated_4elem_node_lrlr_exclude_double_root_on_left_return_root_state_root_val_is_lr_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -537,12 +537,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_lr;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[3];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_lr->val == data[3];
+		bool node_left_ok = root_left_ok && node_lr->left == node_l;
+		bool node_right_ok = root_left_ok && node_lr->right == node_r;
 		
 		bool node_r_val_ok = node_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = node_right_ok && node_r->left == nullptr;
@@ -551,7 +551,7 @@ namespace test_treeset_dynamic
 		bool node_l_val_ok = node_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = node_left_ok && node_l->left == nullptr;
 		bool node_l_right_ok = node_left_ok && node_l->right == nullptr;
-		bool is_ret_ok = res == node_lr;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok;
@@ -561,9 +561,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrlr_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrlr_exclude_double_root_on_left_return_root_state_root_val_is_lr_val);
 
-    struct populated_4elem_node_lrrl_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val
+    struct populated_4elem_node_lrrl_exclude_double_root_on_right_return_root_state_root_val_is_rl_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -586,12 +586,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_rl;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[3];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_rl->val == data[3];
+		bool node_left_ok = root_left_ok && node_rl->left == node_l;
+		bool node_right_ok = root_left_ok && node_rl->right == node_r;
 
 		bool node_l_val_ok = node_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = node_left_ok && node_l->left == nullptr;
@@ -599,7 +599,7 @@ namespace test_treeset_dynamic
 		bool node_r_val_ok = node_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = node_right_ok && node_r->left == nullptr;
 		bool node_r_right_ok = node_right_ok && node_r->right == nullptr;
-		bool is_ret_ok = res == node_rl;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok;
@@ -609,9 +609,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrl_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrl_exclude_double_root_on_right_return_root_state_root_val_is_rl_val);
 
-    struct populated_4elem_node_lrlrlrl_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val
+    struct populated_4elem_node_lrlrlrl_exclude_double_root_on_left_return_root_state_root_val_is_lr_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -635,12 +635,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_lr;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[3];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_lr->val == data[3];
+		bool node_left_ok = root_left_ok && node_lr->left == node_l;
+		bool node_right_ok = root_left_ok && node_lr->right == node_r;
 		
 		bool node_r_val_ok = node_right_ok && node_r->val == data[2];
 		bool node_r_left_ok = node_right_ok && node_r->left == nullptr;
@@ -653,7 +653,7 @@ namespace test_treeset_dynamic
 		bool node_lr_val_ok = node_l_right_ok && node_lrl->val == data[4];
 		bool node_lr_left_ok = node_l_right_ok && node_lrl->left == nullptr;
 		bool node_lr_right_ok = node_l_right_ok && node_lrl->right == nullptr;
-		bool is_ret_ok = res == node_lr;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
@@ -664,9 +664,9 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrlrlrl_exclude_double_root_on_left_return_lr_state_root_val_is_lr_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrlrlrl_exclude_double_root_on_left_return_root_state_root_val_is_lr_val);
 
-    struct populated_4elem_node_lrrlrlr_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val
+    struct populated_4elem_node_lrrlrlr_exclude_double_root_on_right_return_root_state_root_val_is_rl_val
 	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
@@ -690,12 +690,12 @@ namespace test_treeset_dynamic
 
 		bool root_ok = root != nullptr;
 		bool root_val_ok = root_ok && root->val == 99;
-		bool root_left_ok = root_ok && root->left == node;
+		bool root_left_ok = root_ok && root->left == node_rl;
 		bool root_right_ok = root_ok && root->right == nullptr;
 
-		bool node_val_ok = root_left_ok && node->val == data[3];
-		bool node_left_ok = root_left_ok && node->left == node_l;
-		bool node_right_ok = root_left_ok && node->right == node_r;
+		bool node_val_ok = root_left_ok && node_rl->val == data[3];
+		bool node_left_ok = root_left_ok && node_rl->left == node_l;
+		bool node_right_ok = root_left_ok && node_rl->right == node_r;
 
 		bool node_l_val_ok = node_left_ok && node_l->val == data[1];
 		bool node_l_left_ok = node_left_ok && node_l->left == nullptr;
@@ -708,7 +708,7 @@ namespace test_treeset_dynamic
 		bool node_rl_val_ok = node_r_left_ok && node_rlr->val == data[4];
 		bool node_rl_left_ok = node_r_left_ok && node_rlr->left == nullptr;
 		bool node_rl_right_ok = node_r_left_ok && node_rlr->right == nullptr;
-		bool is_ret_ok = res == node_rl;
+		bool is_ret_ok = res == node;
 		bool is_state_ok = node_val_ok && node_left_ok && node_right_ok
 		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
 		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
@@ -719,5 +719,5 @@ namespace test_treeset_dynamic
 		return result;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrlrlr_exclude_double_root_on_right_return_rl_state_root_val_is_rl_val);
+    ENABLE_TEST(access_test_set(),populated_4elem_node_lrrlrlr_exclude_double_root_on_right_return_root_state_root_val_is_rl_val);
 }

@@ -83,7 +83,6 @@ namespace test_treeset_array
 		testtreeset.insert(std::numeric_limits<elem_t>::max());
 		container.insert(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
-
 		std::reverse(data.begin(), data.end());
 	    }
     };
@@ -104,7 +103,6 @@ namespace test_treeset_array
 		testtreeset.insert(std::numeric_limits<elem_t>::max());
 		container.insert(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
-		
 		std::random_shuffle(data.begin(), data.end());
 	    }
     };
@@ -144,7 +142,6 @@ namespace test_treeset_array
 		testtreeset.insert(std::numeric_limits<elem_t>::min());
 		container.insert(std::numeric_limits<elem_t>::min());
 		data.push_back(std::numeric_limits<elem_t>::min());
-
 		std::reverse(data.begin(), data.end());
 	    }
     };
@@ -165,7 +162,6 @@ namespace test_treeset_array
 		testtreeset.insert(std::numeric_limits<elem_t>::min());
 		container.insert(std::numeric_limits<elem_t>::min());
 		data.push_back(std::numeric_limits<elem_t>::min());
-
 		std::random_shuffle(data.begin(), data.end());
 	    }
     };
@@ -180,7 +176,6 @@ namespace test_treeset_array
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
-		
 		std::random_shuffle(data.begin(),data.end());
 		for(auto x : data )
 		{
@@ -200,7 +195,6 @@ namespace test_treeset_array
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
-		
 		std::random_shuffle(data.begin(),data.end());
 		for(auto x : data )
 		{
@@ -221,7 +215,6 @@ namespace test_treeset_array
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step )
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
-				
 		std::random_shuffle(data.begin(),data.end());
 		for(auto x : data )
 		{
@@ -246,7 +239,6 @@ namespace test_treeset_array
 		}
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
-		
 		for(auto x : data )
 		{
 		    container.insert(x);
@@ -269,7 +261,6 @@ namespace test_treeset_array
 		}
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
-
 		std::random_shuffle(data.begin(),data.end());
 		for(auto x : data )
 		{

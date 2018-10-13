@@ -3,6 +3,7 @@
 
 #include "includes/utils/utils.h"
 
+#include <cassert>
 #include <utility>
 
 template <typename T>
@@ -14,79 +15,90 @@ class treeset_dynamic
 	T val;
 	node_t *left,*right;
     };
+private:
     node_t* root = nullptr;
+private:
     static std::pair<node_t*,node_t*> find(T x,node_t* node,node_t* parent)
 	{
-	    if( node == nullptr || x == node->val )
-		return std::make_pair(node,parent);
-	    parent = node;
-	    node = ( node->val < x )? node->right : node->left;
-	    return find(x,node,parent);
+	    while( node != nullptr && node->val != x )
+		std::tie( parent, node ) = { node, (node->val < x)? node->right : node->left };
+	    return { node, parent };
 	}
+    static std::pair<node_t*,node_t*> traverse_last(node_t* node, node_t* parent, node_t* node_t::*side )
+    	{
+    	    assert(node != nullptr);
+    	    assert(side != nullptr);
+    	    while( node->*side != nullptr )
+    		std::tie( parent, node) = { node, node->*side };
+    	    return { node, parent };
+    	}
+    static void del_subtree(node_t* node)
+	{
+	    assert( node != nullptr );
+	    if( node->left != nullptr )
+		del_subtree(node->left);
+	    if( node->right != nullptr )
+		del_subtree(node->right);
+	    delete node;
+	}
+private:
+    void append_node(node_t* node,node_t* new_parent, node_t* node_t::*side)
+    {
+	assert(side != nullptr);
+	if(new_parent != nullptr)
+	    new_parent->*side = node;
+	else
+	    root = node;
+    }
     node_t* exclude_single_node( node_t* node, node_t* parent, node_t* node_t::*side )
-	{
-	    if( parent == nullptr )
-		root = node->*side;
-	    else if( parent->left == node )
-		parent->left = node->*side;
-	    else
-		parent->right = node->*side;
-	    return node;
-	}
-    node_t* exclude_double_node( node_t* node, node_t* parent, node_t* node_t::*branch_side )
-	{
-	    node_t* node_t::*trav_side = ((branch_side == &node_t::left)? &node_t::right : &node_t::left);
-	    node_t* trav_parent = node->*branch_side;
-	    node_t* trav_node = trav_parent->*trav_side;
-	    if( trav_node == nullptr )
-	    {
-		trav_node = node->*branch_side;
-		trav_parent = node;
-	    } else
-	    {
-		for(; trav_node->*trav_side != nullptr; trav_node = trav_node->*trav_side)
-		    trav_parent = trav_node;
-	    }
-	    std::swap( trav_node->val, node->val );
-	    return exclude_single_node( trav_node, trav_parent, branch_side );
-	}
-    void del_subtree(node_t* root)
-	{
-	    if( root->left != nullptr )
-	    {
-		del_subtree(root->left);
-		delete root->left;
-	    }
-	    if( root->right != nullptr )
-	    {
-		del_subtree(root->right);
-		delete root->right;
-	    }
-	}
+    {
+	assert(node != nullptr);
+	assert(side != nullptr);
+	node_t* node_t::*parent_side = (parent != nullptr && parent->left == node)? &node_t::left : &node_t::right;
+	append_node(node->*side, parent, parent_side);
+	return node;
+    }
+    node_t* exclude_double_node( node_t* node, node_t* parent, node_t* node_t::*side )
+    {
+	assert(node != nullptr);
+	assert(side != nullptr);
+	node_t* node_t::*trav_side = ((side == &node_t::left)? &node_t::right : &node_t::left);
+	node_t* trav_parent = node->*side;
+	node_t* trav_node = trav_parent->*trav_side;
+	if( trav_node != nullptr )
+	    std::tie( trav_node, trav_parent ) = traverse_last( trav_node, trav_parent, trav_side);
+	else
+	    std::tie( trav_node, trav_parent ) = { node->*side, node };
+	exclude_single_node( trav_node, trav_parent, side );
+	node_t* node_t::*parent_side = (parent != nullptr && parent->left == node)? &node_t::left : &node_t::right;
+	append_node(trav_node, parent, parent_side);
+	append_node(node->left, trav_node, &node_t::left);
+	append_node(node->right, trav_node, &node_t::right);
+	return node;
+    }
 public:
     void insert(T x)
+    {
+	node_t *node,*parent;
+	std::tie(node,parent) = find(x,root,nullptr);
+	if(node == nullptr)
 	{
-	    node_t *node,*parent;
-	    std::tie(node,parent) = find(x,root,nullptr);
-	    if(node != nullptr)
-		return;
+	    node_t* node_t::*side = ( parent != nullptr && x < parent->val)? &node_t::left : &node_t::right;
 	    node_t* new_node = new node_t{x,nullptr,nullptr};
-	    node_t** link = &root;
-	    if(parent != nullptr )
-		link = (parent->val < x)? &(parent->right) : &(parent->left);
-	    *link =  new_node;
+	    append_node( new_node, parent, side );
 	}
+    }
     bool contains(T x)
-	{
-	    return find(x,root,nullptr).first != nullptr;
-	}
+    {
+	return find(x,root,nullptr).first != nullptr;
+    }
     void remove(T x)
+    {
+	node_t *node,*parent;
+	std::tie(node,parent) = find(x,root,nullptr);
+	if( node != nullptr)
 	{
-	    node_t *node,*parent;
-	    std::tie(node,parent) = find(x,root,nullptr);
-	    if( node == nullptr) return;
-	    
-	    if( node->left == nullptr ) // also works for leafs
+	    if( node->left == nullptr )
 		node = exclude_single_node(node,parent,&node_t::right);
 	    else if( node->right == nullptr )
 		node = exclude_single_node(node,parent,&node_t::left);
@@ -98,10 +110,12 @@ public:
 	    }
 	    delete node;
 	}
+    }
     ~treeset_dynamic()
-	{
+    {
+	if(root != nullptr)
 	    del_subtree(root);
-	}
+    }
 };
 
 #endif /*TREESET_DYNAMIC_H*/

@@ -29,6 +29,15 @@ namespace test_treeset_array
 					    });
 		return result;
 	    }
+	void configure()
+	    {
+		setup_data();
+		for( auto x : data )
+		{
+		    container.insert(x);
+		    testtreeset.insert(x);
+		}
+	    }
     };
     
     struct empty_contains_all_vals_return_empty
@@ -59,16 +68,11 @@ namespace test_treeset_array
 	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	void configure()
+	void setup_data()
 	    {
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); i +=step)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
-		for( auto x : data )
-		{
-		    container.insert(x);
-		    testtreeset.insert(x);
-		}
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_contains_compare_with_stdtreeset);
@@ -77,16 +81,11 @@ namespace test_treeset_array
     	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	void configure()
+	void setup_data()
 	    {
 		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min()+step; i -=step)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::min());
-		for( auto x : data )
-		{
-		    container.insert(x);
-		    testtreeset.insert(x);
-		}
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
@@ -95,17 +94,12 @@ namespace test_treeset_array
 	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	void configure()
+	void setup_data()
 	    {
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
-		for( auto x : data )
-		{
-		    container.insert(x);
-		    testtreeset.insert(x);
-		}
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
@@ -114,7 +108,7 @@ namespace test_treeset_array
     	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	void configure()
+	void setup_data()
 	    {
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
 		{
@@ -131,7 +125,7 @@ namespace test_treeset_array
 	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	void configure()
+	void setup_data()
 	    {
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max()-step; i +=step)
 		{

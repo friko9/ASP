@@ -15,12 +15,12 @@ struct TestPlug<treeset_dynamic_balancing<T>>
 {
     using treeset_t = treeset_dynamic_balancing<T>;
     using node_t = typename treeset_t::node_t;
-    using find_res_t = std::pair<const node_t*,const node_t*>;
+    using find_res_t = std::pair<node_t*,node_t*>;
     
     node_t*& get_root(treeset_t& arg) { return arg.root; }
 
-    find_res_t find(const treeset_t& arg, T x,const node_t* node) { return arg.find(x,node); }
-    const node_t* traverse_last(const treeset_t& arg,const node_t* node, node_t* node_t::*side)
+    find_res_t find(const treeset_t& arg, T x,node_t* node) { return arg.find(x,node); }
+    const node_t* traverse_last(const treeset_t& arg,node_t* node, node_t* node_t::*side)
 	{ return arg.traverse_last(node, side); }
     void append_node(treeset_t& arg, node_t* node,node_t* new_parent, node_t* node_t::*side)
 	{ arg.append_node(node,new_parent,side); }

@@ -44,6 +44,14 @@ namespace test_treeset_array_balance
 		else
 		    return score_t(false);
 	    }
+	void configure()
+	    {
+		setup_data();
+		std::tie(test_plug.get_values(container),
+			 test_plug.get_indexes(container),
+			 test_plug.get_heights(container))
+		    = make_data(tree_size,data);
+	    }
     };
 
     struct treesize8_c_l_ll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc
