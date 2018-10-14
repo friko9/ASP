@@ -1,9 +1,16 @@
-*.[ao]
 **/.deps/
+**/autom4te.cache/
+
+*.[ao]
 *.Po
+
 *~
 *#
 .#*
+
+stamp-h
+stamp-h1
+
 utils_test
 treeset_test
 list_test
