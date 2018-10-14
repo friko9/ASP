@@ -5,7 +5,8 @@
 
 namespace test_list_stl
 {
-    struct list_stl_test_find_compare_with_stdlist : public list_stl_test_case
+    struct list_stl_test_find_compare_with_stdlist
+	: public list_stl_test_case
     {
 	test_result run()
 	    {
@@ -33,27 +34,11 @@ namespace test_list_stl
 	    }
     };
     
-    struct empty_find_all_vals_return_end : public list_stl_test_case
+    struct empty_find_all_vals_return_end
+	: public list_stl_test_find_compare_with_stdlist
     {
 	TEST_INSERTER;
-	test_result run()
-	    {
-		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
-		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
-		result.set_failed( failed_list );
-		compare_test_range<elem_t>( result,
-					    std::numeric_limits<elem_t>::min(),
-					    std::numeric_limits<elem_t>::max(),
-					    [this,&failed_list](elem_t el) -> bool {
-						auto res = this->test_plug.find(container,el);
-						auto end = this->test_plug.getL(container).end();
-						bool result = res == end;
-						if( !result )
-						    failed_list->add_failed(el);
-						return result;
-					    });
-		return result;
-	    }
+	void configure(){}
     };
     ENABLE_TEST(access_test_set(),empty_find_all_vals_return_end);
 

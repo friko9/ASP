@@ -42,9 +42,14 @@ std::string tostring(std::pair<T,K> p)
 
 
 template<typename T>
-struct single_failed_list : public failed_list
+struct single_failed_list
+    : public failed_list
 {
     std::deque<T> failed_cases;
+public:
+    static std::shared_ptr<single_failed_list<T>> new_list()
+	{ return std::make_shared<single_failed_list<T>>(); }
+public:
     void add_failed(T arg)
 	{
 	    if( failed_cases.size() < 10 )
@@ -72,8 +77,8 @@ struct test_result
 	    return &singleton;
 	}
     
-    int score;
-    int max_score;
+    long long int score;
+    long long int max_score;
     std::shared_ptr<failed_list> fl = { dummy_fl(), dummy_fl_deleter_t() };
     test_result( int max = 0, int start_score = 0 )
 	: score(start_score),max_score(max){}
