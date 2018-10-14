@@ -53,17 +53,17 @@ namespace test_treeset_array_balance
 	using index_t = typename TestPlug_t::index_t;
 	using vindex_t = typename TestPlug_t::vindex_t;
 	using height_t = typename TestPlug_t::height_t;
-
+	using data_t = std::vector<std::tuple<size_t,elem_t,height_t>>;
 	size_t null = TestPlug_t::null;
 	size_t root = TestPlug_t::root;
 	
 	TestPlug_t test_plug;
 	std::set<elem_t> testtreeset;
 	container_t container;
-    protected:
-	using data_t = std::vector<std::tuple<size_t,elem_t,height_t>>;
+	
 	data_t data;
 	size_t tree_size;
+    public:
 	virtual void setup_data(){};
     public:
 	struct score_t

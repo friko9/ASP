@@ -12,7 +12,7 @@ namespace test_treeset_array_balance
 	std::vector<node_t> cmp_values;
 	std::vector<index_t> cmp_indexes;
 	std::vector<height_t> cmp_heights;
-	test_result run()
+	test_result test()
 	    {
 		test_plug.remove_value(container, del_index);
 		score_t values_ok = compare(cmp_values, test_plug.get_values(container));
@@ -28,7 +28,6 @@ namespace test_treeset_array_balance
 	TEST_INSERTER;
 	void configure()
 	    {
-
 		test_plug.get_values(container) = { {1,null}, {0,1}, {-1,2}};
 		test_plug.get_indexes(container) = { null, 1, 2, null, null, null, null, null};
 		test_plug.get_heights(container) = { 0, 2, 1, 0, 0, 0, 0, 0};
@@ -37,6 +36,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 0, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l2_null0_remove_value_0_return_c1_l0);
 
@@ -54,6 +54,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 0, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c2_l0_null1_remove_value_1_return_c1_l0);
 
@@ -71,6 +72,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, null, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 0, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l0_null2_remove_value_2_return_c1_l0);
 
@@ -88,6 +90,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, null, null, null, null, null, null, null};
 		cmp_heights = { 0, 0, 0, 0, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_null0_remove_value_0_return_empty);
     
@@ -105,6 +108,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, 0, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 1, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l2_r0_remove_value_0_return_c1_l0_r0);
 
@@ -122,6 +126,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, 1, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 1, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c2_l0_r1_remove_value_1_return_c1_l0_r1);
 
@@ -139,6 +144,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 1, 0, 2, null, null, null, null};
 		cmp_heights = { 0, 2, 1, 1, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l0_r2_remove_value_2_return_c1_l0_r2);
 
@@ -156,6 +162,7 @@ namespace test_treeset_array_balance
 		cmp_indexes = { null, 0, null, null, null, null, null, null};
 		cmp_heights = { 0, 1, 0, 0, 0, 0, 0, 0};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c0_remove_value_0_return_c0);
 }

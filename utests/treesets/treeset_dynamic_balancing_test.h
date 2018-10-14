@@ -54,6 +54,8 @@ namespace test_treeset_dynamic_balancing
 	std::set<elem_t> testtreeset;
 	container_t container;
     public:
+	virtual void setup_data(){};
+    public:
 	struct score_t
 	{
 	    int score,max_score;

@@ -12,8 +12,8 @@ class treeset_dynamic
     friend TestPlug<treeset_dynamic<T>>;
     struct node_t
     {
-	T val;
 	node_t *left,*right;
+	T val;
     };
 private:
     node_t* root = nullptr;
@@ -84,7 +84,7 @@ public:
 	if(node == nullptr)
 	{
 	    node_t* node_t::*side = ( parent != nullptr && x < parent->val)? &node_t::left : &node_t::right;
-	    node_t* new_node = new node_t{x,nullptr,nullptr};
+	    node_t* new_node = new node_t{nullptr,nullptr,x};
 	    append_node( new_node, parent, side );
 	}
     }

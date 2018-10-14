@@ -14,7 +14,7 @@ struct TestPlug<treeset_dynamic<T>>
 {
     using treeset_t = treeset_dynamic<T>;
     using node_t = typename treeset_t::node_t;
-    using find_res_t = std::pair<node_t*,node_t*>;;
+    using find_res_t = std::pair<node_t*,node_t*>;
     
     node_t*& get_root(treeset_t& arg) { return arg.root; }
 
@@ -40,6 +40,8 @@ namespace test_treeset_dynamic
 	std::vector<elem_t> data;
 	std::set<elem_t> testtreeset;
 	container_t container;
+    public:
+	virtual void setup_data(){};
     public:
 	struct score_t
 	{

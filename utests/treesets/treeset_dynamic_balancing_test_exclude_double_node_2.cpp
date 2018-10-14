@@ -36,7 +36,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_exclude_double_node_l_on_left_return_l_ll_left_state_cxc_lxll_lrxlr);
@@ -72,7 +72,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_exclude_double_node_l_on_right_return_l_lr_right_state_cxc_lxlr_llxll);
@@ -111,7 +111,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_lll_exclude_double_node_l_on_left_return_l_ll_left_state_cxc_lxll_llxlll_lrxlr);
@@ -150,7 +150,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_lrr_exclude_double_node_l_on_right_return_l_lr_left_state_cxc_lxlr_llxll_lrxlrr);
@@ -189,7 +189,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_llr_exclude_double_node_l_on_left_return_l_ll_right_state_cxc_lxllr_llxll_lrxlr);
@@ -228,7 +228,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_lrl_exclude_double_node_l_on_right_return_l_lr_left_state_cxc_lxlrl_llxll_lrxlr);
@@ -270,7 +270,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp + node_lrl;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_llr_llrl_exclude_double_node_l_on_left_return_l_ll_right_state_cxc_lxllr_llxll_lrxlr_llrxllrl);
@@ -312,7 +312,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + root_cmp + node_cmp + node_l_cmp + node_r_cmp + node_rlr;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_ll_lr_lrl_lrlr_exclude_double_node_l_on_right_return_l_lr_left_state_cxc_lxlrl_llxll_lrxlr_lrlxlrlr);

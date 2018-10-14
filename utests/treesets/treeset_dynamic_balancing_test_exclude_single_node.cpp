@@ -27,7 +27,7 @@ namespace test_treeset_dynamic_balancing
 		bool root_ok = new_root == nullptr;
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok);
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_exclude_single_node_c_on_left_return_c_null_state_empty);
@@ -54,7 +54,7 @@ namespace test_treeset_dynamic_balancing
 		bool root_ok = new_root == nullptr;
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok);
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_exclude_single_node_c_on_right_return_c_null_state_empty);
@@ -84,7 +84,7 @@ namespace test_treeset_dynamic_balancing
 		node_cmp_t node_cmp = test_node(root_ok, node_r, {nullptr,nullptr,nullptr,data[1],1});
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok) + node_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_r_exclude_single_node_c_on_right_return_c_r_null_state_cxr);
@@ -114,7 +114,7 @@ namespace test_treeset_dynamic_balancing
 		node_cmp_t node_cmp = test_node(root_ok, node, {nullptr,nullptr,nullptr,data[0],1});
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok) + node_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_r_exclude_single_node_r_on_right_return_c_c_right_state_cxc);
@@ -144,7 +144,7 @@ namespace test_treeset_dynamic_balancing
 		node_cmp_t node_cmp = test_node(root_ok, node_l, {nullptr,nullptr,nullptr,data[1],1});
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok) + node_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_exclude_single_node_c_on_left_return_c_l_null_state_cxl);
@@ -174,7 +174,7 @@ namespace test_treeset_dynamic_balancing
 		node_cmp_t node_cmp = test_node(root_ok, node, {nullptr,nullptr,nullptr,data[0],1});
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok) + node_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_exclude_single_node_l_on_left_return_l_c_left_state_cxc);
@@ -207,7 +207,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_exclude_single_node_l_on_left_return_l_c_left_state_cxc_rxr);
@@ -240,7 +240,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_l_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_exclude_single_node_r_on_right_return_r_c_right_state_cxc_lxl);
@@ -276,7 +276,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_ll_exclude_single_node_l_on_left_return_l_c_left_state_cxc_lxll_rxr);
@@ -312,7 +312,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_lr_exclude_single_node_l_on_right_return_l_c_left_state_cxc_lxlr_rxr);
@@ -348,7 +348,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_rl_exclude_single_node_r_on_left_return_r_c_right_state_cxc_lxl_rxrl);
@@ -384,7 +384,7 @@ namespace test_treeset_dynamic_balancing
 		score_t score = score_t(del_node_ok) + score_t(rebalance_ok) + score_t(root_ok)
 		    + node_cmp + node_l_cmp + node_r_cmp;
 		delete del_node;
-		return score.to_test_result();
+		return score;
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_c_l_r_rr_exclude_single_node_r_on_right_return_r_c_right_state_cxc_lxl_rxrr);

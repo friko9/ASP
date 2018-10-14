@@ -9,13 +9,13 @@ namespace test_treeset_array
 	: public treeset_array_test_case
     {
 	index_t del_index;
-	std::vector<node_t> cmp_values;
-	std::vector<index_t> cmp_indexes;
-	test_result run()
+	std::vector<node_t> expected_values;
+	std::vector<index_t> expected_indexes;
+	test_result test()
 	    {
 		test_plug.remove_value(container, del_index);
-		score_t values_ok = compare(cmp_values, test_plug.get_values(container));
-		score_t indexes_ok = compare(cmp_indexes, test_plug.get_indexes(container));
+		score_t values_ok = compare(expected_values, test_plug.get_values(container));
+		score_t indexes_ok = compare(expected_indexes, test_plug.get_indexes(container));
 		return values_ok + indexes_ok;
 	    }
     };
@@ -29,9 +29,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{1,null}, {0,1}, {-1,2}};
 		test_plug.get_indexes(container) = {null, 1, 2, null, null, null, null, null};
 		del_index = 0;
-		cmp_values = { {-1,2}, {0,1} };
-		cmp_indexes = { null, 1, 0, null, null, null, null, null};
+		expected_values = { {-1,2}, {0,1} };
+		expected_indexes = { null, 1, 0, null, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l2_null0_remove_value_0_return_c1_l0);
 
@@ -44,9 +45,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{-1,2}, {1,null}, {0,1}};
 		test_plug.get_indexes(container) = {null, 2, 0, null, null, null, null, null};
 		del_index = 1;
-		cmp_values = { {-1,2}, {0,1}};
-		cmp_indexes = { null, 1, 0, null, null, null, null, null};
+		expected_values = { {-1,2}, {0,1}};
+		expected_indexes = { null, 1, 0, null, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c2_l0_null1_remove_value_1_return_c1_l0);
 
@@ -59,9 +61,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{-1,2}, {0,1}, {1,null}};
 		test_plug.get_indexes(container) = {null, 1, 0, null, null, null, null, null};
 		del_index = 2;
-		cmp_values = { {-1,2}, {0,1}};
-		cmp_indexes = { null, 1, 0, null, null, null, null, null};
+		expected_values = { {-1,2}, {0,1}};
+		expected_indexes = { null, 1, 0, null, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l0_null2_remove_value_2_return_c1_l0);
 
@@ -74,9 +77,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{1,null}};
 		test_plug.get_indexes(container) = {null, null, null, null, null, null, null, null};
 		del_index = 0;
-		cmp_values = {};
-		cmp_indexes = { null, null, null, null, null, null, null, null};
+		expected_values = {};
+		expected_indexes = { null, null, null, null, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_null0_remove_value_0_return_empty);
     
@@ -89,9 +93,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{1,3}, {0,1}, {-1,2}};
 		test_plug.get_indexes(container) = {null, 1, 2, 0, null, null, null, null};
 		del_index = 0;
-		cmp_values = { {-1,2}, {0,1}};
-		cmp_indexes = { null, 1, 0, 0, null, null, null, null};
+		expected_values = { {-1,2}, {0,1}};
+		expected_indexes = { null, 1, 0, 0, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l2_r0_remove_value_0_return_c1_l0_r0);
 
@@ -104,9 +109,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{-1,2}, {1,3}, {0,1}};
 		test_plug.get_indexes(container) = {null, 2, 0, 1, null, null, null, null};
 		del_index = 1;
-		cmp_values = { {-1,2}, {0,1}};
-		cmp_indexes = { null, 1, 0, 1, null, null, null, null};
+		expected_values = { {-1,2}, {0,1}};
+		expected_indexes = { null, 1, 0, 1, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c2_l0_r1_remove_value_1_return_c1_l0_r1);
 
@@ -119,9 +125,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{-1,2}, {0,1}, {1,3}};
 		test_plug.get_indexes(container) = {null, 1, 0, 2, null, null, null, null};
 		del_index = 2;
-		cmp_values = { {-1,2}, {0,1}};
-		cmp_indexes = { null, 1, 0, 2, null, null, null, null};
+		expected_values = { {-1,2}, {0,1}};
+		expected_indexes = { null, 1, 0, 2, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c1_l0_r2_remove_value_2_return_c1_l0_r2);
 
@@ -134,9 +141,10 @@ namespace test_treeset_array
 		test_plug.get_values(container) = {{1,1}};
 		test_plug.get_indexes(container) = {null, 0, null, null, null, null, null, null};
 		del_index = 0;
-		cmp_values = {};
-		cmp_indexes = { null, 0, null, null, null, null, null, null};
+		expected_values = {};
+		expected_indexes = { null, 0, null, null, null, null, null, null};
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_c0_remove_value_0_return_c0);
 }

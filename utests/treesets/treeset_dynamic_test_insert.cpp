@@ -7,7 +7,7 @@ namespace test_treeset_dynamic
 {
     struct treeset_dynamic_test_insert_compare_with_stdtreeset : public treeset_dynamic_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -59,6 +59,7 @@ namespace test_treeset_dynamic
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_inorder_compare_with_stdtreeset);
     
@@ -72,6 +73,7 @@ namespace test_treeset_dynamic
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_revorder_compare_with_stdtreeset);
 
@@ -86,6 +88,7 @@ namespace test_treeset_dynamic
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_noorder_compare_with_stdtreeset);
 
@@ -103,6 +106,7 @@ namespace test_treeset_dynamic
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_doubled_sticked_elems_inorder_compare_with_stdtreeset);
 
@@ -121,6 +125,7 @@ namespace test_treeset_dynamic
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_doubled_shuffled_elems_noorder_compare_with_stdtreeset);
 }

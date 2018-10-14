@@ -10,7 +10,7 @@ namespace test_treeset_array
     {
 	elem_t step = (std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min())/15;
 	std::vector<elem_t> data;
-	test_result run()
+	test_result test()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
 		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
@@ -41,26 +41,11 @@ namespace test_treeset_array
     };
     
     struct empty_contains_all_vals_return_empty
-	: public treeset_array_test_case
+	: public treeset_array_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure(){}
-	test_result run()
-	    {
-		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
-		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
-		result.set_failed( failed_list );
-		compare_test_range<elem_t>( result,
-					    std::numeric_limits<elem_t>::min(),
-					    std::numeric_limits<elem_t>::max(),
-					    [this,&failed_list](elem_t el) -> bool {
-						bool result =  !this->container.contains(el);
-						if( !result )
-						    failed_list->add_failed(el);
-						return result;
-					    });
-		return result;
-	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_contains_all_vals_return_empty);
 
@@ -74,6 +59,7 @@ namespace test_treeset_array
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_contains_compare_with_stdtreeset);
 
@@ -87,6 +73,7 @@ namespace test_treeset_array
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
     
@@ -101,6 +88,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
 
@@ -118,6 +106,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_doubled_sticked_contains_compare_with_stdtreeset);
 
@@ -136,6 +125,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset);
 }

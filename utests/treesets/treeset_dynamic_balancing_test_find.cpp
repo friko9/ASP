@@ -5,7 +5,8 @@
 
 namespace test_treeset_dynamic_balancing
 {
-    struct treeset_dynamic_balancing_test_find_compare_with_stdtreeset : public treeset_dynamic_balancing_test_case
+    struct treeset_dynamic_balancing_test_find_compare_with_stdtreeset
+	: public treeset_dynamic_balancing_test_case
     {
 	test_result run()
 	    {
@@ -31,27 +32,11 @@ namespace test_treeset_dynamic_balancing
 	    }
     };
     
-    struct empty_find_all_vals_return_end : public treeset_dynamic_balancing_test_case
+    struct empty_find_all_vals_return_end
+	: public treeset_dynamic_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
-	test_result run()
-	    {
-		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
-		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
-		result.set_failed( failed_list );
-		compare_test_range<elem_t>( result,
-					    std::numeric_limits<elem_t>::min(),
-					    std::numeric_limits<elem_t>::max(),
-					    [this,&failed_list](elem_t el) -> bool {
-						auto root = test_plug.get_root(container);
-						auto find_res = test_plug.find(container, el, root);
-						bool result = find_res.first == nullptr;
-						if( !result )
-						    failed_list->add_failed(el);
-						return result;
-					    });
-		return result;
-	    }
+	void configure(){}
     };
     ENABLE_TEST(access_test_set(),empty_find_all_vals_return_end);
 

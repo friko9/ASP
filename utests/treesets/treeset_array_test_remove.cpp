@@ -9,7 +9,7 @@ namespace test_treeset_array
     {
 	elem_t step = (std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min())/15;
 	std::vector<elem_t> data;
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -65,6 +65,7 @@ namespace test_treeset_array
 		container.insert(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_inorder_compare_with_stdtreeset);
     
@@ -85,6 +86,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_revorder_compare_with_stdtreeset);
 
@@ -105,6 +107,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_noorder_compare_with_stdtreeset);
 
@@ -124,6 +127,7 @@ namespace test_treeset_array
 		container.insert(std::numeric_limits<elem_t>::min());
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_inorder_compare_with_stdtreeset);
 
@@ -144,6 +148,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::min());
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_revorder_compare_with_stdtreeset);
 
@@ -164,6 +169,7 @@ namespace test_treeset_array
 		data.push_back(std::numeric_limits<elem_t>::min());
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_noorder_compare_with_stdtreeset);
 
@@ -183,6 +189,7 @@ namespace test_treeset_array
 		    testtreeset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_inorder_compare_with_stdtreeset);
 
@@ -203,6 +210,7 @@ namespace test_treeset_array
 		}
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_revorder_compare_with_stdtreeset);
 
@@ -223,6 +231,7 @@ namespace test_treeset_array
 		}
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_noorder_compare_with_stdtreeset);
 
@@ -245,6 +254,7 @@ namespace test_treeset_array
 		    testtreeset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_inorder_remove_inorder_compare_with_stdtreeset);
 
@@ -268,6 +278,7 @@ namespace test_treeset_array
 		    testtreeset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_shuffled_remove_inorder_compare_with_stdtreeset);
 }

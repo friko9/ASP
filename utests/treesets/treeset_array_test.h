@@ -49,9 +49,9 @@ namespace test_treeset_array
 	TestPlug_t test_plug;
 	std::set<elem_t> testtreeset;
 	container_t container;
-    protected:
 	std::vector<std::pair<size_t,elem_t>> data;
 	size_t tree_size;
+    public:
 	virtual void setup_data(){};
     public:
 	struct score_t

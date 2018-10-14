@@ -5,402 +5,344 @@
 
 namespace test_treeset_dynamic
 {
-    struct populated_1elem_exclude_node_singleelem_left_return_root_state_empty: public treeset_dynamic_test_case
+    struct populated_c_exclude_single_node_c_on_left_return_c_state_empty
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t* node;
 	void configure()
 	    {
 		data = { 0 };
-		node = new node_t { data[0], nullptr, nullptr };
+		node = new node_t { nullptr, nullptr, data[0] };
 		testtreeset.insert(data[0]);
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node( container, node, nullptr, &node_t::left );
-		bool is_state_ok = test_plug.get_root(container) == nullptr;
-		bool is_ret_ok = res == node;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node, nullptr, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node;
+		bool root_ok = new_root == nullptr;
+		score_t score = score_t(del_node_ok) + score_t(root_ok);
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_1elem_exclude_node_singleelem_left_return_root_state_empty);
+    ENABLE_TEST(access_test_set(),populated_c_exclude_single_node_c_on_left_return_c_state_empty);
 
-    struct populated_1elem_exclude_node_singleelem_right_return_root_state_empty : public treeset_dynamic_test_case
+    struct populated_c_exclude_single_node_c_on_right_return_c_state_empty
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t* node;
 	void configure()
 	    {
 		data = { 0 };
-		node = new node_t { data[0], nullptr, nullptr };
+		node = new node_t { nullptr, nullptr, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node, nullptr, &node_t::right );
-		bool is_state_ok = test_plug.get_root(container) == nullptr;
-		bool is_ret_ok = res == node;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node, nullptr, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node;
+		bool root_ok = new_root == nullptr;
+		score_t score = score_t(del_node_ok) + score_t(root_ok);
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_1elem_exclude_node_singleelem_right_return_root_state_empty);
+    ENABLE_TEST(access_test_set(),populated_c_exclude_single_node_c_on_right_return_c_state_empty);
 
-    struct populated_2elem_exclude_leaf_right_return_right_state_root_only : public treeset_dynamic_test_case
+    struct populated_c_r_exclude_single_node_r_on_right_return_r_state_cxc
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_r;
 	void configure()
 	    {
 		data = { 0, 1 };
-		node_r = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], nullptr, node_r };
+		node_r = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { nullptr, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_r, node, &node_t::right );
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == nullptr;
-		bool root_right_ok = root_ok && root->right == nullptr;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok;
-		bool is_ret_ok = res == node_r;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_r, node, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_r;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {nullptr,nullptr,data[0]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_2elem_exclude_leaf_right_return_right_state_root_only);
+    ENABLE_TEST(access_test_set(),populated_c_r_exclude_single_node_r_on_right_return_r_state_cxc);
 
-    struct populated_2elem_exclude_leaf_left_return_left_state_root_only : public treeset_dynamic_test_case
+    struct populated_c_l_exclude_single_node_l_on_left_return_l_state_cxc
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l;
 	void configure()
 	    {
 		data = { 0, -1 };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, nullptr };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, nullptr, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == nullptr;
-		bool root_right_ok = root_ok && root->right == nullptr;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok;
-		bool is_ret_ok = res == node_l;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_l;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {nullptr,nullptr,data[0]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_2elem_exclude_leaf_left_return_left_state_root_only);
+    ENABLE_TEST(access_test_set(),populated_c_l_exclude_single_node_l_on_left_return_l_state_cxc);
 
-    struct populated_2elem_right_exclude_root_return_root_state_right_is_root : public treeset_dynamic_test_case
+    struct populated_c_r_exclude_single_node_c_on_right_return_c_state_cxr
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_r;
 	void configure()
 	    {
 		data = { 0, 1 };
-		node_r = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], nullptr, node_r };
+		node_r = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { nullptr, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node, nullptr, &node_t::right );
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[1];
-		bool root_left_ok = root_ok && root->left == nullptr;
-		bool root_right_ok = root_ok && root->right == nullptr;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok;
-		bool is_ret_ok = res == node;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node, nullptr, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node;
+		bool root_ok = new_root == node_r;
+		node_cmp_t root_cmp  = test_node(root_ok, node_r, {nullptr,nullptr,data[1]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_2elem_right_exclude_root_return_root_state_right_is_root);
+    ENABLE_TEST(access_test_set(),populated_c_r_exclude_single_node_c_on_right_return_c_state_cxr);
 
-    struct populated_2elem_left_exclude_root_return_root_state_left_is_root : public treeset_dynamic_test_case
+    struct populated_c_l_exclude_single_node_c_on_left_return_c_state_cxl
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l;
 	void configure()
 	    {
 		data = { 0, -1 };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, nullptr };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, nullptr, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node, nullptr, &node_t::left);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[1];
-		bool root_left_ok = root_ok && root->left == nullptr;
-		bool root_right_ok = root_ok && root->right == nullptr;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok;
-		bool is_ret_ok = res == node;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node, nullptr, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node;
+		bool root_ok = new_root == node_l;
+		node_cmp_t root_cmp  = test_node(root_ok, node_l, {nullptr,nullptr,data[1]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_2elem_left_exclude_root_return_root_state_left_is_root);
+    ENABLE_TEST(access_test_set(),populated_c_l_exclude_single_node_c_on_left_return_c_state_cxl);
 
-    struct populated_3elem_lr_exclude_leaf_left_return_left_state_root_and_right_not_changed : public treeset_dynamic_test_case
+    struct populated_c_l_r_exclude_single_node_l_on_left_return_l_state_cxc_rxr
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r;
 	void configure()
 	    {
 		data = { 0, -1, 1 };
-		node_r = new node_t { data[2], nullptr, nullptr };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, node_r };
+		node_r = new node_t { nullptr, nullptr, data[2] };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == nullptr;
-		bool root_right_ok = root_ok && root->right == node_r;
-		bool node_r_val_ok = root_right_ok && node_r->val == data[2];
-		bool node_r_left_ok = root_right_ok && node_r->left == nullptr;
-		bool node_r_right_ok = root_right_ok && node_r->right == nullptr;
-		bool is_ret_ok = res == node_l;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_r_val_ok && node_r_left_ok && node_r_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_l;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {nullptr,node_r,data[0]});
+		node_cmp_t node_r_cmp  = test_node(root_cmp.right_ok, node_r, {nullptr,nullptr,data[2]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_r_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_lr_exclude_leaf_left_return_left_state_root_and_right_not_changed);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_exclude_single_node_l_on_left_return_l_state_cxc_rxr);
 
-    struct populated_3elem_lr_exclude_leaf_right_return_right_state_root_and_right_not_changed : public treeset_dynamic_test_case
+    struct populated_c_l_r_exclude_single_node_r_on_right_return_r_state_cxc_lxl
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r;
 	void configure()
 	    {
 		data = { 0, -1, 1 };
-		node_r = new node_t { data[2], nullptr, nullptr };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, node_r };
+		node_r = new node_t { nullptr, nullptr, data[2] };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_r, node, &node_t::right);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == node_l;
-		bool root_right_ok = root_ok && root->right == nullptr;
-		bool node_l_val_ok = root_left_ok && node_l->val == data[1];
-		bool node_l_left_ok = root_left_ok && node_l->left == nullptr;
-		bool node_l_right_ok = root_left_ok && node_l->right == nullptr;
-		bool is_ret_ok = res == node_r;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_l_val_ok && node_l_left_ok && node_l_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_r, node, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_r;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {node_l,nullptr,data[0]});
+		node_cmp_t node_l_cmp  = test_node(root_cmp.left_ok, node_l, {nullptr,nullptr,data[1]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_l_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_3elem_lr_exclude_leaf_right_return_right_state_root_and_right_not_changed);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_exclude_single_node_r_on_right_return_r_state_cxc_lxl);
 
-    struct populated_4elem_lrll_exclude_left_return_left_state_left_is_ll : public treeset_dynamic_test_case
+    struct populated_c_l_r_ll_exclude_single_node_l_on_left_return_l_state_cxc_lxll_rxr
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r,*node_ll;
 	void configure()
 	    {
 		data = { 0, -1, 1, -2 };
-		node_ll = new node_t { data[3], nullptr, nullptr };
-		node_r = new node_t { data[2], nullptr, nullptr };
-		node_l = new node_t { data[1], node_ll, nullptr };
-		node = new node_t { data[0], node_l, node_r };
+		node_ll = new node_t { nullptr, nullptr, data[3] };
+		node_r = new node_t { nullptr, nullptr, data[2] };
+		node_l = new node_t { node_ll, nullptr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == node_ll;
-		bool root_right_ok = root_ok && root->right == node_r;
-		bool node_r_val_ok = root_right_ok && node_r->val == data[2];
-		bool node_r_left_ok = root_right_ok && node_r->left == nullptr;
-		bool node_r_right_ok = root_right_ok && node_r->right == nullptr;
-		bool node_ll_val_ok = root_left_ok && node_ll->val == data[3];
-		bool node_ll_left_ok = root_left_ok && node_ll->left == nullptr;
-		bool node_ll_right_ok = root_left_ok && node_ll->right == nullptr;
-		bool is_ret_ok = res == node_l;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
-		    && node_ll_val_ok && node_ll_left_ok && node_ll_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_l, node, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_l;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {node_ll,node_r,data[0]});
+		node_cmp_t node_l_cmp  = test_node(root_cmp.left_ok, node_ll, {nullptr,nullptr,data[3]});
+		node_cmp_t node_r_cmp  = test_node(root_cmp.right_ok, node_r, {nullptr,nullptr,data[2]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_l_cmp + node_r_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_lrll_exclude_left_return_left_state_left_is_ll);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_ll_exclude_single_node_l_on_left_return_l_state_cxc_lxll_rxr);
 
-    struct populated_4elem_lrlr_exclude_left_return_left_state_left_is_lr : public treeset_dynamic_test_case
+    struct populated_c_l_r_lr_exclude_single_node_l_on_right_return_l_state_cxc_lxlr_rxr
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r,*node_lr;
 	void configure()
 	    {
 		data = { 0, -2, 1, -1 };
-		node_lr = new node_t { data[3], nullptr, nullptr };
-		node_r = new node_t { data[2], nullptr, nullptr };
-		node_l = new node_t { data[1], nullptr, node_lr };
-		node = new node_t { data[0], node_l, node_r };
+		node_lr = new node_t { nullptr, nullptr, data[3] };
+		node_r = new node_t { nullptr, nullptr, data[2] };
+		node_l = new node_t { nullptr, node_lr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_l, node, &node_t::right);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == node_lr;
-		bool root_right_ok = root_ok && root->right == node_r;
-		bool node_r_val_ok = root_right_ok && node_r->val == data[2];
-		bool node_r_left_ok = root_right_ok && node_r->left == nullptr;
-		bool node_r_right_ok = root_right_ok && node_r->right == nullptr;
-		bool node_lr_val_ok = root_left_ok && node_lr->val == data[3];
-		bool node_lr_left_ok = root_left_ok && node_lr->left == nullptr;
-		bool node_lr_right_ok = root_left_ok && node_lr->right == nullptr;
-		bool is_ret_ok = res == node_l;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_r_val_ok && node_r_left_ok && node_r_right_ok
-		    && node_lr_val_ok && node_lr_left_ok && node_lr_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_l, node, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_l;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {node_lr,node_r,data[0]});
+		node_cmp_t node_l_cmp  = test_node(root_cmp.left_ok, node_lr, {nullptr,nullptr,data[3]});
+		node_cmp_t node_r_cmp  = test_node(root_cmp.right_ok, node_r, {nullptr,nullptr,data[2]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_l_cmp + node_r_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_lrlr_exclude_left_return_left_state_left_is_lr);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_lr_exclude_single_node_l_on_right_return_l_state_cxc_lxlr_rxr);
 
-    struct populated_4elem_lrrl_exclude_right_return_right_state_right_is_rl : public treeset_dynamic_test_case
+    struct populated_c_l_r_rl_exclude_single_node_r_on_left_return_r_state_cxc_lxl_rxrl
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r,*node_rl;
 	void configure()
 	    {
 		data = { 0, -1, 2, 1 };
-		node_rl = new node_t { data[3], nullptr, nullptr };
-		node_r = new node_t { data[2], node_rl, nullptr };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, node_r };
+		node_rl = new node_t { nullptr, nullptr, data[3] };
+		node_r = new node_t { node_rl, nullptr, data[2] };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_r, node, &node_t::left);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == node_l;
-		bool root_right_ok = root_ok && root->right == node_rl;
-		bool node_l_val_ok = root_left_ok && node_l->val == data[1];
-		bool node_l_left_ok = root_left_ok && node_l->left == nullptr;
-		bool node_l_right_ok = root_left_ok && node_l->right == nullptr;
-		bool node_rl_val_ok = root_right_ok && node_rl->val == data[3];
-		bool node_rl_left_ok = root_right_ok && node_rl->left == nullptr;
-		bool node_rl_right_ok = root_right_ok && node_rl->right == nullptr;
-		bool is_ret_ok = res == node_r;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
-		    && node_rl_val_ok && node_rl_left_ok && node_rl_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_r, node, &node_t::left);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_r;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {node_l,node_rl,data[0]});
+		node_cmp_t node_l_cmp  = test_node(root_cmp.left_ok, node_l, {nullptr,nullptr,data[1]});
+		node_cmp_t node_r_cmp  = test_node(root_cmp.right_ok, node_rl, {nullptr,nullptr,data[3]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_l_cmp + node_r_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_lrrl_exclude_right_return_right_state_right_is_rl);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_rl_exclude_single_node_r_on_left_return_r_state_cxc_lxl_rxrl);
 
-    struct populated_4elem_lrrr_exclude_right_return_right_state_right_is_rr : public treeset_dynamic_test_case
+    struct populated_c_l_r_rr_exclude_single_node_r_on_right_return_r_state_cxc_lxl_rxrr
+	: public treeset_dynamic_test_case
     {
 	TEST_INSERTER;
 	node_t *node,*node_l,*node_r,*node_rr;
 	void configure()
 	    {
-		data = { 0, -2, 1, -1 };
-		node_rr = new node_t { data[3], nullptr, nullptr };
-		node_r = new node_t { data[2], nullptr, node_rr };
-		node_l = new node_t { data[1], nullptr, nullptr };
-		node = new node_t { data[0], node_l, node_r };
+		data = { 0, -2, 1, 2 };
+		node_rr = new node_t { nullptr, nullptr, data[3] };
+		node_r = new node_t { nullptr, node_rr, data[2] };
+		node_l = new node_t { nullptr, nullptr, data[1] };
+		node = new node_t { node_l, node_r, data[0] };
 		test_plug.get_root(container) = node;
 	    }
 	test_result run()
 	    {
-		test_result result = 1;
-		node_t* res = test_plug.exclude_single_node(container, node_r, node, &node_t::right);
-		auto root = test_plug.get_root(container);
-		bool root_ok = root != nullptr;
-		bool root_val_ok = root_ok && root->val == data[0];
-		bool root_left_ok = root_ok && root->left == node_l;
-		bool root_right_ok = root_ok && root->right == node_rr;
-		bool node_l_val_ok = root_left_ok && node_l->val == data[1];
-		bool node_l_left_ok = root_left_ok && node_l->left == nullptr;
-		bool node_l_right_ok = root_left_ok && node_l->right == nullptr;
-		bool node_rr_val_ok = root_right_ok && node_rr->val == data[3];
-		bool node_rr_left_ok = root_right_ok && node_rr->left == nullptr;
-		bool node_rr_right_ok = root_right_ok && node_rr->right == nullptr;
-		bool is_ret_ok = res == node_r;
-		bool is_state_ok = root_val_ok && root_left_ok && root_right_ok
-		    && node_l_val_ok && node_l_left_ok && node_l_right_ok
-		    && node_rr_val_ok && node_rr_left_ok && node_rr_right_ok;
-		if( is_ret_ok && is_state_ok )
-		    ++result;
-		delete res;
-		return result;
+		node_t* del_node = test_plug.exclude_single_node(container, node_r, node, &node_t::right);
+		auto new_root = test_plug.get_root(container);
+
+		bool del_node_ok = del_node == node_r;
+		bool root_ok = new_root == node;
+		node_cmp_t root_cmp  = test_node(root_ok, node, {node_l,node_rr,data[0]});
+		node_cmp_t node_l_cmp  = test_node(root_cmp.left_ok, node_l, {nullptr,nullptr,data[1]});
+		node_cmp_t node_r_cmp  = test_node(root_cmp.right_ok, node_rr, {nullptr,nullptr,data[3]});
+		score_t score = score_t(del_node_ok) + score_t(root_ok) + root_cmp + node_l_cmp + node_r_cmp;
+		delete del_node;
+		return score;
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_4elem_lrrr_exclude_right_return_right_state_right_is_rr);
+    ENABLE_TEST(access_test_set(),populated_c_l_r_rr_exclude_single_node_r_on_right_return_r_state_cxc_lxl_rxrr);
 }
