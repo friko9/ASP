@@ -5,9 +5,10 @@
 
 namespace test_list_dynamic
 {  
-    struct list_dynamic_test_remove_compare_with_stdlist : public list_dynamic_test_case
+    struct list_dynamic_test_remove_compare_with_stdlist
+	: public list_dynamic_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -66,6 +67,7 @@ namespace test_list_dynamic
 		container.insert(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_inorder_compare_with_stdlist);
     
@@ -87,6 +89,7 @@ namespace test_list_dynamic
 
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_revorder_compare_with_stdlist);
 
@@ -108,6 +111,7 @@ namespace test_list_dynamic
 		
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_noorder_compare_with_stdlist);
 
@@ -127,6 +131,7 @@ namespace test_list_dynamic
 		container.insert(std::numeric_limits<elem_t>::min());
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_inorder_compare_with_stdlist);
 
@@ -148,6 +153,7 @@ namespace test_list_dynamic
 
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_revorder_compare_with_stdlist);
 
@@ -169,6 +175,7 @@ namespace test_list_dynamic
 		
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_noorder_compare_with_stdlist);
 
@@ -189,6 +196,7 @@ namespace test_list_dynamic
 		    testlist.push_back(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_inorder_compare_with_stdlist);
 
@@ -210,6 +218,7 @@ namespace test_list_dynamic
 		}
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_revorder_compare_with_stdlist);
 
@@ -231,6 +240,7 @@ namespace test_list_dynamic
 		}
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_noorder_compare_with_stdlist);
 
@@ -254,6 +264,7 @@ namespace test_list_dynamic
 		    testlist.push_back(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_inorder_remove_inorder_compare_with_stdlist);
 
@@ -278,6 +289,7 @@ namespace test_list_dynamic
 		    testlist.push_back(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_shuffled_remove_inorder_compare_with_stdlist);
 }

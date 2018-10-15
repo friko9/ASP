@@ -28,6 +28,8 @@ namespace test_list_stl
 	TestPlug<list_stl<elem_t>> test_plug;
 	list_stl<elem_t> container;
     public:
+	virtual void setup_data(){}
+    public:
 	template<typename It>
 	static void compare_test_range( test_result& result,
 	 				It first,

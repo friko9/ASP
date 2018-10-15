@@ -26,7 +26,8 @@ namespace test_list_array
 {
     test_set& access_test_set();
     
-    struct list_array_test_case : test_case
+    struct list_array_test_case
+	: public test_case
     {
     	using elem_t = int8_t;
 	static constexpr int null = list_array<elem_t>::null;
@@ -47,7 +48,37 @@ namespace test_list_array
 			++result;
 		while ( first != last && (( inc && (++first,true)) || ( !inc && (--first,true))) );
 	    }
+	struct score_t
+	{
+	    int score,max_score;
+	    score_t(bool test):score(test),max_score(1){}
+	    score_t(int s,int max):score(s),max_score(max){}
+	    test_result to_test_result()
+		{ return {max_score,score }; }
+	    operator test_result ()
+		{ return to_test_result(); }
+	};
+	struct node_t
+	{
+	    int prev,next;
+	    elem_t val;
+	};
+	struct node_cmp_t
+	{
+	    bool val_ok, prev_ok, next_ok;
+	    operator score_t()
+		{ return {val_ok+prev_ok+next_ok, 3}; }
+	};
+	node_cmp_t test_node(bool enable, int index, node_t cmp)
+	    {
+		bool val_ok = enable && test_plug.get_Elems(container).at(index) == cmp.val;
+		bool prev_ok = enable && test_plug.get_Prevs(container).at(index) == cmp.prev;
+		bool next_ok = enable && test_plug.get_Nexts(container).at(index) == cmp.next;
+		return { val_ok, prev_ok, next_ok };
+	    }
     };
-    
+    inline list_array_test_case::score_t operator +(list_array_test_case::score_t left,
+						    list_array_test_case::score_t right)
+    {return {left.score+right.score,left.max_score+right.max_score}; }
 }
 #endif /*LIST_ARRAY_TEST_H*/

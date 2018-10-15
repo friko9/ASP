@@ -5,9 +5,10 @@
 
 namespace test_list_array
 {
-    struct list_array_test_find_compare_with_stdlist : public list_array_test_case
+    struct list_array_test_find_compare_with_stdlist
+	: public list_array_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
 		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
@@ -32,26 +33,12 @@ namespace test_list_array
 	    }
     };
     
-    struct empty_find_all_vals_return_end : public list_array_test_case
+    struct empty_find_all_vals_return_end
+	: public list_array_test_find_compare_with_stdlist
     {
 	TEST_INSERTER;
-	test_result run()
-	    {
-		test_result result = std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min()+1;
-		auto failed_list = std::make_shared<single_failed_list<elem_t>>();
-		result.set_failed( failed_list );
-		compare_test_range<elem_t>( result,
-					    std::numeric_limits<elem_t>::min(),
-					    std::numeric_limits<elem_t>::max(),
-					    [this,&failed_list](elem_t el) -> bool {
-						auto res = this->test_plug.find(container,el);
-						bool result = res == null;
-						if( !result )
-						    failed_list->add_failed(el);
-						return result;
-					    });
-		return result;
-	    }
+	void configure(){}
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_find_all_vals_return_end);
 
@@ -75,6 +62,7 @@ namespace test_list_array
 		test_plug.get_Head(container) = head;
 		test_plug.get_Tail(container) = tail;
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_find_compare_with_stdlist);
 
@@ -100,6 +88,7 @@ namespace test_list_array
 		test_plug.get_Head(container) = head;
 		test_plug.get_Tail(container) = tail;
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_find_compare_with_stdlist);
 
@@ -123,6 +112,7 @@ namespace test_list_array
 		test_plug.get_Head(container) = head;
 		test_plug.get_Tail(container) = tail;
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_find_compare_with_stdlist);
 
@@ -146,6 +136,7 @@ namespace test_list_array
 		test_plug.get_Head(container) = head;
 		test_plug.get_Tail(container) = tail;
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_singleelem_find_compare_with_stdlist);
 }

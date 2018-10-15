@@ -7,7 +7,7 @@ namespace test_list_stlforward
 {
     struct list_stlforward_test_insert_compare_with_stdlist : public list_stlforward_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -58,6 +58,7 @@ namespace test_list_stlforward
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_inorder_compare_with_stdlist);
     
@@ -71,6 +72,7 @@ namespace test_list_stlforward
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_revorder_compare_with_stdlist);
 
@@ -85,10 +87,11 @@ namespace test_list_stlforward
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_noorder_compare_with_stdlist);
 
-    struct empty_insert_doubled_sticked_elems_inorder_compare_with_stdlist
+    struct empty_insert_doubled_elems_inorder_compare_with_stdlist
 	: public list_stlforward_test_insert_compare_with_stdlist
     {
 	TEST_INSERTER;
@@ -102,10 +105,11 @@ namespace test_list_stlforward
 		data.push_back(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());		
 	    }
+	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),empty_insert_doubled_sticked_elems_inorder_compare_with_stdlist);
+    ENABLE_TEST(access_test_set(),empty_insert_doubled_elems_inorder_compare_with_stdlist);
 
-    struct empty_insert_doubled_shuffled_elems_noorder_compare_with_stdlist
+    struct empty_insert_doubled_elems_noorder_compare_with_stdlist
 	: public list_stlforward_test_insert_compare_with_stdlist
     {
 	TEST_INSERTER;
@@ -120,6 +124,7 @@ namespace test_list_stlforward
 		data.push_back(std::numeric_limits<elem_t>::max());
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),empty_insert_doubled_shuffled_elems_noorder_compare_with_stdlist);
+    ENABLE_TEST(access_test_set(),empty_insert_doubled_elems_noorder_compare_with_stdlist);
 }

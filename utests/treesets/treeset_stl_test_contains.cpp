@@ -91,7 +91,7 @@ namespace test_treeset_stl
     };
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
 
-    struct populated_inorder_doubled_sticked_contains_compare_with_stdtreeset
+    struct populated_inorder_doubled_contains_compare_with_stdtreeset
     	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
@@ -107,9 +107,9 @@ namespace test_treeset_stl
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),populated_inorder_doubled_sticked_contains_compare_with_stdtreeset);
+    ENABLE_TEST(access_test_set(),populated_inorder_doubled_contains_compare_with_stdtreeset);
 
-    struct populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset
+    struct populated_noorder_doubled_contains_compare_with_stdtreeset
 	: public treeset_stl_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
@@ -126,5 +126,5 @@ namespace test_treeset_stl
 	    }
 	test_result run(){ return test(); }
     };
-    ENABLE_TEST(access_test_set(),populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset);
+    ENABLE_TEST(access_test_set(),populated_noorder_doubled_contains_compare_with_stdtreeset);
 }
