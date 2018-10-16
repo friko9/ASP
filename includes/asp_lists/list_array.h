@@ -25,10 +25,10 @@ private:
 	{ return elems.size(); }
     index_t find(T x)
 	{
-	    index_t n = head;
-	    while( n != null && elems[n] != x )
-		n = next[n];
-	    return n;
+	    index_t node = head;
+	    while( node != null && elems[node] != x )
+		node = next[node];
+	    return node;
 	}
     void move_elem(index_t src,index_t dst)
 	{
@@ -68,14 +68,16 @@ public:
 	}
     void remove(T x)
 	{
-	    int last = size()-1;
-	    int n = find(x);
-	    if(n == null) return;
-	    exclude_elem(n);
-	    move_elem(last,n);
-	    elems.pop_back();
-	    prev.pop_back();
-	    next.pop_back();
+	    int node = find(x);
+	    if(node != null)
+	    {
+		int last = size()-1;
+		exclude_elem(node);
+		move_elem(last,node);
+		elems.pop_back();
+		prev.pop_back();
+		next.pop_back();
+	    }
 	}	    
 };
 

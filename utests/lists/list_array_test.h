@@ -37,7 +37,7 @@ namespace test_list_array
 	using list_t = typename TestPlug_t::list_t;
 	using index_t = typename TestPlug_t::index_t;
     public:
-	index_t null = TestPlug_t::null;
+	static constexpr index_t null = TestPlug_t::null;
 	std::vector<elem_t> data;
 	std::list<elem_t> testlist;
 	TestPlug_t test_plug;
