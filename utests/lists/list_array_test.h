@@ -12,14 +12,17 @@
 template<typename T>
 struct TestPlug<list_array<T>>
 {
-    int& get_Head(list_array<T>& arg) { return arg.head; }
-    int& get_Tail(list_array<T>& arg) { return arg.tail; }
+    using list_t = list_array<T>;
+    using index_t = typename list_t::index_t;
+    static constexpr index_t null = list_t::null;
+    index_t& get_Head(list_array<T>& arg) { return arg.head; }
+    index_t& get_Tail(list_array<T>& arg) { return arg.tail; }
     std::vector<T>& get_Elems(list_array<T>& arg) { return arg.elems; }
-    std::vector<int>& get_Nexts(list_array<T>& arg) { return arg.next; }
-    std::vector<int>& get_Prevs(list_array<T>& arg) { return arg.prev; }
+    std::vector<index_t>& get_Nexts(list_array<T>& arg) { return arg.next; }
+    std::vector<index_t>& get_Prevs(list_array<T>& arg) { return arg.prev; }
     int find(list_array<T>& arg, T x) { return arg.find(x); }
-    void move_elem(list_array<T>& arg,int src,int dst) { arg.move_elem(src,dst); }
-    void exclude_elem(list_array<T>& arg,int n) { arg.exclude_elem(n); }
+    void move_elem(list_array<T>& arg,index_t src,index_t dst) { arg.move_elem(src,dst); }
+    void exclude_elem(list_array<T>& arg,index_t n) { arg.exclude_elem(n); }
 };
 
 namespace test_list_array
@@ -30,11 +33,15 @@ namespace test_list_array
 	: public test_case
     {
     	using elem_t = int8_t;
-	static constexpr int null = list_array<elem_t>::null;
+	using TestPlug_t = TestPlug<list_array<elem_t>>;
+	using list_t = typename TestPlug_t::list_t;
+	using index_t = typename TestPlug_t::index_t;
+    public:
+	index_t null = TestPlug_t::null;
 	std::vector<elem_t> data;
 	std::list<elem_t> testlist;
-	TestPlug<list_array<elem_t>> test_plug;
-	list_array<elem_t> container;
+	TestPlug_t test_plug;
+	list_t container;
     public:
 	template<typename It>
 	static void compare_test_range( test_result& result,
@@ -60,7 +67,7 @@ namespace test_list_array
 	};
 	struct node_t
 	{
-	    int prev,next;
+	    index_t prev,next;
 	    elem_t val;
 	};
 	struct node_cmp_t
@@ -69,7 +76,7 @@ namespace test_list_array
 	    operator score_t()
 		{ return {val_ok+prev_ok+next_ok, 3}; }
 	};
-	node_cmp_t test_node(bool enable, int index, node_t cmp)
+	node_cmp_t test_node(bool enable, index_t index, node_t cmp)
 	    {
 		bool val_ok = enable && test_plug.get_Elems(container).at(index) == cmp.val;
 		bool prev_ok = enable && test_plug.get_Prevs(container).at(index) == cmp.prev;

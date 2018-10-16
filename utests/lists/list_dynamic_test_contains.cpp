@@ -35,7 +35,7 @@ namespace test_list_dynamic
 		for( auto x : data)
 		{
 		    testlist.push_back(x);
-		    node<elem_t>* n = new node<elem_t> {x,head.next};
+		    node_t* n = new node_t {x,head.next};
 		    head.next = n;
 		}
 	    }

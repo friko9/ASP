@@ -2,38 +2,43 @@
 #define LIST_DYNAMIC_H
 
 #include "includes/utils/utils.h"
-#include "list_common.h"
 
 template <typename T>
 class list_dynamic
 {
+    struct node_t{
+	T val;
+	node_t* next;
+    };
     friend TestPlug<list_dynamic<T>>;
-    node<T> head {0,nullptr};
+    node_t head {0,nullptr};
+    std::pair<node_t*,node_t*> find( T x )
+	{
+	    node_t* prev = &head;
+	    node_t* node = head.next;
+	    while(node != nullptr && node->val != x)
+		std::tie(prev,node) = { node, node->next };
+	    return { prev, node };
+	}
 public:
     void insert(const T x)
 	{
-	    node<T>* n = new node<T> {x,head.next};
-	    head.next = n;
+	    node_t* node = new node_t {x,head.next};
+	    head.next = node;
 	}
     bool contains(T x)
 	{
-	    node<T>* n = head.next;
-	    while(n!=nullptr && n->val != x)
-		n=n->next;
-	    return n != nullptr;
+	    return find(x).second != nullptr;
 	}
     void remove(T x)
 	{
-	    node<T>* prev = &head;
-	    node<T>* n = head.next;
-	    while(n!=nullptr && n->val != x)
+	    node_t *prev,*node;
+	    std::tie(prev,node) = find(x);
+	    if(node != nullptr)
 	    {
-		prev=n;
-		n=n->next;
+		prev->next = node->next;
+		delete node;
 	    }
-	    if(n==nullptr) return;
-	    prev->next = n->next;
-	    delete n;
 	}
 };
 

@@ -49,8 +49,8 @@ namespace test_list_array
 	void configure()
 	    {
 		std::vector<elem_t> elems = { 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12 };
-		std::vector<int> next =     { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,null};
-		std::vector<int> prev =   {null, 0, 1, 2, 3, 4, 5, 6, 7,  8,  9, 10 };
+		std::vector<index_t> next =     { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,null};
+		std::vector<index_t> prev =   {null, 0, 1, 2, 3, 4, 5, 6, 7,  8,  9, 10 };
 		int head = 0;
 		int tail = 11;
 		for( auto x : elems )
@@ -74,9 +74,9 @@ namespace test_list_array
 	    {
 		std::vector<elem_t> elems = {   1, 2,   3, 4, 5, 6, 7, 8, 9,10,11,12};
 		// next_string: head,3,5,7,9,11,12,10,8,6,4,2,1,tail
-		std::vector<int> next =     {null, 0,   4, 1, 6, 3, 8, 5,10, 7,11, 9};
+		std::vector<index_t> next =     {null, 0,   4, 1, 6, 3, 8, 5,10, 7,11, 9};
 		// prev_string: tail,1,2,4,6,8,10,12,11,9,7,5,3,head
-		std::vector<int> prev =     {   1, 3,null, 5, 2, 7, 4, 9, 6,11, 8,10};
+		std::vector<index_t> prev =     {   1, 3,null, 5, 2, 7, 4, 9, 6,11, 8,10};
 		int head = 2;
 		int tail = 0;
 		for( auto x : elems )
@@ -99,8 +99,8 @@ namespace test_list_array
 	void configure()
 	    {
 		std::vector<elem_t> elems = { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,  12};
-		std::vector<int> next =   {null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10};
-		std::vector<int> prev =     { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,null};
+		std::vector<index_t> next =   {null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10};
+		std::vector<index_t> prev =     { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,null};
 		int head = 11;
 		int tail =  0;
 		for( auto x : elems )
@@ -123,8 +123,8 @@ namespace test_list_array
 	void configure()
 	    {
 		std::vector<elem_t> elems = { 1 };
-		std::vector<int> next = { null };
-		std::vector<int> prev = { null };
+		std::vector<index_t> next = { null };
+		std::vector<index_t> prev = { null };
 		int head = 0;
 		int tail =  0;
 		for( auto x : elems )

@@ -5,7 +5,8 @@
 
 namespace test_list_array_selforganizing
 {
-    struct list_array_selforganizing_test_contains_compare_with_stdlist : public list_array_selforganizing_test_case
+    struct list_array_selforganizing_test_contains_compare_with_stdlist
+	: public list_array_selforganizing_test_case
     {
 	test_result run()
 	    {
@@ -30,7 +31,8 @@ namespace test_list_array_selforganizing
 	    }
     };
     
-    struct empty_contains_all_vals_return_end : public list_array_selforganizing_test_case
+    struct empty_contains_all_vals_return_end
+	: public list_array_selforganizing_test_case
     {
 	TEST_INSERTER;
 	test_result run()

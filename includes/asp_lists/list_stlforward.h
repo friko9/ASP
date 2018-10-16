@@ -8,8 +8,8 @@
 template <typename T>
 class list_stlforward
 {
-    using It = typename std::forward_list<T>::iterator;
     friend TestPlug<list_stlforward<T>>;
+    using It = typename std::forward_list<T>::iterator;
     std::forward_list<T> l;
     It find(T x)
 	{

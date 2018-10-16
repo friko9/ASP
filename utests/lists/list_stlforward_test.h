@@ -12,21 +12,28 @@
 template<typename T>
 struct TestPlug<list_stlforward<T>>
 {
+    using list_t = list_stlforward<T>;
+    using It = typename list_t::It;
     std::forward_list<T>& getL(list_stlforward<T>& arg) { return arg.l; }
-    typename std::forward_list<T>::iterator find(list_stlforward<T>& arg, T x) { return arg.find(x); }
+    It find(list_t& arg, T x) { return arg.find(x); }
 };
 
 namespace test_list_stlforward
 {
     test_set& access_test_set();
     
-    struct list_stlforward_test_case : test_case
+    struct list_stlforward_test_case
+	: public test_case
     {
 	using elem_t = int8_t;
+	using TestPlug_t = TestPlug<list_stlforward<elem_t>>;
+	using list_t = typename TestPlug_t::list_t;
+	using It = typename TestPlug_t::It;
+    public:
 	std::vector<elem_t> data;
 	std::list<elem_t> testlist;
-	TestPlug<list_stlforward<elem_t>> test_plug;
-	list_stlforward<elem_t> container;
+	TestPlug_t test_plug;
+	list_t container;
     public:
 	virtual void setup_data(){}
     public:
