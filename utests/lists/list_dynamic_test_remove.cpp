@@ -57,7 +57,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    testlist.push_back(i);
 		    container.insert(i);
@@ -77,7 +77,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    container.insert(i);
 		    testlist.push_back(i);
@@ -99,7 +99,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    container.insert(i);
 		    testlist.push_back(i);
@@ -121,7 +121,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i = std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -141,7 +141,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -163,7 +163,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    container.insert(i);
 		    testlist.push_back(i);
@@ -185,7 +185,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -206,7 +206,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -228,7 +228,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 				
@@ -250,7 +250,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
@@ -274,7 +274,7 @@ namespace test_list_dynamic
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);

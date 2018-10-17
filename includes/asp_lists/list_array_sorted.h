@@ -3,55 +3,57 @@
 
 #include "../utils/utils.h"
 
+#include <cassert>
 #include <vector>
 
 template <typename T>
 class list_array_sorted
 {
     friend TestPlug<list_array_sorted<T>>;
+    using index_t = typename std::vector<T>::size_type;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+    static constexpr index_t null =
+	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
+private:
     std::vector<T> elems;
-    std::vector<int> next,prev;
-    int head = null, tail = null;
-    int find(T x)
+    std::vector<index_t> next,prev;
+    index_t head = null, tail = null;
+private:
+    index_t size()
+	{ return elems.size(); }
+    index_t find(T x)
 	{
-	    int n = head;
-	    while( n!= null && elems[n] < x )
-		n=next[n];
-	    return n;
+	    index_t node = head;
+	    while( node != null && elems[node] < x )
+		node=next[node];
+	    return node;
 	}
-    void move_elem(int src,int dst)
+    void move_elem(index_t src,index_t dst)
 	{
+	    assert(src < size());
+	    assert(dst < size());
 	    if(src == dst) return;
-	    if(next[src] != null)
-		prev[next[src]] = dst;
-	    else
-		tail = dst;
-	    if(prev[src] != null)
-		next[prev[src]] = dst;
-	    else
-		head = dst;
+	    index_t& src_prev_next = (prev[src] != null)? next[prev[src]] : head;
+	    index_t& src_next_prev = (next[src] != null)? prev[next[src]] : tail;
+	    src_prev_next = src_next_prev = dst;
 	    elems[dst] = std::move(elems[src]);
 	    next[dst] = next[src];
 	    prev[dst] = prev[src];
 	}
-    void exclude_elem(int n)
+    void exclude_elem(index_t node)
 	{
-	    if(next[n] != null)
-		prev[next[n]] = prev[n];
-	    else
-		tail = prev[n];
-	    if(prev[n] != null)
-		next[prev[n]] = next[n];
-	    else
-		head = next[n];
+	    assert(node < size());
+	    index_t& node_prev_next = (prev[node] != null)? next[prev[node]] : head;
+	    index_t& node_next_prev = (next[node] != null)? prev[next[node]] : tail;
+	    node_prev_next = next[node];
+	    node_next_prev = prev[node];
 	}
 public:
-    enum { null = -1 };
     void insert(T x)
 	{
-	    int n = elems.size();
-	    int n_next = find(x);
-	    int n_prev = (n_next != null)? prev[n_next] : tail;
+	    index_t n = elems.size();
+	    index_t n_next = find(x);
+	    index_t n_prev = (n_next != null)? prev[n_next] : tail;
 
 	    next.push_back(n_next);
 	    prev.push_back(n_prev);
@@ -68,13 +70,13 @@ public:
 	}
     bool contains(T x)
 	{
-	    int n = find(x);
+	    index_t n = find(x);
 	    return n != null && elems[n] == x;
 	}
     void remove(T x)
 	{
-	    int last = elems.size()-1;
-	    int n = find(x);
+	    index_t last = elems.size()-1;
+	    index_t n = find(x);
 	    if( n == null || elems[n] != x ) return;
 	    exclude_elem(n);
 	    move_elem(last,n);

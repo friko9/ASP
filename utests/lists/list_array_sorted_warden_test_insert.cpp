@@ -5,9 +5,10 @@
 
 namespace test_list_array_sorted_warden
 {
-    struct list_array_sorted_warden_test_insert_compare_with_stdlist : public list_array_sorted_warden_test_case
+    struct list_array_sorted_warden_test_insert_compare_with_stdlist
+	: public list_array_sorted_warden_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -54,9 +55,10 @@ namespace test_list_array_sorted_warden
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_inorder_compare_with_stdlist);
     
@@ -66,9 +68,10 @@ namespace test_list_array_sorted_warden
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max()-1; i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max()-1; i > std::numeric_limits<elem_t>::min(); --i)
 		    data.push_back(i);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_revorder_compare_with_stdlist);
 
@@ -78,10 +81,11 @@ namespace test_list_array_sorted_warden
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_noorder_compare_with_stdlist);
 
@@ -91,12 +95,13 @@ namespace test_list_array_sorted_warden
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_doubled_sticked_elems_inorder_compare_with_stdlist);
 
@@ -106,13 +111,14 @@ namespace test_list_array_sorted_warden
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min()+1; i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
 		}
 		std::random_shuffle(data.begin(),data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),empty_insert_doubled_shuffled_elems_noorder_compare_with_stdlist);
 }

@@ -5,23 +5,6 @@
 
 namespace test_list_array
 {
-    struct list_array_test_populate_3elems_noorder_1_excluded
-	: public list_array_test_case
-    {
-	int head,tail;
-	std::vector<elem_t> elems;
-	std::vector<int> next,prev;
-	void configure()
-	    {
-		data = { 1, 2, 3, 99 };
-		test_plug.get_Elems(container) = elems;
-		test_plug.get_Nexts(container) = { null, 2, 0, 99 };
-		test_plug.get_Prevs(container) = { 2, null, 1, 99 };
-		test_plug.get_Head(container) = 1;
-		test_plug.get_Tail(container) = 0;
-	    }
-    };
-    
     struct populated1_inorder_move_h_to_0_state_h0_t0
 	: public list_array_test_case
     {

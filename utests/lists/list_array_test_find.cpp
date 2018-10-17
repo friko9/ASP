@@ -48,19 +48,14 @@ namespace test_list_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> elems = { 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12 };
-		std::vector<index_t> next =     { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,null};
-		std::vector<index_t> prev =   {null, 0, 1, 2, 3, 4, 5, 6, 7,  8,  9, 10 };
-		int head = 0;
-		int tail = 11;
-		for( auto x : elems )
+		data = { 1, 2, 3, 4, 5, 6, 7, 8, 9 ,10, 11, 12 };
+		test_plug.get_Elems(container) = data;
+		test_plug.get_Nexts(container) = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,null};
+		test_plug.get_Prevs(container) = {null, 0, 1, 2, 3, 4, 5, 6, 7,  8,  9, 10 };
+		test_plug.get_Head(container) = 0;
+		test_plug.get_Tail(container) = 11;
+		for( auto x : data )
 		    testlist.push_back(x);
-		
-		test_plug.get_Elems(container) = std::move(elems);
-		test_plug.get_Nexts(container) = std::move(next);
-		test_plug.get_Prevs(container) = std::move(prev);
-		test_plug.get_Head(container) = head;
-		test_plug.get_Tail(container) = tail;
 	    }
 	test_result run(){ return test(); }
     };
@@ -72,21 +67,16 @@ namespace test_list_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> elems = {   1, 2,   3, 4, 5, 6, 7, 8, 9,10,11,12};
+		data = { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,12};
+		test_plug.get_Elems(container) = data;
 		// next_string: head,3,5,7,9,11,12,10,8,6,4,2,1,tail
-		std::vector<index_t> next =     {null, 0,   4, 1, 6, 3, 8, 5,10, 7,11, 9};
+		test_plug.get_Nexts(container) = {null, 0,   4, 1, 6, 3, 8, 5,10, 7,11, 9};
 		// prev_string: tail,1,2,4,6,8,10,12,11,9,7,5,3,head
-		std::vector<index_t> prev =     {   1, 3,null, 5, 2, 7, 4, 9, 6,11, 8,10};
-		int head = 2;
-		int tail = 0;
-		for( auto x : elems )
+		test_plug.get_Prevs(container) = { 1, 3,null, 5, 2, 7, 4, 9, 6,11, 8,10};
+		test_plug.get_Head(container) = 2;
+		test_plug.get_Tail(container) = 0;
+		for( auto x : data )
 		    testlist.push_back(x);
-		
-		test_plug.get_Elems(container) = std::move(elems);
-		test_plug.get_Nexts(container) = std::move(next);
-		test_plug.get_Prevs(container) = std::move(prev);
-		test_plug.get_Head(container) = head;
-		test_plug.get_Tail(container) = tail;
 	    }
 	test_result run(){ return test(); }
     };
@@ -98,19 +88,14 @@ namespace test_list_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> elems = { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,  12};
-		std::vector<index_t> next =   {null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10};
-		std::vector<index_t> prev =     { 1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,null};
-		int head = 11;
-		int tail =  0;
-		for( auto x : elems )
+		data = {1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,  12};
+		test_plug.get_Elems(container) = data;
+		test_plug.get_Nexts(container) = {null, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  10};
+		test_plug.get_Prevs(container) = {   1, 2, 3, 4, 5, 6, 7, 8, 9,10,11,null};
+		test_plug.get_Head(container) = 11;
+		test_plug.get_Tail(container) = 0;
+		for( auto x : data )
 		    testlist.push_back(x);
-		
-		test_plug.get_Elems(container) = std::move(elems);
-		test_plug.get_Nexts(container) = std::move(next);
-		test_plug.get_Prevs(container) = std::move(prev);
-		test_plug.get_Head(container) = head;
-		test_plug.get_Tail(container) = tail;
 	    }
 	test_result run(){ return test(); }
     };
@@ -122,19 +107,14 @@ namespace test_list_array
 	TEST_INSERTER;
 	void configure()
 	    {
-		std::vector<elem_t> elems = { 1 };
-		std::vector<index_t> next = { null };
-		std::vector<index_t> prev = { null };
-		int head = 0;
-		int tail =  0;
-		for( auto x : elems )
+		data = { 1 };
+		test_plug.get_Elems(container) = data;
+		test_plug.get_Nexts(container) = { null };
+		test_plug.get_Prevs(container) = { null };
+		test_plug.get_Head(container) = 0;
+		test_plug.get_Tail(container) = 0;
+		for( auto x : data )
 		    testlist.push_back(x);
-		
-		test_plug.get_Elems(container) = std::move(elems);
-		test_plug.get_Nexts(container) = std::move(next);
-		test_plug.get_Prevs(container) = std::move(prev);
-		test_plug.get_Head(container) = head;
-		test_plug.get_Tail(container) = tail;
 	    }
 	test_result run(){ return test(); }
     };
