@@ -5,11 +5,12 @@
 
 namespace test_hashset_array
 {
-    struct hashset_array_test_insert_hash_compare_with_stdhashset : public hashset_array_test_case
+    struct hashset_array_test_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_case
     {
 	std::vector<index_t> vmap;
 	std::vector<index_t> cntr;
-	test_result run()
+	test_result test()
 	    {
 		test_result result = 8;
 		auto failed_list = std::make_shared<single_failed_list<std::pair<size_t,std::pair<index_t,index_t>>>>();
@@ -35,7 +36,8 @@ namespace test_hashset_array
 	    }
     };
 
-    struct populated_full_norehash_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_full_norehash_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -52,10 +54,12 @@ namespace test_hashset_array
 		test_plug.get_hashMax(container) = 7;
 		test_plug.get_maxLoad(container) = 1.0f;
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_full_norehash_insert_hash_compare_with_stdhashset);
 
-    struct populated_half_norehash_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_half_norehash_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -75,10 +79,12 @@ namespace test_hashset_array
 		for( auto x : data )
 		    testhashset.insert(x);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_half_norehash_insert_hash_compare_with_stdhashset);
 
-    struct populated_full_rehash_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_full_rehash_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -98,10 +104,12 @@ namespace test_hashset_array
 		for( auto x : data )
 		    testhashset.insert(x);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_full_rehash_insert_hash_compare_with_stdhashset);
 
-    struct populated_half_rehash_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_half_rehash_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -121,10 +129,12 @@ namespace test_hashset_array
 		for( auto x : data )
 		    testhashset.insert(x);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_half_rehash_insert_hash_compare_with_stdhashset);
 
-    struct populated_noorder_rehashed_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_noorder_rehashed_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -144,10 +154,12 @@ namespace test_hashset_array
 		for( auto x : data )
 		    testhashset.insert(x);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_rehashed_insert_hash_compare_with_stdhashset);
 
-    struct populated_half_rehash_wind_insert_hash_compare_with_stdhashset : public hashset_array_test_insert_hash_compare_with_stdhashset
+    struct populated_half_rehash_wind_insert_hash_compare_with_stdhashset
+	: public hashset_array_test_insert_hash_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
@@ -167,6 +179,7 @@ namespace test_hashset_array
 		for( auto x : data )
 		    testhashset.insert(x);
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_half_rehash_wind_insert_hash_compare_with_stdhashset);
 }

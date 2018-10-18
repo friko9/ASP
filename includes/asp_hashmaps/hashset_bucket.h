@@ -11,9 +11,10 @@ template <typename T,typename HashF>
 class hashset_bucket
 {
     friend TestPlug<hashset_bucket<T,HashF>>;
-    using index_t = typename std::vector<std::forward_list<T>>::size_type;
+    using bucket_t = std::forward_list<T>;
+    using index_t = typename std::vector<bucket_t>::size_type;
     using hash_t = typename std::make_unsigned<index_t>::type;
-    std::vector<std::forward_list<T>> v_map;
+    std::vector<bucket_t> v_map;
     float max_load;
     hash_t hash_max;
     index_t counter;
@@ -26,7 +27,7 @@ class hashset_bucket
     void resize(index_t new_size)
 	{
 	    assert(new_size > 0);
-	    std::vector<std::forward_list<T>> new_map(new_size);
+	    std::vector<bucket_t> new_map(new_size);
 	    swap(new_map,v_map);
 	    hash_max = primes[floor_log2(v_map.size())];
 	    counter = float(hash_max)*max_load;

@@ -5,9 +5,10 @@
 
 namespace test_hashset_bucket
 {  
-    struct hashset_bucket_test_remove_compare_with_stdhashset : public hashset_bucket_test_case
+    struct hashset_bucket_test_remove_compare_with_stdhashset
+	: public hashset_bucket_test_case
     {
-	test_result run()
+	test_result test()
 	    {
 		using It = std::vector<elem_t>::iterator;
 		test_result result = data.size();
@@ -47,12 +48,13 @@ namespace test_hashset_bucket
 	    }
     };
     
-    struct populated_inorder_remove_inorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_inorder_remove_inorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    testhashset.insert(i);
 		    container.insert(i);
@@ -62,15 +64,17 @@ namespace test_hashset_bucket
 		container.insert(std::numeric_limits<elem_t>::max());
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_inorder_compare_with_stdhashset);
     
-    struct populated_inorder_remove_revorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_inorder_remove_revorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    container.insert(i);
 		    testhashset.insert(i);
@@ -82,15 +86,17 @@ namespace test_hashset_bucket
 
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_revorder_compare_with_stdhashset);
 
-    struct populated_inorder_remove_noorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_inorder_remove_noorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    container.insert(i);
 		    testhashset.insert(i);
@@ -102,15 +108,17 @@ namespace test_hashset_bucket
 		
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_remove_noorder_compare_with_stdhashset);
 
-    struct populated_revorder_remove_inorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_revorder_remove_inorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -120,15 +128,17 @@ namespace test_hashset_bucket
 		container.insert(std::numeric_limits<elem_t>::min());
 		data.push_back(std::numeric_limits<elem_t>::min());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_inorder_compare_with_stdhashset);
 
-    struct populated_revorder_remove_revorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_revorder_remove_revorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    data.push_back(i);
 		    container.insert(i);
@@ -140,15 +150,17 @@ namespace test_hashset_bucket
 
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_revorder_compare_with_stdhashset);
 
-    struct populated_revorder_remove_noorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_revorder_remove_noorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
+		for(elem_t i =std::numeric_limits<elem_t>::max(); i > std::numeric_limits<elem_t>::min(); --i)
 		{
 		    container.insert(i);
 		    testhashset.insert(i);
@@ -160,15 +172,17 @@ namespace test_hashset_bucket
 
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_remove_noorder_compare_with_stdhashset);
 
-    struct populated_noorder_remove_inorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_noorder_remove_inorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -179,15 +193,17 @@ namespace test_hashset_bucket
 		    testhashset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_inorder_compare_with_stdhashset);
 
-    struct populated_noorder_remove_revorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_noorder_remove_revorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 		
@@ -199,15 +215,17 @@ namespace test_hashset_bucket
 		}
 		std::reverse(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_revorder_compare_with_stdhashset);
 
-    struct populated_noorder_remove_noorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_noorder_remove_noorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 				
@@ -219,15 +237,17 @@ namespace test_hashset_bucket
 		}
 		std::random_shuffle(data.begin(), data.end());
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_remove_noorder_compare_with_stdhashset);
 
-    struct populated_doubled_inorder_remove_inorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_doubled_inorder_remove_inorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
@@ -241,15 +261,17 @@ namespace test_hashset_bucket
 		    testhashset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_inorder_remove_inorder_compare_with_stdhashset);
 
-    struct populated_doubled_shuffled_remove_inorder_compare_with_stdhashset : public hashset_bucket_test_remove_compare_with_stdhashset
+    struct populated_doubled_shuffled_remove_inorder_compare_with_stdhashset
+	: public hashset_bucket_test_remove_compare_with_stdhashset
     {
 	TEST_INSERTER;
 	void configure()
 	    {
-		for(int i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
 		    data.push_back(i);
 		    data.push_back(i);
@@ -264,6 +286,7 @@ namespace test_hashset_bucket
 		    testhashset.insert(x);
 		}
 	    }
+	test_result run(){ return test(); }
     };
     ENABLE_TEST(access_test_set(),populated_doubled_shuffled_remove_inorder_compare_with_stdhashset);
 }

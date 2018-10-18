@@ -12,23 +12,26 @@
 template<typename T>
 struct TestPlug<hashset_stl<T>>
 {
-    using It = typename hashset_stl<T>::It;
-    std::unordered_set<T>& getS(hashset_stl<T>& arg) { return arg.s; }
+    using hashset_t = hashset_stl<T>;
+    using It = typename hashset_t::It;
+    std::unordered_set<T>& getS(hashset_t& arg) { return arg.s; }
 };
 
 namespace test_hashset_stl
 {
     test_set& access_test_set();
 
-    struct hashset_stl_test_case : test_case
+    struct hashset_stl_test_case
+	: public test_case
     {
     	using elem_t = int8_t;
 	using TestPlug_t = TestPlug<hashset_stl<elem_t>>;
+	using hashset_t = typename TestPlug_t::hashset_t;
 	using It = typename TestPlug_t::It;
 	TestPlug_t test_plug;
 	std::vector<elem_t> data;
 	std::unordered_set<elem_t> testhashset;
-	hashset_stl<elem_t> container;
+	hashset_t container;
     public:
 	template<typename It>
 	static void compare_test_range( test_result& result,

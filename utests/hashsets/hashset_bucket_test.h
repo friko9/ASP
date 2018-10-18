@@ -14,10 +14,11 @@ template<typename T,typename H>
 struct TestPlug<hashset_bucket<T,H>>
 {
     using hashset_t = hashset_bucket<T,H>;
+    using bucket_t = typename hashset_t::bucket_t;
     using index_t = typename hashset_t::index_t;
     using hash_t = typename hashset_t::hash_t;
     
-    std::vector<std::forward_list<T>>& get_vMap(hashset_t& arg) { return arg.v_map; }
+    std::vector<bucket_t>& get_vMap(hashset_t& arg) { return arg.v_map; }
 
     float& get_maxLoad(hashset_t& arg) { return arg.max_load; }
     index_t& get_hashMax(hashset_t& arg) { return arg.hash_max; }
@@ -37,11 +38,13 @@ namespace test_hashset_bucket
 	int operator ()(T x) const { return int(x);}
     };
 
-    struct hashset_bucket_test_case : test_case
+    struct hashset_bucket_test_case
+	: public test_case
     {
     	using elem_t = int8_t;
 	using container_t = hashset_bucket<elem_t,HashF_echo<elem_t>>;
 	using TestPlug_t = TestPlug<container_t>;
+	using bucket_t = typename TestPlug_t::bucket_t;
 	using index_t = typename TestPlug_t::index_t;
 	using hash_t = typename TestPlug_t::hash_t;
 	TestPlug_t test_plug;
