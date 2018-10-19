@@ -1,0 +1,23 @@
+
+define gdb_print_tree
+    set $index = 0
+
+    set $index = $index + 1
+    eval "set $stack_%d = $arg0", $index
+
+    while $index > 0
+        eval "set $temp = $stack_%d", $index
+        set $index = $index - 1
+        print *$temp
+
+        if $temp->right
+            set $index = $index + 1
+            eval "set $stack_%d = $temp->right", $index
+        end
+
+        if $temp->left
+            set $index = $index + 1
+            eval "set $stack_%d = $temp->left", $index
+        end
+    end
+end

@@ -15,4 +15,4 @@ AM_CONFIG_HEADER(config.h)
 AC_PROG_CXX
 
 # End the configure script.
-AC_OUTPUT(Makefile utests/Makefile utests/utils/Makefile utests/treesets/Makefile utests/lists/Makefile utests/hashsets/Makefile includes/Makefile includes/utils/Makefile includes/asp_tree_maps/Makefile includes/asp_test/Makefile includes/asp_lists/Makefile includes/asp_hashmaps/Makefile, [date > stamp-h] )
+AC_OUTPUT(Makefile utests/Makefile utests/sorting/Makefile utests/utils/Makefile utests/treesets/Makefile utests/lists/Makefile utests/hashsets/Makefile includes/Makefile includes/asp_sorting/Makefile includes/utils/Makefile includes/asp_tree_maps/Makefile includes/asp_test/Makefile includes/asp_lists/Makefile includes/asp_hashmaps/Makefile, [date > stamp-h] )

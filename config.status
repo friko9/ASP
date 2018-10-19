@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile utests/Makefile utests/utils/Makefile utests/treesets/Makefile utests/lists/Makefile utests/hashsets/Makefile includes/Makefile includes/utils/Makefile includes/asp_tree_maps/Makefile includes/asp_test/Makefile includes/asp_lists/Makefile includes/asp_hashmaps/Makefile"
+config_files=" Makefile utests/Makefile utests/sorting/Makefile utests/utils/Makefile utests/treesets/Makefile utests/lists/Makefile utests/hashsets/Makefile includes/Makefile includes/asp_sorting/Makefile includes/utils/Makefile includes/asp_tree_maps/Makefile includes/asp_test/Makefile includes/asp_lists/Makefile includes/asp_hashmaps/Makefile"
 config_headers=" config.h"
 config_commands=" depfiles default"
 
@@ -550,11 +550,13 @@ do
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
     "utests/Makefile") CONFIG_FILES="$CONFIG_FILES utests/Makefile" ;;
+    "utests/sorting/Makefile") CONFIG_FILES="$CONFIG_FILES utests/sorting/Makefile" ;;
     "utests/utils/Makefile") CONFIG_FILES="$CONFIG_FILES utests/utils/Makefile" ;;
     "utests/treesets/Makefile") CONFIG_FILES="$CONFIG_FILES utests/treesets/Makefile" ;;
     "utests/lists/Makefile") CONFIG_FILES="$CONFIG_FILES utests/lists/Makefile" ;;
     "utests/hashsets/Makefile") CONFIG_FILES="$CONFIG_FILES utests/hashsets/Makefile" ;;
     "includes/Makefile") CONFIG_FILES="$CONFIG_FILES includes/Makefile" ;;
+    "includes/asp_sorting/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_sorting/Makefile" ;;
     "includes/utils/Makefile") CONFIG_FILES="$CONFIG_FILES includes/utils/Makefile" ;;
     "includes/asp_tree_maps/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_tree_maps/Makefile" ;;
     "includes/asp_test/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_test/Makefile" ;;

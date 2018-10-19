@@ -1,0 +1,47 @@
+  define gdb_print_tree
+    set $i = $arg1
+    echo |
+    while $i > 0
+      echo -
+      set $i = $i - 1
+    end
+    if $arg0
+      eval "set $tmp = *$arg0"
+      print $tmp
+    else
+      echo nil\n
+    end
+    set $x = $arg1 + 1
+    if( $arg0 )
+      output "l:" 
+      gdb_print_tree $arg0->left $x
+      output "r:"
+      gdb_print_tree $arg0->right $x
+    end
+    set $x = $arg1 - 1
+  end
+
+  define gdb_print_atree
+    set $i = 1
+    set $nxt_lvl = 2
+    eval "set $max_l = indexes.size()"
+    eval "set $null = null"
+    echo |
+    while $i < $max_l
+      if $i == $nxt_lvl
+	set $nxt_lvl = $nxt_lvl*2
+	echo \n
+      end
+      eval "set $v = indexes[$i]"
+      eval "set $h = height[$i]"
+      if $v == $null
+	set $v = "nil"
+      else
+	eval "set $v = values[indexes[$i]]"
+      end
+
+      echo |
+      set $i = $i + 1
+      echo \n
+    end
+  end
