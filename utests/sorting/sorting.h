@@ -33,6 +33,16 @@ namespace sorting
 		    data.push_back(i);
 		data.push_back(std::numeric_limits<elem_t>::max());
 	    }
+	void populate_data_doublevals_inorder()
+	    {
+		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
+		{
+		    data.push_back(i);
+		    data.push_back(i);
+		}
+		data.push_back(std::numeric_limits<elem_t>::max());
+		data.push_back(std::numeric_limits<elem_t>::max());
+	    }
 
     };
 }
