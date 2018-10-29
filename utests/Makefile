@@ -273,7 +273,7 @@ top_builddir = ..
 top_srcdir = ..
 top = ../
 ede_FILES = Project.ede Makefile.am
-SUBDIRS = treesets/ utils/ lists/ hashsets/
+SUBDIRS = sorting/ utils/ treesets/ lists/ hashsets/
 EXTRA_DIST = Project.ede
 all: all-recursive
 

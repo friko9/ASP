@@ -1,0 +1,12 @@
+;; Object asp-sorting
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "asp-sorting"
+  :file "Project.ede"
+  :name "asp-sorting"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("bubble_sort.h" "insertion_sort.h" "stl_sort.h" "quick_sort.h" "misc_sort.h" "selection_sort.h")))
+  :makefile-type Makefile\.am)

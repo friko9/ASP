@@ -108,25 +108,24 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_sorting_test_OBJECTS = sorting.$(OBJEXT) stl_sort.$(OBJEXT) \
-	stable_sort.$(OBJEXT) sort_indexing.$(OBJEXT) \
-	qsort_1.$(OBJEXT) qsort_2.$(OBJEXT) \
-	insertion_sort_iter.$(OBJEXT) \
-	insertion_sort_iter_bitand.$(OBJEXT) \
-	insertion_sort_iter_bitand_mem.$(OBJEXT) \
-	insertion_sort_iter_warden.$(OBJEXT) \
-	insertion_sort_iter_warden_mem.$(OBJEXT) \
+am_sorting_test_OBJECTS = bubble_sort_lastswap.$(OBJEXT) \
+	bubble_sort_simple.$(OBJEXT) counting_sort_stlmap.$(OBJEXT) \
+	heapsort.$(OBJEXT) insertion_sort_index_bitand.$(OBJEXT) \
 	insertion_sort_index.$(OBJEXT) \
-	insertion_sort_index_bitand.$(OBJEXT) \
 	insertion_sort_index_warden.$(OBJEXT) \
-	selection_sort_stlmin.$(OBJEXT) selection_sort_iter.$(OBJEXT) \
-	selection_sort_index.$(OBJEXT) bubble_sort_simple.$(OBJEXT) \
-	bubble_sort_lastswap.$(OBJEXT) shake_sort_lastswap.$(OBJEXT) \
-	quicksort.$(OBJEXT) quicksort_enchanced.$(OBJEXT) \
+	insertion_sort_iter_bitand_mem.$(OBJEXT) \
+	insertion_sort_iter_bitand.$(OBJEXT) \
+	insertion_sort_iter.$(OBJEXT) \
+	insertion_sort_iter_warden.$(OBJEXT) \
+	insertion_sort_iter_warden_mem.$(OBJEXT) mergesort.$(OBJEXT) \
+	qsort_1.$(OBJEXT) qsort_2.$(OBJEXT) quicksort.$(OBJEXT) \
+	quicksort_enchanced.$(OBJEXT) \
 	quicksort_enchanced_indexing.$(OBJEXT) \
 	quicksort_enchanced_looped.$(OBJEXT) radix_sort.$(OBJEXT) \
-	mergesort.$(OBJEXT) heapsort.$(OBJEXT) \
-	counting_sort_stlmap.$(OBJEXT)
+	selection_sort_index.$(OBJEXT) selection_sort_iter.$(OBJEXT) \
+	selection_sort_stlmin.$(OBJEXT) shake_sort_lastswap.$(OBJEXT) \
+	sort_indexing.$(OBJEXT) sorting.$(OBJEXT) \
+	stable_sort.$(OBJEXT) stl_sort.$(OBJEXT)
 sorting_test_OBJECTS = $(am_sorting_test_OBJECTS)
 sorting_test_DEPENDENCIES =
 AM_V_P = $(am__v_P_@AM_V@)
@@ -339,7 +338,7 @@ top = ../../
 ede_FILES = Project.ede Makefile.am
 SUBDIRS = 
 EXTRA_DIST = Project.ede
-sorting_test_SOURCES = sorting.cpp stl_sort.cpp stable_sort.cpp sort_indexing.cpp qsort_1.cpp qsort_2.cpp insertion_sort_iter.cpp insertion_sort_iter_bitand.cpp insertion_sort_iter_bitand_mem.cpp insertion_sort_iter_warden.cpp insertion_sort_iter_warden_mem.cpp insertion_sort_index.cpp insertion_sort_index_bitand.cpp insertion_sort_index_warden.cpp selection_sort_stlmin.cpp selection_sort_iter.cpp selection_sort_index.cpp bubble_sort_simple.cpp bubble_sort_lastswap.cpp shake_sort_lastswap.cpp quicksort.cpp quicksort_enchanced.cpp quicksort_enchanced_indexing.cpp quicksort_enchanced_looped.cpp radix_sort.cpp mergesort.cpp heapsort.cpp counting_sort_stlmap.cpp
+sorting_test_SOURCES = bubble_sort_lastswap.cpp bubble_sort_simple.cpp counting_sort_stlmap.cpp heapsort.cpp insertion_sort_index_bitand.cpp insertion_sort_index.cpp insertion_sort_index_warden.cpp insertion_sort_iter_bitand_mem.cpp insertion_sort_iter_bitand.cpp insertion_sort_iter.cpp insertion_sort_iter_warden.cpp insertion_sort_iter_warden_mem.cpp mergesort.cpp qsort_1.cpp qsort_2.cpp quicksort.cpp quicksort_enchanced.cpp quicksort_enchanced_indexing.cpp quicksort_enchanced_looped.cpp radix_sort.cpp selection_sort_index.cpp selection_sort_iter.cpp selection_sort_stlmin.cpp shake_sort_lastswap.cpp sort_indexing.cpp sorting.cpp stable_sort.cpp stl_sort.cpp
 include_MISC = sorting.h
 sorting_test_LDADD = 
 all: all-recursive

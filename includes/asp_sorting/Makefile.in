@@ -275,7 +275,7 @@ top = ../../
 ede_FILES = Project.ede Makefile.am
 SUBDIRS = 
 EXTRA_DIST = Project.ede
-include_MISC = stl_sort.h insertion_sort.h selection_sort.h bubble_sort.h quick_sort.h misc_sort.h
+include_MISC = bubble_sort.h insertion_sort.h stl_sort.h quick_sort.h misc_sort.h
 all: all-recursive
 
 .SUFFIXES:

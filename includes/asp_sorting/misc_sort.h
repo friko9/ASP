@@ -1,0 +1,111 @@
+#ifndef MISC_SORT_H
+#define MISC_SORT_H
+
+#include <cmath>
+
+template<typename T>
+void counting_sort_stlmap(std::vector<T>& v)
+{
+    std::map<T,int> m;
+    for( T e : v ) ++m[e];
+    auto itv=v.begin();
+    for( auto p : m )
+	for(int c = p.second;c>0;--c,++itv)
+	    *itv=c;
+}
+
+template<typename T>
+void heapsort(std::vector<T>& v)
+{
+    if(v.size() <= 1) return;
+    int size = v.size();
+    const int depth_minus1 = (int)std::log2(size);
+    const int last_layer = (1<<depth_minus1)-1;
+    for(int i=last_layer-1; i >= 0; --i)
+	for(int j=i,new_j = j*2+1;new_j<size;j=new_j,new_j=j*2+1)
+	{
+	    if(new_j < size-1)
+		new_j += ( v[new_j] < v[new_j+1] );
+	    if( v[j] < v[new_j])
+		std::swap(v[new_j],v[j]);
+	    else
+		break;
+	}
+    // heap is already sorted
+    while(--size >= 0)
+    {
+	std::swap(v[0],v[size]);
+	for(int j=0,new_j=1;new_j<size;j=new_j,new_j=j*2+1)
+	{
+	    if(new_j < size-1)
+		new_j += ( v[new_j] < v[new_j+1] );
+	    if( v[j] < v[new_j])
+		std::swap(v[new_j],v[j]);
+	    else
+		break;
+	}
+    }
+}
+
+template<typename It>
+void mergesort_sort_iter(const It its,const It ite)
+{
+    for(auto it = its; it != ite; ++it)
+    {
+	const auto mem = *it;
+	auto it1 = it,it2=it-1;
+	for(;it1>its && mem < *it2;--it1,--it2)
+	    *it1 = *it2;
+	*it1 = mem;
+    }
+}
+
+template<typename T>
+void mergesort(std::vector<T>& v)
+{
+    using It = typename std::vector<T>::iterator;
+    constexpr int block_size = 32;
+    
+    const int size = v.size();
+    const int new_size = std::max( 1<<(floor_log2_1(size)+1), block_size);
+    v.resize(new_size, std::numeric_limits<T>::max());
+    const It last_end = v.begin()+size;
+    for(It start =v.begin(); start < last_end; start +=block_size)
+	mergesort_sort_iter(start,start+block_size);
+    
+    for( int blk = block_size; blk < size; blk *=2)
+	for( It its =v.begin(),itm=its+blk,ite=itm+blk; its < last_end; its =ite,itm =its+blk, ite =itm+blk)
+	{
+	    T tmp [blk*2];
+	    It it1 = its;
+	    It it2 = its+blk;
+	    auto it = tmp;
+
+	    while(true)
+	    {
+		if( *it1 <= *it2 ) *it++ = *it1++;
+		if( it1 == itm ) break;
+		if( *it2 <= *it1 ) *it++ = *it2++;
+		if( it2 == ite ) { std::copy(it1,itm,it1+blk); break;}
+	    }
+	    std::copy(tmp,it,its);
+
+	}
+    v.resize(size);
+}
+
+template<typename T>
+void radix_sort(std::vector<T>& v)
+{
+    const int size = v.size();
+    for(int s=1023; s > 0; --(++s >>= 1))
+    {
+	if(s>=size) continue;
+	for(int start_i = 0; start_i < s; ++start_i)
+	    for(int i = start_i; i<size; i+=s)
+		for(int j=i,k=i-s; k>=0 && v[j] < v[k]; k-=s,j-=s)
+		    std::swap(v[j],v[k]);
+    }
+}
+
+#endif /*MISC_SORT_H*/
