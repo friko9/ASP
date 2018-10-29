@@ -14,7 +14,7 @@ namespace sorting
 	test_result run()
 	    {
 		counting_sort_stlmap(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_test_counting_sort_stlmap_state_sorted);
@@ -31,7 +31,7 @@ namespace sorting
 	test_result run()
 	    {
 		counting_sort_stlmap(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_test_counting_sort_stlmap_state_sorted);
@@ -48,7 +48,7 @@ namespace sorting
 	test_result run()
 	    {
 		counting_sort_stlmap(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_test_counting_sort_stlmap_state_sorted);

@@ -25,7 +25,7 @@ namespace sorting
     };
 
     template<typename T>
-    test_result is_sorted(std::vector<T>& v)
+    test_result test_sorted(std::vector<T>& v)
     {
 	test_result res = v.size()-1;
 	if(v.size() <= 1) return {1,1};

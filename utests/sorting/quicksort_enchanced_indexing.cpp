@@ -14,7 +14,7 @@ namespace sorting
 	test_result run()
 	    {
 		quicksort_enchanced_indexing(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_test_quicksort_enchanced_indexing_state_sorted);
@@ -31,7 +31,7 @@ namespace sorting
 	test_result run()
 	    {
 		quicksort_enchanced_indexing(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_test_quicksort_enchanced_indexing_state_sorted);
@@ -48,7 +48,7 @@ namespace sorting
 	test_result run()
 	    {
 		quicksort_enchanced_indexing(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_test_quicksort_enchanced_indexing_state_sorted);

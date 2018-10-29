@@ -17,7 +17,7 @@ namespace sorting
 	test_result run()
 	    {
 		insertion_sort_index_bitand(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_test_insertion_sort_index_bitand_state_sorted);
@@ -35,7 +35,7 @@ namespace sorting
 	test_result run()
 	    {
 		insertion_sort_index_bitand(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_test_insertion_sort_index_bitand_state_sorted);
@@ -53,7 +53,7 @@ namespace sorting
 	test_result run()
 	    {
 		insertion_sort_index_bitand(data);
-		return is_sorted(data);
+		return test_sorted(data);
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_test_insertion_sort_index_bitand_state_sorted);
