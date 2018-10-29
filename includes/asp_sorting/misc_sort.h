@@ -2,16 +2,20 @@
 #define MISC_SORT_H
 
 #include <cmath>
+#include <exception>
 
 template<typename T>
 void counting_sort_stlmap(std::vector<T>& v)
 {
-    std::map<T,int> m;
-    for( T e : v ) ++m[e];
-    auto itv=v.begin();
+    std::map<T,unsigned int> m;
+    std::vector<T> ret;
+    for( T e : v )
+	if(++m[e] == 0)
+	    throw std::runtime_error("counter overflow");
     for( auto p : m )
-	for(int c = p.second;c>0;--c,++itv)
-	    *itv=c;
+	for(int c = p.second;c>0;--c)
+	    ret.push_back(p.first);
+    v = std::move(ret);
 }
 
 template<typename T>
