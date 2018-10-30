@@ -10,7 +10,7 @@ void bubble_sort_simple(std::vector<T>& v)
     if(v.size() <= 1) return;
     const auto its = v.begin();
     for( auto ite = v.end()-1; ite != its; --ite)
-	for(auto it = v.begin(); it!=ite; ++it)
+	for(auto it = its; it!=ite; ++it)
 	    if( *(it+1) < *it )
 		std::iter_swap(it,it+1);
 }
@@ -21,7 +21,7 @@ void bubble_sort_lastswap(std::vector<T>& v)
     if(v.size() <= 1) return;
     const auto its = v.begin();
     for( auto ite = v.end()-1,last_swp=its; ite != its; ite=last_swp,last_swp=its)
-	for(auto it = v.begin(); it!=ite; ++it)
+	for(auto it = its; it!=ite; ++it)
 	    if( *(it+1) < *it )
 	    {
 		std::iter_swap(it,it+1);

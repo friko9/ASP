@@ -110,4 +110,21 @@ namespace sorting
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_double_noorder_test_insertion_sort_iter_bitand_state_sorted);
+
+    struct populated_multiple_same_elem_test_insertion_sort_iter_bitand_state_sorted
+	: public sorting_test_case
+    {
+	TEST_INSERTER;
+    	void configure()
+	    {
+		for( int i=0; i < 100; ++i)
+		    data.push_back(10);
+	    }
+	test_result run()
+	    {
+		insertion_sort_iter_bitand(data);
+		return test_sorted(data,std::less_equal<elem_t>());
+	    }
+    };
+    ENABLE_TEST(access_test_set(),populated_multiple_same_elem_test_insertion_sort_iter_bitand_state_sorted);
 }
