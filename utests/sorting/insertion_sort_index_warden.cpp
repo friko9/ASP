@@ -117,4 +117,52 @@ namespace sorting
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_multiple_same_elem_test_insertion_sort_index_warden_state_sorted);
+
+    struct populated_two_inorder_elem_test_insertion_sort_index_warden_state_sorted
+	: public sorting_test_case
+    {
+	TEST_INSERTER;
+    	void configure()
+	    {
+		data = {9,10};
+	    }
+	test_result run()
+	    {
+		insertion_sort_index_warden(data);
+		return test_sorted(data,std::less<elem_t>());
+	    }
+    };
+    ENABLE_TEST(access_test_set(),populated_two_inorder_elem_test_insertion_sort_index_warden_state_sorted);
+
+    struct populated_two_revorder_elem_test_insertion_sort_index_warden_state_sorted
+	: public sorting_test_case
+    {
+	TEST_INSERTER;
+    	void configure()
+	    {
+		data = {10,9};
+	    }
+	test_result run()
+	    {
+		insertion_sort_index_warden(data);
+		return test_sorted(data,std::less<elem_t>());
+	    }
+    };
+    ENABLE_TEST(access_test_set(),populated_two_revorder_elem_test_insertion_sort_index_warden_state_sorted);
+
+    struct populated_single_elem_test_insertion_sort_index_warden_state_sorted
+	: public sorting_test_case
+    {
+	TEST_INSERTER;
+    	void configure()
+	    {
+		data = {10};
+	    }
+	test_result run()
+	    {
+		insertion_sort_index_warden(data);
+		return {1,1};
+	    }
+    };
+    ENABLE_TEST(access_test_set(),populated_single_elem_test_insertion_sort_index_warden_state_sorted);
 }
