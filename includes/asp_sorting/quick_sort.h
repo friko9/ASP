@@ -51,7 +51,7 @@ void quicksort_enchanced_h(It its,It ite)
     using dist_t = typename It::difference_type;
     for(dist_t width = ite-its; width>50; width = ite-its )
     {
-	dist_t qwidth =width/4, hwidth =width/2;
+	dist_t qwidth =width/4;
 	It it1 =its,it2 =std::prev(ite);
 	dist_t pivot_offset =0;
 	uint_fast8_t corrections_left =3;
@@ -69,8 +69,8 @@ void quicksort_enchanced_h(It its,It ite)
 	    if( --corrections_left == 0 ) break;
 	    dist_t width_left = it1-its;
 	    dist_t width_right = ite-it1;
-	    if( qwidth < hwidth - width_left ) it2 = std::prev(ite);
-	    else if( qwidth < hwidth - width_right ) it1 =its;
+	    if( width_left < qwidth ) it2 = std::prev(ite);
+	    else if( width_right < qwidth ) it1 =its;
 	    else break;
 	}
 	if(it1 == its) ++it1;
@@ -108,7 +108,7 @@ void quicksort_enchanced_indexing_h(It its,It ite)
     using dist_t = typename It::difference_type;
     for(dist_t width = ite-its; width>50; width = ite-its )
     {
-	dist_t qwidth =width/4, hwidth =width/2;
+	dist_t qwidth =width/4;
 	It it1 =its,it2 =std::prev(ite);
 	dist_t pivot_offset =0;
 	uint_fast8_t corrections_left =3;
@@ -126,8 +126,8 @@ void quicksort_enchanced_indexing_h(It its,It ite)
 	    if( --corrections_left == 0) break;
 	    dist_t width_left = it1-its;
 	    dist_t width_right = ite-it1;
-	    if( qwidth < hwidth - width_left ) it2 =std::prev(ite);
-	    else if( qwidth < hwidth - width_right ) it1 =its;
+	    if( width_left < qwidth ) it2 =std::prev(ite);
+	    else if( width_right < qwidth) it1 =its;
 	    else break;
 	}
 	if(it1 == its) ++it1;
@@ -167,7 +167,7 @@ void quicksort_enchanced_looped(std::vector<T>& v)
     {
 	for(dist_t width = ite-its; width > 50; width = ite-its )
 	{
-	    dist_t qwidth =width/4, hwidth =width/2;
+	    dist_t qwidth =width/4;
 	    It it1 =its, it2 =std::prev(ite);
 	    dist_t pivot_offset =0;
 	    uint_fast8_t corrections_left =3;
@@ -185,8 +185,8 @@ void quicksort_enchanced_looped(std::vector<T>& v)
 		if( --corrections_left == 0 ) break;
 		dist_t width_left = it1-its;
 		dist_t width_right = ite-it1;
-		if( qwidth < hwidth - width_left ) it2 = std::prev(ite);
-		else if( qwidth < hwidth - width_right ) it1 =its;
+		if( width_left < qwidth ) it2 = std::prev(ite);
+		else if( width_right < qwidth ) it1 =its;
 		else break;
 	    }
 	    if(it1 == its) ++it1;
