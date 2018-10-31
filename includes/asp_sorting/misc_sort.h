@@ -1,6 +1,7 @@
 #ifndef MISC_SORT_H
 #define MISC_SORT_H
 
+#include "includes/utils/utils.h"
 #include <cmath>
 #include <exception>
 
@@ -22,7 +23,7 @@ template<typename T>
 void heapsort(std::vector<T>& v)
 {
     int size = v.size();
-    const int depth_minus1 = (int)std::log2(size);
+    const int depth_minus1 = floor_log2(size);
     const int last_layer = (1<<depth_minus1)-1;
     for(int i=last_layer-1; i >= 0; --i)
 	for(int j=i,new_j = j*2+1;new_j<size;j=new_j,new_j=j*2+1)
@@ -70,7 +71,7 @@ void mergesort(std::vector<T>& v)
     constexpr int block_size = 32;
     
     const int size = v.size();
-    const int new_size = std::max( 1<<(floor_log2_1(size)+1), block_size);
+    const int new_size = std::max( 1<<(floor_log2(size)+1), block_size);
     v.resize(new_size, std::numeric_limits<T>::max());
     const It last_end = v.begin()+size;
     for(It start =v.begin(); start < last_end; start +=block_size)

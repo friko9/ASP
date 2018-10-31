@@ -1,6 +1,7 @@
 #ifndef QUICK_SORT_H
 #define QUICK_SORT_H
 
+#include "includes/utils/utils.h"
 #include <cmath>
 #include <iterator>
 #include <cstdint>
@@ -160,7 +161,7 @@ void quicksort_enchanced_looped(std::vector<T>& v)
     It ite =v.end();
 
     std::vector<std::pair<It,It>> stack;
-    stack.reserve(std::log2(v.size())+1);
+    stack.reserve(floor_log2(v.size())+1);
 
     while(true)
     {
