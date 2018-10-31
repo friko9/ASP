@@ -21,7 +21,6 @@ void counting_sort_stlmap(std::vector<T>& v)
 template<typename T>
 void heapsort(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     int size = v.size();
     const int depth_minus1 = (int)std::log2(size);
     const int last_layer = (1<<depth_minus1)-1;

@@ -140,7 +140,6 @@ void quicksort_enchanced_indexing_h(It its,It ite)
 template<typename T>
 void quicksort_enchanced_indexing(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     std::vector<T> vres;
     std::vector<T*> vp(v.size());
     vres.reserve(v.size());

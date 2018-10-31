@@ -16,7 +16,6 @@ void stl_stable_sort(std::vector<T>& v)
 template<typename T>
 void stl_sort_indexing(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     std::vector<T*> vp(v.size());
     std::vector<T> vres(v.size());
     T* x = v.data();

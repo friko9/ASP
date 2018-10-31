@@ -7,7 +7,6 @@
 template<typename T>
 void selection_sort_stlmin(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     const auto ite = v.end();
     for( auto it = v.begin(); it != ite; ++it)
 	std::iter_swap(it,std::min_element(it,ite));
@@ -16,7 +15,6 @@ void selection_sort_stlmin(std::vector<T>& v)
 template<typename T>
 void selection_sort_iter(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     const auto ite = v.end();
     for( auto it = v.begin(); it != ite; ++it)
     {
@@ -32,7 +30,6 @@ template<typename T>
 void selection_sort_index(std::vector<T>& v)
 {
     int size = v.size();
-    if(size <= 1) return;
     for( int i=0; i<size; ++i)
     {
 	auto min_i = i;

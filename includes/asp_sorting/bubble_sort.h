@@ -7,7 +7,6 @@
 template<typename T>
 void bubble_sort_simple(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     const auto its = v.begin();
     for( auto ite = v.end()-1; ite != its; --ite)
 	for(auto it = its; it!=ite; ++it)
@@ -18,7 +17,6 @@ void bubble_sort_simple(std::vector<T>& v)
 template<typename T>
 void bubble_sort_lastswap(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     const auto its = v.begin();
     for( auto ite = v.end()-1,last_swp=its; ite != its; ite=last_swp,last_swp=its)
 	for(auto it = its; it!=ite; ++it)
@@ -32,7 +30,6 @@ void bubble_sort_lastswap(std::vector<T>& v)
 template<typename T>
 void shake_sort_lastswap(std::vector<T>& v)
 {
-    if(v.size() <= 1) return;
     auto its = v.begin();
     auto ite = v.end()-1;
     auto last_swp = its;
