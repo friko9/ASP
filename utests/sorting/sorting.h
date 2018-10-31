@@ -3,6 +3,7 @@
 
 #include "includes/asp_test/test_set.h"
 
+#include <exception>
 #include <limits>
 #include <functional>
 #include <vector>
@@ -17,34 +18,46 @@ namespace sorting
     	using elem_t = int8_t;
 	std::vector<elem_t> data;
     public:
-	static test_result test_sorted(std::vector<elem_t>& v,
-				       std::function<bool(const elem_t,const elem_t)> cmp_in_order = std::less<elem_t>())
+	static std::vector<elem_t> allvals_inorder()
 	    {
-		test_result res = v.size()-1;
-		if(v.size() <= 1) return {1,1};
-		for(auto it1=v.begin(),it2=it1+1;it2!=v.end();++it1,++it2)
-		    if( cmp_in_order(*it1,*it2) ) ++res;
-		return res;
-	    }
-    public:
-	void populate_data_allvals_inorder()
-	    {
+		std::vector<elem_t> ret;
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
-		    data.push_back(i);
-		data.push_back(std::numeric_limits<elem_t>::max());
+		    ret.push_back(i);
+		ret.push_back(std::numeric_limits<elem_t>::max());
+		return ret;
 	    }
-	void populate_data_doublevals_inorder()
+	static std::vector<elem_t> doublevals_inorder()
 	    {
+		std::vector<elem_t> ret;
 		for(elem_t i =std::numeric_limits<elem_t>::min(); i < std::numeric_limits<elem_t>::max(); ++i)
 		{
-		    data.push_back(i);
-		    data.push_back(i);
+		    ret.push_back(i);
+		    ret.push_back(i);
 		}
-		data.push_back(std::numeric_limits<elem_t>::max());
-		data.push_back(std::numeric_limits<elem_t>::max());
+		ret.push_back(std::numeric_limits<elem_t>::max());
+		ret.push_back(std::numeric_limits<elem_t>::max());
+		return ret;
 	    }
+	static std::vector<elem_t> multiple_same_val()
+	    {
+		std::vector<elem_t> ret;
+		for( int i=0; i < 100; ++i)
+		    ret.push_back(10);
+		return ret;
+	    }
+	static test_result compare_test( const std::vector<elem_t> v1,
+					 const std::vector<elem_t> v2,
+					 std::function<bool(elem_t,elem_t)> is_equal = std::equal_to<elem_t>())
+	    {
+		if(v1.size() != v2.size()) throw std::logic_error("result size mismatch");
 
+		test_result res;
+		for(auto it1=v1.begin(),it2=v2.begin();it1!=v1.end();++it1,++it2)
+		    res += is_equal(*it1,*it2);
+		return res;
+	    }
     };
+	
 }
 
 #endif /*SORTING_H*/

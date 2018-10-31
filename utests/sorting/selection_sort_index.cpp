@@ -10,11 +10,13 @@ namespace sorting
     {
 	TEST_INSERTER;
     	void configure()
-	    { populate_data_allvals_inorder(); }
+	    {
+		data = allvals_inorder();
+	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data);
+		return compare_test(data, allvals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_inorder_test_selection_sort_index_state_sorted);
@@ -25,13 +27,13 @@ namespace sorting
 	TEST_INSERTER;
     	void configure()
 	    {
-		populate_data_allvals_inorder();
+		data = allvals_inorder();
 		std::reverse( data.begin(), data.end() );
 	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data);
+		return compare_test(data, allvals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_revorder_test_selection_sort_index_state_sorted);
@@ -42,13 +44,13 @@ namespace sorting
 	TEST_INSERTER;
     	void configure()
 	    {
-		populate_data_allvals_inorder();
+		data = allvals_inorder();
 		std::random_shuffle( data.begin(), data.end() );
 	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data);
+		return compare_test(data, allvals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_noorder_test_selection_sort_index_state_sorted);
@@ -58,11 +60,13 @@ namespace sorting
     {
 	TEST_INSERTER;
     	void configure()
-	    { populate_data_doublevals_inorder(); }
+	    {
+		data = doublevals_inorder();
+	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less_equal<elem_t>());
+		return compare_test(data, doublevals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_double_inorder_test_selection_sort_index_state_sorted);
@@ -73,13 +77,13 @@ namespace sorting
 	TEST_INSERTER;
     	void configure()
 	    {
-		populate_data_doublevals_inorder();
+		data = doublevals_inorder();
 		std::reverse( data.begin(), data.end() );
 	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less_equal<elem_t>());
+		return compare_test(data, doublevals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_double_revorder_test_selection_sort_index_state_sorted);
@@ -90,13 +94,13 @@ namespace sorting
 	TEST_INSERTER;
     	void configure()
 	    {
-		populate_data_doublevals_inorder();
+		data = doublevals_inorder();
 		std::random_shuffle( data.begin(), data.end() );
 	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less_equal<elem_t>());
+		return compare_test(data, doublevals_inorder());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_double_noorder_test_selection_sort_index_state_sorted);
@@ -107,13 +111,12 @@ namespace sorting
 	TEST_INSERTER;
     	void configure()
 	    {
-		for( int i=0; i < 100; ++i)
-		    data.push_back(10);
+		data = multiple_same_val();
 	    }
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less_equal<elem_t>());
+		return compare_test(data, multiple_same_val());
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_multiple_same_elem_test_selection_sort_index_state_sorted);
@@ -129,7 +132,7 @@ namespace sorting
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less<elem_t>());
+		return compare_test(data, {9,10});
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_two_inorder_elem_test_selection_sort_index_state_sorted);
@@ -145,7 +148,7 @@ namespace sorting
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return test_sorted(data,std::less<elem_t>());
+		return compare_test(data, {9,10});
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_two_revorder_elem_test_selection_sort_index_state_sorted);
@@ -161,7 +164,7 @@ namespace sorting
 	test_result run()
 	    {
 		selection_sort_index(data);
-		return {1,1};
+		return compare_test(data, {10});
 	    }
     };
     ENABLE_TEST(access_test_set(),populated_single_elem_test_selection_sort_index_state_sorted);
