@@ -108,9 +108,10 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_sorting_test_OBJECTS = bubble_sort_lastswap.$(OBJEXT) \
-	bubble_sort_simple.$(OBJEXT) counting_sort_stlmap.$(OBJEXT) \
-	heapsort.$(OBJEXT) insertion_sort_index_bitand.$(OBJEXT) \
+am_sorting_test_OBJECTS = sorting.$(OBJEXT) \
+	bubble_sort_lastswap.$(OBJEXT) bubble_sort_simple.$(OBJEXT) \
+	counting_sort_stlmap.$(OBJEXT) heapsort.$(OBJEXT) \
+	insertion_sort_index_bitand.$(OBJEXT) \
 	insertion_sort_index.$(OBJEXT) \
 	insertion_sort_index_warden.$(OBJEXT) \
 	insertion_sort_iter_bitand_mem.$(OBJEXT) \
@@ -118,14 +119,14 @@ am_sorting_test_OBJECTS = bubble_sort_lastswap.$(OBJEXT) \
 	insertion_sort_iter.$(OBJEXT) \
 	insertion_sort_iter_warden.$(OBJEXT) \
 	insertion_sort_iter_warden_mem.$(OBJEXT) mergesort.$(OBJEXT) \
-	qsort_1.$(OBJEXT) qsort_2.$(OBJEXT) quicksort.$(OBJEXT) \
-	quicksort_enchanced.$(OBJEXT) \
+	stl_qsort_1.$(OBJEXT) stl_qsort_2.$(OBJEXT) \
+	quicksort.$(OBJEXT) quicksort_enchanced.$(OBJEXT) \
 	quicksort_enchanced_indexing.$(OBJEXT) \
 	quicksort_enchanced_looped.$(OBJEXT) radix_sort.$(OBJEXT) \
 	selection_sort_index.$(OBJEXT) selection_sort_iter.$(OBJEXT) \
 	selection_sort_stlmin.$(OBJEXT) shake_sort_lastswap.$(OBJEXT) \
-	sort_indexing.$(OBJEXT) sorting.$(OBJEXT) \
-	stable_sort.$(OBJEXT) stl_sort.$(OBJEXT)
+	stl_sort_indexing.$(OBJEXT) stl_stable_sort.$(OBJEXT) \
+	stl_sort.$(OBJEXT)
 sorting_test_OBJECTS = $(am_sorting_test_OBJECTS)
 sorting_test_DEPENDENCIES =
 AM_V_P = $(am__v_P_$(V))
@@ -154,17 +155,17 @@ am__depfiles_remade = ./$(DEPDIR)/bubble_sort_lastswap.Po \
 	./$(DEPDIR)/insertion_sort_iter_bitand_mem.Po \
 	./$(DEPDIR)/insertion_sort_iter_warden.Po \
 	./$(DEPDIR)/insertion_sort_iter_warden_mem.Po \
-	./$(DEPDIR)/mergesort.Po ./$(DEPDIR)/qsort_1.Po \
-	./$(DEPDIR)/qsort_2.Po ./$(DEPDIR)/quicksort.Po \
+	./$(DEPDIR)/mergesort.Po ./$(DEPDIR)/quicksort.Po \
 	./$(DEPDIR)/quicksort_enchanced.Po \
 	./$(DEPDIR)/quicksort_enchanced_indexing.Po \
 	./$(DEPDIR)/quicksort_enchanced_looped.Po \
 	./$(DEPDIR)/radix_sort.Po ./$(DEPDIR)/selection_sort_index.Po \
 	./$(DEPDIR)/selection_sort_iter.Po \
 	./$(DEPDIR)/selection_sort_stlmin.Po \
-	./$(DEPDIR)/shake_sort_lastswap.Po \
-	./$(DEPDIR)/sort_indexing.Po ./$(DEPDIR)/sorting.Po \
-	./$(DEPDIR)/stable_sort.Po ./$(DEPDIR)/stl_sort.Po
+	./$(DEPDIR)/shake_sort_lastswap.Po ./$(DEPDIR)/sorting.Po \
+	./$(DEPDIR)/stl_qsort_1.Po ./$(DEPDIR)/stl_qsort_2.Po \
+	./$(DEPDIR)/stl_sort.Po ./$(DEPDIR)/stl_sort_indexing.Po \
+	./$(DEPDIR)/stl_stable_sort.Po
 am__mv = mv -f
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
@@ -338,7 +339,7 @@ top = ../../
 ede_FILES = Project.ede Makefile.am
 SUBDIRS = 
 EXTRA_DIST = Project.ede
-sorting_test_SOURCES = bubble_sort_lastswap.cpp bubble_sort_simple.cpp counting_sort_stlmap.cpp heapsort.cpp insertion_sort_index_bitand.cpp insertion_sort_index.cpp insertion_sort_index_warden.cpp insertion_sort_iter_bitand_mem.cpp insertion_sort_iter_bitand.cpp insertion_sort_iter.cpp insertion_sort_iter_warden.cpp insertion_sort_iter_warden_mem.cpp mergesort.cpp qsort_1.cpp qsort_2.cpp quicksort.cpp quicksort_enchanced.cpp quicksort_enchanced_indexing.cpp quicksort_enchanced_looped.cpp radix_sort.cpp selection_sort_index.cpp selection_sort_iter.cpp selection_sort_stlmin.cpp shake_sort_lastswap.cpp sort_indexing.cpp sorting.cpp stable_sort.cpp stl_sort.cpp
+sorting_test_SOURCES = sorting.cpp bubble_sort_lastswap.cpp bubble_sort_simple.cpp counting_sort_stlmap.cpp heapsort.cpp insertion_sort_index_bitand.cpp insertion_sort_index.cpp insertion_sort_index_warden.cpp insertion_sort_iter_bitand_mem.cpp insertion_sort_iter_bitand.cpp insertion_sort_iter.cpp insertion_sort_iter_warden.cpp insertion_sort_iter_warden_mem.cpp mergesort.cpp stl_qsort_1.cpp stl_qsort_2.cpp quicksort.cpp quicksort_enchanced.cpp quicksort_enchanced_indexing.cpp quicksort_enchanced_looped.cpp radix_sort.cpp selection_sort_index.cpp selection_sort_iter.cpp selection_sort_stlmin.cpp shake_sort_lastswap.cpp stl_sort_indexing.cpp stl_stable_sort.cpp stl_sort.cpp
 include_MISC = sorting.h
 sorting_test_LDADD = 
 all: all-recursive
@@ -440,8 +441,6 @@ include ./$(DEPDIR)/insertion_sort_iter_bitand_mem.Po # am--include-marker
 include ./$(DEPDIR)/insertion_sort_iter_warden.Po # am--include-marker
 include ./$(DEPDIR)/insertion_sort_iter_warden_mem.Po # am--include-marker
 include ./$(DEPDIR)/mergesort.Po # am--include-marker
-include ./$(DEPDIR)/qsort_1.Po # am--include-marker
-include ./$(DEPDIR)/qsort_2.Po # am--include-marker
 include ./$(DEPDIR)/quicksort.Po # am--include-marker
 include ./$(DEPDIR)/quicksort_enchanced.Po # am--include-marker
 include ./$(DEPDIR)/quicksort_enchanced_indexing.Po # am--include-marker
@@ -451,10 +450,12 @@ include ./$(DEPDIR)/selection_sort_index.Po # am--include-marker
 include ./$(DEPDIR)/selection_sort_iter.Po # am--include-marker
 include ./$(DEPDIR)/selection_sort_stlmin.Po # am--include-marker
 include ./$(DEPDIR)/shake_sort_lastswap.Po # am--include-marker
-include ./$(DEPDIR)/sort_indexing.Po # am--include-marker
 include ./$(DEPDIR)/sorting.Po # am--include-marker
-include ./$(DEPDIR)/stable_sort.Po # am--include-marker
+include ./$(DEPDIR)/stl_qsort_1.Po # am--include-marker
+include ./$(DEPDIR)/stl_qsort_2.Po # am--include-marker
 include ./$(DEPDIR)/stl_sort.Po # am--include-marker
+include ./$(DEPDIR)/stl_sort_indexing.Po # am--include-marker
+include ./$(DEPDIR)/stl_stable_sort.Po # am--include-marker
 
 $(am__depfiles_remade):
 	@$(MKDIR_P) $(@D)
@@ -689,8 +690,6 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/insertion_sort_iter_warden.Po
 	-rm -f ./$(DEPDIR)/insertion_sort_iter_warden_mem.Po
 	-rm -f ./$(DEPDIR)/mergesort.Po
-	-rm -f ./$(DEPDIR)/qsort_1.Po
-	-rm -f ./$(DEPDIR)/qsort_2.Po
 	-rm -f ./$(DEPDIR)/quicksort.Po
 	-rm -f ./$(DEPDIR)/quicksort_enchanced.Po
 	-rm -f ./$(DEPDIR)/quicksort_enchanced_indexing.Po
@@ -700,10 +699,12 @@ distclean: distclean-recursive
 	-rm -f ./$(DEPDIR)/selection_sort_iter.Po
 	-rm -f ./$(DEPDIR)/selection_sort_stlmin.Po
 	-rm -f ./$(DEPDIR)/shake_sort_lastswap.Po
-	-rm -f ./$(DEPDIR)/sort_indexing.Po
 	-rm -f ./$(DEPDIR)/sorting.Po
-	-rm -f ./$(DEPDIR)/stable_sort.Po
+	-rm -f ./$(DEPDIR)/stl_qsort_1.Po
+	-rm -f ./$(DEPDIR)/stl_qsort_2.Po
 	-rm -f ./$(DEPDIR)/stl_sort.Po
+	-rm -f ./$(DEPDIR)/stl_sort_indexing.Po
+	-rm -f ./$(DEPDIR)/stl_stable_sort.Po
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-tags
@@ -762,8 +763,6 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/insertion_sort_iter_warden.Po
 	-rm -f ./$(DEPDIR)/insertion_sort_iter_warden_mem.Po
 	-rm -f ./$(DEPDIR)/mergesort.Po
-	-rm -f ./$(DEPDIR)/qsort_1.Po
-	-rm -f ./$(DEPDIR)/qsort_2.Po
 	-rm -f ./$(DEPDIR)/quicksort.Po
 	-rm -f ./$(DEPDIR)/quicksort_enchanced.Po
 	-rm -f ./$(DEPDIR)/quicksort_enchanced_indexing.Po
@@ -773,10 +772,12 @@ maintainer-clean: maintainer-clean-recursive
 	-rm -f ./$(DEPDIR)/selection_sort_iter.Po
 	-rm -f ./$(DEPDIR)/selection_sort_stlmin.Po
 	-rm -f ./$(DEPDIR)/shake_sort_lastswap.Po
-	-rm -f ./$(DEPDIR)/sort_indexing.Po
 	-rm -f ./$(DEPDIR)/sorting.Po
-	-rm -f ./$(DEPDIR)/stable_sort.Po
+	-rm -f ./$(DEPDIR)/stl_qsort_1.Po
+	-rm -f ./$(DEPDIR)/stl_qsort_2.Po
 	-rm -f ./$(DEPDIR)/stl_sort.Po
+	-rm -f ./$(DEPDIR)/stl_sort_indexing.Po
+	-rm -f ./$(DEPDIR)/stl_stable_sort.Po
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

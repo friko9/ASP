@@ -1,0 +1,12 @@
+;; Object ede-proj-project
+;; EDE Project Files are auto generated: Do Not Edit
+(ede-proj-project "ede-proj-project"
+  :file "Project.ede"
+  :name "treeset-perftests"
+  :targets
+  (list
+    (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
+      :name "include"
+      :path ""
+      :source '("common.h")))
+  :makefile-type Makefile\.am)

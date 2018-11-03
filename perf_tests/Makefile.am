@@ -1,16 +1,17 @@
 # Automatically Generated Makefile by EDE.
 # For use with: automake
-# Relative File Name: Makefile.am
+# Relative File Name: perf_tests/Makefile.am
 #
 # DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
 # EDE is the Emacs Development Environment.
 # http://cedet.sourceforge.net/ede.shtml
 #
 
-top="$(CURDIR)"/
+top=../
 ede_FILES=Project.ede Makefile.am
 
-SUBDIRS= utests/ perf_tests/ includes/
+SUBDIRS= utils_perftests/ treeset_perftests/ sorting_perftests/ lists_perftests/ hashmaps_perftests/
 EXTRA_DIST=Project.ede
+include_MISC=common.h
 
 # End of Makefile.am

@@ -296,7 +296,7 @@ top_builddir = .
 top_srcdir = .
 top = "$(CURDIR)"/
 ede_FILES = Project.ede Makefile.am
-SUBDIRS = utests/ includes/
+SUBDIRS = utests/ perf_tests/ includes/
 EXTRA_DIST = Project.ede
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
