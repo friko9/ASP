@@ -12,6 +12,6 @@ ede_FILES=Project.ede Makefile.am
 
 SUBDIRS=
 EXTRA_DIST=Project.ede
-include_MISC=common.h
+include_MISC=treset_common.h
 
 # End of Makefile.am

@@ -17,3 +17,6 @@ treeset_test
 list_test
 hashset_test
 sorting_test
+
+small_dataset_perftest
+large_dataset_olog2_perftest

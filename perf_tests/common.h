@@ -2,44 +2,60 @@
 #define COMMON_H
 
 #include <ostream>
+#include <limits>
 
-namespace testspace
+template<size_t size>
+union BigT
 {
-    
-    union T20B
-    {
-	friend bool operator <  ( const T20B& arg1, const T20B& arg2 );
-	friend bool operator == ( const T20B& arg1, const T20B& arg2 );
-	friend bool operator != ( const T20B& arg1, const T20B& arg2 );
-	friend bool operator <= ( const T20B& arg1, const T20B& arg2 );
-    public:
-	int val;
-	char fill[20];
-    public:
-	T20B() = default;
-	T20B(const T20B&) = default;
-	T20B(T20B&&) = default;
-	T20B(T20B&) = default;
-	T20B(int x):val(x){}
-	T20B& operator = (const T20B& arg) = default;
-	T20B& operator = (T20B& arg) = default;
-	T20B& operator = (T20B&& arg) = default;
-	T20B& operator ++ (){ ++val; return *this;} 
-    };
+    template<size_t S>
+    friend bool operator < ( const BigT<S>& arg1, const BigT<S>& arg2 );
+    template<size_t S>
+    friend bool operator == ( const BigT<S>& arg1, const BigT<S>& arg2 );
+    template<size_t S>
+    friend bool operator != ( const BigT<S>& arg1, const BigT<S>& arg2 );
+    template<size_t S>
+    friend bool operator <= ( const BigT<S>& arg1, const BigT<S>& arg2 );
+public:
+    int val;
+    char fill[size];
+public:
+    BigT() = default;
+    BigT(const BigT&) = default;
+    BigT(BigT&&) = default;
+    BigT(BigT&) = default;
+    BigT(int x):val(x){}
+    BigT& operator = (const BigT& arg) = default;
+    BigT& operator = (BigT& arg) = default;
+    BigT& operator = (BigT&& arg) = default;
+    BigT& operator ++ (){ ++val; return *this;} 
+};
 
-    bool operator <  (const T20B& arg1, const T20B& arg2){ return arg1.val <  arg2.val; }
-    bool operator == (const T20B& arg1, const T20B& arg2){ return arg1.val == arg2.val; }
-    bool operator != (const T20B& arg1, const T20B& arg2){ return arg1.val != arg2.val; }
-    bool operator <= (const T20B& arg1, const T20B& arg2){ return arg1.val <= arg2.val; }
-}
+template<size_t size>
+inline bool operator <  (const BigT<size>& arg1, const BigT<size>& arg2){ return arg1.val <  arg2.val; }
+template<size_t size>
+inline bool operator == (const BigT<size>& arg1, const BigT<size>& arg2){ return arg1.val == arg2.val; }
+template<size_t size>
+inline bool operator != (const BigT<size>& arg1, const BigT<size>& arg2){ return arg1.val != arg2.val; }
+template<size_t size>
+inline bool operator <= (const BigT<size>& arg1, const BigT<size>& arg2){ return arg1.val <= arg2.val; }
+
+using T20B = BigT<20>;
+using T128B = BigT<128>;
 
 namespace std
 {
-    ostream& operator << (ostream& o,testspace::T20B& arg){ o<<arg.val; return o;}
+    template<size_t size>
+    inline ostream& operator << (ostream& o,BigT<size>& arg){ o<<arg.val; return o;}
 
     template <>
-    class numeric_limits<testspace::T20B>
+    class numeric_limits<T20B>
+	: public numeric_limits<int>
+    {    };
+
+    template <>
+    class numeric_limits<T128B>
 	: public numeric_limits<int>
     {    };
 }
-#endif COMMON_H
+
+#endif /*COMMON_H*/

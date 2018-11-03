@@ -8,5 +8,15 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("common.h")))
+      :source '("common.h" "sorting_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "small_dataset_perftest"
+      :path ""
+      :source '("small_dataset.cpp" "sorting_common.cpp")
+      :auxsource '("sorting_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "large_dataset_olog2_perftest"
+      :path ""
+      :source '("large_dataset_olog2.cpp" "sorting_common.cpp")
+      :auxsource '("sorting_common.h")))
   :makefile-type Makefile\.am)

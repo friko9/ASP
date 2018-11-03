@@ -68,22 +68,26 @@ template<typename T>
 void mergesort(std::vector<T>& v)
 {
     using It = typename std::vector<T>::iterator;
-    constexpr int block_size = 32;
+    using It_offset_t = typename std::iterator_traits<It>::difference_type;
+    constexpr It_offset_t block_size = 32;
     
-    const int size = v.size();
-    const int new_size = std::max( 1<<(floor_log2(size)+1), block_size);
+    const It_offset_t size = v.size();
+    const It_offset_t nsize = (It_offset_t)1<<(It_offset_t)(floor_log2(size)+1);
+    const It_offset_t new_size = std::max( nsize , block_size);
     v.resize(new_size, std::numeric_limits<T>::max());
-    const It last_end = v.begin()+size;
+    const It last_end = v.begin() + size;
     for(It start =v.begin(); start < last_end; start +=block_size)
 	mergesort_sort_iter(start,start+block_size);
     
-    for( int blk = block_size; blk < size; blk *=2)
-	for( It its =v.begin(),itm=its+blk,ite=itm+blk; its < last_end; its =ite,itm =its+blk, ite =itm+blk)
+    for( It_offset_t blk = block_size; blk < size; blk *=2)
+	for( It its =v.begin(),itm,ite; ite < last_end; its =ite)
 	{
-	    T tmp [blk*2];
+	    std::vector<T> tmp(blk*2);
+	    itm = its+blk;
+	    ite = itm+blk;
 	    It it1 = its;
-	    It it2 = its+blk;
-	    auto it = tmp;
+	    It it2 = itm;
+	    auto it = tmp.begin();
 
 	    while(true)
 	    {
@@ -92,7 +96,7 @@ void mergesort(std::vector<T>& v)
 		if( *it2 <= *it1 ) *it++ = *it2++;
 		if( it2 == ite ) { std::copy(it1,itm,it1+blk); break;}
 	    }
-	    std::copy(tmp,it,its);
+	    std::copy(tmp.begin(),it,its);
 
 	}
     v.resize(size);

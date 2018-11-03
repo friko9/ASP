@@ -10,7 +10,7 @@
 top=../
 ede_FILES=Project.ede Makefile.am
 
-SUBDIRS= asp_sorting/ utils/ asp_tree_maps/ asp_test/ asp_lists/ asp_hashmaps/
+SUBDIRS= utils/ asp_tree_maps/ asp_test/ asp_sorting/ asp_lists/ asp_hashmaps/
 EXTRA_DIST=Project.ede
 
 # End of Makefile.am

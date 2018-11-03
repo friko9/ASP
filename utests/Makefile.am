@@ -10,7 +10,7 @@
 top=../
 ede_FILES=Project.ede Makefile.am
 
-SUBDIRS= sorting/ utils/ treesets/ lists/ hashsets/
+SUBDIRS= utils/ treesets/ sorting/ lists/ hashsets/
 EXTRA_DIST=Project.ede
 
 # End of Makefile.am

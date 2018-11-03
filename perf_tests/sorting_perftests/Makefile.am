@@ -12,6 +12,11 @@ ede_FILES=Project.ede Makefile.am
 
 SUBDIRS=
 EXTRA_DIST=Project.ede
-include_MISC=common.h
+bin_PROGRAMS=small_dataset_perftest large_dataset_olog2_perftest
+include_MISC=common.h sorting_common.h
+small_dataset_perftest_SOURCES=small_dataset.cpp sorting_common.cpp
+large_dataset_olog2_perftest_SOURCES=large_dataset_olog2.cpp sorting_common.cpp
+small_dataset_perftest_LDADD=
+large_dataset_olog2_perftest_LDADD=
 
 # End of Makefile.am
