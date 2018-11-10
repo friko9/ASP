@@ -8,5 +8,10 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("utils_common.h")))
+      :source '("utils_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "utils_perftest"
+      :path ""
+      :source '("utils_perftest.cpp" "utils_common.cpp")
+      :auxsource '("utils_common.h")))
   :makefile-type Makefile\.am)

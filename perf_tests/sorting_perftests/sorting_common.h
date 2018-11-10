@@ -11,7 +11,7 @@
 
 #define named_pair(X,T) std::make_pair(std::string(#X"<")+typeid(T).name()+std::string(">"),(X<T>))
 
-class BasicPerformanceTester
+class PerformanceTesterBase
 {
 public:
     using timer_t = double;
@@ -20,11 +20,11 @@ public:
     using result_row_t = result_t::value_type;
     using result_cell_t = timer_map_t::value_type;
 public:
-    BasicPerformanceTester(std::vector<size_t> dataset_sizes, size_t repetitions)
-	: int_dataset_sizes(dataset_sizes),int_repetitions(repetitions){}
+    PerformanceTesterBase(std::vector<size_t> dataset_sizes, size_t repetitions)
+	: priv_dataset_sizes(dataset_sizes),priv_repetitions(repetitions){}
 protected:
-    std::vector<size_t> int_dataset_sizes;
-    size_t int_repetitions;
+    std::vector<size_t> priv_dataset_sizes;
+    size_t priv_repetitions;
 protected:
     static timer_map_t& get_timers( result_row_t& arg){ return arg.second; }
     static timer_t& get_timer( result_cell_t& arg){ return arg.second; }
@@ -34,7 +34,7 @@ private:
 };
 
 template<typename elem_t>
-class PerformanceTester : public BasicPerformanceTester
+class PerformanceTester : public PerformanceTesterBase
 {
 public:
     using subject_t = std::function<void(std::vector<elem_t>&)>;
@@ -44,12 +44,12 @@ public:
 		      std::map<std::string,generator_t> generators,
 		      std::vector<size_t> dataset_sizes,
 		      size_t repetitions ) :
-	int_subjects(subjects),int_generators(generators),
-	BasicPerformanceTester(dataset_sizes,repetitions){}
+	priv_subjects(subjects),priv_generators(generators),
+	PerformanceTesterBase(dataset_sizes,repetitions){}
     result_t run();
 private:
-    std::map<std::string,subject_t> int_subjects;
-    std::map<std::string,generator_t> int_generators;
+    std::map<std::string,subject_t> priv_subjects;
+    std::map<std::string,generator_t> priv_generators;
 private:
     template< typename T2>
     static std::string get_name(std::pair<const std::string,T2> arg){ return arg.first; }
@@ -65,13 +65,13 @@ typename PerformanceTester<elem_t>::result_t
 PerformanceTester<elem_t>::run()
 {
     result_t result_table;
-    for( size_t i = 0; i < int_repetitions; ++i )
-	for( auto generator : int_generators)
-	    for( auto data_size : int_dataset_sizes )
+    for( size_t i = 0; i < priv_repetitions; ++i )
+	for( auto generator : priv_generators)
+	    for( auto data_size : priv_dataset_sizes )
 	    {
 		std::vector<elem_t> prepared_data(data_size);
 		std::generate(prepared_data.begin(), prepared_data.end(), get_generator(generator));
-		for( auto subject : int_subjects)
+		for( auto subject : priv_subjects)
 		{
 		    std::vector<elem_t> data {prepared_data};
 		    data.reserve(data.size()+1);
@@ -87,7 +87,7 @@ PerformanceTester<elem_t>::run()
 	    }
     for( auto& result_row : result_table )
 	for( auto& timer : get_timers(result_row) )
-	    get_timer(timer) /= (timer_t)int_repetitions;
+	    get_timer(timer) /= (timer_t)priv_repetitions;
     return result_table;
 }
 
@@ -95,6 +95,6 @@ std::map<std::string,std::function<int()>> make_generators_int();
 std::map<std::string,std::function<long double()>> make_generators_ldouble(size_t repetitions);
 std::map<std::string,std::function<T20B()>> make_generators_T20B();
 std::map<std::string,std::function<T128B()>> make_generators_T128B();
-void print_test_summary(std::ostream& out,std::vector<BasicPerformanceTester::result_t> results);
+void print_test_summary(std::ostream& out,std::vector<PerformanceTesterBase::result_t> results);
 
 #endif /*SORTING_COMMON_H*/

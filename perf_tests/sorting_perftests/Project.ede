@@ -8,7 +8,7 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("common.h" "sorting_common.h"))
+      :source '("sorting_common.h"))
     (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
       :name "small_dataset_perftest"
       :path ""

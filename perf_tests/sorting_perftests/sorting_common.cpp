@@ -63,12 +63,12 @@ std::map<std::string,std::function<T128B()>> make_generators_T128B()
     };
 }
 
-void print_test_summary(std::ostream& out,std::vector<BasicPerformanceTester::result_t> results)
+void print_test_summary(std::ostream& out,std::vector<PerformanceTesterBase::result_t> results)
 {
-    using row_t = BasicPerformanceTester::result_row_t;
+    using row_t = PerformanceTesterBase::result_row_t;
     auto get_name = [](row_t arg){return arg.first;};
     auto get_times = [](row_t arg){return arg.second;};
-    using cell_t = BasicPerformanceTester::result_cell_t;
+    using cell_t = PerformanceTesterBase::result_cell_t;
     auto get_datasize = [](cell_t arg){return arg.first;};
     auto get_runtime = [](cell_t arg){return arg.second;};
 

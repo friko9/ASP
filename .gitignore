@@ -20,3 +20,4 @@ sorting_test
 
 small_dataset_perftest
 large_dataset_olog2_perftest
+utils_perftest

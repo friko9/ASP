@@ -12,6 +12,9 @@ ede_FILES=Project.ede Makefile.am
 
 SUBDIRS=
 EXTRA_DIST=Project.ede
+bin_PROGRAMS=utils_perftest
 include_MISC=utils_common.h
+utils_perftest_SOURCES=utils_perftest.cpp utils_common.cpp
+utils_perftest_LDADD=
 
 # End of Makefile.am

@@ -37,7 +37,7 @@ uint32_t floor_log2_3(uint32_t x)
 
 inline uint32_t floor_log2(uint32_t x)
 {
-    return floor_log2_1(x);
+    return floor_log2_3(x);
 }
 
 template<typename T>
