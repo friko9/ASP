@@ -10,12 +10,16 @@
 template <typename T>
 class list_array_sorted_warden
 {
-    friend TestPlug<list_array_sorted_warden<T>>;
+public:
+    using elem_t = T;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+private:
     static constexpr index_t head = 1, tail = 0;
-    static constexpr T min = std::numeric_limits<T>::min();
-    static constexpr T max = std::numeric_limits<T>::max();
+    static const T min;
+    static const T max;
+private:
+    friend TestPlug<list_array_sorted_warden<T>>;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
 private:
     std::vector<T> elems;
     std::vector<index_t> next,prev;
@@ -105,5 +109,10 @@ public:
 	    }
 	}	    
 };
+
+template <typename T>
+const T list_array_sorted_warden<T>::min = std::numeric_limits<T>::min();
+template <typename T>
+const T list_array_sorted_warden<T>::max = std::numeric_limits<T>::max();
 
 #endif /*LIST_ARRAY_SORTED_WARDEN_H*/

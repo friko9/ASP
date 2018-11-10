@@ -8,9 +8,14 @@
 template <typename T>
 class list_stlforward
 {
-    friend TestPlug<list_stlforward<T>>;
+public:
+    using elem_t = T;
     using It = typename std::forward_list<T>::iterator;
+private:
+    friend TestPlug<list_stlforward<T>>;
+private:
     std::forward_list<T> l;
+private:
     It find(T x)
 	{
 	    const auto ite = l.end();

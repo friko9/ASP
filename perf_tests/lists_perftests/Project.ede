@@ -8,5 +8,18 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("lists_common.h")))
+      :source '("lists_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "insert_perftest"
+      :path ""
+      :source '("insert_perftest.cpp" "lists_common.cpp")
+      :auxsource '("lists_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "contains_perftest"
+      :path ""
+      :source '("contains_perftest.cpp" "lists_common.cpp"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "remove_perftest"
+      :path ""
+      :source '("remove_perftest.cpp" "lists_common.cpp")))
   :makefile-type Makefile\.am)

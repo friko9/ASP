@@ -21,3 +21,7 @@ sorting_test
 small_dataset_perftest
 large_dataset_olog2_perftest
 utils_perftest
+
+insert_perftest
+contains_perftest
+remove_perftest

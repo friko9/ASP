@@ -9,11 +9,14 @@
 template <typename T>
 class list_array_selforganizing
 {
-    friend TestPlug<list_array_selforganizing<T>>;
+public:
+    using elem_t = T;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
     static constexpr index_t null =
 	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
+private:
+    friend TestPlug<list_array_selforganizing<T>>;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
 private:
     std::vector<T> elems;
     std::vector<index_t> next,prev;

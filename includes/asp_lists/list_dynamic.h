@@ -6,12 +6,17 @@
 template <typename T>
 class list_dynamic
 {
+public:
+    using elem_t = T;
     struct node_t{
 	T val;
 	node_t* next;
     };
+private:
     friend TestPlug<list_dynamic<T>>;
+private:
     node_t head {0,nullptr};
+private:
     std::pair<node_t*,node_t*> find( T x )
 	{
 	    node_t* prev = &head;
@@ -40,6 +45,18 @@ public:
 		delete node;
 	    }
 	}
+    ~list_dynamic()
+	{
+	    node_t* prev = &head;
+	    node_t* node = head.next;
+	    while(node != nullptr)
+	    {
+		std::tie(prev,node) = { node, node->next };
+		delete prev;
+	    }
+	    delete node;
+	}
+    
 };
 
 #endif /*LIST_DYNAMIC_H*/

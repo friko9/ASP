@@ -12,6 +12,14 @@ ede_FILES=Project.ede Makefile.am
 
 SUBDIRS=
 EXTRA_DIST=Project.ede
+bin_PROGRAMS=insert_perftest contains_perftest\
+   remove_perftest
 include_MISC=lists_common.h
+insert_perftest_SOURCES=insert_perftest.cpp lists_common.cpp
+contains_perftest_SOURCES=contains_perftest.cpp lists_common.cpp
+remove_perftest_SOURCES=remove_perftest.cpp lists_common.cpp
+insert_perftest_LDADD=
+contains_perftest_LDADD=
+remove_perftest_LDADD=
 
 # End of Makefile.am

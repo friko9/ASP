@@ -11,19 +11,22 @@
 template <typename T>
 class list_array
 {
-    friend TestPlug<list_array<T>>;
+public:
+    using elem_t = T;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
     static constexpr index_t null =
 	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
 private:
-    std::vector<T> elems;
+    friend TestPlug<list_array<T>>;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+private:
+    std::vector<elem_t> elems;
     std::vector<index_t> next,prev;
     index_t head = null, tail = null;
 private:
     index_t size()
 	{ return elems.size(); }
-    index_t find(T x)
+    index_t find(elem_t x)
 	{
 	    index_t node = head;
 	    while( node != null && elems[node] != x )
@@ -51,7 +54,7 @@ private:
 	    node_next_prev = prev[node];
 	}
 public:
-    void insert(T x)
+    void insert(elem_t x)
 	{
 	    next.push_back(head);
 	    if(head != null)
@@ -62,11 +65,11 @@ public:
 	    prev.push_back(index_t(null));
 	    elems.push_back(x);
 	}
-    bool contains(T x)
+    bool contains(elem_t x)
 	{
 	    return find(x) != null;
 	}
-    void remove(T x)
+    void remove(elem_t x)
 	{
 	    int node = find(x);
 	    if(node != null)

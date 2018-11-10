@@ -8,9 +8,14 @@
 template <typename T>
 class list_stl
 {
-    friend TestPlug<list_stl<T>>;
+public:
+    using elem_t = T;
     using It = typename std::list<T>::iterator;
+private:
+    friend TestPlug<list_stl<T>>;
+private:
     std::list<T> l;
+private:
     It find(T x)
 	{
 	    const auto ite = l.end();
