@@ -20,7 +20,7 @@ std::map<std::string,std::function<int()>> make_generators_int()
 std::map<std::string,std::function<long double()>> make_generators_ldouble(size_t repetitions)
 {
     using generator_t = std::function<long double()>;
-    auto random = std::bind(std::uniform_real_distribution<long double>(),std::default_random_engine());
+    auto random = std::bind(std::uniform_real_distribution<long double>(-1e6,1e6),std::default_random_engine());
     auto sorted = [d=0.0l]()mutable{return d+=0.01l;};
     auto sorted90 = [i=4,random,repetitions]()mutable{if(++i%10)return (long double)0.01l*i;else return random()*0.01l*repetitions;};
     auto sorted99 = [i=94,random,repetitions]()mutable{if(++i%100)return (long double)0.01l*i;else return random()*0.01l*repetitions;};

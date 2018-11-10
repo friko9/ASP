@@ -30,7 +30,7 @@ std::map<std::string,std::function<double()>> make_generators_double()
 {
     using generator_t = std::function<double()>;
     auto vals_lt_100 = [d=0.0]()mutable{return d = std::fmod(d+1.01,100.0);};
-    auto vals_gt_1mld = [d=1e9]()mutable{return d+=1.01;};
+    auto vals_gt_1mld = [d=1e9]()mutable{return d+=10.1;};
     return std::map<std::string,generator_t>{
 	{"vals_lt_100  ", vals_lt_100},
 	{"vals_gt_1mld", vals_gt_1mld}
