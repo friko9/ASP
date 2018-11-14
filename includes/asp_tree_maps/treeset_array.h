@@ -14,11 +14,31 @@ class treeset_array
     using index_t = typename std::vector<size_t>::size_type;
     using vindex_t = typename std::vector<T>::size_type;
     enum class side_t { left, right };
-private:
-    static constexpr size_t null = std::numeric_limits<size_t>::max();
-    static constexpr size_t root = 1;
-    std::vector<std::pair<T,size_t>> values;
-    std::vector<size_t> indexes;
+public:
+    using elem_t = T;
+public:
+    treeset_array(): indexes(16,size_t(null))
+	{}
+    void insert(T x)
+	{
+	    size_t node = find(x);
+	    if(node >= size())
+		resize( 4*size() );
+	    if( !node_exist(node) )
+		insert_value( node, x );
+	}
+    bool contains(T x)
+	{ return node_exist( find(x) ); }
+    void remove(T x)
+	{
+	    index_t node = find(x);
+	    if( node_exist(node) )
+	    {
+		side_t side = ((node%2)^(floor_log2(node)%2) == 1)? side_t::right : side_t::left;
+		remove_value( indexes[node] );
+		remove_node(node, side);
+	    }
+	}
 private:
     static side_t flip( side_t side)
 	{ return (side == side_t::left)? side_t::right : side_t::left; }
@@ -129,29 +149,11 @@ private:
 	    indexes[node] = values.size();
 	    values.push_back(std::make_pair(value,node));
 	}
- public:
-    treeset_array(): indexes(16,size_t(null))
-	{}
-    void insert(T x)
-	{
-	    size_t node = find(x);
-	    if(node >= size())
-		resize( 4*size() );
-	    if( !node_exist(node) )
-		insert_value( node, x );
-	}
-    bool contains(T x)
-	{ return node_exist( find(x) ); }
-    void remove(T x)
-	{
-	    index_t node = find(x);
-	    if( node_exist(node) )
-	    {
-		side_t side = ((node%2)^(floor_log2(node)%2) == 1)? side_t::right : side_t::left;
-		remove_value( indexes[node] );
-		remove_node(node, side);
-	    }
-	}
+private:
+    static constexpr size_t null = std::numeric_limits<size_t>::max();
+    static constexpr size_t root = 1;
+    std::vector<std::pair<T,size_t>> values;
+    std::vector<size_t> indexes;
 };
 
 #endif /*TREESET_ARRAY_H*/

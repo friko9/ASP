@@ -10,7 +10,8 @@ class treeset_stl
 {
     friend TestPlug<treeset_stl<T>>;
     using It = typename std::set<T>::iterator;
-    std::set<T> s;
+public:
+    using elem_t = T;
 public:
     void insert(T x)
 	{
@@ -26,6 +27,8 @@ public:
 	    if(it == s.end()) return;
 	    s.erase(it);
 	}
+private:    
+    std::set<T> s;
 };
 
 #endif /*TREESET_STL_H*/

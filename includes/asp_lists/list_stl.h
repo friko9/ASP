@@ -8,22 +8,10 @@
 template <typename T>
 class list_stl
 {
+    friend TestPlug<list_stl<T>>;
+    using It = typename std::list<T>::iterator;
 public:
     using elem_t = T;
-    using It = typename std::list<T>::iterator;
-private:
-    friend TestPlug<list_stl<T>>;
-private:
-    std::list<T> l;
-private:
-    It find(T x)
-	{
-	    const auto ite = l.end();
-	    auto it = l.begin();
-	    while( it != ite && *it != x )
-		++it;
-	    return it;
-	}
 public:
     void insert(T x)
 	{
@@ -39,6 +27,17 @@ public:
 	    if(it!=l.end())
 		l.erase(it);
 	}
+private:
+    It find(T x)
+	{
+	    const auto ite = l.end();
+	    auto it = l.begin();
+	    while( it != ite && *it != x )
+		++it;
+	    return it;
+	}
+private:
+    std::list<T> l;
 };
 
 #endif /*LIST_STL_H*/

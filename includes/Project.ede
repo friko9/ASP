@@ -2,6 +2,6 @@
 ;; EDE Project Files are auto generated: Do Not Edit
 (ede-proj-project "ede-proj-project"
   :file "Project.ede"
-  :name "asp_includes"
+  :name "asp-includes"
   :targets nil
   :makefile-type Makefile\.am)

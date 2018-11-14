@@ -10,16 +10,53 @@ template <typename T>
 class treeset_dynamic_balancing
 {
     friend TestPlug<treeset_dynamic_balancing<T>>;
-    struct node_t
-    {
-	using height_t = int_fast8_t;
-	node_t *left,*right,*up;
-	T val;
-	height_t height;
-    };
+    struct node_t;
     using height_t = typename node_t::height_t;
-private:
-    node_t* root = nullptr;
+public:
+    using elem_t = T;
+public:
+    void insert(T x)
+	{
+	    node_t *node,*parent;
+	    std::tie(node,parent)= find(x,root);
+	    if( node == nullptr)
+	    {
+		node_t* node_t::*side = (parent != nullptr && x < parent->val)? &node_t::left : &node_t::right;
+		node_t* new_node = new node_t{nullptr,nullptr,nullptr,x,0};
+		append_node(new_node, parent, side);
+		rebalance(new_node);
+	    }
+	}
+    bool contains(T x)
+	{
+	    return find(x,root).first != nullptr;
+	}
+    void remove(T x)
+	{
+	    node_t *node,*rebalance_parent;
+	    node = find(x,root).first;
+	    if( node != nullptr)
+	    {
+		if( node->left == nullptr )
+		    std::tie(node,rebalance_parent) = exclude_single_node(node,&node_t::right);
+		else if( node->right == nullptr )
+		    std::tie(node,rebalance_parent) = exclude_single_node(node,&node_t::left);
+		else
+		{
+		    int hl = (node->left == nullptr)? 0 : node->left->height;
+		    int hr = (node->right == nullptr)? 0 : node->right->height;
+		    auto side = ( hl < hr )? &node_t::left : &node_t::right;
+		    std::tie(node,rebalance_parent) = exclude_double_node(node,side);
+		}
+		delete node;
+		rebalance(rebalance_parent);
+	    }
+	}
+    ~treeset_dynamic_balancing()
+	{
+	    if( root != nullptr)
+		del_subtree(root);
+	}
 private:
     static std::pair<node_t*,node_t*> find(T x, node_t* node)
 	{
@@ -45,7 +82,6 @@ private:
 		del_subtree(node->right);
 	    delete node;
 	}
-private:
     void append_node(node_t* node,node_t* new_parent, node_t* node_t::*side)
 	{
 	    auto other_side = (side == &node_t::left)? &node_t::right : &node_t::left;
@@ -138,49 +174,15 @@ private:
 		}
 	    }
 	}
-public:
-    void insert(T x)
-	{
-	    node_t *node,*parent;
-	    std::tie(node,parent)= find(x,root);
-	    if( node == nullptr)
-	    {
-		node_t* node_t::*side = (parent != nullptr && x < parent->val)? &node_t::left : &node_t::right;
-		node_t* new_node = new node_t{nullptr,nullptr,nullptr,x,0};
-		append_node(new_node, parent, side);
-		rebalance(new_node);
-	    }
-	}
-    bool contains(T x)
-	{
-	    return find(x,root).first != nullptr;
-	}
-    void remove(T x)
-	{
-	    node_t *node,*rebalance_parent;
-	    node = find(x,root).first;
-	    if( node != nullptr)
-	    {
-		if( node->left == nullptr )
-		    std::tie(node,rebalance_parent) = exclude_single_node(node,&node_t::right);
-		else if( node->right == nullptr )
-		    std::tie(node,rebalance_parent) = exclude_single_node(node,&node_t::left);
-		else
-		{
-		    int hl = (node->left == nullptr)? 0 : node->left->height;
-		    int hr = (node->right == nullptr)? 0 : node->right->height;
-		    auto side = ( hl < hr )? &node_t::left : &node_t::right;
-		    std::tie(node,rebalance_parent) = exclude_double_node(node,side);
-		}
-		delete node;
-		rebalance(rebalance_parent);
-	    }
-	}
-    ~treeset_dynamic_balancing()
-	{
-	    if( root != nullptr)
-		del_subtree(root);
-	}
+private:
+    struct node_t
+    {
+	using height_t = int_fast8_t;
+	node_t *left,*right,*up;
+	T val;
+	height_t height;
+    };
+    node_t* root = nullptr;
 };
 
 #endif /*TREESET_DYNAMIC_BALANCING_H*/

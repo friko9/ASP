@@ -11,18 +11,40 @@
 template <typename T>
 class list_array
 {
+    friend TestPlug<list_array<T>>;
+    using index_t = typename std::vector<T>::size_type;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
 public:
     using elem_t = T;
-    using index_t = typename std::vector<T>::size_type;
-    static constexpr index_t null =
-	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
-private:
-    friend TestPlug<list_array<T>>;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
-private:
-    std::vector<elem_t> elems;
-    std::vector<index_t> next,prev;
-    index_t head = null, tail = null;
+public:
+    void insert(elem_t x)
+	{
+	    next.push_back(head);
+	    if(head != null)
+		prev[head] = elems.size();
+	    else
+		tail = 0;
+	    head = size();
+	    prev.push_back(index_t(null));
+	    elems.push_back(x);
+	}
+    bool contains(elem_t x)
+	{
+	    return find(x) != null;
+	}
+    void remove(elem_t x)
+	{
+	    int node = find(x);
+	    if(node != null)
+	    {
+		int last = size()-1;
+		exclude_elem(node);
+		move_elem(last,node);
+		elems.pop_back();
+		prev.pop_back();
+		next.pop_back();
+	    }
+	}
 private:
     index_t size()
 	{ return elems.size(); }
@@ -53,35 +75,12 @@ private:
 	    node_prev_next = next[node];
 	    node_next_prev = prev[node];
 	}
-public:
-    void insert(elem_t x)
-	{
-	    next.push_back(head);
-	    if(head != null)
-		prev[head] = elems.size();
-	    else
-		tail = 0;
-	    head = size();
-	    prev.push_back(index_t(null));
-	    elems.push_back(x);
-	}
-    bool contains(elem_t x)
-	{
-	    return find(x) != null;
-	}
-    void remove(elem_t x)
-	{
-	    int node = find(x);
-	    if(node != null)
-	    {
-		int last = size()-1;
-		exclude_elem(node);
-		move_elem(last,node);
-		elems.pop_back();
-		prev.pop_back();
-		next.pop_back();
-	    }
-	}	    
+private:
+    static constexpr index_t null =
+	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
+    std::vector<elem_t> elems;
+    std::vector<index_t> next,prev;
+    index_t head = null, tail = null;
 };
 
 #endif /*LIST_ARRAY_H*/

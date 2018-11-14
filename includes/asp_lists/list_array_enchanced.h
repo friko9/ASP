@@ -9,16 +9,11 @@
 template <typename T>
 class list_array_enchanced
 {
+    friend TestPlug<list_array_enchanced<T>>;
+    using index_t = typename std::vector<T>::size_type;
+    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
 public:
     using elem_t = T;
-    using index_t = typename std::vector<T>::size_type;
-    static constexpr index_t head = 1, tail = 0;
-private:
-    friend TestPlug<list_array_enchanced<T>>;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
-private:
-    std::vector<T> elems;
-    std::vector<index_t> next,prev;
 private:
     index_t size()
 	{ return elems.size(); }
@@ -95,7 +90,11 @@ public:
 		prev.pop_back();
 		next.pop_back();
 	    }
-	}	    
+	}
+private:
+    std::vector<T> elems;
+    std::vector<index_t> next,prev;
+    static constexpr index_t head = 1, tail = 0;
 };
 
 #endif /*LIST_ARRAT_ENCHANCED_H*/

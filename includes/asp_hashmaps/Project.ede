@@ -1,8 +1,8 @@
-;; Object asp_hashmaps
+;; Object ede-proj-project
 ;; EDE Project Files are auto generated: Do Not Edit
-(ede-proj-project "asp_hashmaps"
+(ede-proj-project "ede-proj-project"
   :file "Project.ede"
-  :name "asp_hashmaps"
+  :name "asp-hashmaps"
   :targets
   (list
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"

@@ -14,12 +14,34 @@ class treeset_array_balance
     using index_t = typename std::vector<size_t>::size_type;
     using vindex_t = typename std::vector<T>::size_type;
     enum class side_t { left, right };
-private:
-    static constexpr index_t null = std::numeric_limits<size_t>::max();
-    static constexpr index_t root = 1;
-    std::vector<std::pair<T,size_t>> values;
-    std::vector<size_t> indexes;
-    std::vector<height_t> heights;
+public:
+    using elem_t = T;
+public:
+    treeset_array_balance(): indexes(16,index_t(null)), heights(16,height_t(0))
+	{}
+    void insert(T x)
+	{
+	    size_t node = find(x);
+	    if(node >= size())
+		resize( 4*size() );
+	    if( !node_exist(node) )
+		insert_value( node, x );
+	}
+    bool contains(T x)
+	{ return node_exist( find(x) ); }
+    void remove(T x)
+	{
+	    index_t node = find(x);
+	    if( node_exist(node) )
+	    {
+		height_t hl = node_height(left(node));
+		height_t hr = node_height(right(node));
+		side_t side = (hl < hr)? side_t::right : side_t::left;
+		remove_value( indexes[node] );
+		node = remove_node(node, side);
+		rebalance(node);
+	    }
+	}
 private:
     static side_t flip( side_t side)
 	{ return (side == side_t::left)? side_t::right : side_t::left; }
@@ -31,7 +53,6 @@ private:
 	{ return 2*node + 1; }
     static index_t up(index_t node)
 	{ return node/2; }
-private:
     index_t size()
 	{ return indexes.size(); }
     T& node_value( index_t node )
@@ -252,32 +273,12 @@ private:
 	    if( node_inrange(up(node)) )
 		rebalance(up(node));
 	}
- public:
-    treeset_array_balance(): indexes(16,index_t(null)), heights(16,height_t(0))
-	{}
-    void insert(T x)
-	{
-	    size_t node = find(x);
-	    if(node >= size())
-		resize( 4*size() );
-	    if( !node_exist(node) )
-		insert_value( node, x );
-	}
-    bool contains(T x)
-	{ return node_exist( find(x) ); }
-    void remove(T x)
-	{
-	    index_t node = find(x);
-	    if( node_exist(node) )
-	    {
-		height_t hl = node_height(left(node));
-		height_t hr = node_height(right(node));
-		side_t side = (hl < hr)? side_t::right : side_t::left;
-		remove_value( indexes[node] );
-		node = remove_node(node, side);
-		rebalance(node);
-	    }
-	}
+private:
+    static constexpr index_t null = std::numeric_limits<size_t>::max();
+    static constexpr index_t root = 1;
+    std::vector<std::pair<T,size_t>> values;
+    std::vector<size_t> indexes;
+    std::vector<height_t> heights;
 };
 
 #endif /*TREESET_ARRAY_BALANCE_H*/

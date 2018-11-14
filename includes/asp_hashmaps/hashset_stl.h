@@ -10,21 +10,24 @@ class hashset_stl
 {
     friend TestPlug<hashset_stl<T>>;
     using It = typename std::unordered_set<T>::iterator;
-    std::unordered_set<T> s;
 public:
-    void insert(T x)
+    using elem_t = T;
+public:
+    void insert(elem_t x)
 	{
 	    s.insert(x);
 	}
-    bool contains(T x)
+    bool contains(elem_t x)
 	{
 	    return s.find(x) != s.end();
 	}
-    void remove(T x)
+    void remove(elem_t x)
 	{
 	    auto it = s.find(x);
 	    if(it == s.end()) return;
 	    s.erase(it);
 	}
+private:
+    std::unordered_set<elem_t> s;
 };
 #endif /*HASHSET_STL_H*/

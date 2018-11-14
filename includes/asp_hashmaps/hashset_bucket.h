@@ -14,31 +14,8 @@ class hashset_bucket
     using bucket_t = std::forward_list<T>;
     using index_t = typename std::vector<bucket_t>::size_type;
     using hash_t = typename std::make_unsigned<index_t>::type;
-    std::vector<bucket_t> v_map;
-    float max_load;
-    hash_t hash_max;
-    index_t counter;
-    index_t find(T x) noexcept
-	{
-	    HashF h;
-	    hash_t hash = h(x);
-	    return hash % hash_max;
-	}
-    void resize(index_t new_size)
-	{
-	    assert(new_size > 0);
-	    std::vector<bucket_t> new_map(new_size);
-	    swap(new_map,v_map);
-	    hash_max = primes[floor_log2(v_map.size())];
-	    counter = float(hash_max)*max_load;
-
-	    for( int i =0; i < new_map.size(); ++i )
-		for( auto v : new_map[i])
-		{
-		    v_map[find(v)].push_front(v);
-		    --counter;
-		}
-	}
+public:
+    using elem_t = T;
 public:
     hashset_bucket(float load=0.8,int size = 32): v_map(size)
 	{
@@ -71,6 +48,33 @@ public:
 		    return true;
 		});
 	}
+private:
+    index_t find(T x) noexcept
+	{
+	    HashF h;
+	    hash_t hash = h(x);
+	    return hash % hash_max;
+	}
+    void resize(index_t new_size)
+	{
+	    assert(new_size > 0);
+	    std::vector<bucket_t> new_map(new_size);
+	    swap(new_map,v_map);
+	    hash_max = primes[floor_log2(v_map.size())];
+	    counter = float(hash_max)*max_load;
+
+	    for( int i =0; i < new_map.size(); ++i )
+		for( auto v : new_map[i])
+		{
+		    v_map[find(v)].push_front(v);
+		    --counter;
+		}
+	}
+private:
+    std::vector<bucket_t> v_map;
+    float max_load;
+    hash_t hash_max;
+    index_t counter;
 };
 
 #endif /*HASHSET_BUCKET_H*/

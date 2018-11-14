@@ -8,23 +8,10 @@
 template <typename T>
 class list_stlforward
 {
+    friend TestPlug<list_stlforward<T>>;
+    using It = typename std::forward_list<T>::iterator;
 public:
     using elem_t = T;
-    using It = typename std::forward_list<T>::iterator;
-private:
-    friend TestPlug<list_stlforward<T>>;
-private:
-    std::forward_list<T> l;
-private:
-    It find(T x)
-	{
-	    const auto ite = l.end();
-	    auto it_prev = l.before_begin();
-	    auto it = l.begin();
-	    while( it != ite && *it != x )
-		++it,++it_prev;
-	    return it_prev;
-	}
 public:
     void insert(T x)
 	{
@@ -40,6 +27,18 @@ public:
 	    if(next(it)!=l.end())
 		l.erase_after(it);
 	}
+private:
+    It find(T x)
+	{
+	    const auto ite = l.end();
+	    auto it_prev = l.before_begin();
+	    auto it = l.begin();
+	    while( it != ite && *it != x )
+		++it,++it_prev;
+	    return it_prev;
+	}
+private:
+    std::forward_list<T> l;
 };
 
 #endif /*LIST_STLFORWARD_H*/
