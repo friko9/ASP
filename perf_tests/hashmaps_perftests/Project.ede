@@ -8,5 +8,20 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("hashmaps_common.h")))
+      :source '("hashmaps_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "insert_perftest"
+      :path ""
+      :source '("insert_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "contains_perftest"
+      :path ""
+      :source '("contains_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h"))
+    (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
+      :name "remove_perftest"
+      :path ""
+      :source '("remove_perftest.cpp" "hashmaps_common.cpp")
+      :auxsource '("hashmaps_common.h")))
   :makefile-type Makefile\.am)

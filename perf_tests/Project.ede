@@ -2,7 +2,7 @@
 ;; EDE Project Files are auto generated: Do Not Edit
 (ede-proj-project "ede-proj-project"
   :file "Project.ede"
-  :name "perf_tests"
+  :name "perf-tests"
   :targets
   (list
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
