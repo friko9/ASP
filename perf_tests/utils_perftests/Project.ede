@@ -14,4 +14,6 @@
       :path ""
       :source '("utils_perftest.cpp" "utils_common.cpp")
       :auxsource '("utils_common.h")))
-  :makefile-type Makefile\.am)
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))

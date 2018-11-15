@@ -14,15 +14,6 @@
 
 
 
-# Automatically Generated Makefile by EDE.
-# For use with: automake
-# Relative File Name: Makefile.am
-#
-# DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
-# EDE is the Emacs Development Environment.
-# http://cedet.sourceforge.net/ede.shtml
-#
-
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -294,6 +285,16 @@ target_alias =
 top_build_prefix = 
 top_builddir = .
 top_srcdir = .
+
+# Automatically Generated Makefile by EDE.
+# For use with: automake
+# Relative File Name: Makefile.am
+#
+# DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
+# EDE is the Emacs Development Environment.
+# http://cedet.sourceforge.net/ede.shtml
+#
+MAKEFLAGS = -j4
 top = "$(CURDIR)"/
 ede_FILES = Project.ede Makefile.am
 SUBDIRS = utests/ perf_tests/ includes/

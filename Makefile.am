@@ -6,6 +6,8 @@
 # EDE is the Emacs Development Environment.
 # http://cedet.sourceforge.net/ede.shtml
 #
+MAKEFLAGS=-j4
+CXXFLAGS=-g -O2
 
 top="$(CURDIR)"/
 ede_FILES=Project.ede Makefile.am

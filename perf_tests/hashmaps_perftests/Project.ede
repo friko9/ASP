@@ -13,7 +13,10 @@
       :name "insert_perftest"
       :path ""
       :source '("insert_perftest.cpp" "hashmaps_common.cpp")
-      :auxsource '("hashmaps_common.h"))
+      :auxsource '("hashmaps_common.h")
+      :compiler ede-g++-compiler
+      :linker ede-g++-linker
+      :configuration-variables '(("CPPFLAGS=-O3")))
     (ede-proj-target-makefile-program "ede-proj-target-makefile-program"
       :name "contains_perftest"
       :path ""
@@ -24,4 +27,6 @@
       :path ""
       :source '("remove_perftest.cpp" "hashmaps_common.cpp")
       :auxsource '("hashmaps_common.h")))
-  :makefile-type Makefile\.am)
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))

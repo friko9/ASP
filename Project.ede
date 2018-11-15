@@ -4,5 +4,7 @@
   :file "Project.ede"
   :name "asp-test"
   :targets nil
+  :configuration-default "release"
   :makefile-type Makefile\.am
-  :configuration-variables nil)
+  :variables '(("MAKEFLAGS" . "-j4"))
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g")) ("release" ("CXXFLAGS" . "-g -O2"))))

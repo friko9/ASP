@@ -9,4 +9,6 @@
       :name "include"
       :path ""
       :source '("common.h")))
-  :makefile-type Makefile\.am)
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g")) ("release" ("CXXFLAGS" . "-O3 -NDEBUG"))))

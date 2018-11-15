@@ -19,4 +19,6 @@
       :path ""
       :source '("large_dataset_olog2.cpp" "sorting_common.cpp")
       :auxsource '("sorting_common.h")))
-  :makefile-type Makefile\.am)
+  :configuration-default "release"
+  :makefile-type Makefile\.am
+  :configuration-variables '(("debug" ("CXXFLAGS" . "-g -O2")) ("release" ("CXXFLAGS" . "-O3 -DNDEBUG"))))
