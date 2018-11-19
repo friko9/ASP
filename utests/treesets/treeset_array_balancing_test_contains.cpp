@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_contains_compare_with_stdtreeset
+	: public treeset_array_balancing_test_case
     {
 	elem_t step = 1;
 	std::vector<elem_t> data;
@@ -41,7 +41,7 @@ namespace test_treeset_array_balance
     };
     
     struct empty_contains_all_vals_return_empty
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data(){}
@@ -50,7 +50,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_contains_all_vals_return_empty);
 
     struct populated_inorder_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -64,7 +64,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_inorder_contains_compare_with_stdtreeset);
 
     struct populated_revorder_contains_compare_with_stdtreeset
-    	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+    	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -78,7 +78,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_revorder_contains_compare_with_stdtreeset);
     
     struct populated_noorder_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -93,7 +93,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_noorder_contains_compare_with_stdtreeset);
 
     struct populated_inorder_doubled_sticked_contains_compare_with_stdtreeset
-    	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+    	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -111,7 +111,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_inorder_doubled_sticked_contains_compare_with_stdtreeset);
 
     struct populated_inorder_doubled_shuffled_contains_compare_with_stdtreeset
-	: public treeset_array_balance_test_contains_compare_with_stdtreeset
+	: public treeset_array_balancing_test_contains_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()

@@ -8,5 +8,5 @@
     (ede-proj-target-makefile-miscelaneous "ede-proj-target-makefile-miscelaneous"
       :name "include"
       :path ""
-      :source '("treeset_array.h" "treeset_array_balance.h" "treeset_dynamic.h" "treeset_dynamic_balancing.h" "treeset_stl.h")))
+      :source '("treeset_array.h" "treeset_array_balancing.h" "treeset_dynamic.h" "treeset_dynamic_balancing.h" "treeset_stl.h")))
   :makefile-type Makefile\.am)

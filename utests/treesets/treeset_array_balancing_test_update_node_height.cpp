@@ -1,9 +1,9 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_test_update_node_height
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_update_node_height
+	: public treeset_array_balancing_test_case
     {
 	index_t index;
 	std::vector<node_t> expected_values;
@@ -51,7 +51,7 @@ namespace test_treeset_array_balance
     };
     
     struct treesize2_c99_update_node_height_c_state_c1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -67,7 +67,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize2_c99_update_node_height_c_state_c1);
 
     struct treesize8_c99_update_node_height_c_state_c1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -83,7 +83,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_update_node_height_c_state_c1);
 
     struct treesize4_c99_l1_update_node_height_c_state_c2_l1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -99,7 +99,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_l1_update_node_height_c_state_c2_l1);
 
     struct treesize8_c99_l1_update_node_height_c_state_c2_l1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -115,7 +115,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_l1_update_node_height_c_state_c2_l1);
 
     struct treesize4_c99_l10_update_node_height_c_state_c11_l10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -131,7 +131,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_l10_update_node_height_c_state_c11_l10);
 
     struct treesize8_c99_l10_update_node_height_c_state_c11_l10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -147,7 +147,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_l10_update_node_height_c_state_c11_l10);
 
     struct treesize4_c99_r1_update_node_height_c_state_c2_r1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -163,7 +163,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_r1_update_node_height_c_state_c2_r1);
 
     struct treesize8_c99_r1_update_node_height_c_state_c2_r1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -179,7 +179,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_r1_update_node_height_c_state_c2_r1);
 
     struct treesize4_c99_r12_update_node_height_c_state_c13_r12
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -195,7 +195,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_r12_update_node_height_c_state_c13_r12);
 
     struct treesize8_c99_r12_update_node_height_c_state_c13_r12
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -211,7 +211,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_r12_update_node_height_c_state_c13_r12);
 
     struct treesize4_c99_l10_r20_update_node_height_c_state_c21_l10_r20
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -227,7 +227,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_l10_r20_update_node_height_c_state_c21_l10_r20);
 
     struct treesize8_c99_l10_r20_update_node_height_c_state_c21_l10_r20
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -243,7 +243,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_l10_r20_update_node_height_c_state_c21_l10_r20);
 
     struct treesize4_c99_l20_r10_update_node_height_c_state_c21_l20_r10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -259,7 +259,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c99_l20_r10_update_node_height_c_state_c21_l20_r10);
 
     struct treesize8_c99_l20_r10_update_node_height_c_state_c21_l20_r10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -275,7 +275,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c99_l20_r10_update_node_height_c_state_c21_l20_r10);
 
     struct treesize8_lr99_update_node_height_lr_state_lr1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -291,7 +291,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_lr99_update_node_height_lr_state_lr1);
 
     struct treesize16_lr99_update_node_height_lr_state_lr1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -307,7 +307,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_update_node_height_lr_state_lr1);
 
     struct treesize16_lr99_lrl1_update_node_height_lr_state_lr2_lrl1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -323,7 +323,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrl1_update_node_height_lr_state_lr2_lrl1);
 
     struct treesize32_lr99_lrl1_update_node_height_lr_state_lr2_lrl1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -339,7 +339,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_lr99_lrl1_update_node_height_lr_state_lr2_lrl1);
 
     struct treesize16_lr99_lrl10_update_node_height_lr_state_lr11_lrl10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -355,7 +355,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrl10_update_node_height_lr_state_lr11_lrl10);
 
     struct treesize32_lr99_lrl10_update_node_height_lr_state_lr11_lrl10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -371,7 +371,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_lr99_lrl10_update_node_height_lr_state_lr11_lrl10);
 
     struct treesize16_lr99_lrr1_update_node_height_lr_state_lr2_lrr1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -387,7 +387,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrr1_update_node_height_lr_state_lr2_lrr1);
 
     struct treesize32_lr99_lrr1_update_node_height_lr_state_lr2_lrr1
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -403,7 +403,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_lr99_lrr1_update_node_height_lr_state_lr2_lrr1);
 
     struct treesize16_lr99_lrr10_update_node_height_lr_state_lr11_lrr10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -419,7 +419,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrr10_update_node_height_lr_state_lr11_lrr10);
 
     struct treesize32_lr99_lrr10_update_node_height_lr_state_lr11_lrr10
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -435,7 +435,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_lr99_lrr10_update_node_height_lr_state_lr11_lrr10);
     
     struct treesize16_lr99_lrl19_lrr20_update_node_height_lr_state_lr21_lrl19_lrr20
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -451,7 +451,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrl19_lrr20_update_node_height_lr_state_lr21_lrl19_lrr20);
 
     struct treesize32_lr99_lrl19_lrr20_update_node_height_lr_state_lr21_lrl19_lrr20
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -467,7 +467,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_lr99_lrl19_lrr20_update_node_height_lr_state_lr21_lrl19_lrr20);
 
     struct treesize16_lr99_lrl20_lrr19_update_node_height_lr_state_lr21_lrl20_lrr19
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -483,7 +483,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_lr99_lrl20_lrr19_update_node_height_lr_state_lr21_lrl20_lrr19);
 
     struct treesize32_lr99_lrl20_lrr19_update_node_height_lr_state_lr21_lrl20_lrr19
-	: public treeset_array_test_update_node_height
+	: public treeset_array_balancing_test_update_node_height
     {
 	TEST_INSERTER;
 	void setup_data()

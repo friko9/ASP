@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_rebalance_case_1
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_rebalance_case_1
+	: public treeset_array_balancing_test_case
     {
 	index_t index;
 	side_t side;
@@ -55,7 +55,7 @@ namespace test_treeset_array_balance
     };
 
     struct treesize8_c_l_ll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -72,7 +72,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_ll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc);
 
     struct treesize16_c_l_ll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -89,7 +89,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_ll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc);
 
     struct treesize8_c_r_rr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -106,7 +106,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_r_rr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr);
 
     struct treesize16_c_r_rr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -123,7 +123,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_r_rr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr);
     
     struct treesize16_c_l_r_ll_lr_lll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc_llxlll_rlxlr_rrxr
-    	: public treeset_array_balance_test_rebalance_case_1
+    	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -140,7 +140,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_lr_lll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc_llxlll_rlxlr_rrxr);
 
     struct treesize32_c_l_r_ll_lr_lll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc_llxlll_rlxlr_rrxr
-    	: public treeset_array_balance_test_rebalance_case_1
+    	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -157,7 +157,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_ll_lr_lll_rebalance_case_1_c_on_left_state_cxl_lxll_rxc_llxlll_rlxlr_rrxr);
 
     struct treesize16_c_l_r_rr_rl_rrr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr_llxl_lrxrl_rrxrrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -174,7 +174,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_rr_rl_rrr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr_llxl_lrxrl_rrxrrr);
 
     struct treesize32_c_l_r_rr_rl_rrr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr_llxl_lrxrl_rrxrrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -191,7 +191,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_rr_rl_rrr_rebalance_case_1_c_on_right_state_cxr_lxc_rxrr_llxl_lrxrl_rrxrrr);
 
     struct treesize16_c_l_ll_lll_rebalance_case_1_l_on_left_state_cxc_lxll_lrxl_llxlll
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -208,7 +208,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_ll_lll_rebalance_case_1_l_on_left_state_cxc_lxll_lrxl_llxlll);
 
     struct treesize32_c_l_ll_lll_rebalance_case_1_l_on_left_state_cxc_lxll_lrxl_llxlll
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -225,7 +225,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_ll_lll_rebalance_case_1_l_on_left_state_cxc_lxll_lrxl_llxlll);
 
     struct treesize16_c_l_lr_lrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -242,7 +242,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_lr_lrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr);
 
     struct treesize32_c_l_lr_lrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -259,7 +259,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_lr_lrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr);
 
     struct treesize32_c_l_ll_lr_lll_llr_llll_rebalance_case_1_l_on_left_state_cxc_lxll_llxlll_lrxl_lllxllll_lrlxllr_lrrxlr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -276,7 +276,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_ll_lr_lll_llr_llll_rebalance_case_1_l_on_left_state_cxc_lxll_llxlll_lrxl_lllxllll_lrlxllr_lrrxlr);
 
     struct treesize64_c_l_ll_lr_lll_llr_llll_rebalance_case_1_l_on_left_state_cxc_lxll_llxlll_lrxl_lllxllll_lrlxllr_lrrxlr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -293,7 +293,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize64_c_l_ll_lr_lll_llr_llll_rebalance_case_1_l_on_left_state_cxc_lxll_llxlll_lrxl_lllxllll_lrlxllr_lrrxlr);
 
     struct treesize32_c_l_ll_lr_lrr_lrl_lrrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr_lllxll_llrxlrl_lrrxlrrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -310,7 +310,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_ll_lr_lrr_lrl_lrrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr_lllxll_llrxlrl_lrrxlrrr);
 
     struct treesize64_c_l_ll_lr_lrr_lrl_lrrr_rebalance_case_1_l_on_right_state_cxc_lxlr_llxl_lrxlrr_lllxll_llrxlrl_lrrxlrrr
-	: public treeset_array_balance_test_rebalance_case_1
+	: public treeset_array_balancing_test_rebalance_case_1
     {
 	TEST_INSERTER;
 	void setup_data()

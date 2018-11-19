@@ -1,5 +1,5 @@
-#ifndef TREESET_ARRAY_BALANCE_H
-#define TREESET_ARRAY_BALANCE_H
+#ifndef TREESET_ARRAY_BALANCING_H
+#define TREESET_ARRAY_BALANCING_H
 
 #include "includes/utils/utils.h"
 
@@ -7,9 +7,9 @@
 #include <cassert>
 
 template <typename T>
-class treeset_array_balance
+class treeset_array_balancing
 {
-    friend TestPlug<treeset_array_balance<T>>;
+    friend TestPlug<treeset_array_balancing<T>>;
     using height_t = uint8_t;
     using index_t = typename std::vector<size_t>::size_type;
     using vindex_t = typename std::vector<T>::size_type;
@@ -17,7 +17,7 @@ class treeset_array_balance
 public:
     using elem_t = T;
 public:
-    treeset_array_balance(): indexes(16,index_t(null)), heights(16,height_t(0))
+    treeset_array_balancing(): indexes(16,index_t(null)), heights(16,height_t(0))
 	{}
     void insert(T x)
 	{
@@ -281,4 +281,4 @@ private:
     std::vector<height_t> heights;
 };
 
-#endif /*TREESET_ARRAY_BALANCE_H*/
+#endif /*TREESET_ARRAY_BALANCING_H*/

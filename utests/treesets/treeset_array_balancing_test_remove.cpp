@@ -1,11 +1,11 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {  
-    struct treeset_array_balance_test_remove_compare_with_stdtreeset : public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_remove_compare_with_stdtreeset : public treeset_array_balancing_test_case
     {
 	elem_t step = 1;
 	std::vector<elem_t> data;
@@ -50,7 +50,7 @@ namespace test_treeset_array_balance
     };
     
     struct populated_inorder_remove_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -70,7 +70,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_inorder_remove_inorder_compare_with_stdtreeset);
     
     struct populated_inorder_removce_revorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -91,7 +91,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_inorder_removce_revorder_compare_with_stdtreeset);
 
     struct populated_inorder_remove_noorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -112,7 +112,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_inorder_remove_noorder_compare_with_stdtreeset);
 
     struct populated_revorder_remove_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -132,7 +132,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_revorder_remove_inorder_compare_with_stdtreeset);
 
     struct populated_revorder_remove_revorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -153,7 +153,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_revorder_remove_revorder_compare_with_stdtreeset);
 
     struct populated_revorder_remove_noorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -174,7 +174,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_revorder_remove_noorder_compare_with_stdtreeset);
 
     struct populated_noorder_remove_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -194,7 +194,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_noorder_remove_inorder_compare_with_stdtreeset);
 
     struct populated_noorder_remove_revorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -215,7 +215,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_noorder_remove_revorder_compare_with_stdtreeset);
 
     struct populated_noorder_remove_noorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -236,7 +236,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_noorder_remove_noorder_compare_with_stdtreeset);
 
     struct populated_doubled_inorder_remove_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -259,7 +259,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_doubled_inorder_remove_inorder_compare_with_stdtreeset);
 
     struct populated_doubled_shuffled_remove_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_remove_compare_with_stdtreeset
+	: public treeset_array_balancing_test_remove_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()

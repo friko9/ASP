@@ -1,7 +1,7 @@
 #include "./hashmaps_common.h"
-#include "includes/asp_hashmaps/hashset_array.h"
-#include "includes/asp_hashmaps/hashset_bucket.h"
-#include "includes/asp_hashmaps/hashset_stl.h"
+#include "includes/asp_hashsets/hashset_array.h"
+#include "includes/asp_hashsets/hashset_bucket.h"
+#include "includes/asp_hashsets/hashset_stl.h"
 
 #include <iostream>
 #include <fstream>

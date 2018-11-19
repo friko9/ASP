@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_traverse_last
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_traverse_last
+	: public treeset_array_balancing_test_case
     {
 	index_t index, retval;
 	side_t side;
@@ -26,7 +26,7 @@ namespace test_treeset_array_balance
     };
     
     struct populated_c_traverse_last_c_on_left_return_c
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -42,7 +42,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_traverse_last_c_on_left_return_c);
 
     struct populated_c_traverse_last_c_on_right_return_c
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -58,7 +58,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_traverse_last_c_on_right_return_c);
 
     struct populated_c_l_traverse_last_c_on_left_return_l
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -74,7 +74,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_traverse_last_c_on_left_return_l);
 
     struct populated_c_l_traverse_last_c_on_right_return_c
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -90,7 +90,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_traverse_last_c_on_right_return_c);
     
     struct populated_c_r_traverse_last_c_on_left_return_c
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -106,7 +106,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_r_traverse_last_c_on_left_return_c);
     
     struct populated_c_r_traverse_last_c_on_right_return_r
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -122,7 +122,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_r_traverse_last_c_on_right_return_r);
 
     struct populated_c_l_r_traverse_last_c_on_left_return_l
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -139,7 +139,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_r_traverse_last_c_on_left_return_l);
 
     struct populated_c_l_r_traverse_last_c_on_right_return_r
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -156,7 +156,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_r_traverse_last_c_on_right_return_r);
 
     struct populated_lml_traverse_last_c_on_left_return_last_l
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -173,7 +173,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_lml_traverse_last_c_on_left_return_last_l);
 
     struct populated_rmr_traverse_last_c_on_right_return_last_r
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -190,7 +190,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_rmr_traverse_last_c_on_right_return_last_r);
     
     struct populated_lml_lmlr_traverse_last_c_on_left_return_last_l
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -207,7 +207,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_lml_lmlr_traverse_last_c_on_left_return_last_l);
 
     struct populated_rmr_rmrl_traverse_last_c_on_right_return_last_r
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -224,7 +224,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_rmr_rmrl_traverse_last_c_on_right_return_last_r);
 
     struct populated_lrml_traverse_last_c_on_left_return_last_l
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -250,7 +250,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_lrml_traverse_last_c_on_left_return_last_l);
 
     struct populated_lrmr_traverse_last_c_on_right_return_last_r
-	: public treeset_array_balance_test_traverse_last
+	: public treeset_array_balancing_test_traverse_last
     {
 	TEST_INSERTER;
 	void setup_data()

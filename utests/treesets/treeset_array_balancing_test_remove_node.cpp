@@ -1,13 +1,13 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 #include <tuple>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_remove_node
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_remove_node
+	: public treeset_array_balancing_test_case
     {
 	index_t del_index;
 	side_t del_side = side_t::left;
@@ -55,7 +55,7 @@ namespace test_treeset_array_balance
     };
     
     struct treesize2_c_remove_node_c_return_c_state_cxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -71,7 +71,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize2_c_remove_node_c_return_c_state_cxnull);
 
     struct treesize8_c_remove_node_c_return_c_state_cxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -87,7 +87,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_remove_node_c_return_c_state_cxnull);
 
     struct treesize4_c_l_remove_node_l_return_l_state_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -103,7 +103,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_l_return_l_state_lxnull);
 
     struct treesize16_c_l_remove_node_l_return_l_state_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -119,7 +119,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_l_return_l_state_lxnull);
 
     struct treesize4_c_l_remove_node_c_return_c_state_cxl_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -135,7 +135,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_remove_node_c_return_c_state_cxl_lxnull);
 
     struct treesize16_c_l_remove_node_c_return_c_state_cxl_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -151,7 +151,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_remove_node_c_return_c_state_cxl_lxnull);
 
     struct treesize4_c_r_remove_node_c_return_c_state_cxr_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -167,7 +167,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_r_remove_node_c_return_c_state_cxr_rxnull);
 
     struct treesize16_c_r_remove_node_c_return_c_state_cxr_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -183,7 +183,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_r_remove_node_c_return_c_state_cxr_rxnull);
 
     struct treesize4_c_l_r_remove_node_l_return_l_state_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -199,7 +199,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_l_return_l_state_lxnull);
 
     struct treesize16_c_l_r_remove_node_l_return_l_state_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -215,7 +215,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_l_return_l_state_lxnull);
 
     struct treesize4_c_l_r_remove_node_r_return_r_state_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -231,7 +231,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_r_return_r_state_rxnull);
 
     struct treesize16_c_l_r_remove_node_r_return_r_state_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -247,7 +247,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_r_return_r_state_rxnull);
 
     struct treesize4_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -264,7 +264,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull);
 
     struct treesize16_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -281,7 +281,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_left_return_l_state_cxl_lxnull);
 
     struct treesize4_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -298,7 +298,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull);
 
     struct treesize16_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -315,7 +315,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_remove_node_c_on_right_return_r_state_cxr_rxnull);
 
     struct treesize8_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -331,7 +331,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull);
 
     struct treesize16_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -347,7 +347,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_l_return_l_state_lxll_llxnull);
 
     struct treesize8_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -363,7 +363,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull);
 
     struct treesize16_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -379,7 +379,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_r_return_r_state_rxrr_rrxnull);
 
     struct treesize8_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -396,7 +396,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull);
 
     struct treesize16_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -413,7 +413,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_left_return_l_state_cxl_lxll_llxnull);
 
     struct treesize8_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -430,7 +430,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull);
 
     struct treesize16_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -447,7 +447,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_ll_rr_remove_node_c_on_right_return_r_state_cxr_rxrr_rrxnull);
 
     struct treesize8_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -463,7 +463,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull);
 
     struct treesize16_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -479,7 +479,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_l_return_l_state_lxlr_lrxnull);
 
     struct treesize8_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -495,7 +495,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull);
 
     struct treesize16_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -511,7 +511,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_r_return_r_state_rxrl_rlxnull);
 
     struct treesize8_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -528,7 +528,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
     struct treesize16_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -545,7 +545,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
     struct treesize8_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -562,7 +562,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
     struct treesize16_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -579,7 +579,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_l_r_lr_rl_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
     struct treesize8_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -596,7 +596,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull);
 
     struct treesize16_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -613,7 +613,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_left_return_ll_state_lxll_llxnull);
 
     struct treesize8_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -630,7 +630,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull);
 
     struct treesize16_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -647,7 +647,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_l_on_right_return_lr_state_lxlr_lrxnull);
 
     struct treesize8_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -664,7 +664,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull);
 
     struct treesize16_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -681,7 +681,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_left_return_rl_state_rxrl_rlxnull);
 
     struct treesize8_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -698,7 +698,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull);
 
     struct treesize16_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -715,7 +715,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_r_on_right_return_rr_state_rxrr_rrxnull);
 
     struct treesize8_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -732,7 +732,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
     struct treesize16_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -749,7 +749,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_left_return_lr_state_cxlr_lrxnull);
 
     struct treesize8_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -766,7 +766,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
     struct treesize16_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -783,7 +783,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_remove_node_c_on_right_return_rl_state_cxrl_rlxnull);
 
     struct treesize16_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -800,7 +800,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull);
 
     struct treesize32_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -817,7 +817,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_left_return_lrr_state_cxlrr_lrrxnull);
 
     struct treesize16_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -834,7 +834,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull);
 
     struct treesize32_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -851,7 +851,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_full8_lrr_rll_remove_node_c_on_right_return_rll_state_cxrll_rllxnull);
 
     struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -869,7 +869,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull);
 
     struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -887,7 +887,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_left_return_lr_state_cxlr_lrxlrl_lrlxlrll_lrrxlrlr_lrllxnull_lrlrxnull);
 
     struct treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -905,7 +905,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull);
 
     struct treesize64_full8_lrl_rlr_lrll_lrlr_rlrl_rlrr_remove_node_c_on_right_return_rl_state_cxrl_rlxrlr_rllxrlrl_rlrxrlrr_rlrlxnull_rlrrxnull
-	: public treeset_array_balance_test_remove_node
+	: public treeset_array_balancing_test_remove_node
     {
 	TEST_INSERTER;
 	void setup_data()

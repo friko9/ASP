@@ -273,7 +273,7 @@ top_builddir = ..
 top_srcdir = ..
 top = ../
 ede_FILES = Project.ede Makefile.am
-SUBDIRS = utils/ asp_tree_maps/ asp_test/ asp_sorting/ asp_lists/ asp_hashmaps/
+SUBDIRS = utils/ asp_treesets/ asp_test/ asp_sorting/ asp_lists/ asp_hashsets/
 EXTRA_DIST = Project.ede
 all: all-recursive
 

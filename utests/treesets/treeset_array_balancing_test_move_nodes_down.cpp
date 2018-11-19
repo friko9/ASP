@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_move_nodes_down
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_move_nodes_down
+	: public treeset_array_balancing_test_case
     {
 	index_t index;
 	side_t side;
@@ -52,7 +52,7 @@ namespace test_treeset_array_balance
     };
 	
     struct treesize4_c_move_nodes_down_c_on_left_state_lxc_cxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -68,7 +68,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_move_nodes_down_c_on_left_state_lxc_cxnull);
 
     struct treesize16_c_move_nodes_down_c_on_left_state_lxc_cxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -84,7 +84,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_move_nodes_down_c_on_left_state_lxc_cxnull);
 
     struct treesize4_c_move_nodes_down_c_on_right_state_null
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -100,7 +100,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize4_c_move_nodes_down_c_on_right_state_null);
 
     struct treesize16_c_move_nodes_down_c_on_right_state_null
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -116,7 +116,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_c_move_nodes_down_c_on_right_state_null);
 
     struct treesize8_c_l_move_nodes_down_l_on_left_state_llxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -132,7 +132,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_move_nodes_down_l_on_left_state_llxl_lxnull);
 
     struct treesize32_c_l_move_nodes_down_l_on_left_state_llxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -148,7 +148,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_move_nodes_down_l_on_left_state_llxl_lxnull);
 
     struct treesize8_c_l_move_nodes_down_l_on_right_state_lrxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -164,7 +164,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_move_nodes_down_l_on_right_state_lrxl_lxnull);
 
     struct treesize32_c_l_move_nodes_down_l_on_right_state_lrxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -180,7 +180,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_move_nodes_down_l_on_right_state_lrxl_lxnull);
     
     struct treesize8_c_r_move_nodes_down_r_on_left_state_rlxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -196,7 +196,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_r_move_nodes_down_r_on_left_state_rlxr_rxnull);
 
     struct treesize32_c_r_move_nodes_down_r_on_left_state_rlxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -212,7 +212,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_r_move_nodes_down_r_on_left_state_rlxr_rxnull);
 
     struct treesize8_c_r_move_nodes_down_r_on_right_state_rrxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -228,7 +228,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_r_move_nodes_down_r_on_right_state_rrxr_rxnull);
 
     struct treesize32_c_r_move_nodes_down_r_on_right_state_rrxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -244,7 +244,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_r_move_nodes_down_r_on_right_state_rrxr_rxnull);
 
     struct treesize8_c_l_r_move_nodes_down_l_on_left_state_llxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -260,7 +260,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_move_nodes_down_l_on_left_state_llxl_lxnull);
 
     struct treesize32_c_l_r_move_nodes_down_l_on_left_state_llxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -276,7 +276,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_move_nodes_down_l_on_left_state_llxl_lxnull);
 
     struct treesize8_c_l_r_move_nodes_down_l_on_right_state_lrxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -292,7 +292,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_move_nodes_down_l_on_right_state_lrxl_lxnull);
 
     struct treesize32_c_l_r_move_nodes_down_l_on_right_state_lrxl_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -308,7 +308,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_move_nodes_down_l_on_right_state_lrxl_lxnull);
     
     struct treesize8_c_l_r_move_nodes_down_r_on_left_state_rlxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -324,7 +324,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_move_nodes_down_r_on_left_state_rlxr_rxnull);
 
     struct treesize32_c_l_r_move_nodes_down_r_on_left_state_rlxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -340,7 +340,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_move_nodes_down_r_on_left_state_rlxr_rxnull);
 
     struct treesize8_c_l_r_move_nodes_down_r_on_right_state_rrxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -356,7 +356,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize8_c_l_r_move_nodes_down_r_on_right_state_rrxr_rxnull);
 
     struct treesize32_c_l_r_move_nodes_down_r_on_right_state_rrxr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -372,7 +372,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize32_c_l_r_move_nodes_down_r_on_right_state_rrxr_rxnull);    
     
     struct treesize16_full8_move_nodes_down_l_on_left_state_llxl_lllxll_llrxlr_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -390,7 +390,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_move_nodes_down_l_on_left_state_llxl_lllxll_llrxlr_lxnull);
 
     struct treesize64_full8_move_nodes_down_l_on_left_state_llxl_lllxll_llrxlr_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -408,7 +408,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize64_full8_move_nodes_down_l_on_left_state_llxl_lllxll_llrxlr_lxnull);
 
     struct treesize16_full8_move_nodes_down_l_on_right_state_lrxl_lrlxll_lrrxlr_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -426,7 +426,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_move_nodes_down_l_on_right_state_lrxl_lrlxll_lrrxlr_lxnull);
 
     struct treesize64_full8_move_nodes_down_l_on_right_state_lrxl_lrlxll_lrrxlr_lxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -445,7 +445,7 @@ namespace test_treeset_array_balance
 
 
     struct treesize16_full8_move_nodes_down_r_on_left_state_rlxr_rllxrl_rlrxrr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -463,7 +463,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_move_nodes_down_r_on_left_state_rlxr_rllxrl_rlrxrr_rxnull);
 
     struct treesize64_full8_move_nodes_down_r_on_left_state_rlxr_rllxrl_rlrxrr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -481,7 +481,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize64_full8_move_nodes_down_r_on_left_state_rlxr_rllxrl_rlrxrr_rxnull);
 
     struct treesize16_full8_move_nodes_down_r_on_right_state_rrxr_rrlxrl_rrrxrr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -499,7 +499,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),treesize16_full8_move_nodes_down_r_on_right_state_rrxr_rrlxrl_rrrxrr_rxnull);
 
     struct treesize64_full8_move_nodes_down_r_on_right_state_rrxr_rrlxrl_rrrxrr_rxnull
-	: public treeset_array_balance_test_move_nodes_down
+	: public treeset_array_balancing_test_move_nodes_down
     {
 	TEST_INSERTER;
 	void setup_data()

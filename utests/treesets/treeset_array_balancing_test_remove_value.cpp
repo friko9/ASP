@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_remove_value
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_remove_value
+	: public treeset_array_balancing_test_case
     {
 	index_t del_index;
 	std::vector<node_t> cmp_values;
@@ -23,7 +23,7 @@ namespace test_treeset_array_balance
     };
 	
     struct populated_c1_l2_null0_remove_value_0_return_c1_l0
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -41,7 +41,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c1_l2_null0_remove_value_0_return_c1_l0);
 
     struct populated_c2_l0_null1_remove_value_1_return_c1_l0
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -59,7 +59,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c2_l0_null1_remove_value_1_return_c1_l0);
 
     struct populated_c1_l0_null2_remove_value_2_return_c1_l0
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -77,7 +77,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c1_l0_null2_remove_value_2_return_c1_l0);
 
     struct populated_null0_remove_value_0_return_empty
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -95,7 +95,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_null0_remove_value_0_return_empty);
     
     struct populated_c1_l2_r0_remove_value_0_return_c1_l0_r0
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -113,7 +113,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c1_l2_r0_remove_value_0_return_c1_l0_r0);
 
     struct populated_c2_l0_r1_remove_value_1_return_c1_l0_r1
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -131,7 +131,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c2_l0_r1_remove_value_1_return_c1_l0_r1);
 
     struct populated_c1_l0_r2_remove_value_2_return_c1_l0_r2
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()
@@ -149,7 +149,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c1_l0_r2_remove_value_2_return_c1_l0_r2);
 
     struct populated_c0_remove_value_0_return_c0
-	: public treeset_array_balance_test_remove_value
+	: public treeset_array_balancing_test_remove_value
     {
 	TEST_INSERTER;
 	void configure()

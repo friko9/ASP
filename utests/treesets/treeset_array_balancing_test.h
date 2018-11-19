@@ -1,9 +1,9 @@
-#ifndef TREESET_ARRAY_BALANCE_TEST_H
-#define TREESET_ARRAY_BALANCE_TEST_H
+#ifndef TREESET_ARRAY_BALANCING_TEST_H
+#define TREESET_ARRAY_BALANCING_TEST_H
 
 #include "includes/utils/utils.h"
 #include "includes/asp_test/test_set.h"
-#include "includes/asp_tree_maps/treeset_array_balance.h"
+#include "includes/asp_treesets/treeset_array_balancing.h"
 
 #include <functional>
 #include <set>
@@ -11,9 +11,9 @@
 #include <vector>
 
 template<typename T>
-struct TestPlug<treeset_array_balance<T>>
+struct TestPlug<treeset_array_balancing<T>>
 {
-    using treeset_t = treeset_array_balance<T>;
+    using treeset_t = treeset_array_balancing<T>;
     using node_t = typename std::pair<T,size_t>;
     using side_t = typename treeset_t::side_t;
     using height_t = typename treeset_t::height_t;
@@ -39,14 +39,14 @@ struct TestPlug<treeset_array_balance<T>>
     void rebalance(treeset_t& arg, index_t node){ arg.rebalance(node); }
 };
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
     test_set& access_test_set();
 
-    struct treeset_array_balance_test_case : test_case
+    struct treeset_array_balancing_test_case : test_case
     {
     	using elem_t = int8_t;
-	using container_t = treeset_array_balance<elem_t>;
+	using container_t = treeset_array_balancing<elem_t>;
 	using TestPlug_t = TestPlug<container_t>;
 	using node_t = typename TestPlug_t::node_t;
 	using side_t = typename TestPlug_t::side_t;
@@ -120,9 +120,9 @@ namespace test_treeset_array_balance
 		return std::make_tuple(values,indexes,heights);
 	    }
     };
-    inline treeset_array_balance_test_case::score_t operator +(treeset_array_balance_test_case::score_t left,
-						       treeset_array_balance_test_case::score_t right)
+    inline treeset_array_balancing_test_case::score_t operator +(treeset_array_balancing_test_case::score_t left,
+						       treeset_array_balancing_test_case::score_t right)
     {return {left.score+right.score,left.max_score+right.max_score}; }
 }
-#endif /*TREESET_ARRAY_BALANCE_TEST_H*/
+#endif /*TREESET_ARRAY_BALANCING_TEST_H*/
 

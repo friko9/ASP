@@ -1,12 +1,12 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_case
     {
 	test_result test()
 	    {
@@ -43,7 +43,7 @@ namespace test_treeset_array_balance
     };
     
     struct empty_find_all_vals_return_end
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure(){}
@@ -52,7 +52,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_find_all_vals_return_end);
 
     struct populated_c_v0_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -65,7 +65,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_v0_find_compare_with_stdtreeset);
 
     struct populated_c_vmin_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -78,7 +78,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_vmin_find_compare_with_stdtreeset);
 
     struct populated_c_vmax_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -91,7 +91,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_vmax_find_compare_with_stdtreeset);
 
     struct populated_rmr_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -105,7 +105,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_rmr_find_compare_with_stdtreeset);
 
     struct populated_lml_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -119,7 +119,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_lml_find_compare_with_stdtreeset);
 
     struct populated_c_l_ll_llr_llrr_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -132,7 +132,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_ll_llr_llrr_find_compare_with_stdtreeset);
 
     struct populated_c_r_rr_rrl_rrll_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -145,7 +145,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_r_rr_rrl_rrll_find_compare_with_stdtreeset);
 
     struct populated_c_l_r_ll_lr_lll_llr_llll_lllr_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -162,7 +162,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),populated_c_l_r_ll_lr_lll_llr_llll_lllr_find_compare_with_stdtreeset);
 
     struct populated_c_l_r_rl_rr_rrl_rrr_rrrl_rrrr_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()
@@ -180,7 +180,7 @@ namespace test_treeset_array_balance
 
 
     struct populated_c_l_r_ll_lr_rl_rr_find_compare_with_stdtreeset
-	: public treeset_array_balance_test_find_compare_with_stdtreeset
+	: public treeset_array_balancing_test_find_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void setup_data()

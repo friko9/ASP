@@ -3,7 +3,7 @@
 
 #include "includes/utils/utils.h"
 #include "includes/asp_test/test_set.h"
-#include "includes/asp_tree_maps/treeset_stl.h"
+#include "includes/asp_treesets/treeset_stl.h"
 
 #include <functional>
 #include <set>

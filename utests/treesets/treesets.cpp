@@ -1,5 +1,5 @@
 #include "treeset_array_test.h"
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 #include "treeset_dynamic_test.h"
 #include "treeset_dynamic_balancing_test.h"
 #include "treeset_stl_test.h"
@@ -32,7 +32,7 @@ test_set& test_treeset_array::access_test_set()
     static test_set singleton;
     return singleton;
 }
-test_set& test_treeset_array_balance::access_test_set()
+test_set& test_treeset_array_balancing::access_test_set()
 {
     static test_set singleton;
     return singleton;
@@ -44,7 +44,7 @@ int main()
     test << std::move( test_treeset_dynamic::access_test_set() );
     test << std::move( test_treeset_dynamic_balancing::access_test_set() );
     test << std::move( test_treeset_array::access_test_set() );
-    test << std::move( test_treeset_array_balance::access_test_set() );
+    test << std::move( test_treeset_array_balancing::access_test_set() );
     test.run();
     test.summary();
 }

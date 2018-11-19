@@ -1,11 +1,11 @@
-#include "treeset_array_balance_test.h"
+#include "treeset_array_balancing_test.h"
 
 #include <algorithm>
 #include <limits>
 
-namespace test_treeset_array_balance
+namespace test_treeset_array_balancing
 {
-    struct treeset_array_balance_test_insert_compare_with_stdtreeset : public treeset_array_balance_test_case
+    struct treeset_array_balancing_test_insert_compare_with_stdtreeset : public treeset_array_balancing_test_case
     {
 	elem_t step = (std::numeric_limits<elem_t>::max() - std::numeric_limits<elem_t>::min())/15;
 	std::vector<elem_t> data;
@@ -57,7 +57,7 @@ namespace test_treeset_array_balance
     };
 
     struct empty_insert_unique_elems_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_insert_compare_with_stdtreeset
+	: public treeset_array_balancing_test_insert_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -70,7 +70,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_inorder_compare_with_stdtreeset);
     
     struct empty_insert_unique_elems_revorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_insert_compare_with_stdtreeset
+	: public treeset_array_balancing_test_insert_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -83,7 +83,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_revorder_compare_with_stdtreeset);
 
     struct empty_insert_unique_elems_noorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_insert_compare_with_stdtreeset
+	: public treeset_array_balancing_test_insert_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -97,7 +97,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_insert_unique_elems_noorder_compare_with_stdtreeset);
 
     struct empty_insert_doubled_sticked_elems_inorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_insert_compare_with_stdtreeset
+	: public treeset_array_balancing_test_insert_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()
@@ -114,7 +114,7 @@ namespace test_treeset_array_balance
     ENABLE_TEST(access_test_set(),empty_insert_doubled_sticked_elems_inorder_compare_with_stdtreeset);
 
     struct empty_insert_doubled_shuffled_elems_noorder_compare_with_stdtreeset
-	: public treeset_array_balance_test_insert_compare_with_stdtreeset
+	: public treeset_array_balancing_test_insert_compare_with_stdtreeset
     {
 	TEST_INSERTER;
 	void configure()

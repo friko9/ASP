@@ -1,6 +1,6 @@
 # Automatically Generated Makefile by EDE.
 # For use with: automake
-# Relative File Name: includes/asp_hashmaps/Makefile.am
+# Relative File Name: includes/asp_hashsets/Makefile.am
 #
 # DO NOT MODIFY THIS FILE OR YOUR CHANGES MAY BE LOST.
 # EDE is the Emacs Development Environment.

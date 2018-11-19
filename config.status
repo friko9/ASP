@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile utests/Makefile utests/utils/Makefile utests/treesets/Makefile utests/sorting/Makefile utests/lists/Makefile utests/hashsets/Makefile perf_tests/Makefile perf_tests/utils_perftests/Makefile perf_tests/treeset_perftests/Makefile perf_tests/sorting_perftests/Makefile perf_tests/lists_perftests/Makefile perf_tests/hashmaps_perftests/Makefile includes/Makefile includes/utils/Makefile includes/asp_tree_maps/Makefile includes/asp_test/Makefile includes/asp_sorting/Makefile includes/asp_lists/Makefile includes/asp_hashmaps/Makefile"
+config_files=" Makefile utests/Makefile utests/utils/Makefile utests/treesets/Makefile utests/sorting/Makefile utests/lists/Makefile utests/hashsets/Makefile perf_tests/Makefile perf_tests/utils_perftests/Makefile perf_tests/treeset_perftests/Makefile perf_tests/sorting_perftests/Makefile perf_tests/lists_perftests/Makefile perf_tests/hashmaps_perftests/Makefile includes/Makefile includes/utils/Makefile includes/asp_treesets/Makefile includes/asp_test/Makefile includes/asp_sorting/Makefile includes/asp_lists/Makefile includes/asp_hashsets/Makefile"
 config_headers=" config.h"
 config_commands=" depfiles default"
 
@@ -563,11 +563,11 @@ do
     "perf_tests/hashmaps_perftests/Makefile") CONFIG_FILES="$CONFIG_FILES perf_tests/hashmaps_perftests/Makefile" ;;
     "includes/Makefile") CONFIG_FILES="$CONFIG_FILES includes/Makefile" ;;
     "includes/utils/Makefile") CONFIG_FILES="$CONFIG_FILES includes/utils/Makefile" ;;
-    "includes/asp_tree_maps/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_tree_maps/Makefile" ;;
+    "includes/asp_treesets/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_treesets/Makefile" ;;
     "includes/asp_test/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_test/Makefile" ;;
     "includes/asp_sorting/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_sorting/Makefile" ;;
     "includes/asp_lists/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_lists/Makefile" ;;
-    "includes/asp_hashmaps/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_hashmaps/Makefile" ;;
+    "includes/asp_hashsets/Makefile") CONFIG_FILES="$CONFIG_FILES includes/asp_hashsets/Makefile" ;;
     "default") CONFIG_COMMANDS="$CONFIG_COMMANDS default" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
