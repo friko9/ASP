@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     std::cout<<"test integers"<<std::endl;
     auto result_int = int_tester.run();
     std::cout<<"test uint32_t"<<std::endl;
-    auto result_uint32t = double_tester.run();
+    auto result_uint32t = uint32t_tester.run();
     std::cout<<"test doubles"<<std::endl;
     auto result_dbl = double_tester.run();
 
