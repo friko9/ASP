@@ -13,7 +13,7 @@
 #include <vector>
 
 #define named_tester_pair(Container,Populator,Tester,T) std::make_pair(std::string(#Container"_"#Populator"_"#Tester"<")+typeid(T).name()+std::string(">"),std::make_shared<tester_t<Container,Populator,Tester,T>>())
-
+#include <iostream>
 template <typename elem_t>
 class tester_base
 {
@@ -21,6 +21,7 @@ public:
     virtual void populate(const std::vector<elem_t>& data) = 0;
     virtual void test(const std::vector<elem_t>& data) = 0;
     virtual tester_base* clone() = 0;
+    virtual ~tester_base() = default;
 };
 
 template <template<typename Tx> typename ContainerT,
@@ -126,7 +127,7 @@ PerformanceTester<elem_t>::run()
 		    {
 			std::vector<elem_t> data {prepared_data};
 			data.reserve(data.size()+1);
-			auto subject_under_test = get_subject(subject)->clone();
+			subject_t subject_under_test { get_subject(subject)->clone() };
 			subject_under_test->populate(prepared_population);
 			auto t1 = std::chrono::high_resolution_clock::now();
 			subject_under_test->test(data);
