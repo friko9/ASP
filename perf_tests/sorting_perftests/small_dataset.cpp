@@ -42,7 +42,7 @@ make_subjects()
 	    //misc_sort.h
 	    named_pair(heapsort,T),
 	    named_pair(mergesort,T),
-	    named_pair(radix_sort,T),
+	    named_pair(shell_sort,T),
 	    named_pair(counting_sort_stlmap,T),
 	    //selection_sort.h
 	    named_pair(selection_sort_stlmin,T),

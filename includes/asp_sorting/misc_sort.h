@@ -103,7 +103,7 @@ void mergesort(std::vector<T>& v)
 }
 
 template<typename T>
-void radix_sort(std::vector<T>& v)
+void shell_sort(std::vector<T>& v)
 {
     const int size = v.size();
     for(int s=1023; s > 0; --(++s >>= 1))

@@ -12,6 +12,6 @@ ede_FILES=Project.ede Makefile.am
 
 SUBDIRS=
 EXTRA_DIST=Project.ede
-include_MISC=treeset_array.h treeset_array_balance.h treeset_dynamic.h treeset_dynamic_balancing.h treeset_stl.h
+include_MISC=treeset_array.h treeset_array_balancing.h treeset_dynamic.h treeset_dynamic_balancing.h treeset_stl.h
 
 # End of Makefile.am

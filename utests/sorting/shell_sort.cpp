@@ -5,7 +5,7 @@
 
 namespace sorting
 {
-    struct populated_inorder_test_radix_sort_state_sorted
+    struct populated_inorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -15,13 +15,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, allvals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_inorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_inorder_test_shell_sort_state_sorted);
 
-    struct populated_revorder_test_radix_sort_state_sorted
+    struct populated_revorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -32,13 +32,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, allvals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_revorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_revorder_test_shell_sort_state_sorted);
 
-    struct populated_noorder_test_radix_sort_state_sorted
+    struct populated_noorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -49,13 +49,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, allvals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_noorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_noorder_test_shell_sort_state_sorted);
 
-    struct populated_double_inorder_test_radix_sort_state_sorted
+    struct populated_double_inorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -65,13 +65,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, doublevals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_double_inorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_double_inorder_test_shell_sort_state_sorted);
 
-    struct populated_double_revorder_test_radix_sort_state_sorted
+    struct populated_double_revorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -82,13 +82,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, doublevals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_double_revorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_double_revorder_test_shell_sort_state_sorted);
 
-    struct populated_double_noorder_test_radix_sort_state_sorted
+    struct populated_double_noorder_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -99,13 +99,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, doublevals_inorder());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_double_noorder_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_double_noorder_test_shell_sort_state_sorted);
 
-    struct populated_multiple_same_elem_test_radix_sort_state_sorted
+    struct populated_multiple_same_elem_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -115,13 +115,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, multiple_same_val());
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_multiple_same_elem_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_multiple_same_elem_test_shell_sort_state_sorted);
 
-    struct populated_two_inorder_elem_test_radix_sort_state_sorted
+    struct populated_two_inorder_elem_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -131,13 +131,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, {9,10});
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_two_inorder_elem_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_two_inorder_elem_test_shell_sort_state_sorted);
 
-    struct populated_two_revorder_elem_test_radix_sort_state_sorted
+    struct populated_two_revorder_elem_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -147,13 +147,13 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, {9,10});
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_two_revorder_elem_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_two_revorder_elem_test_shell_sort_state_sorted);
 
-    struct populated_single_elem_test_radix_sort_state_sorted
+    struct populated_single_elem_test_shell_sort_state_sorted
 	: public sorting_test_case
     {
 	TEST_INSERTER;
@@ -163,9 +163,9 @@ namespace sorting
 	    }
 	test_result run()
 	    {
-		radix_sort(data);
+		shell_sort(data);
 		return compare_test(data, {10});
 	    }
     };
-    ENABLE_TEST(access_test_set(),populated_single_elem_test_radix_sort_state_sorted);
+    ENABLE_TEST(access_test_set(),populated_single_elem_test_shell_sort_state_sorted);
 }
