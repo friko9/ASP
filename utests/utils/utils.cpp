@@ -41,7 +41,7 @@ struct test_floor_log2_1_all_integers
 
 	    for(uint32_t i=1; i > 0; ++i)
 	    {
-		bool res_ok = floor_log2_1(i) == uint32_t(log2(i));
+	      bool res_ok = floor_log2_1(i) == uint32_t(log2(i));
 		result += res_ok;
 		if( !res_ok )
 		    failed_list->add_failed( {i, floor_log2_1(i)} );

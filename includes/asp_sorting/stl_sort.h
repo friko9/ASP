@@ -1,6 +1,9 @@
 #ifndef STL_SORT_H
 #define STL_SORT_H
 
+#include <algorithm>
+#include <vector>
+
 template<typename T>
 void stl_sort(std::vector<T>& v)
 {
@@ -28,7 +31,7 @@ void stl_sort_indexing(std::vector<T>& v)
     v = std::move(vres);
 }
 
-template<typename T>
+template <typename T>
 void stl_qsort_1(std::vector<T>& v)
 {
     std::qsort(v.data(), v.size(), sizeof(T), [](const void* a,const void* b)
