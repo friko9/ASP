@@ -14,7 +14,6 @@ target_compile_features(utest_utils PRIVATE ${utest_utils_features} )
 #target_compile_options(utils INTERFACE ${utest_utils_compile_opt} )
 
 target_link_libraries(utest_utils PRIVATE utils) #test_set
-target_include_directories(utest_utils PRIVATE ${CMAKE_SOURCE_DIR}) # TODO remove and relay on utest,test_set dependencies
 set_target_properties(utest_utils PROPERTIES LINKER_LANGUAGE CXX)
 
 unset(utest_utils_features)

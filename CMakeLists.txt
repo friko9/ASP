@@ -60,6 +60,8 @@ endif()
 
 project( ASP VERSION ${v_major}.${v_minor}.${v_patch} LANGUAGES CXX ) # HOMEPAGE, DESCRIPTION 
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}) #TODO: remove after include paths carried in dependencies
+
 add_subdirectory(includes)
 #add_subdirectory(itests)
 #add_subdirectory(perf_tests)
