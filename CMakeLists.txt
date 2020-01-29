@@ -63,4 +63,4 @@ project( ASP VERSION ${v_major}.${v_minor}.${v_patch} LANGUAGES CXX ) # HOMEPAGE
 add_subdirectory(includes)
 #add_subdirectory(itests)
 #add_subdirectory(perf_tests)
-#add_subdirectory(utests)
+add_subdirectory(utests)
