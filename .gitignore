@@ -1,6 +1,8 @@
 **/.deps/
 **/autom4te.cache/
 
+build/*
+
 *.[ao]
 *.Po
 *.log
