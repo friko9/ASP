@@ -4,11 +4,13 @@
 list(APPEND utest_hashsets_features cxx_std_14 )
 
 list(APPEND utest_hashsets_files "hashset_array_test_contains.cpp")
+message(WARNING "BROKEN: hashset_array_test_exclude_elem.cpp")
 #list(APPEND utest_hashsets_files "hashset_array_test_exclude_elem.cpp") Test needs correction
 list(APPEND utest_hashsets_files "hashset_array_test_find.cpp")
 list(APPEND utest_hashsets_files "hashset_array_test.h")
 list(APPEND utest_hashsets_files "hashset_array_test_insert.cpp")
 list(APPEND utest_hashsets_files "hashset_array_test_insert_hash.cpp")
+message(WARNING "BROKEN: hashset_array_test_move_elem.cpp")
 #list(APPEND utest_hashsets_files "hashset_array_test_move_elem.cpp") Test needs correction
 list(APPEND utest_hashsets_files "hashset_array_test_remove.cpp")
 list(APPEND utest_hashsets_files "hashset_array_test_resize.cpp")
