@@ -65,4 +65,5 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}) #TODO: remove after include pat
 add_subdirectory(includes)
 #add_subdirectory(itests)
 #add_subdirectory(perf_tests)
+enable_testing()
 add_subdirectory(utests)
