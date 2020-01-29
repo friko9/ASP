@@ -7,7 +7,7 @@ list(APPEND asptreesets_files "treeset_array.h")
 list(APPEND asptreesets_files "treeset_array_balancing.h")
 list(APPEND asptreesets_files "treeset_dynamic.h")
 list(APPEND asptreesets_files "treeset_dynamic_balancing.h")
-list(APPEND asptreesets_files "hashset_stl.h")
+list(APPEND asptreesets_files "treeset_stl.h")
 
 #list(APPEND asptreesets_compile_opt "-Winline")
 
