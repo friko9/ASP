@@ -1,0 +1,51 @@
+#################
+# utest/sorting #
+#################
+list(APPEND utest_sorting_features cxx_std_14 )
+
+list(APPEND utest_sorting_files "bubble_sort_lastswap.cpp")
+list(APPEND utest_sorting_files "bubble_sort_simple.cpp")
+list(APPEND utest_sorting_files "counting_sort_stlmap.cpp")
+list(APPEND utest_sorting_files "heapsort.cpp")
+list(APPEND utest_sorting_files "insertion_sort_index_bitand.cpp")
+list(APPEND utest_sorting_files "insertion_sort_index.cpp")
+list(APPEND utest_sorting_files "insertion_sort_index_warden.cpp")
+list(APPEND utest_sorting_files "insertion_sort_iter_bitand.cpp")
+list(APPEND utest_sorting_files "insertion_sort_iter_bitand_mem.cpp")
+list(APPEND utest_sorting_files "insertion_sort_iter.cpp")
+list(APPEND utest_sorting_files "insertion_sort_iter_warden.cpp")
+list(APPEND utest_sorting_files "insertion_sort_iter_warden_mem.cpp")
+list(APPEND utest_sorting_files "mergesort.cpp")
+list(APPEND utest_sorting_files "quicksort.cpp")
+list(APPEND utest_sorting_files "quicksort_enchanced.cpp")
+list(APPEND utest_sorting_files "quicksort_enchanced_indexing.cpp")
+list(APPEND utest_sorting_files "quicksort_enchanced_looped.cpp")
+list(APPEND utest_sorting_files "selection_sort_index.cpp")
+list(APPEND utest_sorting_files "selection_sort_iter.cpp")
+list(APPEND utest_sorting_files "selection_sort_stlmin.cpp")
+list(APPEND utest_sorting_files "shake_sort_lastswap.cpp")
+list(APPEND utest_sorting_files "shell_sort.cpp")
+list(APPEND utest_sorting_files "sorting.cpp")
+list(APPEND utest_sorting_files "sorting.h")
+list(APPEND utest_sorting_files "stl_qsort_1.cpp")
+list(APPEND utest_sorting_files "stl_qsort_2.cpp")
+list(APPEND utest_sorting_files "stl_sort.cpp")
+list(APPEND utest_sorting_files "stl_sort_indexing.cpp")
+list(APPEND utest_sorting_files "stl_stable_sort.cpp")
+
+#list(APPEND utest_sorting_compile_opt "-Winline")
+
+message("Target: utest_sorting")
+add_executable( utest_sorting )
+target_sources( utest_sorting PRIVATE ${utest_sorting_files} )
+target_compile_features(utest_sorting PRIVATE ${utest_sorting_features} )
+#target_compile_options(sorting INTERFACE ${utest_sorting_compile_opt} )
+
+target_link_libraries(utest_sorting PRIVATE aspsorting asptest)
+set_target_properties(utest_sorting PROPERTIES LINKER_LANGUAGE CXX)
+
+unset(utest_sorting_features)
+unset(utest_sorting_files)
+unset(utest_sorting_compile_opt)
+
+add_test(NAME utest-sorting COMMAND "$<TARGET_FILE:utest_sorting>")
