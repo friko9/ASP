@@ -1,3 +1,7 @@
+# Requirements:
+# Git package
+# GTest package
+
 cmake_minimum_required( VERSION 3.13.4 FATAL_ERROR )
 
 option(version "Project version")
@@ -25,8 +29,16 @@ project( ASP VERSION ${version_major}.${version_minor}.${version_patch} LANGUAGE
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}) #TODO: remove after include paths carried in dependencies
 message("----------Enter Subdirectories----------")
+
 add_subdirectory(includes)
+
 #add_subdirectory(itests)
 #add_subdirectory(perf_tests)
+
+##############
+# Unit Tests #
+##############
 enable_testing()
+find_package(GTest REQUIRED)
 add_subdirectory(utests)
+
