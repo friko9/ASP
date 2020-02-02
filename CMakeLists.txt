@@ -27,7 +27,7 @@ message("Project version is: ${version_major}.${version_minor}.${version_patch}"
 message("Version description: ${version_desc}")
 project( ASP VERSION ${version_major}.${version_minor}.${version_patch} LANGUAGES CXX ) # HOMEPAGE, DESCRIPTION 
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}) #TODO: remove after include paths carried in dependencies
+include_directories(${CMAKE_SOURCE_DIR}) #TODO: remove after include paths carried in dependencies
 message("----------Enter Subdirectories----------")
 
 add_subdirectory(includes)
