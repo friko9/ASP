@@ -44,7 +44,7 @@ message("Target: utest_sorting")
 add_executable( utest_sorting )
 target_sources( utest_sorting PRIVATE ${files} )
 target_compile_features(utest_sorting PRIVATE ${features} )
-target_compile_options(utest_sorting INTERFACE ${compile_opt} )
+target_compile_options(utest_sorting PRIVATE ${compile_opt} )
 target_link_libraries(utest_sorting PRIVATE ${depends} asptest)
 set_target_properties(utest_sorting PROPERTIES LINKER_LANGUAGE CXX)
 
