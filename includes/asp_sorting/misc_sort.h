@@ -2,13 +2,16 @@
 #define MISC_SORT_H
 
 #include "includes/utils/utils.h"
-#include <cmath>
 #include <exception>
+#include <map>
+#include <vector>
+#include <algorithm>
+#include <limits>
 
 template<typename T>
 void counting_sort_stlmap(std::vector<T>& v)
 {
-    std::map<T,unsigned int> m;
+  std::map<T,unsigned int> m;
     std::vector<T> ret;
     for( T e : v )
 	if(++m[e] == 0)
