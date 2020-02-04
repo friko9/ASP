@@ -19,12 +19,3 @@ target_compile_options( ${name} PRIVATE ${compile_opt} )
 target_link_libraries( ${name} PRIVATE ${depends} GTest::GTest GTest::Main)
 
 gtest_discover_tests( ${name} TEST_PREFIX "${name}_" )
-
-#########
-# clean #
-#########
-unset(files)
-unset(depends)
-unset(features)
-unset(compile_opt)
-unset(name)

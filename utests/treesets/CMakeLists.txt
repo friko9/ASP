@@ -65,8 +65,4 @@ target_compile_features(utest_treesets PRIVATE ${utest_treesets_features} )
 target_link_libraries(utest_treesets PRIVATE asptreesets asptest)
 set_target_properties(utest_treesets PROPERTIES LINKER_LANGUAGE CXX)
 
-unset(utest_treesets_features)
-unset(utest_treesets_files)
-unset(utest_treesets_compile_opt)
-
 add_test(NAME utest-treesets COMMAND "$<TARGET_FILE:utest_treesets>")

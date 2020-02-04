@@ -62,8 +62,4 @@ target_compile_features(utest_lists PRIVATE ${utest_lists_features} )
 target_link_libraries(utest_lists PRIVATE asplists asptest)
 set_target_properties(utest_lists PROPERTIES LINKER_LANGUAGE CXX)
 
-unset(utest_lists_features)
-unset(utest_lists_files)
-unset(utest_lists_compile_opt)
-
 add_test(NAME utest-lists COMMAND "$<TARGET_FILE:utest_lists>")
