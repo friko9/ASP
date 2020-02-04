@@ -5,11 +5,6 @@
 #include <utility>
 #include <tuple>
 
-using std::enable_if;
-using std::ostream;
-using std::tuple;
-using std::vector;
-
 template < typename T , typename... Ts >
 auto tuple_head( std::tuple<T,Ts...> t )
 {
@@ -29,20 +24,42 @@ auto tuple_tail( std::tuple<Ts...> t )
 }
 
 template<typename T1>
-ostream& print_tuple (ostream& out,const tuple<T1>& arg)
+auto& to_vector_impl (std::vector<T1>& out, std::tuple<T1> arg)
+{
+  out.push_back(tuple_head(arg));
+  return out;
+}
+
+template<typename T1,typename T2,typename ... Args >
+auto& to_vector_impl (std::vector<T1>& out, std::tuple<T1,T2,Args...> arg)
+{
+  out.push_back(tuple_head(arg));
+  return to_vector_impl(out,tuple_tail(arg));
+}
+
+template<typename ... Args>
+auto to_vector (const std::tuple<Args...>& arg)
+{
+  using T = decltype(tuple_head(arg));
+  std::vector<T> v;
+  return to_vector_impl(v,arg);
+}
+
+template<typename T1>
+std::ostream& print_tuple (std::ostream& out, std::tuple<T1> arg)
 {
   return out<<tuple_head(arg);
 }
 
 template<typename T1,typename T2,typename ... Args >
-ostream& print_tuple (ostream& out,const tuple<T1,T2,Args...>& arg)
+std::ostream& print_tuple (std::ostream& out, std::tuple<T1,T2,Args...> arg)
 {
   out<<tuple_head(arg)<<',';
   return print_tuple(out,tuple_tail(arg));
 }
 
 template<typename ... Args>
-ostream& operator << (ostream& out,const tuple<Args...>& arg)
+std::ostream& operator << (std::ostream& out,const std::tuple<Args...>& arg)
 {
   out<<'{';
   print_tuple(out,arg);
@@ -51,7 +68,7 @@ ostream& operator << (ostream& out,const tuple<Args...>& arg)
 }
 
 template<typename T>
-ostream& operator << (ostream& out,const vector<T>& arg)
+std::ostream& operator << (std::ostream& out,const std::vector<T>& arg)
 {
   out<<'{';
   for(T x : arg) out<<x<<',';
