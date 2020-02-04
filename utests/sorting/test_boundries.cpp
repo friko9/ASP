@@ -1,10 +1,10 @@
-////////////////////////////////////////////////
-// Unit Test				      //
-// Element: bubble_sort_lastswap	      //
-// Scope: value and lower set-size boundries  //
-////////////////////////////////////////////////
+///////////////////////////////////////////////
+// Unit Test				     //
+// Element: sorting function		     //
+// Scope: value and lower set-size boundries //
+///////////////////////////////////////////////
+#include "test_deps.h"
 
-#include "bubble_sort.h"
 #include "gtest/gtest.h"
 #include <algorithm>
 #include <limits>
