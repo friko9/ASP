@@ -27,21 +27,19 @@ class float_array5 : public TestWithParam<array5<float>>
 
 TEST_P(int_array5, result_sorted)
 {
-  auto arg = GetParam();
-  vector<int> s = { get<0>(arg), get<1>(arg), get<2>(arg), get<3>(arg), get<4>(arg) };
+  vector<int> s = to_vector(GetParam());
   vector<int> sorted = s;
   stable_sort(begin(sorted),end(sorted));
   bubble_sort_lastswap(s);
-  EXPECT_EQ(s,sorted)<<"In: "<<arg<<"\n result: "<<s<<endl;
+  EXPECT_EQ(s,sorted)<<"In: "<<GetParam()<<"\n result: "<<s<<endl;
 }
 TEST_P(float_array5, result_sorted)
 {
-  auto arg = GetParam();
-  vector<float> s = { get<0>(arg), get<1>(arg), get<2>(arg), get<3>(arg), get<4>(arg) };
+  vector<float> s = to_vector(GetParam());
   vector<float> sorted = s;
   stable_sort(begin(sorted),end(sorted));
   bubble_sort_lastswap(s);
-  EXPECT_EQ(s,sorted)<<"In: "<<arg<<"\n result: "<<s<<endl;
+  EXPECT_EQ(s,sorted)<<"In: "<<GetParam()<<"\n result: "<<s<<endl;
 }
 
 INSTANTIATE_TEST_CASE_P(array5_sorted_combination, int_array5,
