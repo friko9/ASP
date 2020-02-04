@@ -5,6 +5,9 @@
 #include <cmath>
 #include <iterator>
 #include <cstdint>
+#include <vector>
+#include <tuple>
+#include <algorithm>
 
 template<typename It>
 void quicksort_h(It its,It ite)
