@@ -29,7 +29,8 @@ void quicksort_h(It its,It ite)
 template<typename T>
 inline void quicksort(std::vector<T>& v)
 {
-    quicksort_h(v.begin(),v.end());
+  if(v.empty()) return;
+  quicksort_h(v.begin(),v.end());
 }
 
 template<typename It>
