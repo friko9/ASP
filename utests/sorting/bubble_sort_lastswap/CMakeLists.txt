@@ -9,6 +9,7 @@ list(APPEND compile_opt "-Wall")
 
 list(APPEND files "./test_boundries.cpp")
 list(APPEND files "./test_combinations.cpp")
+list(APPEND files "./test_largeset.cpp")
 
 message("Target: ${name}")
 add_executable( ${name} )
