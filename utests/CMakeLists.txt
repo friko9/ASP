@@ -2,6 +2,7 @@
 # utests #
 ##########
 
+add_subdirectory(includes)
 add_subdirectory(hashsets)
 add_subdirectory(lists)
 add_subdirectory(sorting)
