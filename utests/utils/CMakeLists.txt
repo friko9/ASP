@@ -18,11 +18,3 @@ target_compile_options(gtest_utils PRIVATE ${compile_opt} )
 target_link_libraries(gtest_utils PRIVATE ${depends} GTest::GTest GTest::Main)
 
 gtest_discover_tests(gtest_utils)
-
-#########
-# clean #
-#########
-unset(files)
-unset(depends)
-unset(features)
-unset(compile_opt)

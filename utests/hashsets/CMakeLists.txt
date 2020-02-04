@@ -37,9 +37,4 @@ target_compile_features(utest_hashsets PRIVATE ${utest_hashsets_features} )
 target_link_libraries(utest_hashsets PRIVATE asphashsets asptest)
 set_target_properties(utest_hashsets PROPERTIES LINKER_LANGUAGE CXX)
 
-unset(utest_hashsets_features)
-unset(utest_hashsets_files)
-unset(utest_hashsets_compile_opt)
-
 add_test(NAME utest-hashsets COMMAND "$<TARGET_FILE:utest_hashsets>")
-

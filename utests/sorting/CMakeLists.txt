@@ -49,11 +49,3 @@ target_link_libraries(utest_sorting PRIVATE ${depends} asptest)
 set_target_properties(utest_sorting PROPERTIES LINKER_LANGUAGE CXX)
 
 add_test(NAME utest-sorting COMMAND "$<TARGET_FILE:utest_sorting>")
-
-#########
-# clean #
-#########
-unset(files)
-unset(depends)
-unset(features)
-unset(compile_opt)
