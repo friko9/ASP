@@ -1,5 +1,30 @@
-IDE - EDE (Emacs Development Environment) + Automake
+Project build toolset in transition from EDE/Automake to CMake:
 
+
+EDE (Emacs Development Environment) + Automake
+==============================================
+Requirements:
+none
+
+to install build configure and install check ./INSTALL
+
+
+CMake
+=============================================
+Requirements:
+Google Test
+
+to build goto root directory and run:
+cmake -H. -BRelease -D CMAKE_BUILD_TYPE=Release
+cmake --build Release
+
+to run unit tests use:
+cmake --build Release --target test
+
+
+Description
+=============================================
 Algorithms and structures represent those found in the book Algorithms+Structures=Programs.
-Its made just to understend the nuances of presented algorithms. Efficiency is comparable as those in standard C++ library.
+Its made just to understend the nuances of presented algorithms.
+Efficiency is comparable as those in standard C++ library.
 Also experimented with indipendent-module self-registering used in some unit-testing environments, and configure-run-check testing philosophy variations for repeateable test cases.
