@@ -26,7 +26,7 @@ function(git_tag_desc result_var)
     return()
   endif()
 
-  execute_process( COMMAND "${GIT_EXECUTABLE}" describe --tags
+  execute_process( COMMAND "${GIT_EXECUTABLE}" describe --tags --long
     WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
     RESULT_VARIABLE result
     OUTPUT_VARIABLE tag_desc
@@ -69,11 +69,10 @@ endfunction()
 function(parse_version result_prefix parsed_str)
   set(version_regexp "^v([0-9]+)(\.([0-9]+))?([.-]([0-9]+))?[-.]?(.*)?$")
   set(version_regexp "^[^0-9]*([0-9]+)([^0-9]([0-9]+))?([^0-9]([0-9]+))?[^0-9a-zA-Z]*(.*)?$")
-  set(${result_prefix}_major 0)
-  set(${result_prefix}_minor 0)
-  set(${result_prefix}_patch 0)
-  set(${result_prefix}_desc 0)
-
+  set(v_major 0)
+  set(v_minor 0)
+  set(v_patch 0)
+  set(v_desc "")
   if( ${parsed_str} MATCHES ${version_regexp})
     set(${result_prefix}_FOUND TRUE PARENT_SCOPE)
     set(v_major "${CMAKE_MATCH_1}")
