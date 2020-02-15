@@ -35,12 +35,20 @@ protected:
 };
 vector<LargeArray::testT> LargeArray::input;
 
+//TEST SUITE
+//SUBJECT UTEST_FNAME sorting function defined in compile-time
+//INPUT  sorted large array
+//RESULT sorted input array
 TEST_F(LargeArray, sorted_result_sorted)
 {
   UTEST_FNAME(data);
   ASSERT_EQ(data,sorted)<<"function: "<<STR(UTEST_FNAME)<<endl;
 }
 
+//TEST SUITE
+//SUBJECT UTEST_FNAME sorting function defined in compile-time
+//INPUT  reverse-sorted large array
+//RESULT sorted input array
 TEST_F(LargeArray, revsorted_result_sorted)
 {
   using T = decltype(data)::value_type;
@@ -50,6 +58,10 @@ TEST_F(LargeArray, revsorted_result_sorted)
   ASSERT_EQ(data,sorted)<<"function: "<<STR(UTEST_FNAME)<<endl;
 }
 
+//TEST SUITE
+//SUBJECT UTEST_FNAME sorting function defined in compile-time
+//INPUT  shuffeled large array
+//RESULT sorted input array
 TEST_F(LargeArray, shuffled_result_sorted)
 {
   random_shuffle(begin(data),end(data));
