@@ -1,5 +1,5 @@
-#ifndef TUPLE_H
-#define TUPLE_H
+#ifndef UTEST_TUPLE_H
+#define UTEST_TUPLE_H
 
 #include <vector>
 #include <ostream>
@@ -76,4 +76,4 @@ std::ostream& operator << (std::ostream& out,const std::vector<T>& arg)
   out<<'}';
   return out;
 }
-#endif
+#endif /*UTEST_TUPLE_H*/

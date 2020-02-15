@@ -5,23 +5,13 @@
 /////////////////////////////////////////////////////////////
 #include "test_deps.h"
 
-#include "tuple.h"
+#include "utest_tuple.h"
+#include "utest_utils.h"
 #include "gtest/gtest.h"
 #include <vector>
-#include <algorithm>
+#include <iostream>
 
-#ifndef UTEST_FNAME
-#define UTEST_FNAME (void)
-#endif
-
-#define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
-
-using std::ostream;
-using std::tuple;
-using std::vector;
-using std::endl;
-
+using namespace std;
 using namespace testing;
 
 template<typename T>

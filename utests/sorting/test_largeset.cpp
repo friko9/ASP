@@ -5,22 +5,13 @@
 //////////////////////////////////////////////////////////////////
 #include "test_deps.h"
 
-#include "tuple.h"
+#include "utest_tuple.h"
+#include "utest_utils.h"
 #include "gtest/gtest.h"
 #include <vector>
 #include <limits>
 
-#ifndef UTEST_FNAME
-#define UTEST_FNAME (void)
-#endif
-
-#define STR_HELPER(x) #x
-#define STR(x) STR_HELPER(x)
-
-using std::vector;
-using std::endl;
-using std::numeric_limits;
-
+using namespace std;
 using namespace testing;
 
 class LargeArray : public Test
