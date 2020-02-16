@@ -63,3 +63,9 @@ target_link_libraries(utest_lists PRIVATE asplists asptest)
 set_target_properties(utest_lists PROPERTIES LINKER_LANGUAGE CXX)
 
 add_test(NAME utest-lists COMMAND "$<TARGET_FILE:utest_lists>")
+
+
+################
+# GOOGLE TESTS #
+################
+add_subdirectory(list_stl)
