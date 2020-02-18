@@ -1,16 +1,9 @@
 **/.deps/
 **/autom4te.cache/
 
-build/*
-Testing/*
-
 *.[ao]
 *.Po
 *.log
-
-*~
-*#
-.#*
 
 stamp-h
 stamp-h1
