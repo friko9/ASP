@@ -47,6 +47,21 @@ namespace InsertionTest_ {
 	ASSERT_TRUE(test_obj.contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
   };
 
+  //TEST SUITE
+  //SUBJECT empty list_stl
+  //INPUT  { insert_set , check_set }
+  //RESULT list doesn't contain not inserted elements
+  TEST_P(InsertionTestInt8,DoesntContainOtherElements)
+  {
+    auto& insert = GetParam().first;
+    auto expect = GetParam().second;
+    populate_test_obj(insert);
+
+    stable_sort(expect.begin(),expect.end());
+    for( auto i = expect.front(); i<expect.back(); ++i)
+      if(find(expect.begin(), expect.end(), i) == expect.end() )
+	ASSERT_FALSE(test_obj.contains(i))<<"Populated list_stl contains: "<<i<<endl;
+  };
   
   using value_t = InsertionTestInt8::value_t;
   using pair_t = std::pair<std::vector<value_t>,std::vector<value_t>>;
