@@ -33,7 +33,7 @@ using EmptyListFloat = EmptyList<float>;
 //SUBJECT empty list_stl
 //RESULT doesnt contain any element
 namespace EmptyListTest {
-  TEST_P(EmptyListInt8, ContainsReturnFalse)
+  TEST_P(EmptyListInt8,ContainsReturnFalse)
   {
     ASSERT_FALSE(empty_list.contains(GetParam()));
   }

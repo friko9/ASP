@@ -41,4 +41,4 @@ add_google_test(FNAME "list_stl" LABEL "short" DEPENDS ${depends} FILES ${files_
 list(APPEND files "list_stl_test_find.cpp")
 list(APPEND files "list_stl_test.h")
 list(APPEND files "list_stl_test_insert.cpp")
-list(APPEND files "list_stl_test_remove.cpp")
+#list(APPEND files "list_stl_test_remove.cpp")
