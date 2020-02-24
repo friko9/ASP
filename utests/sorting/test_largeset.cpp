@@ -17,24 +17,26 @@ using namespace testing;
 
 class LargeArray : public Test
 {
-  using testT = uint16_t;
-  static vector<testT> input;
+  using value_t = uint16_t;
+  static vector<value_t> input;
 protected:
   static void SetUpTestCase()
   {
-    ASSERT_NO_THROW(input.reserve(numeric_limits<testT>::max()))<<"Not enough memory";
-    for(testT i=0; i<numeric_limits<testT>::max();++i)
+    static_assert(is_unsigned<value_t>(),"ERROR: value_t is signed type");
+    ASSERT_NO_THROW(input.reserve(numeric_limits<value_t>::max()))<<"Not enough memory";
+    for(value_t i=0; i<numeric_limits<value_t>::max();++i)
       input.push_back(i);
   }
   void SetUp()
   {
+    static_assert(is_unsigned<value_t>(),"ERROR: value_t is signed type");
     ASSERT_NO_THROW(data.reserve(input.size()))<<"Not enough memory";
     copy(begin(input),end(input),back_inserter(data));
   }
-  const vector<testT>& sorted = input;
-  vector<testT> data;
+  const vector<value_t>& sorted = input;
+  vector<value_t> data;
 };
-vector<LargeArray::testT> LargeArray::input;
+vector<LargeArray::value_t> LargeArray::input;
 
 //TEST SUITE
 //SUBJECT UTEST_FNAME sorting function defined in compile-time
