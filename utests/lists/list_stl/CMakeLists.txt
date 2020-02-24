@@ -31,6 +31,7 @@ endfunction()
 #####################
 list(APPEND files_short "list_stl_empty.cpp")
 list(APPEND files_short "list_stl_insert_short.cpp")
+list(APPEND files_short "list_stl_remove_short.cpp")
 list(APPEND depends asplists)
 list(APPEND depends utest_includes)
 add_google_test(FNAME "list_stl" LABEL "short" DEPENDS ${depends} FILES ${files_short} )
