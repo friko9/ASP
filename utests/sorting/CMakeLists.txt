@@ -30,8 +30,8 @@ function(add_sorting_function_test fname)
   list(APPEND files_short "../test_boundries.cpp")
   list(APPEND files_short "../test_combinations.cpp")
   list(APPEND files_long "../test_largeset.cpp")
-  add_sorting_function_test_helper(FNAME ${fname} LABEL "short" FILES ${files_short} )
-  add_sorting_function_test_helper(FNAME ${fname} LABEL "long"  FILES ${files_long} )
+  add_sorting_function_test_helper(FNAME ${fname} LABEL "interface_short" FILES ${files_short} )
+  add_sorting_function_test_helper(FNAME ${fname} LABEL "interface_long"  FILES ${files_long} )
 endfunction()
 
 # Include targets with tests

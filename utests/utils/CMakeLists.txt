@@ -17,4 +17,6 @@ target_compile_features(gtest_utils PRIVATE ${features} )
 target_compile_options(gtest_utils PRIVATE ${compile_opt} )
 target_link_libraries(gtest_utils PRIVATE ${depends} GTest::GTest GTest::Main)
 
-gtest_discover_tests(gtest_utils)
+gtest_discover_tests( gtest_utils
+  TEST_PREFIX "utest_utils_"
+  PROPERTIES LABELS "interface_long" )
