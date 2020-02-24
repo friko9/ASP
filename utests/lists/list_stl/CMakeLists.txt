@@ -2,9 +2,13 @@
 # utest/lists/list_stl #
 ########################
 function(add_google_test)
-  cmake_parse_arguments(add_google_test "" "FNAME;LABEL" "DEPENDS;FILES" ${ARGN})
+  cmake_parse_arguments(add_google_test "" "FNAME;LABEL;TIMEOUT" "DEPENDS;FILES" ${ARGN})
   set(fname ${add_google_test_FNAME})
   set(label ${add_google_test_LABEL})
+  set(timeout ${add_google_test_TIMEOUT})
+  if(NOT ${timeout})
+    set(timeout 5)
+  endif()
   set(files ${add_google_test_FILES})
   set(depends ${add_google_test_DEPENDS})
   set(name utest_${label}_${fname})
@@ -23,7 +27,8 @@ function(add_google_test)
 
   gtest_discover_tests( ${name}
     TEST_PREFIX "${name}_"
-    PROPERTIES LABELS "${label}" )
+    PROPERTIES LABELS "${label}"
+    DISCOVERY_TIMEOUT ${timeout} )
 endfunction()
 
 #####################
