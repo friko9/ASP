@@ -17,18 +17,24 @@
 using namespace std;
 using namespace testing;
 
+template<typename T>
+struct std::iterator_traits<testing::internal::ParamIterator<T> >
+{
+  using difference_type = typename testing::internal::ParamIterator<T>::difference_type;
+  using value_type = typename testing::internal::ParamIterator<T>::value_type;
+  using pointer = void;
+  using reference = typename testing::internal::ParamIterator<T>::reference;
+  using iterator_category = std::forward_iterator_tag;
+};
+
 template <typename T>
 vector<T> toInorderVector(const internal::ParamGenerator<T>& arg) {
-  vector<T> array;
-  for( auto x : arg )
-    array.push_back(x);
-  // copy(arg.begin(),arg.end(),back_inserter(array));
-  return array;
+  return vector<T>(arg.begin(),arg.end());
 }
 
 template <typename T>
 vector<T> toRandomizedVector(const internal::ParamGenerator<T>& arg) {
-  vector<T> array = toInorderVector(arg);
+  auto array = toInorderVector(arg);
   random_shuffle(array.begin(), array.end());
   return array;
 }
