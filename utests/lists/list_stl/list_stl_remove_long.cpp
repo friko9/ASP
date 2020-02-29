@@ -50,15 +50,14 @@ struct Pretty : public vector<T>
     auto begin = arg.begin();
     auto next = ++arg.begin();
     auto end = arg.end();
-    if(begin != end)
-      {
-    if(next == end)
-      tie(first_,last_,stride_) = make_tuple(*begin,*begin,0);
-    else{
-      auto last = begin;
-      for(auto it = next; it != end; ++it) ++last;
-      tie(first_,last_,stride_) = make_tuple(*begin,*last,*next-*begin);
-    }}
+
+    if(begin == end) return;
+    tie(first_,last_,stride_) = make_tuple(*begin,*begin,T{});
+    if(next == end) return;
+
+    auto last = begin;
+    for(auto it = next; it != end; ++it) ++last;
+    tie(first_,last_,stride_) = make_tuple(*begin,*last,*next-*begin);
   }
   string toString() const { return name + "(first="s + to_string(first_) + ",last="s + to_string(last_) + ",stride="s + to_string(stride_) + ')'; }
 protected:
