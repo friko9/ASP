@@ -75,7 +75,7 @@ struct ShuffledPretty : public Pretty<T,ContainerT>
   ShuffledPretty(const C<T>& arg):Pretty<T,ContainerT>(arg)
   {
     random_shuffle(this->begin(),this->end());
-    this->name = "RandomizedRange"s;
+    this->name = "ShuffledRange"s;
   }
 };
 
