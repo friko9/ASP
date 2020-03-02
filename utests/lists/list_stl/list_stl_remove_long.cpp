@@ -10,6 +10,7 @@
 #include "utest_utils.h"
 #include "utest_tuple.h"
 #include "utest_pretty.h"
+#include "utest_inclusive_range.h"
 
 #include <gtest/gtest.h>
 #include <algorithm>
@@ -29,17 +30,6 @@ struct std::iterator_traits<testing::internal::ParamIterator<T> >
   using reference = typename testing::internal::ParamIterator<T>::reference;
   using iterator_category = std::forward_iterator_tag;
 };
-
-template <typename T>
-vector<T> make_InclusiveRange(T first,T last,T stride = T{1})
-  {
-    vector<T> ret;
-    for(T i=first; i < last; i += stride)
-      ret.push_back(i);
-    ret.push_back(last);
-    return ret;
-  }
-
 
 template <typename... T>
 class testing::internal::UniversalTersePrinter<tuple<T...>> {

@@ -14,6 +14,7 @@ set(name utest_includes)
 list(APPEND files "./utest_tuple.h")
 list(APPEND files "./utest_utils.h")
 list(APPEND files "./utest_pretty.h")
+list(APPEND files "./utest_inclusive_range.h")
 
 message("Target: ${name}")
 add_library( ${name} INTERFACE )
