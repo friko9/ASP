@@ -5,6 +5,7 @@
 #include <ostream>
 #include <utility>
 #include <tuple>
+#include <gtest/gtest.h>
 
 template < typename T , typename... Ts >
 auto tuple_head( std::tuple<T,Ts...> t )
@@ -76,4 +77,25 @@ std::ostream& operator << (std::ostream& out,const std::vector<T>& arg)
   out<<'}';
   return out;
 }
+
+template <typename... T>
+class testing::internal::UniversalTersePrinter<std::tuple<T...>> {
+public:
+  static void Print(const std::tuple<T...>& obj, std::ostream* os) {
+    *os << "tuple{";
+    PrintHelper(obj,os);
+    *os << '}';
+  }
+  template <typename HeadT>
+  static void PrintHelper(const std::tuple<HeadT>& obj, std::ostream* os) {
+    testing::internal::UniversalTersePrinter<HeadT>::Print(tuple_head(obj),os);
+  }
+  template <typename HeadT,typename NextT, typename... Tail>
+  static void PrintHelper(const std::tuple<HeadT,NextT,Tail...>& obj, std::ostream* os) {
+    testing::internal::UniversalTersePrinter<HeadT>::Print(tuple_head(obj),os);
+    *os << ',';
+    PrintHelper(tuple_tail(obj),os);
+  }
+};
+
 #endif /*UTEST_TUPLE_H*/

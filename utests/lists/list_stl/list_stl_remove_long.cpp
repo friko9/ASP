@@ -31,26 +31,6 @@ struct std::iterator_traits<testing::internal::ParamIterator<T> >
   using iterator_category = std::forward_iterator_tag;
 };
 
-template <typename... T>
-class testing::internal::UniversalTersePrinter<tuple<T...>> {
-public:
-  static void Print(const tuple<T...>& obj, ::std::ostream* os) {
-    *os << "tuple{";
-    PrintHelper(obj,os);
-    *os << '}';
-  }
-  template <typename HeadT>
-  static void PrintHelper(const tuple<HeadT>& obj, ::std::ostream* os) {
-    testing::internal::UniversalTersePrinter<HeadT>::Print(tuple_head(obj),os);
-  }
-  template <typename HeadT,typename NextT, typename... Tail>
-  static void PrintHelper(const tuple<HeadT,NextT,Tail...>& obj, ::std::ostream* os) {
-    testing::internal::UniversalTersePrinter<HeadT>::Print(tuple_head(obj),os);
-    *os << ',';
-    PrintHelper(tuple_tail(obj),os);
-  }
-};
-
 template <typename T>
 class PopulateRemoveTest : public TestWithParam<tuple<T,T,T>>
 {
