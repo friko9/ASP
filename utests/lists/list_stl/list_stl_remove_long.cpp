@@ -9,6 +9,7 @@
 #include "list_stl.h"
 #include "utest_utils.h"
 #include "utest_tuple.h"
+#include "utest_pretty.h"
 
 #include <gtest/gtest.h>
 #include <algorithm>
@@ -39,94 +40,6 @@ vector<T> make_InclusiveRange(T first,T last,T stride = T{1})
     return ret;
   }
 
-template <typename T, template<typename...> class ContainerT>
-struct Pretty : public vector<T>
-{
-  using value_type = T;
-  Pretty():vector<T>(),name("EmptyRange"){}
-  template<template<typename...> class C>
-  Pretty(const C<T>& arg):vector<T>(arg.begin(),arg.end()),name("Range")
-  {
-    auto begin = arg.begin();
-    auto next = ++arg.begin();
-    auto end = arg.end();
-
-    if(begin == end) return;
-    tie(first_,last_,stride_) = make_tuple(*begin,*begin,T{});
-    if(next == end) return;
-
-    auto last = begin;
-    for(auto it = next; it != end; ++it) ++last;
-    tie(first_,last_,stride_) = make_tuple(*begin,*last,*next-*begin);
-  }
-  string toString() const { return name + "(first="s + to_string(first_) + ",last="s + to_string(last_) + ",stride="s + to_string(stride_) + ')'; }
-protected:
-  string name;
-private:
-  T first_  {};
-  T stride_  {};
-  T last_  {};
-};
-
-template <typename T, template<typename...> class ContainerT>
-struct ShuffledPretty : public Pretty<T,ContainerT>
-{
-  template<template<typename...> class C>
-  ShuffledPretty(const C<T>& arg):Pretty<T,ContainerT>(arg)
-  {
-    random_shuffle(this->begin(),this->end());
-    this->name = "ShuffledRange"s;
-  }
-};
-
-template <typename T, template<typename...> class ContainerT>
-struct ReversePretty : public Pretty<T,ContainerT>
-{
-  template<template<typename...> class C>
-  ReversePretty(const C<T>& arg):Pretty<T,ContainerT>(arg)
-  {
-    reverse(this->begin(),this->end());
-    this->name = "ReverseRange"s;
-  }
-};
-template <typename T, template<typename...> class ContainerT, typename... Args>
-Pretty<T,ContainerT> make_Pretty(ContainerT<T,Args...> arg) {
-  return Pretty<T,ContainerT>{arg};
-}
-
-template <typename T, template<typename...> class ContainerT>
-ShuffledPretty<T,ContainerT> make_ShuffledPretty(ContainerT<T> arg) {
-  return ShuffledPretty<T,ContainerT>{arg};
-}
-
-template <typename T, template<typename...> class ContainerT>
-ReversePretty<T,ContainerT> make_ReversePretty(ContainerT<T> arg) {
-  return ReversePretty<T,ContainerT>{arg};
-}
-
-template <typename X>
-using VectorT = vector<X>;
-
-template <typename T>
-auto make_EmptyPretty() {
-  return Pretty<T,VectorT>();
-}
-
-template <typename T, template<typename> class ContainerT>
-class testing::internal::UniversalTersePrinter<ShuffledPretty<T,ContainerT>> {
-public:
-  static void Print(const ShuffledPretty<T,ContainerT>& obj, ::std::ostream* os) {
-    *os << obj.toString();
-  }
-};
-
-template <typename T, template<typename> class ContainerT>
-class testing::internal::UniversalTersePrinter<Pretty<T,ContainerT>> {
-public:
-  static void Print(const Pretty<T,ContainerT>& obj, ::std::ostream* os) {
-    *os << obj.toString();
-  }
-};
 
 template <typename... T>
 class testing::internal::UniversalTersePrinter<tuple<T...>> {
