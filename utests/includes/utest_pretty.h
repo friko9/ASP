@@ -32,9 +32,9 @@ struct Pretty : public std::vector<T>
   std::string toString() const
   {
     return { name
-	     + "(first=" + to_string(first_)
-	     + ",last=" + to_string(last_)
-	     + ",stride=" + to_string(stride_)
+	     + "(first=" + std::to_string(first_)
+	     + ",last=" + std::to_string(last_)
+	     + ",stride=" + std::to_string(stride_)
 	     + ")" };
   }
 protected:
@@ -83,10 +83,10 @@ ReversePretty<T,ContainerT> make_ReversePretty(ContainerT<T> arg) {
   return ReversePretty<T,ContainerT>{arg};
 }
 
-template <typename T, template<typename> class ContainerT>
-class testing::internal::UniversalTersePrinter<Pretty<T,ContainerT>> {
+template <typename T>
+class testing::internal::UniversalTersePrinter<Pretty<T,std::vector>> {
 public:
-  static void Print(const Pretty<T,ContainerT>& obj, ::std::ostream* os) {
+  static void Print(const Pretty<T,std::vector>& obj, ::std::ostream* os) {
     *os << obj.toString();
   }
 };
