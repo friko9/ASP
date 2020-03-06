@@ -85,8 +85,8 @@ namespace EmptyRemovalTest_ {
   using tuple_t = tuple<pretty_t,pretty_t,pretty_t>;
   constexpr value_t v_min = numeric_limits<value_t>::min();
   constexpr value_t v_max = numeric_limits<value_t>::max();  
-  constexpr value_t v_min_1 = numeric_limits<value_t>::min()+(value_t)1;
-  constexpr value_t v_max_1 = numeric_limits<value_t>::max()-(value_t)1;
+  constexpr value_t v_min_1 = numeric_limits<value_t>::min() + value_t{1};
+  constexpr value_t v_max_1 = numeric_limits<value_t>::max() - value_t{1};
 
   //TEST DATASET
   //DATA insert = Inorder full set

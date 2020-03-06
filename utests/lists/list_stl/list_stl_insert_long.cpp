@@ -73,9 +73,7 @@ namespace InsertionTest_ {
   using value_t = PopulateTestInt16::value_t;
   constexpr value_t v_min = numeric_limits<value_t>::min();
   constexpr value_t v_max = numeric_limits<value_t>::max();  
-  constexpr value_t v_min_1 = numeric_limits<value_t>::min()+(value_t)1;
-  // constexpr value_t v_max_1 = numeric_limits<value_t>::max()-(value_t)1;
-
+  constexpr value_t v_min_1 = numeric_limits<value_t>::min()+ value_t {1};
 
   //TEST DATASET
   //DATA insert = [inorder|revorder|shuffled] full set
@@ -89,9 +87,9 @@ namespace InsertionTest_ {
   //DATA insert = [inorder|revorder|shuffled] half set with gaps
   //DATA expect = [inorder|revorder|shuffled] half set with gaps
   INSTANTIATE_TEST_CASE_P(GapsSet, PopulateTestInt16,
-  			  Values(  make_Pretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) ),
-				   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) ),
-				   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) )
+  			  Values(  make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t {2}) ),
+				   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t {2}) ),
+				   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t {2}) )
 				   ));
 }
 
