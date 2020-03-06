@@ -15,6 +15,7 @@ list(APPEND files "./utest_tuple.h")
 list(APPEND files "./utest_utils.h")
 list(APPEND files "./utest_pretty.h")
 list(APPEND files "./utest_inclusive_range.h")
+list(APPEND files "./utest_traits.h")
 list(APPEND files "./utest.h")
 
 
