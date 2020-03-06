@@ -7,38 +7,23 @@
 //#include "test_deps.h"
 
 #include "list_stl.h"
-#include "utest_utils.h"
+#include "utest.h"
 
 #include <gtest/gtest.h>
-#include <algorithm>
 #include <limits>
-#include <vector>
 
 using namespace std;
 using namespace testing;
 
-template<typename T>
-class EmptyList : public TestWithParam<T>{
-public:
-  using value_t = T;
-  static list_stl<T> empty_list;
-};
-template<typename T>
-list_stl<T> EmptyList<T>::empty_list;
-
-using EmptyListInt = EmptyList<int>;
-using EmptyListInt8 = EmptyList<int8_t>;
-using EmptyListFloat = EmptyList<float>;
 //TEST SUITE
 //SUBJECT empty list_stl
 //RESULT doesnt contain any element
 namespace EmptyListTest {
-  TEST_P(EmptyListInt8,ContainsReturnFalse)
+  TEST(EmptyListInt8,ContainsReturnFalseForEntireRange)
   {
-    ASSERT_FALSE(empty_list.contains(GetParam()));
+    using value_t = int8_t;
+    list_stl<value_t> empty_list;
+    for( auto test_value : Range(numeric_limits<value_t>::min(),numeric_limits<value_t>::max()) )
+      ASSERT_FALSE(empty_list.contains(test_value));
   }
-  //TEST DATASET
-  //DATA all single elements in EmptyListInt8
-  using value_t = EmptyListInt8::value_t;
-  INSTANTIATE_TEST_CASE_P(range, EmptyListInt8, Range(numeric_limits<value_t>::min(),numeric_limits<value_t>::max()));
 }
