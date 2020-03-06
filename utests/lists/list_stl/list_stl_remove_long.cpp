@@ -83,15 +83,15 @@ namespace EmptyRemovalTest_ {
   using value_t = PopulateRemoveTestInt16::value_t;
   using pretty_t = Pretty<value_t,vector>;
   using tuple_t = tuple<pretty_t,pretty_t,pretty_t>;
-  // using tuple_t = array<pretty_t,3>;
   constexpr value_t v_min = numeric_limits<value_t>::min();
   constexpr value_t v_max = numeric_limits<value_t>::max();  
   constexpr value_t v_min_1 = numeric_limits<value_t>::min()+(value_t)1;
   constexpr value_t v_max_1 = numeric_limits<value_t>::max()-(value_t)1;
+
   //TEST DATASET
-  //DATA insert = empty
-  //DATA remove = single elements
-  //DATA expect = empty.
+  //DATA insert = Inorder full set
+  //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
+  //DATA expect = [empty | half with gaps]
   INSTANTIATE_TEST_CASE_P(FullInorder, PopulateRemoveTestInt16,
   			  Values(
 				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
@@ -111,57 +111,58 @@ namespace EmptyRemovalTest_ {
 					   {}},
 				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
 					 make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_ShuffledPretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
 				 ));
   //TEST DATASET
-  //DATA insert = empty
-  //DATA remove = single elements
-  //DATA expect = empty.
-  // INSTANTIATE_TEST_CASE_P(FullRevorder, PopulateRemoveTestInt16,
-  // 			  Values(
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	  make_Pretty( Range(v_min, v_max) ),
-  // 				 	  {}},
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   make_Pretty( Range(v_min_1, v_max, 2)),
-  // 				 	   make_Pretty( Range(v_min, v_max_1, 2)) },
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   {} },
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   make_ReversePretty( Range(v_min_1, v_max, 2)),
-  // 				 	   make_Pretty( Range(v_min, v_max_1, 2)) },
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   make_ShuffledPretty( Range(v_min, v_max) ),
-  // 				 	   {}},
-  // 				 tuple_t{ make_ReversePretty( Range(v_min, v_max) ),
-  // 				 	   make_ShuffledPretty( Range(v_min, v_max_1, 2)),
-  // 				 	   make_ShuffledPretty( Range(v_min_1, v_max, 2)) }
-  // 				 ));
+  //DATA insert = Reverse-order full set
+  //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
+  //DATA expect = [empty | half with gaps]
+  INSTANTIATE_TEST_CASE_P(FullReverseOrder, PopulateRemoveTestInt16,
+  			  Values(
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					 make_Pretty( make_InclusiveRange(v_min, v_max) ),
+					 {}},
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   {} },
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   {}},
+				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+				 ));
   //TEST DATASET
-  //DATA insert = empty
-  //DATA remove = single elements
-  //DATA expect = empty.
-  // INSTANTIATE_TEST_CASE_P(FullRandOrder, PopulateRemoveTestInt16,
-  // 			  Values(
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					  make_Pretty( Range(v_min, v_max) ),
-  // 					  {} },
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   make_Pretty( Range(v_min, v_max_1, 2)),
-  // 					   make_Pretty( Range(v_min_1, v_max, 2)) },
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   make_ReversePretty( Range(v_min, v_max, 1) ),
-  // 					   {} },
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   make_ReversePretty( Range(v_min, v_max_1, 2)),
-  // 					   make_Pretty( Range(v_min_1, v_max,  2)) },
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   {}},
-  // 				 tuple_t{ make_ShuffledPretty( Range(v_min, v_max) ),
-  // 					   make_ShuffledPretty( Range(v_min_1, v_max, 2)),
-  // 					   make_ShuffledPretty( Range(v_min, v_max_1, 2)) }
-  // 				 ));
+  //DATA insert = Shuffled full set
+  //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
+  //DATA expect = [empty | half with gaps]
+  INSTANTIATE_TEST_CASE_P(FullShuffledOrder, PopulateRemoveTestInt16,
+  			  Values(
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					 make_Pretty( make_InclusiveRange(v_min, v_max) ),
+					 {}},
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+					   {} },
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   {}},
+				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+					   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+				 ));
+
 }
 
