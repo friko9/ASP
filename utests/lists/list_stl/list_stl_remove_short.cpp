@@ -7,7 +7,7 @@
 //#include "test_deps.h"
 
 #include "list_stl.h"
-#include "utest_utils.h"
+#include "utest.h"
 
 #include <gtest/gtest.h>
 #include <algorithm>
@@ -18,10 +18,10 @@ using namespace std;
 using namespace testing;
 
 template <typename T>
-class PopulateRemoveTest : public TestWithParam<tuple<vector<T>,vector<T>,vector<T>>>
+class PopulateRemoveTest : public TestWithParam<tuple<T,T,T>>
 {
 public:
-  using value_t = typename decay<T>::type;
+  using value_t = typename T::value_type;
 public:
   list_stl<value_t> test_obj;
   void populate_test_obj(vector<value_t> arg)  {
@@ -32,7 +32,7 @@ public:
   }
 };
 
-using PopulateRemoveTestInt8 = PopulateRemoveTest<int8_t>;
+using PopulateRemoveTestInt8 = PopulateRemoveTest<vector<int8_t>>;
 
 namespace EmptyRemovalTest_ {
   //TEST SUITE
@@ -41,9 +41,9 @@ namespace EmptyRemovalTest_ {
   //RESULT list contains listed element after insertion
   TEST_P(PopulateRemoveTestInt8,ContainsAllTest)
   {
-    auto insert = get<0>(GetParam());
-    auto remove = get<1>(GetParam());
-    auto expect = get<2>(GetParam());
+    auto& insert = get<0>(GetParam());
+    auto& remove = get<1>(GetParam());
+    auto& expect = get<2>(GetParam());
 
     EXPECT_NO_THROW( populate_test_obj(insert) );
     EXPECT_NO_THROW( depopulate_test_obj(remove) );
@@ -58,8 +58,8 @@ namespace EmptyRemovalTest_ {
   //RESULT list doesn't contain not listed elements after insertion
   TEST_P(PopulateRemoveTestInt8,DoesntContainOtherTest)
   {
-    auto insert = get<0>(GetParam());
-    auto remove = get<1>(GetParam());
+    auto& insert = get<0>(GetParam());
+    auto& remove = get<1>(GetParam());
     auto expect = get<2>(GetParam());
     
     EXPECT_NO_THROW( populate_test_obj(insert) );
