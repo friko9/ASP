@@ -43,9 +43,9 @@ namespace EmptyRemovalTest_ {
   //RESULT list contains listed elements after insertion
   TEST_P(PopulateRemoveTestInt16,ContainsAllTest)
   {
-    auto insert = get<0>(GetParam());
-    auto remove = get<1>(GetParam());
-    auto expect = get<2>(GetParam());
+    auto& insert = get<0>(GetParam());
+    auto& remove = get<1>(GetParam());
+    auto& expect = get<2>(GetParam());
 
     EXPECT_NO_THROW( populate_test_obj(insert) );
     EXPECT_NO_THROW( depopulate_test_obj(remove) );
@@ -60,8 +60,8 @@ namespace EmptyRemovalTest_ {
   //RESULT list doesn't contain not listed elements after insertion
   TEST_P(PopulateRemoveTestInt16,DoesntContainOtherTest)
   {
-    auto insert = get<0>(GetParam());
-    auto remove = get<1>(GetParam());
+    auto& insert = get<0>(GetParam());
+    auto& remove = get<1>(GetParam());
     auto expect = get<2>(GetParam());
     
     EXPECT_NO_THROW( populate_test_obj(insert) );
