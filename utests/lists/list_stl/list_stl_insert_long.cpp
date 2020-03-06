@@ -18,44 +18,30 @@ using namespace std;
 using namespace testing;
 
 template <typename T>
-vector<T> toInorderVector(const internal::ParamGenerator<T>& arg) {
-  return vector<T>(arg.begin(),arg.end());
-}
-
-template <typename T>
-vector<T> toRandomizedVector(const internal::ParamGenerator<T>& arg) {
-  auto array = toInorderVector(arg);
-  random_shuffle(array.begin(), array.end());
-  return array;
-}
-
-template <typename T>
-class List : public TestWithParam<vector<T>>
+class PopulateTest : public TestWithParam<T>
 {
 public:
-  using value_t = T;
+  using value_t = typename T::value_type;
 public:
-  list_stl<T> test_obj;
-  template<typename It>
-  inline
-  void populate_test_obj(It begin,It end)  {
-    for_each(begin, end, [this](auto x){test_obj.insert(x);});
+  list_stl<value_t> test_obj;
+  void populate_test_obj(const T& arg)  {
+    for_each(arg.begin(), arg.end(), [this](auto x){test_obj.insert(x);});
   }
 };
 
-using InsertionTestInt16 = List<int16_t>;
+using PopulateTestInt16 = PopulateTest<Pretty<int16_t,vector>>;
 
 namespace InsertionTest_ {
   //TEST SUITE
   //SUBJECT empty list_stl
   //INPUT  { insert_set }
   //RESULT list contains listed elements after inorder insertion
-  TEST_P(InsertionTestInt16,ContainsInserted)
+  TEST_P(PopulateTestInt16,ContainsInserted)
   {
     auto& insert = GetParam();
     auto& expect = insert;
 
-    populate_test_obj(insert.begin(),insert.end());
+    EXPECT_NO_THROW( populate_test_obj(insert) );
 
     for( auto test_val : expect )
       ASSERT_TRUE(test_obj.contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
@@ -64,12 +50,13 @@ namespace InsertionTest_ {
   //SUBJECT empty list_stl
   //INPUT  { insert_set }
   //RESULT list doesn't contain not listed elements after inorder insertion
-  TEST_P(InsertionTestInt16,DoesntContainNotInserted)
+  TEST_P(PopulateTestInt16,DoesntContainNotInserted)
   {
     auto& insert = GetParam();
     auto expect = insert;
 
-    populate_test_obj(insert.begin(),insert.end());
+    EXPECT_NO_THROW( populate_test_obj(insert) );
+    
     sort(expect.begin(),expect.end());
 
     auto expect_begin = expect.begin();
@@ -83,27 +70,28 @@ namespace InsertionTest_ {
       }
   }
   
-  using value_t = InsertionTestInt16::value_t;
-  using pair_t = std::pair<std::vector<value_t>,std::vector<value_t>>;
+  using value_t = PopulateTestInt16::value_t;
   constexpr value_t v_min = numeric_limits<value_t>::min();
-  constexpr value_t v_max = numeric_limits<value_t>::max();
-  //TEST DATASET
-  //DATA insert = Range(v_min,v_max).
-  INSTANTIATE_TEST_CASE_P(FullSet, InsertionTestInt16,
-			  ValuesIn({
-				   toInorderVector( Range(v_min, v_max) ),
-				   toInorderVector( Range(v_max, v_min, -1) ),
-				   toRandomizedVector( Range(v_min, v_max) ),
-			    }));
+  constexpr value_t v_max = numeric_limits<value_t>::max();  
   constexpr value_t v_min_1 = numeric_limits<value_t>::min()+(value_t)1;
-  constexpr value_t v_max_1 = numeric_limits<value_t>::max()-(value_t)1;
+  // constexpr value_t v_max_1 = numeric_limits<value_t>::max()-(value_t)1;
+
+
   //TEST DATASET
-  //DATA insert = Range(v_min+1,v_max-1).
-  INSTANTIATE_TEST_CASE_P(GapsSet, InsertionTestInt16,
-  			  ValuesIn({
-				    toInorderVector( Range(v_min_1, v_max_1, 2) ),
-				    toInorderVector( Range(v_max_1, v_min_1, -2) ),
-				    toRandomizedVector( Range(v_min_1, v_max_1, 2) )
-  			    }));
+  //DATA insert = [inorder|revorder|shuffled] full set
+  //DATA expect = [inorder|revorder|shuffled] full set
+  INSTANTIATE_TEST_CASE_P(FullSet, PopulateTestInt16,
+  			  Values(  make_Pretty( make_InclusiveRange(v_min, v_max) ),
+				   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+				   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) )
+				   ));
+  //TEST DATASET
+  //DATA insert = [inorder|revorder|shuffled] half set with gaps
+  //DATA expect = [inorder|revorder|shuffled] half set with gaps
+  INSTANTIATE_TEST_CASE_P(GapsSet, PopulateTestInt16,
+  			  Values(  make_Pretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) ),
+				   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) ),
+				   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, (value_t)2) )
+				   ));
 }
 
