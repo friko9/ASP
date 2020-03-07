@@ -35,10 +35,10 @@ public:
 	}
     void remove(elem_t x)
 	{
-	    int node = find(x);
+	    auto node = find(x);
 	    if(node != null)
 	    {
-		int last = size()-1;
+		auto last = size()-1;
 		exclude_elem(node);
 		move_elem(last,node);
 		elems.pop_back();
@@ -51,7 +51,7 @@ private:
 	{ return elems.size(); }
     index_t find(elem_t x)
 	{
-	    index_t node = head;
+	    auto node = head;
 	    while( node != null && elems[node] != x )
 		node = next[node];
 	    return node;
@@ -77,8 +77,7 @@ private:
 	    node_next_prev = prev[node];
 	}
 private:
-    static constexpr index_t null =
-      (std::is_signed<index_t>::value)? std::numeric_limits<index_t>::max() : std::numeric_limits<index_t>::min();
+    static constexpr index_t null = std::numeric_limits<index_t>::max();
     std::vector<elem_t> elems;
     std::vector<index_t> next,prev;
     index_t head = null, tail = null;
