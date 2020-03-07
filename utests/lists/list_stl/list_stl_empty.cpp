@@ -31,9 +31,16 @@ public:
 public:
   void SetUp() override {
     test_obj = get<0>(this->GetParam())->clone();
+    range_min = get<1>(this->GetParam());
+    range_max = get<2>(this->GetParam());
       }
+  void TearDown() override {
+    delete test_obj;
+  }
 public:
   ListObjectT* test_obj;
+  int8_t range_min;
+  int8_t range_max;
 };
 
 namespace EmptyListTest {
@@ -43,9 +50,7 @@ namespace EmptyListTest {
   //RESULT <list> doesn't contain any element in inclusive_range [min,max]
   TEST_P(EmptyTestInt8,ContainsReturnFalseForEntireRange)
   {
-    auto min = get<1>(GetParam());
-    auto max = get<2>(GetParam());
-    for( auto test_value : make_InclusiveRange(min, max) )
+    for( auto test_value : make_InclusiveRange(range_min, range_max) )
       ASSERT_FALSE(test_obj->contains(test_value));
   }
   
