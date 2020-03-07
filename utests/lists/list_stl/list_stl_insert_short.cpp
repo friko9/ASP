@@ -106,14 +106,14 @@ namespace InsertionTest_ {
   INSTANTIATE_TEST_CASE_P(1Element, PopulateTestInt8,
 			  Combine(
 				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
 					 ),
 				  Values(pair_t{{0},{0}},
 					 pair_t{{v_min},{v_min}},
@@ -125,14 +125,14 @@ namespace InsertionTest_ {
   INSTANTIATE_TEST_CASE_P(1Element2Checks, PopulateTestInt8,
 			  Combine(
 				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
 					 ),
 				  Values(pair_t{{0},{0,0}},
 					 pair_t{{v_min},{v_min,v_min}},
@@ -144,14 +144,14 @@ namespace InsertionTest_ {
   INSTANTIATE_TEST_CASE_P(2Elements, PopulateTestInt8,
 			  Combine(
 				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
 					 ),
 				  Values(pair_t{{0,0},{0}},
 					 pair_t{{v_min,v_min},{v_min}},
@@ -163,14 +163,14 @@ namespace InsertionTest_ {
   INSTANTIATE_TEST_CASE_P(3Elements, PopulateTestInt8,
 			  Combine(
 				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
 					 ),
 				  Values(pair_t{{v_min,1,v_max},{v_min,1,v_max}},
 					 pair_t{{v_min,v_max,1},{v_min,1,v_max}},
