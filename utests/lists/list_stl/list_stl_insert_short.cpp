@@ -97,62 +97,38 @@ namespace InsertionTest_ {
   using pair_t = std::pair<std::vector<value_t>,std::vector<value_t>>;
   constexpr value_t v_min = numeric_limits<value_t>::min();
   constexpr value_t v_max = numeric_limits<value_t>::max();
-  constexpr value_t v_min_1 = numeric_limits<value_t>::min() + value_t {1};
-  constexpr value_t v_max_1 = numeric_limits<value_t>::max() - value_t {1};
 
+  auto test_objects = Values( make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+			      make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)  );
   //TEST DATASET
   //DATA insert = single elements.
   //DATA expect = single elements.
   INSTANTIATE_TEST_CASE_P(1Element, PopulateTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(pair_t{{0},{0}},
-					 pair_t{{v_min},{v_min}},
-					 pair_t{{v_max},{v_max}}
-					 )));
+			  Combine( test_objects,
+				   Values(pair_t{{0},{0}},
+					  pair_t{{v_min},{v_min}},
+					  pair_t{{v_max},{v_max}}
+					  )));
   //TEST DATASET
   //DATA insert = single elements.
   //DATA expect = repeating elements.
   INSTANTIATE_TEST_CASE_P(1Element2Checks, PopulateTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(pair_t{{0},{0,0}},
-					 pair_t{{v_min},{v_min,v_min}},
-					 pair_t{{v_max},{v_max,v_max}}
-					 )));
+			  Combine( test_objects,
+				   Values(pair_t{{0},{0,0}},
+					  pair_t{{v_min},{v_min,v_min}},
+					  pair_t{{v_max},{v_max,v_max}}
+					  )));
   //TEST DATASET
   //DATA insert = repeating elements.
   //DATA expect = single elements.
   INSTANTIATE_TEST_CASE_P(2Elements, PopulateTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
+			  Combine( test_objects,
 				  Values(pair_t{{0,0},{0}},
 					 pair_t{{v_min,v_min},{v_min}},
 					 pair_t{{v_max,v_max},{v_max}}
@@ -161,23 +137,13 @@ namespace InsertionTest_ {
   //DATA insert = 3 elements different combinations.
   //DATA expect = insert.
   INSTANTIATE_TEST_CASE_P(3Elements, PopulateTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(pair_t{{v_min,1,v_max},{v_min,1,v_max}},
-					 pair_t{{v_min,v_max,1},{v_min,1,v_max}},
-					 pair_t{{1,v_min,v_max},{v_min,1,v_max}},
-					 pair_t{{1,v_max,v_min},{v_min,1,v_max}},
-					 pair_t{{v_max,v_min,1},{v_min,1,v_max}},
-					 pair_t{{v_max,1,v_min},{v_min,1,v_max}}
-					 )));
+			  Combine( test_objects,
+				   Values(pair_t{{v_min,1,v_max},{v_min,1,v_max}},
+					  pair_t{{v_min,v_max,1},{v_min,1,v_max}},
+					  pair_t{{1,v_min,v_max},{v_min,1,v_max}},
+					  pair_t{{1,v_max,v_min},{v_min,1,v_max}},
+					  pair_t{{v_max,v_min,1},{v_min,1,v_max}},
+					  pair_t{{v_max,1,v_min},{v_min,1,v_max}}
+					  )));
 }
 

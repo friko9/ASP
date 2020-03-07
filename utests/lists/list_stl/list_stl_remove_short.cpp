@@ -106,127 +106,74 @@ namespace EmptyRemovalTest_ {
   using tuple_t = tuple<vector<value_t>,vector<value_t>,vector<value_t>>;
   constexpr value_t v_min = numeric_limits<value_t>::min();
   constexpr value_t v_max = numeric_limits<value_t>::max();
-  constexpr value_t v_min_1 = numeric_limits<value_t>::min() + value_t {1};
-  constexpr value_t v_max_1 = numeric_limits<value_t>::max() - value_t {1};
+
+  auto test_objects = Values( make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+			      make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)  );
   //TEST DATASET
   //DATA insert = empty
   //DATA remove = single elements
   //DATA expect = empty.
   INSTANTIATE_TEST_CASE_P(0ExR1NEx0E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{},{0},{}},
-					 tuple_t{{},{v_min},{}},
-					 tuple_t{{},{v_max},{}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{},{0},{}},
+					  tuple_t{{},{v_min},{}},
+					  tuple_t{{},{v_max},{}}
+					  )));
   //TEST DATASET
   //DATA insert = single elements
   //DATA remove = single elements
   //DATA expect = empty.
   INSTANTIATE_TEST_CASE_P(1ExR1Ex0E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{0},{0},{}},
-					 tuple_t{{v_min},{v_min},{}},
-					 tuple_t{{v_max},{v_max},{}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{0},{0},{}},
+					  tuple_t{{v_min},{v_min},{}},
+					  tuple_t{{v_max},{v_max},{}}
+					  )));
   //TEST DATASET
   //DATA insert = single elements
   //DATA remove = single elements
   //DATA expect = single elements
   INSTANTIATE_TEST_CASE_P(1ExR1NEx1E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{0},{v_max},{0}},
-					 tuple_t{{v_min},{0},{v_min}},
-					 tuple_t{{v_max},{v_min},{v_max}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{0},{v_max},{0}},
+					  tuple_t{{v_min},{0},{v_min}},
+					  tuple_t{{v_max},{v_min},{v_max}}
+					  )));
   //TEST DATASET
   //DATA insert = single elements.
   //DATA remove = repeating elements
   //DATA expect = empty.
   INSTANTIATE_TEST_CASE_P(1ExR2Ex0E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{0},{0,0},{}},
-					 tuple_t{{v_min},{v_min,v_min},{}},
-					 tuple_t{{v_max},{v_max,v_max},{}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{0},{0,0},{}},
+					  tuple_t{{v_min},{v_min,v_min},{}},
+					  tuple_t{{v_max},{v_max,v_max},{}}
+					  )));
   //TEST DATASET
   //DATA insert = repeating elements
   //DATA remove = single elements
   //DATA expect = single elements
   INSTANTIATE_TEST_CASE_P(2ExR1Ex1E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{0,0},{0},{0}},
-					 tuple_t{{v_min,v_min},{v_min},{v_min}},
-					 tuple_t{{v_max,v_max},{v_max},{v_max}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{0,0},{0},{0}},
+					  tuple_t{{v_min,v_min},{v_min},{v_min}},
+					  tuple_t{{v_max,v_max},{v_max},{v_max}}
+					  )));
   //TEST DATASET
   //DATA insert = repeating elements
   //DATA remove = repeating elements
   //DATA expect = empty
   INSTANTIATE_TEST_CASE_P(2ExR2Ex0E, PopulateRemoveTestInt8,
-			  Combine(
-				  Values(
-					 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-					 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-					 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-					 ),
-				  Values(tuple_t{{0,0},{0,0},{}},
-					 tuple_t{{v_min,v_min},{v_min,v_min},{}},
-					 tuple_t{{v_max,v_max},{v_max,v_max},{}}
-					 )));
+			  Combine( test_objects,
+				   Values(tuple_t{{0,0},{0,0},{}},
+					  tuple_t{{v_min,v_min},{v_min,v_min},{}},
+					  tuple_t{{v_max,v_max},{v_max,v_max},{}}
+					  )));
 }
 
