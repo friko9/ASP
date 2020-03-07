@@ -9,6 +9,7 @@ struct ListObjectT
   virtual void insert(int x) =0;
   virtual void remove(int x) =0;
   virtual ListObjectT* clone() const = 0;
+  virtual ~ListObjectT(){};
 public:
   ListObjectT(std::string name): name(name){}  
   std::string toString() const { return name; }
