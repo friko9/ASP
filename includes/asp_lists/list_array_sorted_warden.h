@@ -28,46 +28,40 @@ public:
 	}
     void insert(T x)
 	{
-	    assert( x != max);
-	    assert( x != min);
-	    index_t node = elems.size();
-	    index_t node_next = find(x);
-	    index_t node_prev = prev[node_next];
-	    next.push_back(node_next);
-	    prev.push_back(node_prev);
-	    elems.push_back(x);
+	  index_t node = elems.size();
+	  index_t node_next = find(x);
+	  index_t node_prev = prev[node_next];
+	  next.push_back(node_next);
+	  prev.push_back(node_prev);
+	  elems.push_back(x);
 
-	    next[node_prev] = node;
-	    prev[node_next] = node;
+	  next[node_prev] = node;
+	  prev[node_next] = node;
 	}
     bool contains(T x)
 	{
-	    assert( x != max);
-	    assert( x != min);
-	    index_t n = find(x);
-	    return elems[n] == x;
+	  index_t n = find(x);
+	  return (n == 0 )? false : (elems[n] == x);
 	}
     void remove(T x)
 	{
-	    assert( x != max);
-	    assert( x != min);
-	    index_t node = find(x);
-	    if( elems[node] == x )
-	    {
-		index_t last = elems.size()-1;
-		exclude_elem(node);
-		move_elem(last,node);
-		elems.pop_back();
-		prev.pop_back();
-		next.pop_back();
-	    }
+	  index_t node = find(x);
+	  if( node == tail ) return;
+	  if( elems[node] != x ) return;
+
+	  index_t last = elems.size()-1;
+	  exclude_elem(node);
+	  move_elem(last,node);
+	  elems.pop_back();
+	  prev.pop_back();
+	  next.pop_back();
 	}
 private:
     index_t size()
 	{ return elems.size(); }
     index_t find(T x)
 	{
-	    index_t node = head;
+	    index_t node = next[head];
 	    while( elems[node] < x )
 		node=next[node];
 	    return node;
