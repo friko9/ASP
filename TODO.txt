@@ -8,32 +8,34 @@
 Table of Contents
 ─────────────────
 
-1 TODO refactor utests code                                        :ref:
-.. 1.1 TODO move utest code into includes/*/                       :ref:
-.. 1.2 DONE change includes of "gtest/…" into <gtest/…>            :ref:
-.. 1.3 TODO Change google test cases naming so it doesn't contain underscores :ref:
-2 TODO Refactor includes                                           :ref:
-.. 2.1 TODO rename includes into src                               :ref:
-.. 2.2 TODO include/utils/utils.h into ../utils/utils.h            :ref:
-3 TODO Switch build from EDE-Project to CMake
-.. 3.1 DONE Build includes with CMake                             :feat:
-.. 3.2 TODO add sub-libraries for each header file                 :ref:
-..... 3.2.1 DONE includes/utils/
-..... 3.2.2 DONE includes/asp_sorting/                             :ref:
-..... 3.2.3 DONE Make ctest/sorting/ use sub-libraries             :ref:
-..... 3.2.4 TODO includes/asp_lists/                               :ref:
-..... 3.2.5 TODO Make ctest/sorting/ use sub-libraries             :ref:
-..... 3.2.6 TODO includes/asp_hashsets/                            :ref:
-..... 3.2.7 TODO Make ctest/sorting/ use sub-libraries             :ref:
-..... 3.2.8 TODO includes/asp_treesets/                            :ref:
-..... 3.2.9 TODO Make ctest/sorting/ use sub-libraries             :ref:
-.. 3.3 TODO Build utests with CMake & GoogleTest                  :feat:
-..... 3.3.1 DONE ctests/utils/                                    :feat:
-..... 3.3.2 DONE ctests/sorting/ use sub-libraries                :feat:
-..... 3.3.3 TODO ctests/lists/ use sub-libraries                  :feat:
-..... 3.3.4 TODO ctests/treesets/ use sub-libraries               :feat:
-..... 3.3.5 TODO ctests/hashsets/ use sub-libraries               :feat:
-.. 3.4 TODO Build /perf_tests with CMake                          :feat:
+1. TODO refactor utests code                                       :ref:
+.. 1. TODO move utest code into includes/*/                        :ref:
+.. 2. DONE change includes of "gtest/…" into <gtest/…>             :ref:
+.. 3. TODO Change google test cases naming so it doesn't contain underscores :ref:
+.. 4. TODO Move Google Test form utests/sorting to utests/asp_sorting :ref:
+.. 5. TODO Change in utests/asp_sorting to resemble utests/asp_lists :ref
+2. TODO Refactor includes                                          :ref:
+.. 1. TODO rename includes into src                                :ref:
+.. 2. TODO Change include/utils/utils.h into ../utils/utils.h      :ref:
+3. TODO Switch build from EDE-Project to CMake
+.. 1. DONE Build includes with CMake                              :feat:
+.. 2. TODO add sub-libraries for each header file                  :ref:
+..... 1. DONE includes/utils/
+..... 2. DONE includes/asp_sorting/                                :ref:
+..... 3. DONE Make ctest/sorting/ use sub-libraries                :ref:
+..... 4. TODO includes/asp_lists/                                  :ref:
+..... 5. TODO Make ctest/sorting/ use sub-libraries                :ref:
+..... 6. TODO includes/asp_hashsets/                               :ref:
+..... 7. TODO Make ctest/sorting/ use sub-libraries                :ref:
+..... 8. TODO includes/asp_treesets/                               :ref:
+..... 9. TODO Make ctest/sorting/ use sub-libraries                :ref:
+.. 3. TODO Build utests with CMake & GoogleTest                   :feat:
+..... 1. DONE ctests/utils/                                       :feat:
+..... 2. DONE ctests/sorting/                                     :feat:
+..... 3. DONE ctests/lists/                                       :feat:
+..... 4. TODO ctests/treesets/                                    :feat:
+..... 5. TODO ctests/hashsets/                                    :feat:
+.. 4. TODO Build /perf_tests with CMake                           :feat:
 
 
 1 TODO refactor utests code                                        :ref:
@@ -56,6 +58,14 @@ Table of Contents
 ──────────────────────────────────────────────────────────────────────────
 
 
+1.4 TODO Move Google Test form utests/sorting to utests/asp_sorting :ref:
+───────────────────────────────────────────────────────────────────
+
+
+1.5 TODO Change in utests/asp_sorting to resemble utests/asp_lists :ref
+───────────────────────────────────────────────────────────────────────
+
+
 2 TODO Refactor includes                                           :ref:
 ════════════════════════
 
@@ -65,8 +75,8 @@ Table of Contents
   /why/ To keep standarised naming
 
 
-2.2 TODO include/utils/utils.h into ../utils/utils.h               :ref:
-────────────────────────────────────────────────────
+2.2 TODO Change include/utils/utils.h into ../utils/utils.h        :ref:
+───────────────────────────────────────────────────────────
 
   /why/ Includes are unnececerely checking for include path.
 
@@ -127,20 +137,22 @@ Table of Contents
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.3.2 DONE ctests/sorting/ use sub-libraries                      :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.2 DONE ctests/sorting/                                        :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.3.3 TODO ctests/lists/ use sub-libraries                        :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.3 DONE ctests/lists/                                          :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+◊ 3.3.3.1 DONE Create class for passing data in human-readable form :feat:
 
 
-3.3.4 TODO ctests/treesets/ use sub-libraries                     :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.4 TODO ctests/treesets/                                       :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.3.5 TODO ctests/hashsets/ use sub-libraries                     :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.5 TODO ctests/hashsets/                                       :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
 3.4 TODO Build /perf_tests with CMake                             :feat:
