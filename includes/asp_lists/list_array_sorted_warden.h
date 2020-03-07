@@ -12,7 +12,8 @@ class list_array_sorted_warden
 {
     friend TestPlug<list_array_sorted_warden<T>>;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+  static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value,
+		 "Index types mismatch." );
 public:
     using elem_t = T;
 public:

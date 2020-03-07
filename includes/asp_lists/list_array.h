@@ -13,7 +13,8 @@ class list_array
 {
     friend TestPlug<list_array<T>>;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+  static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value,
+		 "Index types mismatch." );
 public:
     using elem_t = T;
 public:
@@ -77,7 +78,7 @@ private:
 	}
 private:
     static constexpr index_t null =
-	(std::is_signed<index_t>::value)? std::numeric_limits<index_t>::min() : std::numeric_limits<index_t>::max();
+      (std::is_signed<index_t>::value)? std::numeric_limits<index_t>::max() : std::numeric_limits<index_t>::min();
     std::vector<elem_t> elems;
     std::vector<index_t> next,prev;
     index_t head = null, tail = null;

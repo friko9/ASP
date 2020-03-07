@@ -2,6 +2,7 @@
 #define LIST_DYNAMIC_H
 
 #include "includes/utils/utils.h"
+#include <tuple>
 
 template <typename T>
 class list_dynamic
