@@ -6,7 +6,16 @@
 
 //#include "test_deps.h"
 
+#include "list_array.h"
+#include "list_array_enchanced.h"
+#include "list_array_selforganizing.h"
+#include "list_array_sorted.h"
+#include "list_array_sorted_warden.h"
+#include "list_dynamic.h"
 #include "list_stl.h"
+#include "list_stlforward.h"
+
+#include "utest_list.h"
 #include "utest.h"
 
 #include <gtest/gtest.h>
@@ -20,18 +29,33 @@ using namespace std;
 using namespace testing;
 
 template <typename T>
-class PopulateRemoveTest : public TestWithParam<tuple<T,T,T>>
+class PopulateRemoveTest
+  : public TestWithParam <tuple <tuple<const ListObjectT*,
+				       typename T::value_type,
+				       typename T::value_type>,
+				 tuple<T,T,T>>>
 {
 public:
   using value_t = typename T::value_type;
 public:
-  list_stl<value_t> test_obj;
+  void SetUp() override {
+    test_obj = get<0>(get<0>(this->GetParam()))->clone();
+    range_min = get<1>(get<0>(this->GetParam()));
+    range_max = get<2>(get<0>(this->GetParam()));
+  }
+  void TearDown() override {
+    delete test_obj;
+  }
   void populate_test_obj(const T& arg)  {
-    for_each(arg.begin(), arg.end(), [this](auto x){test_obj.insert(x);});
+    for_each(arg.begin(), arg.end(), [this](auto x){test_obj->insert(x);});
   }
   void depopulate_test_obj(const T& arg)  {
-    for_each(arg.begin(), arg.end(), [this](auto x){test_obj.remove(x);});
+    for_each(arg.begin(), arg.end(), [this](auto x){test_obj->remove(x);});
   }
+public:
+  ListObjectT* test_obj;
+  value_t range_min;
+  value_t range_max;
 };
 
 using PopulateRemoveTestInt16 = PopulateRemoveTest<Pretty<int16_t,vector>>;
@@ -43,15 +67,15 @@ namespace EmptyRemovalTest_ {
   //RESULT list contains listed elements after insertion
   TEST_P(PopulateRemoveTestInt16,ContainsAllTest)
   {
-    auto& insert = get<0>(GetParam());
-    auto& remove = get<1>(GetParam());
-    auto& expect = get<2>(GetParam());
+    auto& insert = get<0>(get<1>(GetParam()));
+    auto& remove = get<1>(get<1>(GetParam()));
+    auto& expect = get<2>(get<1>(GetParam()));
 
     EXPECT_NO_THROW( populate_test_obj(insert) );
     EXPECT_NO_THROW( depopulate_test_obj(remove) );
     
     for( auto test_val : expect )
-      ASSERT_TRUE(test_obj.contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
+      ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
   }
   
   //TEST SUITE
@@ -60,9 +84,9 @@ namespace EmptyRemovalTest_ {
   //RESULT list doesn't contain not listed elements after insertion
   TEST_P(PopulateRemoveTestInt16,DoesntContainOtherTest)
   {
-    auto& insert = get<0>(GetParam());
-    auto& remove = get<1>(GetParam());
-    auto expect = get<2>(GetParam());
+    auto& insert = get<0>(get<1>(GetParam()));
+    auto& remove = get<1>(get<1>(GetParam()));
+    auto expect = get<2>(get<1>(GetParam()));
     
     EXPECT_NO_THROW( populate_test_obj(insert) );
     EXPECT_NO_THROW( depopulate_test_obj(remove) );
@@ -70,13 +94,13 @@ namespace EmptyRemovalTest_ {
     sort(expect.begin(),expect.end());
 
     auto expect_begin = expect.begin();
-    for( auto i = numeric_limits<value_t>::min(); i<numeric_limits<value_t>::max(); ++i)
+    for( auto i : make_InclusiveRange(range_min, range_max) )
       {
 	auto it = find(expect_begin, expect.end(), i);
 	if( it != expect.end() )
 	  expect_begin = it;
 	else
-	  ASSERT_FALSE(test_obj.contains(i))<<"Populated list_stl contains: "<<i<<endl;
+	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list_stl contains: "<<i<<endl;
       }
   }
 
@@ -93,76 +117,108 @@ namespace EmptyRemovalTest_ {
   //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
   //DATA expect = [empty | half with gaps]
   INSTANTIATE_TEST_CASE_P(FullInorder, PopulateRemoveTestInt16,
-  			  Values(
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 {}},
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   {} },
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   {}},
-				 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
-				 ));
+			  Combine(
+				  Values(
+					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 ),
+				  Values(
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						 make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						 {}},
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   {} },
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   {}},
+					 tuple_t{make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+					 )));
   //TEST DATASET
   //DATA insert = Reverse-order full set
   //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
   //DATA expect = [empty | half with gaps]
   INSTANTIATE_TEST_CASE_P(FullReverseOrder, PopulateRemoveTestInt16,
-  			  Values(
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					 make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 {}},
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   {} },
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   {}},
-				 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
-				 ));
+			  Combine(
+				  Values(
+					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 ),
+				  Values(
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						 make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						 {}},
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   {} },
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   {}},
+					 tuple_t{make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+					 )));
   //TEST DATASET
   //DATA insert = Shuffled full set
   //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
   //DATA expect = [empty | half with gaps]
   INSTANTIATE_TEST_CASE_P(FullShuffledOrder, PopulateRemoveTestInt16,
-  			  Values(
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					 make_Pretty( make_InclusiveRange(v_min, v_max) ),
-					 {}},
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
-					   {} },
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   {}},
-				 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
-					   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
-					   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
-				 ));
-
+			  Combine(
+				  Values(
+					 make_tuple( NEW_TEST_OBJ(list_stl<int16_t>), v_min, v_max ),
+					 make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
+					 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min_1, v_max_1),
+					 make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)
+					 ),
+				  Values(
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						 make_Pretty( make_InclusiveRange(v_min, v_max) ),
+						 {}},
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   make_Pretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min, v_max) ),
+						   {} },
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ReversePretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) },
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   {}},
+					 tuple_t{make_ShuffledPretty( make_InclusiveRange(v_min, v_max) ),
+						   make_ShuffledPretty( make_InclusiveRange(v_min_1, v_max, value_t{2})),
+						   make_Pretty( make_InclusiveRange(v_min, v_max_1, value_t{2})) }
+					 )));
 }
 
