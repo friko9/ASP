@@ -1,6 +1,6 @@
 //////////////////////////////////////////////
 // Unit Test			            //
-// Element: list_stl		            //
+// Element: lists		            //
 // Scope: insert/remove/contains small sets //
 //////////////////////////////////////////////
 
@@ -60,7 +60,7 @@ using PopulateRemoveTestInt8 = PopulateRemoveTest<vector<int8_t>>;
 
 namespace EmptyRemovalTest_ {
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set, remove_set , check_set }
   //RESULT list contains listed element after insertion
   TEST_P(PopulateRemoveTestInt8,ContainsAllTest)
@@ -73,11 +73,11 @@ namespace EmptyRemovalTest_ {
     EXPECT_NO_THROW( depopulate_test_obj(remove) );
     
     for( auto test_val : expect )
-      ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
+      ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list doesn't contain: "<<test_val<<endl;
   }
 
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set, remove_set , check_set }
   //RESULT list doesn't contain not listed elements after insertion
   TEST_P(PopulateRemoveTestInt8,DoesntContainOtherTest)
@@ -98,7 +98,7 @@ namespace EmptyRemovalTest_ {
 	if( it != expect.end() )
 	  expect_begin = it;
 	else
-	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list_stl contains: "<<i<<endl;
+	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list contains: "<<i<<endl;
       }
   }
   

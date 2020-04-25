@@ -1,6 +1,6 @@
 ///////////////////////////////////////
 // Unit Test			     //
-// Element: list_stl		     //
+// Element: lists		     //
 // Scope: insert/contains small sets //
 ///////////////////////////////////////
 
@@ -57,7 +57,7 @@ using PopulateTestInt8 = PopulateTest<vector<int8_t>>;
 
 namespace InsertionTest_ {
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set , check_set }
   //RESULT list contains listed elements after insertion
   TEST_P(PopulateTestInt8,ContainsAfterInsert)
@@ -67,11 +67,11 @@ namespace InsertionTest_ {
     populate_test_obj(insert);
     
     for( auto test_val : expect )
-	ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
+	ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list doesn't contain: "<<test_val<<endl;
   };
 
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set , check_set }
   //RESULT list doesn't contain not listed elements after insertion
   TEST_P(PopulateTestInt8,DoesntContainOtherElements)
@@ -89,7 +89,7 @@ namespace InsertionTest_ {
 	if( it != expect.end() )
 	  expect_begin = it;
 	else
-	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list_stl contains: "<<i<<endl;
+	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list contains: "<<i<<endl;
       }
   };
   

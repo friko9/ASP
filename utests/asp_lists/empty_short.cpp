@@ -1,6 +1,6 @@
 ///////////////////////
 // Unit Test	     //
-// Element: list_stl //
+// Element: list     //
 // Scope: empty list //
 ///////////////////////
 

@@ -1,11 +1,8 @@
 ///////////////////////////////////////
 // Unit Test			     //
-// Element: list_stl		     //
+// Element: list		     //
 // Scope: insert/contains large sets //
 ///////////////////////////////////////
-
-//#include "test_deps.h"
-
 #include "list_array.h"
 #include "list_array_enchanced.h"
 #include "list_array_selforganizing.h"
@@ -57,7 +54,7 @@ using PopulateTestInt16 = PopulateTest<Pretty<int16_t,vector>>;
 
 namespace InsertionTest_ {
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set }
   //RESULT list contains listed elements after inorder insertion
   TEST_P(PopulateTestInt16,ContainsInserted)
@@ -68,10 +65,10 @@ namespace InsertionTest_ {
     EXPECT_NO_THROW( populate_test_obj(insert) );
 
     for( auto test_val : expect )
-      ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list_stl doesn't contain: "<<test_val<<endl;
+      ASSERT_TRUE(test_obj->contains(test_val))<<"Populated list doesn't contain: "<<test_val<<endl;
   }
   //TEST SUITE
-  //SUBJECT empty list_stl
+  //SUBJECT empty list
   //INPUT  { insert_set }
   //RESULT list doesn't contain not listed elements after inorder insertion
   TEST_P(PopulateTestInt16,DoesntContainNotInserted)
@@ -90,7 +87,7 @@ namespace InsertionTest_ {
   	if( it != expect.end() )
   	  expect_begin = it;
   	else
-  	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list_stl contains: "<<i<<endl;
+  	  ASSERT_FALSE(test_obj->contains(i))<<"Populated list contains: "<<i<<endl;
       }
   }
   

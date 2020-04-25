@@ -16,5 +16,5 @@ list(APPEND files_long "insert_long.cpp")
 list(APPEND files_long "remove_long.cpp")
 list(APPEND files_long ${files})
 
-add_google_test(FNAME "list_stl" LABEL "interface_short" DEPENDS ${depends} FILES ${files_short} )
-add_google_test(FNAME "list_stl" LABEL "interface_long" DEPENDS ${depends} FILES ${files_long} )
+add_google_test(FNAME "lists" LABEL "interface_short" DEPENDS ${depends} FILES ${files_short} )
+add_google_test(FNAME "lists" LABEL "interface_long" DEPENDS ${depends} FILES ${files_long} )
