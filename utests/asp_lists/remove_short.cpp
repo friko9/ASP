@@ -115,11 +115,14 @@ namespace EmptyRemovalTest_ {
 			      make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)  );
+
+  // A - add, R - remove, E - existing, N - not existing
+  // A0xR1Nx0E - empty -> Add 0 elements - Remove 1 Non-existing -> Result 0 Existing
   //TEST DATASET
   //DATA insert = empty
   //DATA remove = single elements
   //DATA expect = empty.
-  INSTANTIATE_TEST_CASE_P(0ExR1NEx0E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(A0xR1Nx0E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{},{0},{}},
 					  tuple_t{{},{v_min},{}},
@@ -129,7 +132,7 @@ namespace EmptyRemovalTest_ {
   //DATA insert = single elements
   //DATA remove = single elements
   //DATA expect = empty.
-  INSTANTIATE_TEST_CASE_P(1ExR1Ex0E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(A1xR1Ex0E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{0},{0},{}},
 					  tuple_t{{v_min},{v_min},{}},
@@ -139,7 +142,7 @@ namespace EmptyRemovalTest_ {
   //DATA insert = single elements
   //DATA remove = single elements
   //DATA expect = single elements
-  INSTANTIATE_TEST_CASE_P(1ExR1NEx1E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(A1xR1Nx1E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{0},{v_max},{0}},
 					  tuple_t{{v_min},{0},{v_min}},
@@ -149,7 +152,7 @@ namespace EmptyRemovalTest_ {
   //DATA insert = single elements.
   //DATA remove = repeating elements
   //DATA expect = empty.
-  INSTANTIATE_TEST_CASE_P(1ExR2Ex0E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(A1xR2Ex0E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{0},{0,0},{}},
 					  tuple_t{{v_min},{v_min,v_min},{}},
@@ -159,7 +162,7 @@ namespace EmptyRemovalTest_ {
   //DATA insert = repeating elements
   //DATA remove = single elements
   //DATA expect = single elements
-  INSTANTIATE_TEST_CASE_P(2ExR1Ex1E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(A2xR1Ex1E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{0,0},{0},{0}},
 					  tuple_t{{v_min,v_min},{v_min},{v_min}},
@@ -169,7 +172,7 @@ namespace EmptyRemovalTest_ {
   //DATA insert = repeating elements
   //DATA remove = repeating elements
   //DATA expect = empty
-  INSTANTIATE_TEST_CASE_P(2ExR2Ex0E, PopulateRemoveTestInt8,
+  INSTANTIATE_TEST_CASE_P(2AxR2Ex0E, PopulateRemoveTestInt8,
 			  Combine( test_objects,
 				   Values(tuple_t{{0,0},{0,0},{}},
 					  tuple_t{{v_min,v_min},{v_min,v_min},{}},
