@@ -59,19 +59,18 @@ namespace EmptyListTest {
   auto v_min_1 = numeric_limits<int8_t>::min() + int8_t{1};
   auto v_max_1 = numeric_limits<int8_t>::max() - int8_t{1};
 
+  auto test_objects = Values( make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
+			      make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
+			      make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
+			      make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max) );
+
   //TEST DATASET
   //DATA insert = Inorder full set
   //DATA remove = [inorder | revorder | shuffled] [full | half with gaps]
   //DATA expect = [empty | half with gaps]
-  INSTANTIATE_TEST_CASE_P(Lists, EmptyTestInt8,
-			  Values(
-				 make_tuple( NEW_TEST_OBJ(list_stl<int8_t>), v_min, v_max ),
-				 make_tuple( NEW_TEST_OBJ(list_stlforward<int8_t>), v_min, v_max),
-				 make_tuple( NEW_TEST_OBJ(list_array<int8_t>), v_min, v_max),
-				 make_tuple( NEW_TEST_OBJ(list_array_enchanced<int8_t>), v_min, v_max),
-				 make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int8_t>), v_min, v_max),
-				 make_tuple( NEW_TEST_OBJ(list_array_sorted<int8_t>), v_min, v_max),
-				 make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int8_t>), v_min_1, v_max_1),
-				 make_tuple( NEW_TEST_OBJ(list_dynamic<int8_t>), v_min, v_max)
-				 ));
+  INSTANTIATE_TEST_CASE_P(Lists, EmptyTestInt8, test_objects);
 }
