@@ -220,7 +220,7 @@ private:
 	    index_t r = branch(c, flip(side));
 	    index_t rl = branch(r, side);
 	    index_t lr = branch(l, flip(side));
-	    index_t rll = branch(rl, side);
+	    //	    index_t rll = branch(rl, side);
 	    index_t lrl = branch(lr, side);
 	    index_t lrr = branch(lr, flip(side));
 	    assert( node_exist(c) );

@@ -34,7 +34,7 @@ public:
 	    index_t node = find(x);
 	    if( node_exist(node) )
 	    {
-		side_t side = ((node%2)^(floor_log2(node)%2) == 1)? side_t::right : side_t::left;
+	      side_t side = ( (node%2)^(floor_log2(node)%2) )? side_t::right : side_t::left;
 		remove_value( indexes[node] );
 		remove_node(node, side);
 	    }

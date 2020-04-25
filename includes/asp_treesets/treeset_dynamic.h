@@ -5,6 +5,7 @@
 
 #include <cassert>
 #include <utility>
+#include <tuple>
 
 template <typename T>
 class treeset_dynamic
