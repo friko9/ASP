@@ -33,9 +33,10 @@ Table of Contents
 ..... 1. DONE ctests/utils/                                       :feat:
 ..... 2. DONE ctests/sorting/                                     :feat:
 ..... 3. DONE ctests/lists/                                       :feat:
-..... 4. TODO ctests/treesets/                                    :feat:
+..... 4. DONE ctests/treesets/                                    :feat:
 ..... 5. TODO ctests/hashsets/                                    :feat:
 .. 4. TODO Build /perf_tests with CMake                           :feat:
+4. TODO Remove treeset_array                                      :feat:
 
 
 1 TODO refactor utests code                                        :ref:
@@ -147,8 +148,10 @@ Table of Contents
 ◊ 3.3.3.1 DONE Create class for passing data in human-readable form :feat:
 
 
-3.3.4 TODO ctests/treesets/                                       :feat:
+3.3.4 DONE ctests/treesets/                                       :feat:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • State "DONE" from "TODO" [2020-04-26 Sun 00:43]
 
 
 3.3.5 TODO ctests/hashsets/                                       :feat:
@@ -157,3 +160,14 @@ Table of Contents
 
 3.4 TODO Build /perf_tests with CMake                             :feat:
 ─────────────────────────────────────
+
+
+4 TODO Remove treeset_array                                       :feat:
+═══════════════════════════
+
+  /why/ treeset_array has exponential pessimistic size growth scenaria.
+  /why/ Before it was used for completeness of array/dynamic_alloc -
+  with/without /why/ ballancing treeset structures, and to show what
+  effects does balancing provide.  /why/ treeset_array cannot be used
+  practically, causes utests success to be strictly /why/ bound to
+  whether machine has enough resources to run long the tests.
