@@ -22,19 +22,20 @@ Table of Contents
 .. 2. TODO add sub-libraries for each header file                  :ref:
 ..... 1. DONE includes/utils/
 ..... 2. DONE includes/asp_sorting/                                :ref:
-..... 3. DONE Make ctest/sorting/ use sub-libraries                :ref:
+..... 3. DONE Make utest/sorting/ use sub-libraries                :ref:
 ..... 4. TODO includes/asp_lists/                                  :ref:
-..... 5. TODO Make ctest/sorting/ use sub-libraries                :ref:
+..... 5. TODO Make utest/sorting/ use sub-libraries                :ref:
 ..... 6. TODO includes/asp_hashsets/                               :ref:
-..... 7. TODO Make ctest/sorting/ use sub-libraries                :ref:
+..... 7. TODO Make utest/sorting/ use sub-libraries                :ref:
 ..... 8. TODO includes/asp_treesets/                               :ref:
-..... 9. TODO Make ctest/sorting/ use sub-libraries                :ref:
+..... 9. TODO Make utest/sorting/ use sub-libraries                :ref:
 .. 3. TODO Build utests with CMake & GoogleTest                   :feat:
-..... 1. DONE ctests/utils/                                       :feat:
-..... 2. DONE ctests/sorting/                                     :feat:
-..... 3. DONE ctests/lists/                                       :feat:
-..... 4. DONE ctests/treesets/                                    :feat:
-..... 5. TODO ctests/hashsets/                                    :feat:
+..... 1. DONE utests/utils/                                       :feat:
+..... 2. DONE utests/sorting/                                     :feat:
+..... 3. DONE utests/asp_lists/                                   :feat:
+..... 4. DONE utests/asp_treesets/                                :feat:
+..... 5. DONE utests/asp_hashsets/                                :feat:
+..... 6. TODO Remove old utests                                   :feat:
 .. 4. TODO Build /perf_tests with CMake                           :feat:
 4. TODO Remove treeset_array                                      :feat:
 
@@ -103,7 +104,7 @@ Table of Contents
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.2.3 DONE Make ctest/sorting/ use sub-libraries                   :ref:
+3.2.3 DONE Make utest/sorting/ use sub-libraries                   :ref:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
@@ -111,7 +112,7 @@ Table of Contents
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.2.5 TODO Make ctest/sorting/ use sub-libraries                   :ref:
+3.2.5 TODO Make utest/sorting/ use sub-libraries                   :ref:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
@@ -119,7 +120,7 @@ Table of Contents
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.2.7 TODO Make ctest/sorting/ use sub-libraries                   :ref:
+3.2.7 TODO Make utest/sorting/ use sub-libraries                   :ref:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
@@ -127,35 +128,71 @@ Table of Contents
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.2.9 TODO Make ctest/sorting/ use sub-libraries                   :ref:
+3.2.9 TODO Make utest/sorting/ use sub-libraries                   :ref:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
 3.3 TODO Build utests with CMake & GoogleTest                     :feat:
 ─────────────────────────────────────────────
 
-3.3.1 DONE ctests/utils/                                          :feat:
+3.3.1 DONE utests/utils/                                          :feat:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.3.2 DONE ctests/sorting/                                        :feat:
+3.3.2 DONE utests/sorting/                                        :feat:
 ╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 
-3.3.3 DONE ctests/lists/                                          :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.3 DONE utests/asp_lists/                                      :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
 ◊ 3.3.3.1 DONE Create class for passing data in human-readable form :feat:
 
 
-3.3.4 DONE ctests/treesets/                                       :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.4 DONE utests/asp_treesets/                                   :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
 
   • State "DONE" from "TODO" [2020-04-26 Sun 00:43]
 
 
-3.3.5 TODO ctests/hashsets/                                       :feat:
-╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+3.3.5 DONE utests/asp_hashsets/                                   :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+  • State "DONE" from "TODO" [2020-04-26 Sun 19:03]
+
+
+3.3.6 TODO Remove old utests                                      :feat:
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+
+◊ 3.3.6.1 TODO Remove utests/lists                                :feat:
+
+  ◊ 3.3.6.1.1 TODO utests/lists: move internal tests to [where?]  :feat:
+
+
+◊ 3.3.6.2 TODO Remove utests/sorting                              :feat:
+
+  ◊ 3.3.6.2.1 TODO Move utests/sorting to utests/asp_sorting/
+
+    /why/ tests are using google-test but its structure is not unified
+    /what/ move google-test code from utils and unfiy
+
+
+◊ 3.3.6.3 TODO Remove utests/treesets                             :feat:
+
+  ◊ 3.3.6.3.1 TODO utests/treesets: move internal tests to [where?] :feat:
+
+
+◊ 3.3.6.4 TODO Remove utests/hashsets                             :feat:
+
+  ◊ 3.3.6.4.1 TODO utests/hashsets: move internal tests to [where?] :feat:
+
+
+◊ 3.3.6.5 TODO Remove utests/utils                                :feat:
+
+  ◊ 3.3.6.5.1 TODO Move utests/utils to utests/asp_utils/         :feat:
+
+    /why/ tests are using google-test but its structure is not unified
+    /what/ move google-test code from utils and unfiy
 
 
 3.4 TODO Build /perf_tests with CMake                             :feat:
