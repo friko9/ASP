@@ -63,7 +63,7 @@ private:
 	    hash_max = primes[floor_log2(v_map.size())];
 	    counter = float(hash_max)*max_load;
 
-	    for( int i =0; i < new_map.size(); ++i )
+	    for( index_t i =0; i < new_map.size(); ++i )
 		for( auto v : new_map[i])
 		{
 		    v_map[find(v)].push_front(v);

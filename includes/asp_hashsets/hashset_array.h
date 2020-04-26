@@ -88,7 +88,6 @@ private:
     void resize(index_t new_size)
 	{
 	    assert(new_size >= vals.size());
-	    RehashF r;
 	    std::vector<index_t> new_map(new_size,index_t(null));
 	    std::vector<index_t> new_cnt(new_size,0);
 	    swap(new_map,v_map);
