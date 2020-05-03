@@ -14,6 +14,8 @@ list(APPEND asplists_files "list_stl.h")
 
 #list(APPEND asplists_compile_opt "-Winline")
 
+add_subdirectory(impl)
+
 message("Target: asplists")
 add_library( asplists INTERFACE )
 target_sources( asplists INTERFACE ${asplists_files} )
