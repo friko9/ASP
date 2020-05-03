@@ -1,5 +1,5 @@
 #ifndef LIST_ARRAY_ENCHANCED_H
-#define LIST_ARRAT_ENCHANCED_H
+#define LIST_ARRAY_ENCHANCED_H
 
 #include "../utils/utils.h"
 
@@ -11,7 +11,8 @@ class list_array_enchanced
 {
     friend TestPlug<list_array_enchanced<T>>;
     using index_t = typename std::vector<T>::size_type;
-    static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value );
+  static_assert( std::is_same<index_t,typename std::vector<index_t>::size_type>::value,
+		 "Index type missmatch");
 public:
     using elem_t = T;
 private:
@@ -97,4 +98,4 @@ private:
     static constexpr index_t head = 1, tail = 0;
 };
 
-#endif /*LIST_ARRAT_ENCHANCED_H*/
+#endif /*LIST_ARRAY_ENCHANCED_H*/
