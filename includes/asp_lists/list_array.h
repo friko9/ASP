@@ -29,21 +29,14 @@ public:
   {
     auto node = find(x);
     if(node == null_) return;
-    auto last = size()-1;
-    exclude_elem(node);
-    move_elem(last,node);
+    
+    order_.remove_node(node);
+    elems_[node] = std::move(elems_.back());
     elems_.pop_back();
-    order_.pop_back();
   }
 private:
   index_t size()
   { return elems_.size(); }
-  void move_elem(index_t src,index_t dst)
-  {
-    order_.move_elem(src,dst);
-    elems_[dst] = std::move(elems_[src]);
-  }
-  void exclude_elem(index_t node) { order_.exclude_elem(node); }
   index_t find(elem_t x)
   {
     auto node = order_.get_head();
@@ -52,7 +45,7 @@ private:
     return node;
   }
 private:
-  static constexpr index_t null_ = impl::list_array::BidirectionalOrder<index_t>::null_;
+  static constexpr index_t null_ = impl::list_array::BidirectionalOrder<index_t>::null;
   impl::list_array::BidirectionalOrder<index_t> order_;
   std::vector<elem_t> elems_;
 };
