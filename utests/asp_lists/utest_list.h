@@ -3,6 +3,8 @@
 
 #include <gtest/gtest.h>
 
+/* virtual base class for list_* types*/
+/* use macro NEW_TEST_OBJ(type) */
 struct ListObjectT
 {
   virtual bool contains(int x) =0;
