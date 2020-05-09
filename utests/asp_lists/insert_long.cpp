@@ -5,7 +5,6 @@
 ///////////////////////////////////////
 #include "list_array.h"
 #include "list_array_enchanced.h"
-#include "list_array_selforganizing.h"
 #include "list_array_sorted.h"
 #include "list_array_sorted_warden.h"
 #include "list_dynamic.h"
@@ -100,7 +99,6 @@ namespace InsertionTest_ {
 			      make_tuple( NEW_TEST_OBJ(list_stlforward<int16_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_array<int16_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_array_enchanced<int16_t>), v_min, v_max),
-			      make_tuple( NEW_TEST_OBJ(list_array_selforganizing<int16_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_array_sorted<int16_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_array_sorted_warden<int16_t>), v_min, v_max),
 			      make_tuple( NEW_TEST_OBJ(list_dynamic<int16_t>), v_min, v_max)  );

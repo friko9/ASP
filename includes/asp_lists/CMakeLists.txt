@@ -5,7 +5,6 @@ list(APPEND asplists_features cxx_std_14 )
 
 list(APPEND asplists_files "list_array_enchanced.h")
 list(APPEND asplists_files "list_array.h")
-list(APPEND asplists_files "list_array_selforganizing.h")
 list(APPEND asplists_files "list_array_sorted.h")
 list(APPEND asplists_files "list_array_sorted_warden.h")
 list(APPEND asplists_files "list_dynamic.h")
