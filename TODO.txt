@@ -168,6 +168,11 @@ Table of Contents
 
   ◊ 3.3.6.1.1 TODO utests/lists: move internal tests to [where?]  :feat:
 
+    ◊ 3.3.6.1.1.1 DONE Refactor asp_lists internals to external class :ref:
+
+      • State "DONE" from "TODO" [2020-05-11 Mon 01:54]
+      /why/ single responsibility principle.
+
 
 ◊ 3.3.6.2 TODO Remove utests/sorting                              :feat:
 
